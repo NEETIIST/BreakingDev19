@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
+const verifyToken = require('../../auth/tokenVerification');
 
 // Load input validation
 const validateRegisterInput = require("../../validation/register");
@@ -99,6 +100,28 @@ router.post("/login", (req, res) => {
             }
         });
     });
+});
+
+// @route POST api/users/logout
+// @desc Delete User Token
+// @access Public
+// TODO: Review if this is needed or can be done other way
+router.get('/logout', function(req, res) {
+    res.status(200).send({ auth: false, token: null });
+});
+
+// @route POST api/users/me
+// @desc List User Information (test purposes only)
+// @access Public
+router.get('/me', verifyToken, function(req, res, next) {
+
+    User.findById(req.userId, { password: 0 }, function (err, user) {
+        if (err) return res.status(500).send("There was a problem finding the user.");
+        if (!user) return res.status(404).send("No user found.");
+
+        res.status(200).send(user);
+    });
+
 });
 
 module.exports = router;
