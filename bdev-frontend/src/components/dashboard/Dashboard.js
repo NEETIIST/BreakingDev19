@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+
 class Dashboard extends Component {
     onLogoutClick = e => {
         e.preventDefault();
@@ -12,14 +13,15 @@ class Dashboard extends Component {
         return (
             <div>
                 <h4>
-                    <b>Hey there,</b> {user.name.split(" ")[0]}
+                    <b>Hey there,</b> {user.username.split(" ")[0]}
                     <p>
                         You are logged into a full-stack{" "}
-                        <span>MERN</span> app 👏
+                        <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
                     </p>
                 </h4>
                 <button
                     onClick={this.onLogoutClick}
+                    className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                 >
                     Logout
                 </button>

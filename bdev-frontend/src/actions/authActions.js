@@ -16,7 +16,7 @@ export const registerUser = (userData, history) => dispatch => {
     // ITS REALLY IMPORTANT TO USE QUERYSTRING ON THE DATA!
     axios.post('http://localhost:4000/api/users/register', querystring.stringify(userData) , {
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            'Content-Type': 'application/x-www-form-urlencoded'
         },
     })
         .then(response => {
@@ -33,7 +33,11 @@ export const registerUser = (userData, history) => dispatch => {
 // Login  - get user token
 export const loginUser = userData => dispatch => {
     axios
-        .post("/api/users/login", userData)
+        .post("http://localhost:4000/api/users/login", querystring.stringify(userData), {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+        })
         .then(res => {
             // Save to localStorage
             // Set token to localStorage

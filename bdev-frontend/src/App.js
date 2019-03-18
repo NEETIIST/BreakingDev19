@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
@@ -9,6 +9,8 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 
 
@@ -39,6 +41,10 @@ class App extends Component {
                     <div className="container">
                         <h2>MERN-Stack Todo App</h2>
                         <Route exact path="/register" component={Register} />
+                        <Route exact path="/login" component={Login} />
+                        <Switch>
+                            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                        </Switch>
                     </div>
                 </Router>
             </Provider>
