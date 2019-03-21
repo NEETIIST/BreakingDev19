@@ -27,8 +27,19 @@ let grantsObject = {
     starter: {
         user: {
             'read:own': ['*']
+        },
+        devProfile: {
+            'create:own': ['*']
+        }
+    },
+
+    dev: {
+        devProfile: {
+            'update:own': ['*']
         }
     }
+
+
 
 };
 

@@ -7,6 +7,7 @@ const PORT = 4000;
 
 const passport = require("passport");
 const users = require("./routes/api/users");
+const devs = require("./routes/api/devs");
 
 app.use(cors());
 app.use(bodyParser.urlencoded({
@@ -30,3 +31,4 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
+app.use("/api/devs", devs);
