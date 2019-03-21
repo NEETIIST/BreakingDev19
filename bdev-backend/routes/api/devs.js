@@ -44,7 +44,7 @@ router.post("/create", verifyToken, (req, res) => {
             }
 
             const newDev = new DevProfile({
-                username: user.username,
+                userid: req.userId,
                 name: req.body.name,
                 age: req.body.age,
                 college: req.body.college,
@@ -60,7 +60,7 @@ router.post("/create", verifyToken, (req, res) => {
 
             newDev
                 .save()
-                .then(d => res.status(200).json(d))  // Find a way to return only the public fields
+                .then(d => {res.status(200).json(d)})  // Find a way to return only the public fields
                 .catch(err => console.log(err));
 
             // After creating the DevProfile, change the current user Role to dev
@@ -72,43 +72,21 @@ router.post("/create", verifyToken, (req, res) => {
 
     });
 
+});
 
+// @route GET api/devs/me
+// @desc Returns the logged user dev Profile
+// No permission check necessary, because only authorized users have their dev profile
+router.get("/me", verifyToken, (req, res) => {
 
-    /*
-    const newDev = new Dev({
-        username:
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password
+    DevProfile.findOne({"username":req.username}, function (err, dev) {
+        if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
+        if (!dev) return res.status(404).send("No Dev Profile found for this username");
+
+        // How do I hide Non-Public fields?
+        return res.status(200).send(dev);
     });
-    /*
-    User.findOne({ username: req.body.username }).then(user => {
-        if (user) {
-            return res.status(400).json({ username: "Username already taken" });
-        }
-        User.findOne({ email: req.body.email }).then(user => {
-            if (user) {
-                return res.status(400).json({ email: "Email already used" });
-            }
-            const newUser = new User({
-                username: req.body.username,
-                email: req.body.email,
-                password: req.body.password
-            });
-            // Hash password before saving in database
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    if (err) throw err;
-                    newUser.password = hash;
-                    newUser
-                        .save()
-                        .then(user => res.json(user))
-                        .catch(err => console.log(err));
-                });
-            });
-        })
-    })
-    */
+
 });
 
 module.exports = router;
