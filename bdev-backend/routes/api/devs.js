@@ -17,8 +17,6 @@ const DevProfile = require("../../models/DevProfile");
 // And checks for role permission, must be 'starter'
 router.post("/create", verifyToken, (req, res) => {
 
-    let loggedUser = undefined ;
-
     User.findById(req.userId, { password: 0 }, function (err, user) {
         if (err) return res.status(500).send("There was a problem finding the user.");
         if (!user) return res.status(404).send("This user doesn't exist");
@@ -100,13 +98,35 @@ router.get("/me", verifyToken, (req, res) => {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
         if (!dev) return res.status(404).send("No Dev Profile found for this username");
 
+        // The Dev Profile will always be the one of the logged user
         return res.status(200).send(dev);
     });
 
 });
 
-// @route GET api/devs/_:id
-// @desc Returns the dev matching the id
+// @route PUT api/devs/me/edit
+// @desc Expects an updated Dev Profile form
+// No permission check necessary, because only authorized users have their dev profile
+router.put("/me/edit", verifyToken, (req, res) => {
+
+    // Form validation
+    const { errors, isValid } = validateDevProfileInput (req.body);
+    // Check validation
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    DevProfile.findOneAndUpdate({"username":req.username}, req.body, function (err, dev) {
+        if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
+        if (!dev) return res.status(404).send("No Dev Profile found for this username");
+
+        return res.status(200).send("User Dev Profile Updated");
+    });
+
+});
+
+// @route GET api/devs/_:username
+// @desc Returns the dev matching the username
 // Permissions change the information returned
 // Admins get all the info
 // Sponsors get the same info as the owner
