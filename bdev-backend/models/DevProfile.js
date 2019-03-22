@@ -50,8 +50,9 @@ const DevProfileSchema = new Schema({
 
 });
 
-/*
-DevProfileSchema.publicInfo = {
+DevProfile = mongoose.model("devProfiles", DevProfileSchema);
+
+DevProfile.publicInfo = {
     username:1,
     name:1,
     college:1,
@@ -63,6 +64,11 @@ DevProfileSchema.publicInfo = {
     twitter:1,
     linkedin:1,
 };
-*/
 
-module.exports = DevProfile = mongoose.model("devProfiles", DevProfileSchema);
+DevProfile.ownerInfo = {
+    payment:0,
+}
+
+DevProfile.adminInfo = {};
+
+module.exports = DevProfile;

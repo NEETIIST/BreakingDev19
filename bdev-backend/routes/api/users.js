@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const verifyToken = require('../../auth/tokenVerification');
-const accessControl = require('../accessControl');
 
 // Load input validation
 const validateRegisterInput = require("../../validation/register");
@@ -78,7 +77,8 @@ router.post("/login", (req, res) => {
                 // Create JWT Payload
                 const payload = {
                     id: user.id,
-                    username: user.username
+                    username: user.username,
+                    role: user.role,
                 };
                 // Sign token
                 jwt.sign(
@@ -120,10 +120,9 @@ router.get('/me', verifyToken, function(req, res, next) {
         if (err) return res.status(500).send("There was a problem finding the user.");
         if (!user) return res.status(404).send("No user found.");
 
-        const permission = accessControl.can(user.role).readOwn('user');
-        console.log(permission.granted);
-
+        // The user is based on the token so it will always match the logged user
         res.status(200).send(user);
+
     });
 
 });
