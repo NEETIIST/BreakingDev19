@@ -4,12 +4,12 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const verifyToken = require('../../auth/tokenVerification');
 
-// Load input validation
-const validateDevProfileInput = require("../../validation/devProfile");
-
 // Load User model
 const User = require("../../models/User");
 const DevProfile = require("../../models/DevProfile");
+
+// Load input validation
+const validateDevProfileInput = require("../../validation/devProfile");
 
 // @route POST api/devs/create
 // @desc Create Dev Profile, logged user must not have a profile already
@@ -60,7 +60,7 @@ router.post("/create", verifyToken, (req, res) => {
                     const payload = {
                         id: user.id,
                         username: user.username,
-                        role: user.role,
+                        role: "dev",
                     };
                     // Sign token
                     jwt.sign(
@@ -93,6 +93,8 @@ router.post("/create", verifyToken, (req, res) => {
 // @desc Returns the logged user dev Profile
 // No permission check necessary, because only authorized users have their dev profile
 router.get("/me", verifyToken, (req, res) => {
+
+    //console.log(req.role);
 
     DevProfile.findOne({"username":req.username}, DevProfile.ownerInfo, function (err, dev) {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
