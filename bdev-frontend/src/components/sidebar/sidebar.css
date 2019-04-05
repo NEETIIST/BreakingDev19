@@ -1,0 +1,74 @@
+#sidebar
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1100;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+#sidebarContent{
+    background: #257183;
+    border-right: 2px solid white;
+}
+
+#sidebarMask{
+    background: rgba(21,21,21,0.5);
+}
+
+#sidebar {
+    visibility: hidden;
+    transition: visibility 0s ease-in;
+}
+#sidebar.visible {
+    visibility: visible;
+    transition: visibility 0s ease-in;
+}
+#sidebar.hidden {
+    visibility: hidden;
+    transition: visibility 0s ease-in;
+}
+
+.sidebar-button{
+    text-shadow: 1px 1px 2px rgba(21, 21, 21, 1);
+    transition: text-shadow 0.3s linear;
+}
+
+.sidebar-button:hover{
+    text-shadow: 1px 1px 4px rgba(21, 21, 21, 1);
+    transition: text-shadow 0.3s linear;
+}
+
+/* Underline From Left */
+.hvr-underline-from-left {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    overflow: hidden;
+}
+.hvr-underline-from-left:before {
+    text-shadow: 1px 1px 2px rgba(21, 21, 21, 1);
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    background: white;
+    height: 2px;
+    -webkit-transition-property: right;
+    transition-property: right;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+.hvr-underline-from-left:hover:before, .hvr-underline-from-left:focus:before, .hvr-underline-from-left:active:before {
+    right: 0;
+}
+
+

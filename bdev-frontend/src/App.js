@@ -12,6 +12,9 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
+import Index from "./components/index/Index";
+
+import './styles/global.css';
 
 
 // Check for token to keep user logged in
@@ -38,14 +41,12 @@ class App extends Component {
         return (
             <Provider store={store}>
                 <Router>
-                    <div className="container">
-                        <h2>MERN-Stack Todo App</h2>
-                        <Route exact path="/register" component={Register} />
-                        <Route exact path="/login" component={Login} />
-                        <Switch>
-                            <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                        </Switch>
-                    </div>
+                    <Route exact path="/" component={Index} />
+                    <Route exact path="/register" component={Register} />
+                    <Route exact path="/login" component={Login} />
+                    <Switch>
+                        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                    </Switch>
                 </Router>
             </Provider>
         );
