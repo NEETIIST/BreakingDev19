@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Fade from 'react-reveal/Fade';
+import {FormattedMessage} from 'react-intl';
 
 import './sidebar.css';
 
@@ -45,7 +46,7 @@ class Sidebar extends Component {
                                 <hr className="m-0"/>
                                 <div className="row justify-content-center align-items-center vh-75 p-0 m-0">
                                     <div class="col-11 text-left">
-                                        <p>Opt 1</p>
+                                        <p><FormattedMessage id="app.test"/></p>
                                     </div>
                                 </div>
                                 <hr className="m-0"/>
