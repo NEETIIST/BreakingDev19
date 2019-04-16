@@ -20,6 +20,7 @@ import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import Index from "./components/index/Index";
+import Sidebar from "./components/sidebar/sidebar";
 
 import './styles/global.css';
 import locale_de from "react-intl/locale-data/de";
@@ -56,14 +57,7 @@ class App extends Component {
         return (
             <IntlProvider locale={language} messages={messages[language]}>
                 <Provider store={store}>
-                    <Router>
-                        <Route exact path="/" component={Index} />
-                        <Route exact path="/register" component={Register} />
-                        <Route exact path="/login" component={Login} />
-                        <Switch>
-                            <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                        </Switch>
-                    </Router>
+                    <Sidebar/>
                 </Provider>
             </IntlProvider>
         );

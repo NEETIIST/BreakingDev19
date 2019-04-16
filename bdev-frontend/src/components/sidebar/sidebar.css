@@ -9,7 +9,7 @@
 }
 
 #sidebarContent{
-    background: #257183;
+    //background: #257183;
     border-right: 2px solid white;
 }
 
@@ -71,4 +71,27 @@
     right: 0;
 }
 
+/* Sidebar Options */
+.sidebar-opt
+{
+    background: inherit;
+    color: white;
+    transition: color 0.3s linear;
+}
 
+.sidebar-opt:hover
+{
+    color: #4093A8;
+    transition: color 0.3s linear;
+}
+
+.sidebar-active
+{
+    background-color: #257183;
+    transition: text-shadow 0.3s linear;
+}
+
+.sidebar-active:hover{
+    text-shadow: 1px 1px 2px rgba(21, 21, 21, 0.5);
+    transition: text-shadow 0.3s linear;
+}

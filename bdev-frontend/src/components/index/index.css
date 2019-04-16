@@ -1,0 +1,23 @@
+.fancy-highlight {
+    background-image: linear-gradient(to right, #257183 50%, white 50%);
+    background-position: 0;
+    background-size: 200%;
+    color: white;
+    transition: all 1s;
+}
+
+.fancy-highlight:hover {
+    color: #257183;
+    background-position: -100%;
+    transition: all 1s;
+}
+
+.title-highlight{
+    text-shadow: 1px 1px 2px rgba(21, 21, 21, 0.25);
+    background: url("/img/brush2.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 120%;
+    //padding: 8px 0;
+}
+
