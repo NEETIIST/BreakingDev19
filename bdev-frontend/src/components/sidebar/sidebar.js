@@ -34,7 +34,7 @@ class Sidebar extends Component {
                         <div className="col-6 col-lg-2 text-left pl-3">
                             <div className="sidebar-button hvr-underline-from-left p-2 cp" onClick={this.toggleSidebar}>
                                 <i className="fas fa-bars fa-lg f-white px-2"></i>
-                                <span className="f-white mt-3 fs-lg px-2">MENU</span>
+                                <span className="f-white mt-3 fs-lg px-2"><FormattedMessage id="sidebar.open"/></span>
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@ class Sidebar extends Component {
                                             <div className="sidebar-button hvr-underline-from-left ml-2 p-2 cp"
                                                  onClick={this.toggleSidebar}>
                                                 <i className="fas fa-times fa-lg f-white px-2"></i>
-                                                <span className="f-white mt-3 fs-lg px-2">VOLTAR</span>
+                                                <span className="f-white mt-3 fs-lg px-2"><FormattedMessage id="sidebar.close"/></span>
                                             </div>
                                         </div>
                                     </div>
@@ -61,7 +61,7 @@ class Sidebar extends Component {
                                                         <i className="fas fa-home fa-lg py-2"></i>
                                                     </div>
                                                     <div className="col-9 text-left">
-                                                        <span><FormattedMessage id="sidebar.opt1"/></span>
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt1"/></span>
                                                     </div>
                                                 </div>
                                             </NavLink>
@@ -72,7 +72,7 @@ class Sidebar extends Component {
                                                         <i className="fas fa-clipboard-list fa-lg py-2"></i>
                                                     </div>
                                                     <div className="col-9 text-left">
-                                                        <span><FormattedMessage id="sidebar.opt2"/></span>
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt2"/></span>
                                                     </div>
                                                 </div>
                                             </NavLink>
@@ -83,7 +83,7 @@ class Sidebar extends Component {
                                                         <i className="fas fa-user fa-lg py-2"></i>
                                                     </div>
                                                     <div className="col-9 text-left">
-                                                        <span><FormattedMessage id="sidebar.opt3"/></span>
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt3"/></span>
                                                     </div>
                                                 </div>
                                             </NavLink>
@@ -94,7 +94,7 @@ class Sidebar extends Component {
                                                         <i className="fas fa-users fa-lg py-2"></i>
                                                     </div>
                                                     <div className="col-9 text-left">
-                                                        <span><FormattedMessage id="sidebar.opt4"/></span>
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt4"/></span>
                                                     </div>
                                                 </div>
                                             </NavLink>

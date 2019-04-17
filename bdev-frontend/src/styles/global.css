@@ -30,6 +30,7 @@ body {
 .fw-4 { font-weight: 400; }
 .fw-7 { font-weight: 700; }
 .f-it { font-style: italic; }
+.fs-xs { font-size: 0.9rem; }
 .fs-sm { font-size: 1rem; }
 .fs-md { font-size: 1.125rem; }
 .fs-lg { font-size: 1.25rem; }
@@ -84,6 +85,7 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 .black { background-color: #1c1c1c }
 .dark-grey { background-color: #2d2d2d }
 .grey { background-color: #595959 }
+.light-grey { background-color: #d1d1d1 }
 .white { background-color: #ffffff }
 .primary { background-color: #257183 }
 .secondary { background-color: #4093A8 }
@@ -110,19 +112,6 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 .clickable { transition: text-shadow 300ms linear; }
 .clickable:hover { text-shadow: 1px 1px 2px rgba(21, 21, 21, 1); transition: text-shadow 300ms linear; }
 
+.hvr-primary { color: inherit; transition: all 0.3s linear; }
+.hvr-primary:hover { color: #257183; transition: all 0.3s linear; }
 
-/* Buttons */
-.btn-dev {
-    color: white;
-    border: 2px solid white;
-    border-radius: 0;
-    transition: box-shadow 0.3s linear, border-radius 0.3s linear;
-}
-
-.btn-dev:hover {
-    color: white;
-    border: 2px solid white;
-    border-radius: 0.4em;
-    box-shadow: 2px 2px 5px 1px rgba(28,28,28,0.5);
-    transition: box-shadow 0.3s linear, border-radius 0.3s linear;
-}

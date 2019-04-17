@@ -1,3 +1,12 @@
+#splash{
+    background:
+            linear-gradient( rgba(37, 113, 131, 0.6), rgba(37, 113, 131, 1)),
+            url("/img/splashComp.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 20% center;
+}
+
 .fancy-highlight {
     background-image: linear-gradient(to right, #257183 50%, white 50%);
     background-position: 0;
@@ -20,4 +29,98 @@
     background-size: 100% 120%;
     //padding: 8px 0;
 }
+
+.title-border{
+    color: #1c1c1c;
+    border-bottom: 4px solid #1c1c1c;
+    transition: all 0.3s linear;
+}
+
+.title-border:hover{
+    color: #257183;
+    border-bottom: 4px solid #257183;
+    transition: all 0.3s linear;
+}
+
+.title-border-alt{
+    color: white;
+    border-bottom: 4px solid white;
+    transition: all 0.3s linear;
+}
+
+
+.step {
+    background-color: #ededed;
+    border-radius: 0;
+    border-right: 4px solid rgba(0,0,0,0);
+    transition: all 0.3s linear;
+}
+
+.step:hover {
+    box-shadow: 1px 1px 2px 0px rgba(28,28,28,0.3);
+    border-radius: 0 0.2em 0.2em 0;
+    color: #257183;
+    border-right: 4px solid #257183;
+    transition: all 0.3s linear;
+}
+
+.step-container {
+    border-left: 4px solid #257183;
+}
+
+.category-left {
+    background-color: inherit;
+    border-left: 4px solid rgba(0,0,0,0);
+    transition: all 0.3s linear;
+}
+.category-left:hover {
+    background-color: #4093A8;
+    border-left: 4px solid white;
+    text-shadow: 1px 1px 2px rgba(21, 21, 21, 0.5);
+    transition: all 0.3s linear;
+}
+
+.category-right {
+    background-color: inherit;
+    border-right: 4px solid rgba(0,0,0,0);
+    transition: all 0.3s linear;
+}
+.category-right:hover {
+    background-color: #4093A8;
+    border-right: 4px solid white;
+    text-shadow: 1px 1px 2px rgba(21, 21, 21, 0.5);
+    transition: all 0.3s linear;
+}
+
+.challenge {
+    background-color: inherit;
+    border-bottom: 2px solid rgba(0,0,0,0);
+    transition: all 0.3s linear;
+}
+.challenge:hover {
+    background-color: #4093A8;
+    border-bottom: 2px solid white;
+    text-shadow: 1px 1px 2px rgba(21, 21, 21, 0.5);
+    transition: all 0.3s linear;
+}
+
+/* Buttons */
+.btn-dev {
+    background-color: #257183;
+    color: white;
+    border: 2px solid white;
+    border-radius: 0;
+    transition: all 0.3s linear;
+}
+
+.btn-dev:hover {
+    background-color: white;
+    color: #257183;
+    border: 2px solid white;
+    border-radius: 0.4em;
+    box-shadow: 2px 2px 5px 1px rgba(28,28,28,0.5);
+    transition: all 0.3s linear;
+}
+
+
 
