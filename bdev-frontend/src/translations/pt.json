@@ -40,5 +40,19 @@
   "index.sec3.innov2": "'New is always better', queremos encontrar a ideia mais inovadora",
   "index.sec3.crowd1": "Crowd Award",
   "index.sec3.crowd2": "Porque nem tudo é programar, queremos saber qual é a equipa preferida do público",
-  "index.sec3.desc3": "Temos uma descrição mais detalhada de cada categoria e challenge nas nossas FAQs, se ainda ficaste com algumas dúvidas, clica aqui para ler mais."
+  "index.sec3.desc3": "Temos uma descrição mais detalhada de cada categoria e challenge nas nossas FAQs, se ainda ficaste com algumas dúvidas, clica aqui para ler mais.",
+  "index.sec4.title1": "48 horas que não te vais esquecer",
+  "index.sec4.desc1": "Se ainda não estás convencido, então ainda temos muito mais para te contar!",
+  "index.sec5.title0": "Todas as refeições estão incluídas na inscrição",
+  "index.sec5.desc0": "Queremos que a tua principal preocupação seja a tua ideia. Com a tua inscrição, tens direito a todas as refeições durante o fim-de-semana. E ainda tens sempre coffee-breaks, café e bebidas à tua disposição.",
+  "index.sec5.extra0": "Mas se quiseres descontrair um pouco, a lenda diz que durante a noite há uma bebida muito especial para aumentar a tua inspiração.",
+  "index.sec5.title1": "Ambiente único e descontraído",
+  "index.sec5.desc1": "Apesar de ser uma competição, acreditamos que consegues ser mais produtivo quando o ambiente à tua volta é descontraído. Acima de tudo, queremos que este seja um fim-de-semana divertido. Nos últimos anos já tivemos um pouco de tudo: Matraquilhos, Nerf Guns, Ping-Pong, FIFA, Dr. Why e muito mais.",
+  "index.sec5.extra1": "Este ano não vai ser diferente. Conta connosco para sempre que quiseres fazer uma pausa do teu projeto.",
+  "index.sec5.title2": "Prémios! Prémios! Prémios!",
+  "index.sec5.desc2": "Se é uma competição, só faz sentido termos prémios para os melhores. Todos os membros das equipas vencedoras levam para casa um prémio. Há prémios para cada categoria principal, para cada challenge adicional e ainda sorteamos prémios extra entre todos os participantes. Nos últimos anos já oferecemos GoPro's, Raspberry Pi's, Teclados Corsair, Headphones Razer, NES Classic e Super Nintendo's.",
+  "index.sec5.extra2": "Ainda estamos a tentar encontrar os melhores prémios possível para este ano. Se nos quiseres dar alguma sugestão, envia-nos uma mensagem para o nosso Instagram (@breakingdev).",
+  "index.sec5.title3": "Regras e avisos",
+  "index.sec5.desc3": "Queremos que a competição seja justa para todos. Apesar de poucas, temos algumas regras. Queremos que todo o código seja desenvolvido durante as 48 horas. Para isso utilizamos o Github para verificações ocasionais. Podem ser usadas frameworks e outros assets, mas a maioria do código deve ser feito durante o fim-de-semana. O nosso júri, composto por convidados da área da Informática, vai escolher os vencedores com os seus próprios critérios.",
+  "index.sec5.extra3": "O nosso regulamento completo está disponível na página das FAQs. Se tiveres alguma dúvida podes perguntar-nos nas nossas redes sociais ou enviar-nos um email."
 }

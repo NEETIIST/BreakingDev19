@@ -7,27 +7,39 @@ import {FormattedMessage} from "react-intl";
 //import { connect } from "react-redux";
 //import { loginUser } from "../../actions/authActions";
 
+
 import './index.css';
+
 
 class Index extends Component {
     constructor() {
         super();
         this.state = {
-
+            "extraInfo":0,
         };
+        this.changeExtraInfo = this.changeExtraInfo.bind(this);
+    }
+
+    changeExtraInfo = (number) => {
+        this.setState({extraInfo: number})
     }
 
     componentWillReceiveProps(nextProps) {
 
     }
 
+
+
+
+
     render() {
+        console.log(this.state.extraInfo==0);
         return (
             <div>
 
                 <div className="row vh-100 justify-content-center align-items-center m-0" id="splash">
                     <div className="col-12 col-lg-10 p-0 m-0 text-center">
-                        <img src="img/splashAlt.png" class="img-fluid" />
+                        <img src="img/splashAlt.png" className="img-fluid" />
                         <Scroll to="knowmore" spy={true} smooth={true} duration={1000}>
                             <i className="fas fa-angle-double-down fa-lg f-white mb-3"></i>
                         </Scroll>
@@ -232,7 +244,59 @@ class Index extends Component {
                         <div className="spacer-4"></div>
                     </div>
                 </div>
-                <div className="row vh-100 justify-content-center align-items-center m-0 f-black" id="">
+                <div className="row vh-60 justify-content-center align-items-center m-0 black f-white" id="extrainfo">
+                    <div className="col-11 col-lg-10 p-0 m-0 text-right">
+                        <div className="spacer-4"></div>
+                        <p className="fs-xl fw-7 mb-1 flh-2 mb-3 py-2 title-border-alt"><FormattedMessage id="index.sec4.title1"/></p>
+                        <p className="fs-md fw-4 mb-1 flh-2 mb-1 "><FormattedMessage id="index.sec4.desc1"/></p>
+                        <div className="spacer-4"></div>
+                        <div className="row justify-content-end align-items-start m-0">
+                            <div className="col-lg-4 px-3 text-left d-none d-lg-block">
+                                <Fade left>
+                                    <img src="img/img1.png" className="img-fluid p-3"/>
+                                </Fade>
+                            </div>
+                            <div className="col-12 col-lg-8 p-0">
+                                <div className="row justify-content-end align-items-start m-0">
+                                    <div className={"col-2 col-lg-2 text-center info-icon mx-1 p-3 cp " +(this.state.extraInfo == 0 ? "active-icon":"")}
+                                         onClick={() => this.changeExtraInfo(0)}>
+                                        <i className="fas fa-pizza-slice fa-2x"></i>
+                                    </div>
+                                    <div className={"col-2 col-lg-2 text-center info-icon mx-1 p-3 cp " +(this.state.extraInfo == 1 ? "active-icon":"")}
+                                         onClick={() => this.changeExtraInfo(1)}>
+                                        <i className="fas fa-glass-cheers fa-2x"></i>
+                                    </div>
+                                    <div className={"col-2 col-lg-2 text-center info-icon mx-1 p-3 cp " +(this.state.extraInfo == 2 ? "active-icon":"")}
+                                         onClick={() => this.changeExtraInfo(2)}>
+                                        <i className="fas fa-trophy fa-2x"></i>
+                                    </div>
+                                    <div className={"col-2 col-lg-2 text-center info-icon ml-1 p-3 cp " +(this.state.extraInfo == 3 ? "active-icon":"")}
+                                         onClick={() => this.changeExtraInfo(3)}>
+                                        <i className="fas fa-book fa-2x"></i>
+                                    </div>
+                                </div>
+                                <div className="row vh-40 justify-content-end align-items-start m-0 py-2 px-3 info-text">
+                                    <div className="col-12 p-3 text-justify">
+                                        <p className="fs-md fw-7 mb-2 flh-2"><FormattedMessage id={"index.sec5.title"+this.state.extraInfo}/></p>
+                                        <p className="fs-sm fw-4 mb-2 flh-2"><FormattedMessage id={"index.sec5.desc"+this.state.extraInfo}/></p>
+                                        <p className="fs-sm fw-4 mb-1 flh-2"><FormattedMessage id={"index.sec5.extra"+this.state.extraInfo}/></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="spacer-6"></div>
+                    </div>
+                </div>
+                <div className="row vh-70 justify-content-center align-items-center m-0 primary f-white" id="extrainfo">
+                    <div class="col-11 col-lg-5 text-justify text-lg-left">
+                        <div className="spacer-4"></div>
+                        <p className="fs-xl fw-7 mb-1 flh-2 mb-3"><FormattedMessage id="index.sec6.title1"/></p>
+                        <p className="fs-sm fw-4 mb-1 flh-2 mb-2"><FormattedMessage id="index.sec6.desc1"/></p>
+                        <p className="fs-sm fw-4 mb-1 flh-2 mb-2"><FormattedMessage id="index.sec6.desc2"/></p>
+                    </div>
+                    <div className="col-11 col-lg-5">
+
+                    </div>
                 </div>
             </div>
         );
@@ -242,26 +306,3 @@ class Index extends Component {
 
 export default Index;
 
-/*
-<div className="row vh-100 justify-content-center align-items-center m-0 primary f-white" id="knowmore">
-                    <div className="col-11 col-lg-6 p-0 pr-3 m-0">
-                        <Fade left>
-                            <p className="fs-xl fw-4 mb-1 flh-2 mb-2"><FormattedMessage id="index.sec1.q1"/></p>
-                            <p className="fs-md fw-4 mb-1 flh-2"><FormattedMessage id="index.sec1.a1"/></p>
-                            <div className="spacer-6"></div>
-                            <p className="fs-xl fw-4 mb-1 flh-2 mb-2"><FormattedMessage id="index.sec1.q2"/></p>
-                            <p className="fs-md fw-4 mb-1 flh-2"><FormattedMessage id="index.sec1.a2"/></p>
-                            <div className="spacer-6"></div>
-                            <Link to="allinfo" spy={true} smooth={true} duration={1000}>
-                                <p className="fs-xl fw-4 mb-1 flh-2 mb-2 cp">
-                                    <FormattedMessage id="index.sec1.q3"/>
-                                    <i className="fas fa-angle-double-down ml-3"></i>
-                                </p>
-                            </Link>
-                        </Fade>
-                    </div>
-                    <div className="col-10 col-lg-4 px-0 py-3 m-0 text-left">
-                        <img src="img/img1.png" className="img-fluid"/>
-                    </div>
-                </div>
- */
