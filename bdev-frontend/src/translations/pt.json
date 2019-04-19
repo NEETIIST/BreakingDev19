@@ -5,6 +5,8 @@
   "sidebar.opt2": "Dashboard",
   "sidebar.opt3": "Perfil",
   "sidebar.opt4": "Equipa",
+  "sidebar.opt5": "FAQs",
+  "sidebar.opt6": "Staff",
 
   "index.knowmore": "SABE MAIS",
   "index.signup": "INSCREVE-TE",
@@ -67,5 +69,12 @@
   "index.sec8.besponsor": "Seja um patrocinador",
   "index.sec8.madeby": "Website feito por ",
   "index.sec8.madewith": "Construído com ",
-  "index.sec8.copyright": "© NEETI 2019"
+  "index.sec8.copyright": "© NEETI 2019",
+
+  "besponsor.title": "Seja um Patrocinador do BreakingDev",
+  "besponsor.desc1": "O BreakingDev é uma oportunidade única de entrar em contacto com alunos de várias faculdades do país. Este evento é diferente das tradicionais feiras de emprego, oferecendo-lhe uma visão diferente e um contacto 'hands on' com o trabalho e os projetos que os alunos gostam de desenvolver.",
+  "besponsor.desc2": "Sendo este um evento mais especializado, gostamos que os nossos patrocinadores estejam presentes no recinto com pessoas também com conhecimentos tecnológicos. Em edições anteriores foi possível assistir a momentos em que os patrocinadores presentes ajudaram alguns alunos a resolver bugs ou a discutir as ideias e tecnologias escolhidas. Este contacto é altamente valorizado pelos participantes, revelando-se uma forma efetiva de mostrar o lado mais técnicos das empresas.",
+  "besponsor.desc3": "Esta informação e muito mais está disponível no nosso Caderno de Patrocinadores. Escreva o seu endereço de e-mail no campo em baixo para entrarmos em contacto consigo.",
+  "besponsor.desc4": "Se preferir, pode sempre entrar em contacto diretamente pelo nosso e-mail: ",
+  "besponsor.desc5": "Esperamos poder contar consigo e com a sua empresa no nosso Hackathon!"
 }

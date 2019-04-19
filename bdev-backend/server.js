@@ -9,6 +9,7 @@ const passport = require("passport");
 const users = require("./routes/api/users");
 const devs = require("./routes/api/devs");
 const admins = require("./routes/api/admins");
+const emails = require("./routes/api/emails");
 
 app.use(cors());
 app.use(bodyParser.urlencoded({
@@ -34,3 +35,6 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/devs", devs);
 app.use("/api/admins", admins);
+app.use("/api/emails", emails);
+
+

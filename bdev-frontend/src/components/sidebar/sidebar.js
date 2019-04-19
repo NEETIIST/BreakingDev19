@@ -9,6 +9,9 @@ import Register from "../auth/Register";
 import Login from "../auth/Login";
 import PrivateRoute from "../private-route/PrivateRoute";
 import Dashboard from "../dashboard/Dashboard";
+import BeSponsor from "../besponsor/besponsor";
+import Faqs from "../faqs/faqs";
+import Staff from "../staffTeam/staffTeam";
 
 class Sidebar extends Component {
     constructor() {
@@ -98,6 +101,29 @@ class Sidebar extends Component {
                                                     </div>
                                                 </div>
                                             </NavLink>
+                                            <hr className="f-white white"/>
+                                            <NavLink exact activeClassName="sidebar-active" to="/faqs">
+                                                <div
+                                                    className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
+                                                    <div className="col-3 text-center">
+                                                        <i className="fas fa-book fa-lg py-2"></i>
+                                                    </div>
+                                                    <div className="col-9 text-left">
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt5"/></span>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
+                                            <NavLink exact activeClassName="sidebar-active" to="/staff">
+                                                <div
+                                                    className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
+                                                    <div className="col-3 text-center">
+                                                        <i className="fas fa-beer fa-lg py-2"></i>
+                                                    </div>
+                                                    <div className="col-9 text-left">
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt6"/></span>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
                                         </div>
                                     </div>
                                     <hr className="m-0"/>
@@ -133,6 +159,9 @@ class Sidebar extends Component {
                     <Route exact path="/" component={Index} />
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/login" component={Login} />
+                    <Route exact path="/besponsor" component={BeSponsor} />
+                    <Route exact path="/faqs" component={Faqs} />
+                    <Route exact path="/staff" component={Staff} />
                     <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 </Switch>
             </Router>
