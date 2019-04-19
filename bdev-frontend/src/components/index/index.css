@@ -120,9 +120,18 @@
     border-radius: 0.3em 0.3em 0 0;
     background-color: #595959;
     border-bottom: 2px solid white;
+    transition: all 0.3s linear;
+}
+
+.info-icon:hover {
+    text-shadow: 1px 1px 2px rgba(21, 21, 21, 0.7);
+    color: #4093A8;
+    border-bottom: 2px solid #4093A8;
+    transition: all 0.3s linear;
 }
 
 .info-icon.active-icon {
+    color: white;
     background-color: #2d2d2d;
     border-bottom: 2px solid #2d2d2d;
 }
@@ -139,6 +148,23 @@
 .btn-dev:hover {
     background-color: white;
     color: #257183;
+    border: 2px solid white;
+    border-radius: 0.4em;
+    box-shadow: 2px 2px 5px 1px rgba(28,28,28,0.5);
+    transition: all 0.3s linear;
+}
+
+.btn-dev-black {
+    background-color: #1c1c1c;
+    color: white;
+    border: 2px solid white;
+    border-radius: 0;
+    transition: all 0.3s linear;
+}
+
+.btn-dev-black:hover {
+    background-color: white;
+    color: #1c1c1c;
     border: 2px solid white;
     border-radius: 0.4em;
     box-shadow: 2px 2px 5px 1px rgba(28,28,28,0.5);

@@ -103,18 +103,20 @@ class Sidebar extends Component {
                                     <hr className="m-0"/>
                                     <div className="row justify-content-center align-items-center vh-15 p-0 m-0">
                                         <div className="col-11 text-center">
-
-                                            <a href="#" target="_blank">
-                                                <i className="fab fa-facebook-square fa-2x px-2 clickable"></i>
+                                            <a href="https://www.facebook.com/BreakingDev/" target="_blank">
+                                                <i className="fab fa-facebook-square fa-2x px-2 hvr-secondary"></i>
                                             </a>
                                             <a href="#" target="_blank">
-                                                <i className="fab fa-instagram fa-2x px-2 clickable"></i>
+                                                <i className="fab fa-instagram fa-2x px-2 hvr-secondary"></i>
                                             </a>
-                                            <a href="#" target="_blank">
-                                                <i className="fab fa-linkedin fa-2x px-2 clickable"></i>
+                                            <a href="https://www.linkedin.com/company/neerci/about" target="_blank">
+                                                <i className="fab fa-linkedin fa-2x px-2 hvr-secondary"></i>
                                             </a>
-                                            <a href="#" target="_blank">
-                                                <i className="fab fa-github-square fa-2x px-2 clickable"></i>
+                                            <a href="https://github.com/NEETIIST" target="_blank">
+                                                <i className="fab fa-github-square fa-2x px-2 hvr-secondary"></i>
+                                            </a>
+                                            <a href="https://www.youtube.com/channel/UCdpC_uftQikmRw3-N8fV2lg" target="_blank">
+                                                <i className="fab fa-youtube-square fa-2x px-2 hvr-secondary"></i>
                                             </a>
                                         </div>
                                     </div>

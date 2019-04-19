@@ -113,5 +113,8 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 .clickable:hover { text-shadow: 1px 1px 2px rgba(21, 21, 21, 1); transition: text-shadow 300ms linear; }
 
 .hvr-primary { color: inherit; transition: all 0.3s linear; }
-.hvr-primary:hover { color: #257183; transition: all 0.3s linear; }
+.hvr-primary:hover { color: #257183 !important; transition: all 0.3s linear; }
+
+.hvr-secondary { color: inherit; transition: all 0.3s linear; }
+.hvr-secondary:hover { color: #4093A8 !important; transition: all 0.3s linear; }
 
