@@ -33,7 +33,7 @@ class Index extends Component {
 
 
     render() {
-        console.log(this.state.extraInfo==0);
+        //console.log(this.state.extraInfo==0);
         return (
             <div>
 

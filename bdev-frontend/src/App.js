@@ -15,15 +15,12 @@ import locale_pt from 'react-intl/locale-data/pt';
 import messages_en from "./translations/en.json";
 import messages_pt from "./translations/pt.json";
 
-import Register from "./components/auth/Register";
-import Login from "./components/auth/Login";
-import PrivateRoute from "./components/private-route/PrivateRoute";
-import Dashboard from "./components/dashboard/Dashboard";
-import Index from "./components/index/Index";
+// Other components are imported in the Sidebar
 import Sidebar from "./components/sidebar/sidebar";
 
 import './styles/global.css';
-import locale_de from "react-intl/locale-data/de";
+import './styles/forms.css';
+import './styles/effects.css';
 
 addLocaleData([...locale_en, ...locale_pt]);
 
@@ -66,6 +63,4 @@ class App extends Component {
 
 export default App;
 
-/*
-<Route path="/" exact component={TodosList} />
-*/
+

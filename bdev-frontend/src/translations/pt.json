@@ -74,7 +74,28 @@
   "besponsor.title": "Seja um Patrocinador do BreakingDev",
   "besponsor.desc1": "O BreakingDev é uma oportunidade única de entrar em contacto com alunos de várias faculdades do país. Este evento é diferente das tradicionais feiras de emprego, oferecendo-lhe uma visão diferente e um contacto 'hands on' com o trabalho e os projetos que os alunos gostam de desenvolver.",
   "besponsor.desc2": "Sendo este um evento mais especializado, gostamos que os nossos patrocinadores estejam presentes no recinto com pessoas também com conhecimentos tecnológicos. Em edições anteriores foi possível assistir a momentos em que os patrocinadores presentes ajudaram alguns alunos a resolver bugs ou a discutir as ideias e tecnologias escolhidas. Este contacto é altamente valorizado pelos participantes, revelando-se uma forma efetiva de mostrar o lado mais técnicos das empresas.",
-  "besponsor.desc3": "Esta informação e muito mais está disponível no nosso Caderno de Patrocinadores. Escreva o seu endereço de e-mail no campo em baixo para entrarmos em contacto consigo.",
+  "besponsor.desc3": "Esta informação e muito mais está disponível no nosso Caderno de Patrocinadores. Diga-nos algumas informações no formulário em baixo para entrarmos em contacto consigo.",
   "besponsor.desc4": "Se preferir, pode sempre entrar em contacto diretamente pelo nosso e-mail: ",
-  "besponsor.desc5": "Esperamos poder contar consigo e com a sua empresa no nosso Hackathon!"
+  "besponsor.desc5": "Esperamos poder contar consigo e com a sua empresa no nosso Hackathon!",
+  "besponsor.sentsuccess": "O seu pedido foi enviado com successo. Nós iremos entrar em contacto consigo com a maior brevidade possível.",
+
+  "forms.email": "Email",
+  "forms.email.empty": "O email não pode estar vazio",
+  "forms.email.placeholder": "Email",
+  "forms.email.invalid": "Por favor utilize um email válido",
+  "forms.name": "Nome",
+  "forms.name.empty": "O nome não pode estar vazio",
+  "forms.name.placeholder": "Nome",
+  "forms.company": "Empresa",
+  "forms.company.empty": "A empresa não pode estar vazio",
+  "forms.company.placeholder": "Empresa",
+  "forms.phone": "Telefone",
+  "forms.phone.empty": "O telefone não pode estar vazio",
+  "forms.phone.placeholder": "Telefone",
+  "forms.phone.invalid": "Por favor utilize um telefone válido",
+  "forms.sending": "Enviando...",
+  "forms.success": "Confirmado",
+  "forms.send": "Enviar",
+
+  " ": ""
 }

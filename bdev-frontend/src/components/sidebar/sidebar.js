@@ -36,6 +36,13 @@ class Sidebar extends Component {
                     <div className="row justify-content-start align-items-center vh-10 fixed-top p-0 m-0">
                         <div className="col-6 col-lg-2 text-left pl-3">
                             <div className="sidebar-button hvr-underline-from-left p-2 cp" onClick={this.toggleSidebar}>
+                                {/*
+                                <span className="fa-stack fa-lg">
+                                    <i className="far fa-square fa-stack-2x f-primary"></i>
+                                    <i className="fas fa-bars fa-stack-1x fa-inverse f-white"></i>
+                                </span>
+                                */}
+
                                 <i className="fas fa-bars fa-lg f-white px-2"></i>
                                 <span className="f-white mt-3 fs-lg px-2"><FormattedMessage id="sidebar.open"/></span>
                             </div>
