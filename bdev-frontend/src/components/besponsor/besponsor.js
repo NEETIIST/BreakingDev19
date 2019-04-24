@@ -153,14 +153,16 @@ class BeSponsor extends Component {
                 </div>
                 <div className="col-11 col-lg-10 text-left p-0">
                     <div className="row justify-content-center align-items-center p-0 m-0">
-                        <div className="col-12 p-0">
-                        </div>
+                        <Fade bottom>
+                            <div className="col-12 p-0">
+                                <div className="spacer-6"></div>
+                                <p className="fs-xl fw-7 flh-2 mb-0"><FormattedMessage id="besponsor.title"/></p>
+                                <div className="spacer-4"></div>
+                                <p className="fs-md fw-4 flh-2 mb-3"><FormattedMessage id="besponsor.desc1"/></p>
+                                <p className="fs-md fw-4 flh-2 mb-3"><FormattedMessage id="besponsor.desc2"/></p>
+                            </div>
+                        </Fade>
                     </div>
-                    <div className="spacer-6"></div>
-                    <p className="fs-xl fw-7 flh-2 mb-0"><FormattedMessage id="besponsor.title"/></p>
-                    <div className="spacer-4"></div>
-                    <p className="fs-md fw-4 flh-2 mb-3"><FormattedMessage id="besponsor.desc1"/></p>
-                    <p className="fs-md fw-4 flh-2 mb-3"><FormattedMessage id="besponsor.desc2"/></p>
                     <div class="row vh-70 justify-content-center align-items-center p-0 m-0">
                         <div className={"col-12 col-lg-6 text-left p-0 "+(status=="waiting"?"d-block":"d-none")}>
                             <p className="fs-md fw-4 flh-2"><FormattedMessage id="besponsor.desc3"/></p>

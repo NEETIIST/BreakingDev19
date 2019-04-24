@@ -97,5 +97,25 @@
   "forms.success": "Confirmado",
   "forms.send": "Enviar",
 
+  "faqs.title": "Frequently Asked Questions",
+  "faqs.desc1": "Se tens alguma dúvida sobre o BreakingDev, muito provavelmente vais encontrar a resposta aqui",
+  "faqs.desc2": "Usa os botões acima para navegar entre os vários temas de FAQs e procura a tua dúvida.",
+  "faqs.desc3": "Se mesmo assim não conseguires esclarecer a tua questão, podes usar o questionário abaixo para contactar a equipa organizadora. Se preferires, podes enviar-nos uma mensagem nas nossas redes sociais.",
+  "faqs.opt1": "Essenciais",
+  "faqs.opt2": "Inscrições",
+  "faqs.opt3": "Regras",
+  "faqs.opt4": "Evento",
+  "faqs.q1": "O que é o BreakingDev?",
+  "faqs.a1": "O BreakingDev é uma competição de programação em que tens 48 horas para desenvolver a tua ideia.",
+  "faqs.q2": "Quando é o BreakingDev?",
+  "faqs.a2": "Este ano, acontece de 28 a 30 de Setembro",
+  "faqs.q3": "Onde é o BreakingDev?",
+  "faqs.a3": "Tem lugar no Campus do Taguspark do Instituto Superior Técnico",
+  "faqs.q4": "Como funciona o BreakingDev?",
+  "faqs.a4": "A única regra para que o teu projeto esteja admissível à competição é ter sido feito de raíz durante as 48 horas do evento.",
+  "faqs.q5": "Gostava de participar mas não sei programar, como posso ajudar?",
+  "faqs.a5": "Podes sempre juntar-te à nossa equipa de voluntários e ajudar-nos a tornar o BreakingDev ainda melhor. Lê a nossa secção de Voluntariado.",
+
+
   " ": ""
 }
