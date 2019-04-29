@@ -196,7 +196,7 @@ class Index extends Component {
                         </div>
                         <div className="spacer-4"></div>
                         <div className="row justify-content-center align-items-start m-0">
-                            <div className="col-4 col-lg-4 m-0 p-0 text-center">
+                            <div className="col-3 col-lg-3 m-0 p-0 text-center">
                                 <div className="row justify-content-center align-items-center m-0 py-1 challenge">
                                     <div className="col-12 col-lg-4 p-0 text-center text-lg-left">
                                         <img src="icons/A+.png" className="img-fluid px-1 p-lg-0"/>
@@ -207,7 +207,7 @@ class Index extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-4 col-lg-4 m-0 p-0 text-center">
+                            <div className="col-3 col-lg-3 m-0 p-0 text-center">
                                 <div className="row justify-content-center align-items-center m-0 py-1 challenge">
                                     <div className="col-12 col-lg-4 p-0 text-center text-lg-left">
                                         <img src="icons/Innov.png" className="img-fluid px-1 p-lg-0"/>
@@ -218,7 +218,18 @@ class Index extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-4 col-lg-4 m-0 p-0 text-center">
+                            <div className="col-3 col-lg-3 m-0 p-0 text-center">
+                                <div className="row justify-content-center align-items-center m-0 py-1 challenge">
+                                    <div className="col-12 col-lg-4 p-0 text-center text-lg-left">
+                                        <img src="icons/Picasso.png" className="img-fluid px-1 p-lg-0"/>
+                                    </div>
+                                    <div className="col-12 col-lg-8 p-2 text-center text-lg-left">
+                                        <p className="fs-sm fw-7 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.picasso1"/></p>
+                                        <p className="fs-xs fw-4 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.picasso2"/></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-3 col-lg-3 m-0 p-0 text-center">
                                 <div className="row justify-content-center align-items-center m-0 py-1 challenge">
                                     <div className="col-12 col-lg-4 p-0 text-center text-lg-left">
                                         <img src="icons/Crowd.png" className="img-fluid px-1 p-lg-0"/>

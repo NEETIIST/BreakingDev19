@@ -3,6 +3,7 @@ import Fade from 'react-reveal/Fade';
 import {FormattedMessage} from "react-intl";
 
 import './faqs.css';
+import ReactDOM from "react-dom";
 
 class Faqs extends Component {
     constructor() {
@@ -10,6 +11,10 @@ class Faqs extends Component {
         this.state = {
             info:0
         };
+    }
+
+    componentDidMount() {
+        ReactDOM.findDOMNode(this).scrollIntoView();
     }
 
     changeInfo = (number) => {
@@ -92,50 +97,6 @@ class Faqs extends Component {
                             <div className={"row vh-30 justify-content-center align-items-start px-0 py-3 mx-0 my-2 "+(info==1 ? "d-flex":"d-none")}>
                                 <div className="col-12 text-center p-0 faqs-cards">
                                     <Fade bottom cascade>
-                                    <div className="card-columns">
-                                        <div className="card text-left question">
-                                            <div className="card-body">
-                                                <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q1"/></p>
-                                                <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a1"/></p>
-                                            </div>
-                                        </div>
-                                        <div className="card text-left question">
-                                            <div className="card-body">
-                                                <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q2"/></p>
-                                                <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a2"/></p>
-                                            </div>
-                                        </div>
-                                        <div className="card text-left question">
-                                            <div className="card-body">
-                                                <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q3"/></p>
-                                                <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a3"/></p>
-                                            </div>
-                                        </div>
-                                        <div className="card text-left question">
-                                            <div className="card-body">
-                                                <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q4"/></p>
-                                                <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a4"/></p>
-                                            </div>
-                                        </div>
-                                        <div className="card text-left question">
-                                            <div className="card-body">
-                                                <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q4"/></p>
-                                                <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a4"/></p>
-                                            </div>
-                                        </div>
-                                        <div className="card text-left question">
-                                            <div className="card-body">
-                                                <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q4"/></p>
-                                                <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a4"/></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Fade>
-                                </div>
-                            </div>
-                            <div className={"row vh-30 justify-content-center align-items-start px-0 py-3 mx-0 my-2 "+(info==2 ? "d-flex":"d-none")}>
-                                <div className="col-12 text-center p-0 faqs-cards">
-                                    <Fade bottom cascade>
                                         <div className="card-columns">
                                             <div className="card text-left question">
                                                 <div className="card-body">
@@ -163,21 +124,164 @@ class Faqs extends Component {
                                             </div>
                                             <div className="card text-left question">
                                                 <div className="card-body">
-                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q4"/></p>
-                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a4"/></p>
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q7"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a7"/></p>
                                                 </div>
                                             </div>
                                             <div className="card text-left question">
                                                 <div className="card-body">
-                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q4"/></p>
-                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a4"/></p>
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q8"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a8"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q9"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a9"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q10"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a10"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q11"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a11"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q15"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a15"/></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </Fade>
+                                </div>
+                            </div>
+                            <div className={"row vh-30 justify-content-center align-items-start px-0 py-3 mx-0 my-2 "+(info==2 ? "d-flex":"d-none")}>
+                                <div className="col-12 text-center p-0 faqs-cards">
+                                    <Fade bottom cascade>
+                                        <div className="card-columns">
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q6"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a6"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q12"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a12"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q13"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a13"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q14"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a14"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q5"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a5"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q16"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a16"/></p>
                                                 </div>
                                             </div>
                                         </div>
                                     </Fade>
                                 </div>
                             </div>
-
+                            <div className={"row vh-30 justify-content-center align-items-start px-0 py-3 mx-0 my-2 "+(info==3 ? "d-flex":"d-none")}>
+                                <div className="col-12 text-center p-0 faqs-cards">
+                                    <Fade bottom cascade>
+                                        <div className="card-columns">
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q17"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a17"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q18"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a18"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q19"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a19"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q20"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a20"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q21"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a21"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q22"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a22"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q23"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a23"/></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Fade>
+                                </div>
+                            </div>
+                            <div className={"row vh-30 justify-content-center align-items-start px-0 py-3 mx-0 my-2 "+(info==4 ? "d-flex":"d-none")}>
+                                <div className="col-12 text-center p-0 faqs-cards">
+                                    <Fade bottom cascade>
+                                        <div className="card-columns">
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q24"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a24"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q25"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a25"/></p>
+                                                </div>
+                                            </div>
+                                            <div className="card text-left question">
+                                                <div className="card-body">
+                                                    <p className="fs-md fw-7 flh-2 mb-1"><FormattedMessage id="faqs.q26"/></p>
+                                                    <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey"><FormattedMessage id="faqs.a26"/></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Fade>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from 'react-dom'
 import Fade from 'react-reveal/Fade';
 import {FormattedMessage, injectIntl} from "react-intl";
 
@@ -9,6 +10,10 @@ import FormValidator from "../../utils/FormValidator";
 import './besponsor.css';
 
 class BeSponsor extends Component {
+    componentDidMount() {
+        ReactDOM.findDOMNode(this).scrollIntoView();
+    }
+
     constructor() {
         super();
 

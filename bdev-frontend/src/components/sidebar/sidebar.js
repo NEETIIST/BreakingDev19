@@ -11,6 +11,7 @@ import PrivateRoute from "../private-route/PrivateRoute";
 import Dashboard from "../dashboard/Dashboard";
 import BeSponsor from "../besponsor/besponsor";
 import Faqs from "../faqs/faqs";
+import Ideas from "../ideas/ideas";
 import Staff from "../staffTeam/staffTeam";
 
 class Sidebar extends Component {
@@ -75,6 +76,7 @@ class Sidebar extends Component {
                                                     </div>
                                                 </div>
                                             </NavLink>
+                                            {/*
                                             <NavLink activeClassName="sidebar-active" to="/dashboard">
                                                 <div
                                                     className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
@@ -108,18 +110,31 @@ class Sidebar extends Component {
                                                     </div>
                                                 </div>
                                             </NavLink>
+                                            */}
                                             <hr className="f-white white"/>
                                             <NavLink exact activeClassName="sidebar-active" to="/faqs">
                                                 <div
                                                     className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
                                                     <div className="col-3 text-center">
-                                                        <i className="fas fa-book fa-lg py-2"></i>
+                                                        <i className="far fa-question-circle fa-lg py-2"></i>
                                                     </div>
                                                     <div className="col-9 text-left">
                                                         <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt5"/></span>
                                                     </div>
                                                 </div>
                                             </NavLink>
+                                            <NavLink exact activeClassName="sidebar-active" to="/ideas">
+                                                <div
+                                                    className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
+                                                    <div className="col-3 text-center">
+                                                        <i className="far fa-lightbulb fa-lg py-2"></i>
+                                                    </div>
+                                                    <div className="col-9 text-left">
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt8"/></span>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
+                                            {/*
                                             <NavLink exact activeClassName="sidebar-active" to="/staff">
                                                 <div
                                                     className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
@@ -128,6 +143,19 @@ class Sidebar extends Component {
                                                     </div>
                                                     <div className="col-9 text-left">
                                                         <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt6"/></span>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
+                                            */}
+                                            <hr className="f-white white"/>
+                                            <NavLink exact activeClassName="sidebar-active" to="/besponsor">
+                                                <div
+                                                    className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
+                                                    <div className="col-3 text-center">
+                                                        <i className="fas fa-star fa-lg py-2"></i>
+                                                    </div>
+                                                    <div className="col-9 text-left">
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt7"/></span>
                                                     </div>
                                                 </div>
                                             </NavLink>
@@ -164,12 +192,17 @@ class Sidebar extends Component {
                 </div>
                 <Switch>
                     <Route exact path="/" component={Index} />
+                    {/*
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/login" component={Login} />
+                    */}
                     <Route exact path="/besponsor" component={BeSponsor} />
                     <Route exact path="/faqs" component={Faqs} />
+                    <Route exact path="/ideas" component={Ideas} />
+                    {/*
                     <Route exact path="/staff" component={Staff} />
                     <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                    */}
                 </Switch>
             </Router>
         );
