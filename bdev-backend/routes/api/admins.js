@@ -62,7 +62,7 @@ router.post("/access", verifyToken, (req, res) => {
 });
 
 // @route POST api/admins/create
-// @desc Create Dev Profile, logged user must not have a profile already
+// @desc Create Admin Profile, logged user must not have a profile already
 // Performs a double check for already existing profiles associated with this username
 // And checks for role permission, must be 'starter'
 router.post("/create", verifyToken, (req, res) => {

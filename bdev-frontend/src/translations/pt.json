@@ -97,9 +97,14 @@
   "forms.phone.empty": "O telefone não pode estar vazio",
   "forms.phone.placeholder": "Telefone",
   "forms.phone.invalid": "Por favor utilize um telefone válido",
+  "forms.title.empty": "Por favor dá um nome à ideia",
+  "forms.title.placeholder": "Título da Ideia/Projeto",
+  "forms.description.empty": "Por favor descreve a tua ideia",
+  "forms.description.placeholder": "Descrição da Ideia",
   "forms.sending": "Enviando...",
   "forms.success": "Confirmado",
   "forms.send": "Enviar",
+
 
   "faqs.title": "Frequently Asked Questions",
   "faqs.desc1": "Se tens alguma dúvida sobre o BreakingDev, muito provavelmente vais encontrar a resposta aqui",
@@ -161,6 +166,19 @@
   "faqs.a25": "O nosso 'parque de campismo' vai mais uma vez estar à tua disposição. Podes trazer tendas, sacos de cama, colchões, tudo o que precisares.",
   "faqs.q26": "Quem é o júri?",
   "faqs.a26": "Os jurados serão várias pessoas da área da Informática, que iremos anunciar mais perto do evento.",
+
+  "ideas.title": "Banco de Ideias",
+  "ideas.desc1": "Se o que te falta para participares no BreakingDev é uma ideia, então procura aqui por algumas sugestões que recebemos. Pode ser que encontres o teu projeto ideal.",
+  "ideas.desc2": "Caso queiras sugerir ideias para os teus colegas, então carrega no botão e habilita-te a ganhar prémios, mesmo que não venhas ao BreakingDev!",
+  "ideas.desc3": "Se és uma pessoa com boas ideias mas não consegues vir participar no BreakingDev, então deixa uma equipa tornar essa ideia uma realidade.",
+  "ideas.desc4": "Nesta página podes sugerir uma ideia para aparecer listada no nosso website. Para isso basta utilizares o formulário com os teus dados, um nome e uma breve descrição da ideia.",
+  "ideas.desc5": "No ultimo dia do evento, de entre todas as ideias sugeridas, o nosso júri vai escolher a ideia mais inovadora e original para premiar.",
+  "ideas.desc6": "Ainda não podemos revelar o prémio, mas não perdes nada em participar já.",
+  "ideas.desc7": "Consulta o regulamento deste passatempo, clicando aqui.",
+  "ideas.desc8": "A organização reserva o direito de excluir ideias que considere inadequadas ou sem valor para a competição. Ao participares neste concurso, consentes o uso dos teus dados para efeitos de divulgação do BreakingDev, bem como a sua cedência aos parceiros do evento.",
+  "ideas.opt0": "Ver Ideias",
+  "ideas.opt1": "Dar uma Ideia",
+  "ideas.origin": "Por: {name}",
 
   " ": ""
 }

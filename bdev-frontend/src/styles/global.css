@@ -30,6 +30,8 @@ body {
 .fw-4 { font-weight: 400; }
 .fw-7 { font-weight: 700; }
 .f-it { font-style: italic; }
+.fs-xxxs { font-size: 0.7rem; }
+.fs-xxs { font-size: 0.8rem; }
 .fs-xs { font-size: 0.9rem; }
 .fs-sm { font-size: 1rem; }
 .fs-md { font-size: 1.125rem; }
@@ -94,6 +96,8 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 /* Font Colors */
 .f-black { color: #1c1c1c }
 .f-dark-grey { color: #484848}
+.f-grey { color: #595959 }
+.f-light-grey { color: #d1d1d1 }
 .f-white { color: #ffffff }
 .f-primary { color: #257183 }
 .f-secondary { color: #4093A8 }

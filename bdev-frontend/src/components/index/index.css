@@ -171,5 +171,22 @@
     transition: all 0.3s linear;
 }
 
+.btn-dev-alt {
+    background-color: white;
+    color: #257183;
+    border: 2px solid #257183;
+    border-radius: 0;
+    transition: all 0.3s linear;
+}
+
+.btn-dev-alt:hover {
+    background-color: #257183;
+    color: white;
+    border: 2px solid #257183;
+    border-radius: 0.4em;
+    box-shadow: 2px 2px 5px 1px rgba(28,28,28,0.5);
+    transition: all 0.3s linear;
+}
+
 
 

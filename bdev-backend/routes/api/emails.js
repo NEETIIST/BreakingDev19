@@ -19,7 +19,7 @@ var from_who = 'no-reply@breakingdev.pt';
 // Load input validation
 const validateContactRequest = require("../../validation/beSponsor");
 
-// @route POST api/devs/create
+// @route POST api/emails/besponsor
 // @desc Create Dev Profile, logged user must not have a profile already
 // Performs a double check for already existing profiles associated with this username
 // And checks for role permission, must be 'starter'
