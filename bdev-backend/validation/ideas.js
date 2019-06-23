@@ -13,14 +13,14 @@ module.exports = function validateIdeaSubmission(data) {
     if (Validator.isEmpty(data.title)) {
         errors.title = "Title is necessary";
     }
-    if (!Validator.isLength(data.title,{min:0, max: 128})) {
+    else if (!Validator.isLength(data.title,{min:0, max: 128})) {
         errors.title = "Should be shorter than 128 characters";
     }
     // Name Checks - Must be filled and shorter than 128 characters
     if (Validator.isEmpty(data.name)) {
         errors.name = "Name is necessary";
     }
-    if (!Validator.isLength(data.title,{min:0, max: 128})) {
+    else if (!Validator.isLength(data.title,{min:0, max: 128})) {
         errors.title = "Should be shorter than 128 characters";
     }
     // Email checks
@@ -32,6 +32,9 @@ module.exports = function validateIdeaSubmission(data) {
     // Description Checks - Must be filled
     if (Validator.isEmpty(data.description)) {
         errors.description = "Description is necessary";
+    }
+    else if (!Validator.isLength(data.title,{min:0, max: 256})) {
+        errors.description = "Should be shorter than 256 characters";
     }
     return {
         errors,

@@ -20,6 +20,13 @@ class Ideas extends Component {
                 message: "forms.name.empty"
             },
             {
+                field: "name",
+                method: "isLength",
+                args: [{min:0, max: 128}],
+                validWhen: true,
+                message: "forms.name.toolong"
+            },
+            {
                 field: "email",
                 method: "isEmpty",
                 validWhen: false,
@@ -38,11 +45,25 @@ class Ideas extends Component {
                 message: "forms.title.empty"
             },
             {
+                field: "title",
+                method: "isLength",
+                args: [{min:0, max: 128}],
+                validWhen: true,
+                message: "forms.title.toolong"
+            },
+            {
                 field: "description",
                 method: "isEmpty",
                 validWhen: false,
                 message: "forms.description.empty"
-            }
+            },
+            {
+                field: "description",
+                method: "isLength",
+                args: [{min:0, max: 256}],
+                validWhen: true,
+                message: "forms.description.toolong"
+            },
         ]);
 
         this.state = {
@@ -163,12 +184,13 @@ class Ideas extends Component {
     }
 
     render() {
-        let validation =    this.submitted ?                         // if the form has been submitted at least once
+        let validation =    this.submitted ?        // if the form has been submitted at least once
             this.validator.validate(this.state) :   // then check validity every time we render
             this.state.validation                   // otherwise just use what's in state
 
         const { intl } = this.props;
         const info = this.state.info;
+        const status = this.state.status;
 
         return(
             <div className="row justify-content-center align-items-center p-0 m-0">
@@ -234,7 +256,7 @@ class Ideas extends Component {
                                         <hr/>
                                         <p className="fs-xxxs fw-4 flh-2 mb-3 mr-3"><FormattedMessage id="ideas.desc8"/></p>
                                     </div>
-                                    <div className="col-12 col-lg-4 text-left p-0">
+                                    <div className={"col-12 col-lg-4 text-left p-0 "+(status=="waiting"?"d-block":"d-none")}>
                                         <form onSubmit={this.onSubmit} autoComplete="off">
                                             <div className="form-group">
                                                 <div className={validation.name.isInvalid && 'has-error'}>
@@ -291,6 +313,26 @@ class Ideas extends Component {
                                             </div>
                                             <input type="submit" value={intl.formatMessage({ id: 'forms.send' })} className="btn btn-dev-alt btn-block fw-7" />
                                         </form>
+                                    </div>
+                                    <div className={"col-12 col-lg-4 text-left p-0 "+(status=="pending"?"d-block":"d-none")}>
+                                        <div className="row vh-30 justify-content-center align-items-center p-0 m-0">
+                                            <div className="col-10 p-0 text-center">
+                                                <Fade>
+                                                    <i className="fas fa-circle-notch fa-spin fa-3x my-3 f-primary"></i>
+                                                    <p className="fs-md fw-4 flh-2 mb-0"><FormattedMessage id="forms.sending"/></p>
+                                                </Fade>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={"col-12 col-lg-4 text-left p-0 "+(status=="success"?"d-block":"d-none")}>
+                                        <div className="row vh-30 justify-content-center align-items-center p-0 m-0">
+                                            <div className="col-10 p-0 text-center">
+                                                <Fade>
+                                                    <i className="fas fa-check fa-3x my-3 f-primary"></i>
+                                                    <p className="fs-sm fw-4 flh-2 mb-0"><FormattedMessage id="ideas.sentsuccess"/></p>
+                                                </Fade>
+                                            </div>
+                                        </div>
                                     </div>
                                 </Fade>
                             </div>

@@ -25,10 +25,24 @@ class BeSponsor extends Component {
                 message: "forms.name.empty"
             },
             {
+                field: "name",
+                method: "isLength",
+                args: [{min:0, max: 128}],
+                validWhen: true,
+                message: "forms.name.toolong"
+            },
+            {
                 field: "company",
                 method: "isEmpty",
                 validWhen: false,
                 message: "forms.company.empty"
+            },
+            {
+                field: "name",
+                method: "isLength",
+                args: [{min:0, max: 128}],
+                validWhen: true,
+                message: "forms.company.toolong"
             },
             {
                 field: "phone",

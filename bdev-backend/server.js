@@ -21,6 +21,18 @@ app.use(bodyParser.urlencoded({
 var helmet = require('helmet')
 app.use(helmet())
 
+// Brute Force Protections
+const slowDown = require("express-slow-down");
+//app.enable("trust proxy"); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS if you use an ELB, custom Nginx setup, etc)
+const speedLimiter = slowDown({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    delayAfter: 50, // allow 50 requests per 15 minutes, then...
+    delayMs: 200 // begin adding 200ms of delay per request above 100:
+    // request # 101 is delayed by 200ms
+    // request # 102 is delayed by 400ms
+});
+app.use(speedLimiter);
+
 mongoose.connect('mongodb://127.0.0.1:27017/bdev', { useNewUrlParser: true });
 const connection = mongoose.connection;
 
