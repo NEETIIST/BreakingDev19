@@ -1,0 +1,25 @@
+#auth-form{
+    //border-radius: 1em;
+    box-shadow: 2px 2px 5px 1px rgba(28,28,28,0.5);
+    border: 1px solid #595959
+}
+
+.active-form{
+    border-bottom: 2px solid white;
+    color: #257183;
+    transition: all 0.3s linear;
+}
+
+.inactive-form {
+    color: #595959;
+    border-bottom: 2px solid #595959;
+    background-color: #d1d1d1;
+    transition: all 0.3s linear;
+}
+
+.inactive-form:hover {
+    color: #257183;
+    border-bottom: 2px solid #257183;
+    transition: all 0.3s linear;
+}
+

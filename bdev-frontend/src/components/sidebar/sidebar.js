@@ -7,6 +7,7 @@ import './sidebar.css';
 import Index from "../index/Index";
 import Register from "../auth/Register";
 import Login from "../auth/Login";
+import Authentication from "../auth/Authentication";
 import PrivateRoute from "../private-route/PrivateRoute";
 import Dashboard from "../dashboard/Dashboard";
 import BeSponsor from "../besponsor/besponsor";
@@ -123,6 +124,7 @@ class Sidebar extends Component {
                                                     </div>
                                                 </div>
                                             </NavLink>
+                                            {/*
                                             <NavLink exact activeClassName="sidebar-active" to="/ideas">
                                                 <div
                                                     className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
@@ -134,6 +136,7 @@ class Sidebar extends Component {
                                                     </div>
                                                 </div>
                                             </NavLink>
+                                            */}
                                             {/*
                                             <NavLink exact activeClassName="sidebar-active" to="/staff">
                                                 <div
@@ -167,7 +170,7 @@ class Sidebar extends Component {
                                             <a href="https://www.facebook.com/BreakingDev/" target="_blank">
                                                 <i className="fab fa-facebook-square fa-2x px-2 hvr-secondary"></i>
                                             </a>
-                                            <a href="#" target="_blank">
+                                            <a href="https://www.instagram.com/neeti_ist/" target="_blank">
                                                 <i className="fab fa-instagram fa-2x px-2 hvr-secondary"></i>
                                             </a>
                                             <a href="https://www.linkedin.com/company/neerci/about" target="_blank">
@@ -192,17 +195,22 @@ class Sidebar extends Component {
                 </div>
                 <Switch>
                     <Route exact path="/" component={Index} />
+
+                    <Route exact path="/besponsor" component={BeSponsor} />
+                    <Route exact path="/faqs" component={Faqs} />
+                    <Route exact path="/ideas" component={Ideas} />
+
                     {/*
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/login" component={Login} />
                     */}
-                    <Route exact path="/besponsor" component={BeSponsor} />
-                    <Route exact path="/faqs" component={Faqs} />
-                    <Route exact path="/ideas" component={Ideas} />
-                    {/*
+
+                    <Route exact path="/login" render={(props) => <Authentication {...props} isLogin={true} />} />
+                    <Route exact path="/register" render={(props) => <Authentication {...props} isLogin={false} />} />
+
                     <Route exact path="/staff" component={Staff} />
                     <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                    */}
+
                 </Switch>
             </Router>
         );

@@ -70,6 +70,7 @@ class Index extends Component {
                                         </button>
                                     </Scroll>
                                 </div>
+                                {/*
                                 <div className="col-11 col-lg-4 text-center my-2 p-0 px-lg-3">
                                     <Link to="/register">
                                         <button type="button" className="btn btn-block btn-dev py-2 px-3">
@@ -77,6 +78,7 @@ class Index extends Component {
                                         </button>
                                     </Link>
                                 </div>
+                                */}
                             </div>
                         </Fade>
                         <div className="spacer-8"></div>
@@ -321,14 +323,18 @@ class Index extends Component {
                         <div className="spacer-4"></div>
                         <div className="row justify-content-center align-items-center m-0">
                             <div className="col-12 col-lg-5 p-0 text-justify">
+                                {/*
                                 <p className="fs-md fw-7 flh-2 mb-3 text-left"><FormattedMessage id="index.sec7.title"/></p>
                                 <p className="fs-sm fw-4 flh-2 mb-3"><FormattedMessage id="index.sec7.desc"/></p>
+                                */}
+                                <p className="fs-md fw-7 flh-3 mb-3"><FormattedMessage id="index.sec7.desc"/></p>
                             </div>
                             <div className="col-2 col-lg-2 p-0 d-none d-lg-block"></div>
                             <div className="col-12 col-lg-5 p-0 text-center">
                                 <Fade cascade right>
                                 <div className="row justify-content-center align-items-center m-0">
                                     <div className="col-12 p-0">
+                                        {/*
                                         <Link to="/register">
                                             <button type="button" className="btn btn-block btn-dev-black py-2 px-3 my-3">
                                                 <span className="fs-lg fw-7"><FormattedMessage id="index.signup"/></span>
@@ -349,6 +355,23 @@ class Index extends Component {
                                         </a>
                                         <a href="https://www.youtube.com/channel/UCdpC_uftQikmRw3-N8fV2lg" target="_blank">
                                             <i className="fab fa-youtube-square fa-2x px-2 hvr-secondary"></i>
+                                        </a>
+                                        */}
+                                        <div className="spacer-2"></div>
+                                        <a href="https://www.facebook.com/BreakingDev/" target="_blank">
+                                            <i className="fab fa-facebook-square fa-3x px-2 hvr-secondary"></i>
+                                        </a>
+                                        <a href="https://www.instagram.com/neeti_ist/" target="_blank">
+                                            <i className="fab fa-instagram fa-3x px-2 hvr-secondary"></i>
+                                        </a>
+                                        <a href="https://www.linkedin.com/company/neerci/about" target="_blank">
+                                            <i className="fab fa-linkedin fa-3x px-2 hvr-secondary"></i>
+                                        </a>
+                                        <a href="https://github.com/NEETIIST" target="_blank">
+                                            <i className="fab fa-github-square fa-3x px-2 hvr-secondary"></i>
+                                        </a>
+                                        <a href="https://www.youtube.com/channel/UCdpC_uftQikmRw3-N8fV2lg" target="_blank">
+                                            <i className="fab fa-youtube-square fa-3x px-2 hvr-secondary"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -402,8 +425,29 @@ class Index extends Component {
                                          title="Farfetch"/>
                                 </a>
                             </div>
-                            <div className="col-lg-1 d-none d-lg-block"></div>
-                            <div className="col-12 col-lg-4 text-left p-0 px-lg-3 my-2 my-lg-0 align-self-center">
+                            <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
+                                <p className="fs-sm fw-4 flh-1 mb-1 f-white">.</p>
+                                <a href="https://www.everis.com/portugal/pt-pt/careers" target="_blank">
+                                    <img src="sponsors/Everis.png" className="img-fluid cp"
+                                         title="Everis"/>
+                                </a>
+                            </div>
+                            <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
+                                <p className="fs-sm fw-4 flh-1 mb-1 f-white">.</p>
+                                <a href="https://www.outsystems.com/" target="_blank">
+                                    <img src="sponsors/OutSystems.png" className="img-fluid cp"
+                                         title="OutSystems"/>
+                                </a>
+                            </div>
+                            <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
+                                <p className="fs-sm fw-4 flh-1 mb-1 f-white">.</p>
+                                <a href="https://www.create.pt/en/" target="_blank">
+                                    <img src="sponsors/CreateIT.png" className="img-fluid cp"
+                                         title="CreateIT"/>
+                                </a>
+                            </div>
+                            <div className="col-lg-4 d-none d-lg-block"></div>
+                            <div className="col-12 col-lg-4 text-center p-0 px-lg-3 my-2 my-lg-3 align-self-center">
                                 <Link to="/besponsor">
                                     <button type="button" className="btn btn-block btn-dev py-2 px-3 mt-3">
                                         <span className="fs-lg fw-7"><FormattedMessage id="index.sec8.besponsor"/></span>

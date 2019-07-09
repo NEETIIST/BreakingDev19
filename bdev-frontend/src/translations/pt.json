@@ -185,5 +185,8 @@
   "ideas.origin": "Por: {name}",
   "ideas.sentsuccess": "A tua ideia foi registada no banco de ideias. Obrigado por participares.",
 
+  "auth.login": "Entrar",
+  "auth.register": "Criar Conta",
+
   " ": ""
 }
