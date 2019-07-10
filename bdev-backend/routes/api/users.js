@@ -24,11 +24,13 @@ router.post("/register", (req, res) => {
     }
     User.findOne({ username: req.body.username }).then(user => {
         if (user) {
-            return res.status(400).json({ username: "Username already taken" });
+            //console.log(user);
+            return res.status(403).json({ username_inuse: "Username already in use" });
         }
         User.findOne({ email: req.body.email }).then(user => {
             if (user) {
-                return res.status(400).json({ email: "Email already used" });
+                //console.log(user);
+                return res.status(403).json({ email_inuse: "Email already in use" });
             }
             const newUser = new User({
                 username: req.body.username,
@@ -42,7 +44,32 @@ router.post("/register", (req, res) => {
                     newUser.password = hash;
                     newUser
                         .save()
-                        .then(user => res.json(user))
+                        .then(
+                            //user => res.json(user)
+                            function (user) {
+                                // User created
+                                // Create JWT Payload
+                                const payload = {
+                                    id: user.id,
+                                    username: user.username,
+                                    role: user.role,
+                                };
+                                // Sign token
+                                jwt.sign(
+                                    payload,
+                                    keys.secretOrKey,
+                                    {
+                                        expiresIn: 31556926 // 1 year in seconds
+                                    },
+                                    (err, token) => {
+                                        res.json({
+                                            success: true,
+                                            token: "Bearer " + token
+                                        });
+                                    }
+                                );
+                            }
+                        )
                         .catch(err => console.log(err));
                 });
             });

@@ -96,6 +96,7 @@ class Login extends Component {
 
     render() {
         const { replies } = this.state;
+        const { intl } = this.props;
 
         let validation =    this.submitted ?        // if the form has been submitted at least once
             this.validator.validate(this.state) :   // then check validity every time we render
@@ -117,11 +118,11 @@ class Login extends Component {
                         <div className={validation.username.isInvalid && 'has-error'}>
                             <input
                                 onChange={this.onChange}
-                                className={"form-control form-alt-input"}
+                                className={"form-control form-alt-input " + this.fieldHasValue("username")}
                                 value={this.state.username}
                                 name="username"
                                 type="text"
-                                placeholder={"Username"}
+                                placeholder={intl.formatMessage({id: 'forms.username.placeholder'})}
                             />
                             <span className="help-block fs-xs">
                                 <FormattedMessage id={validation.username.message}/>
@@ -132,18 +133,18 @@ class Login extends Component {
                         <div className={validation.password.isInvalid && 'has-error'}>
                             <input
                                 onChange={this.onChange}
-                                className={"form-control form-alt-input"}
+                                className={"form-control form-alt-input " + this.fieldHasValue("password")}
                                 value={this.state.password}
                                 name="password"
                                 type="password"
-                                placeholder={"Password"}
+                                placeholder={intl.formatMessage({id: 'forms.password.placeholder'})}
                             />
                             <span className="help-block fs-xs">
                                 <FormattedMessage id={validation.password.message}/>
                             </span>
                         </div>
                     </div>
-                    <input type="submit" value={"Login"} className="btn btn-dev-alt btn-block fw-7" />
+                    <input type="submit" value={intl.formatMessage({id: 'forms.login'})} className="btn btn-dev-alt btn-block fw-7" />
                 </form>
                 <div className={(status=="pending"?"d-block":"d-none")}>
                     <Fade>
@@ -166,7 +167,13 @@ const mapStateToProps = state => ({
     auth: state.auth,
     errors: state.errors
 });
+/*
 export default connect(
     mapStateToProps,
     { loginUser }
 )(Login);
+
+*/
+export default injectIntl(
+    connect(mapStateToProps, { loginUser }, null, { forwardRef: true }
+)(Login));

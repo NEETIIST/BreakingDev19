@@ -45,12 +45,14 @@ class Authentication extends Component {
                                         <p className="fs-md fw-4 flh-1 my-3"><FormattedMessage id="auth.register"/></p>
                                     </div>
                                 </div>
-                                <div className="row vh-40 m-0 justify-content-center align-items-center" id={"auth-area"}>
+                                <div className="row vh-40 m-0 justify-content-center align-items-start" id={"auth-area"}>
                                     <div className="col-10 p-0">
+                                        <div className="spacer-4"></div>
                                         {this.state.isLogin ?
-                                            <Login/> :
-                                            <Register/>
+                                            <Login {...this.props}/> :
+                                            <Register {...this.props}/>
                                         }
+                                        <div className="spacer-4"></div>
                                     </div>
                                 </div>
                             </div>

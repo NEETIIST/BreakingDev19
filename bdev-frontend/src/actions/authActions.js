@@ -3,7 +3,6 @@ import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import querystring from 'query-string'
 
-
 import {
     GET_ERRORS,
     SET_CURRENT_USER,
@@ -11,7 +10,7 @@ import {
 } from "./types";
 
 // Register User
-export const registerUser = (userData, history) => dispatch => {
+export const registerUser = (userData) => dispatch => {
     //console.log(userData);
     // ITS REALLY IMPORTANT TO USE QUERYSTRING ON THE DATA!
     axios.post('http://localhost:4000/api/users/register', querystring.stringify(userData) , {
@@ -19,13 +18,22 @@ export const registerUser = (userData, history) => dispatch => {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
     })
-        .then(response => {
-            history.push("/login")
+        .then(res => {
+            // Save to localStorage
+            // Set token to localStorage
+            const { token } = res.data;
+            localStorage.setItem("jwtToken", token);
+            // Set token to Auth header
+            setAuthToken(token);
+            // Decode token to get user data
+            const decoded = jwt_decode(token);
+            // Set current user
+            dispatch(setCurrentUser(decoded));
         })
-        .catch(error =>
+        .catch(err =>
             dispatch({
                 type: GET_ERRORS,
-                payload: error.response.data
+                payload: err.response.data
             })
         );
 };
