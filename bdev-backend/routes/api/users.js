@@ -8,6 +8,7 @@ const verifyToken = require('../../auth/tokenVerification');
 // Load input validation
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
+const validateChangePassInput = require("../../validation/changePass");
 
 // Load User model
 const User = require("../../models/User");
@@ -151,7 +152,78 @@ router.get('/me', verifyToken, function(req, res, next) {
         res.status(200).send(user);
 
     });
-
 });
+
+
+
+// @route POST api/users/changepass
+// @desc Change User Password, based on previous password
+// @access Public
+router.post("/changepass", verifyToken, (req, res) => {
+    // Form validation
+    const { errors, isValid } = validateChangePassInput(req.body);
+    // Check validation
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    const old_password = req.body.old_password;
+    const new_password = req.body.new_password;
+    const new_password_confirmation = req.body.new_password_confirmation;
+
+    User.findOne({ username: req.username }).then(user => {
+        // Check if user exists
+        if (!user) {
+            return res.status(404).json({ usernamenotfound: "There was a problem finding your user" });
+        }
+        // Check if Passwords match
+        bcrypt.compare(old_password, user.password).then(isMatch => {
+            if (isMatch) {
+                user.password = req.body.new_password;
+                // Hash password before saving in database
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(user.password, salt, (err, hash) => {
+                        if (err) throw err;
+                        user.password = hash;
+                        user
+                            .save({ _id: user._id })
+                            .then(
+                                //user => res.json(user)
+                                function (user) {
+                                    // User created
+                                    // Create JWT Payload
+                                    const payload = {
+                                        id: user.id,
+                                        username: user.username,
+                                        role: user.role,
+                                    };
+                                    // Sign token
+                                    jwt.sign(
+                                        payload,
+                                        keys.secretOrKey,
+                                        {
+                                            expiresIn: 31556926 // 1 year in seconds
+                                        },
+                                        (err, token) => {
+                                            res.json({
+                                                success: true,
+                                                token: "Bearer " + token
+                                            });
+                                        }
+                                    );
+                                }
+                            )
+                            .catch(err => console.log(err));
+                    });
+                });
+            } else {
+                return res
+                    .status(400)
+                    .json({ oldpasswordincorrect: "Old Password is incorrect" });
+            }
+        });
+    });
+});
+
 
 module.exports = router;
