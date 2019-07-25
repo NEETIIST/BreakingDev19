@@ -90,3 +90,12 @@ export const logoutUser = () => dispatch => {
     // Set current user to empty object {} which will set isAuthenticated to false
     dispatch(setCurrentUser({}));
 };
+
+// Check if user is logged
+export const isLogged = () => {
+    if (localStorage.getItem("jwtToken")) {
+        return true;
+    }
+
+    return false;
+}

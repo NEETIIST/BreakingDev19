@@ -45,9 +45,9 @@ body {
 .f-underline { text-decoration: underline; }
 
 /* Links */
-a {	text-decoration: none !important; color:inherit !important; }
-a:hover { text-decoration: none !important; color:inherit !important; }
-a:visited { text-decoration: none !important; color:inherit !important; }
+a {	text-decoration: none !important; color:inherit; }
+a:hover { text-decoration: none !important; color:inherit; }
+a:visited { text-decoration: none !important; color:inherit; }
 
 /* Viewports */
 .vh-100 { min-height: 100vh ; }
@@ -68,6 +68,7 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 .vh-15 { min-height: 15vh ; }
 .vh-10 { min-height: 10vh ; }
 .vh-7 { min-height: 7vh ; }
+.vh-6 { min-height: 6vh ; }
 .vh-5 { min-height: 5vh ; }
 
 .vw-100 { min-width: 100vw ; }
@@ -88,6 +89,7 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 .dark-grey { background-color: #484848 }
 .grey { background-color: #595959 }
 .light-grey { background-color: #d1d1d1 }
+.very-light-grey { background-color: #f0f0f0 }
 .white { background-color: #ffffff }
 .primary { background-color: #257183 }
 .secondary { background-color: #4093A8 }
@@ -98,6 +100,7 @@ a:visited { text-decoration: none !important; color:inherit !important; }
 .f-dark-grey { color: #484848}
 .f-grey { color: #595959 }
 .f-light-grey { color: #d1d1d1 }
+.f-very-light-grey { background-color: #F0F0F0 }
 .f-white { color: #ffffff }
 .f-primary { color: #257183 }
 .f-secondary { color: #4093A8 }

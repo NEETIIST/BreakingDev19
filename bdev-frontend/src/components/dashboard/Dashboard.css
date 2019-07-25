@@ -1,0 +1,17 @@
+.dash-opt {
+    color: #595959;
+    border-left: 4px solid #f0f0f0;
+    width: 100%;
+}
+
+.dash-active{
+    color: #257183 !important;
+    border-left: 4px solid currentColor;
+    display: inline-flex;
+    width: 100%;
+}
+
+.dash-active > .dash-opt {
+    color: inherit;
+    border-left: 0px solid #f0f0f0 ;
+}

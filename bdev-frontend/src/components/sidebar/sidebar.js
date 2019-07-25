@@ -5,10 +5,9 @@ import { BrowserRouter as Router, Route, Link, Switch, NavLink } from "react-rou
 
 import './sidebar.css';
 import Index from "../index/Index";
-import Register from "../auth/Register";
-import Login from "../auth/Login";
 import Authentication from "../auth/Authentication";
-import PrivateRoute from "../private-route/PrivateRoute";
+import PrivateRoute from "../../utils/PrivateRoute";
+import RestrictedRoute from "../../utils/RestrictedRoute";
 import Dashboard from "../dashboard/Dashboard";
 import BeSponsor from "../besponsor/besponsor";
 import Faqs from "../faqs/faqs";
@@ -203,13 +202,26 @@ class Sidebar extends Component {
                     {/*
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/login" component={Login} />
-                    */}
-
                     <Route exact path="/login" render={(props) => <Authentication {...props} isLogin={true} />} />
                     <Route exact path="/register" render={(props) => <Authentication {...props} isLogin={false} />} />
+                    */}
+
+                    <RestrictedRoute path="/login" component={Authentication} isLogin={true}/>
+                    <RestrictedRoute path="/register" component={Authentication} isLogin={false}/>
+
+                    <PrivateRoute exact path="/dashboard" component={Dashboard} content={"feed"}/>
+                    <PrivateRoute exact path="/dashboard/feed" component={Dashboard} content={"feed"}/>
+                    <PrivateRoute exact path="/dashboard/profile" component={Dashboard} content={"profile"}/>
+                    <PrivateRoute exact path="/dashboard/team" component={Dashboard} content={"team"}/>
+                    {/*
+                    <PrivateRoute exact path="/dashboard/" render={(props) => <Dashboard {...props} content={"feed"} />} />
+                    <PrivateRoute exact path="/dashboard/feed" render={(props) => <Dashboard {...props} content={"feed"} />} />
+                    <PrivateRoute exact path="/dashboard/profile" render={(props) => <Dashboard {...props} content={"profile"} />} />
+                    <PrivateRoute exact path="/dashboard/team" render={(props) => <Dashboard {...props} content={"team"} />} />
+                    */}
 
                     <Route exact path="/staff" component={Staff} />
-                    <PrivateRoute exact path="/dashboard" component={Dashboard} />
+
 
                 </Switch>
             </Router>

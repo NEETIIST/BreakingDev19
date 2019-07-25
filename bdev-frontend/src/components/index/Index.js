@@ -301,7 +301,7 @@ class Index extends Component {
                     </div>
                 </div>
                 <div className="row vh-70 justify-content-center align-items-center m-0 primary f-white" id="location">
-                    <div class="col-11 col-lg-6 text-justify text-lg-left p-0">
+                    <div className="col-11 col-lg-6 text-justify text-lg-left p-0">
                         <div className="spacer-4"></div>
                         <p className="fs-xl fw-7 mb-1 flh-2 mb-3 text-left"><FormattedMessage id="index.sec6.title1"/></p>
                         <p className="fs-sm fw-4 mb-1 flh-2 mb-2"><FormattedMessage id="index.sec6.desc1"/></p>
