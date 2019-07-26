@@ -209,9 +209,12 @@ class Sidebar extends Component {
                     <RestrictedRoute path="/login" component={Authentication} isLogin={true}/>
                     <RestrictedRoute path="/register" component={Authentication} isLogin={false}/>
 
-                    <PrivateRoute exact path="/dashboard" component={Dashboard} content={"feed"}/>
+                    <PrivateRoute exact path="/dashboard" component={Dashboard} content={"default"}/>
                     <PrivateRoute exact path="/dashboard/feed" component={Dashboard} content={"feed"}/>
-                    <PrivateRoute exact path="/dashboard/profile" component={Dashboard} content={"profile"}/>
+                    <PrivateRoute exact path="/dashboard/profile" component={Dashboard} content={"profile"} subcontent={"default"}/>
+                    <PrivateRoute exact path="/dashboard/profile/see" component={Dashboard} content={"profile"} subcontent={"see"}/>
+                    <PrivateRoute exact path="/dashboard/profile/edit" component={Dashboard} content={"profile"} subcontent={"edit"}/>
+                    <PrivateRoute exact path="/dashboard/profile/validate" component={Dashboard} content={"profile"} subcontent={"validate"}/>
                     <PrivateRoute exact path="/dashboard/team" component={Dashboard} content={"team"}/>
                     {/*
                     <PrivateRoute exact path="/dashboard/" render={(props) => <Dashboard {...props} content={"feed"} />} />

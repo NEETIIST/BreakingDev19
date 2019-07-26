@@ -16,16 +16,15 @@ class Dashboard extends Component {
 
     constructor(props) {
         super(props);
-        //console.log(props);
-        console.log("Built");
-        this.state = {
-            content: props.content,
-        };
-        this.props.history.push('/dashboard/'+props.content)
+        if ( props.content === "default" ?
+            this.state = { content: "feed" } :
+            this.state = { content: props.content }
+        );
+        this.props.history.push('/dashboard/'+this.state.content);
+        this.navigation = this.navigation.bind(this)
     }
 
     navigation = (content) => {
-        //console.log(content);
         this.setState(state => ({ content: content }));
         this.props.history.push('/dashboard/'+content)
     };
@@ -41,14 +40,12 @@ class Dashboard extends Component {
         const { user } = this.props.auth;
         const content =  this.state.content;
 
-        console.log("RENDERED");
-
         return (
             <div className="row justify-content-start align-items-center m-0 vh-100 very-light-grey">
                 <div className="col-2 col-lg-2 p-0">
                     <div className="row m-0">
                         <div className="col-12 p-0 mb-1" onClick={() => this.navigation("feed")}>
-                            <NavLink activeClassName="dash-active" exact to="/dashboard/feed">
+                            <NavLink activeClassName="dash-opt-active" exact to="/dashboard/feed">
                                 <div
                                     className="row justify-content-center align-items-center vh-6 p-0 px-lg-1 m-0 cp dash-opt">
                                     <div className="col-12 col-lg-2 offset-lg-1 text-center px-0">
@@ -61,7 +58,7 @@ class Dashboard extends Component {
                             </NavLink>
                         </div>
                         <div className="col-12 p-0 mb-1" onClick={() => this.navigation("profile")}>
-                            <NavLink activeClassName="dash-active" exact to="/dashboard/profile">
+                            <NavLink activeClassName="dash-opt-active" to="/dashboard/profile">
                                 <div
                                     className="row justify-content-center align-items-center vh-6 p-0 px-lg-1 m-0 cp dash-opt">
                                     <div className="col-12 col-lg-2 offset-lg-1 text-center px-0">
@@ -74,7 +71,7 @@ class Dashboard extends Component {
                             </NavLink>
                         </div>
                         <div className="col-12 p-0 mb-1" onClick={() => this.navigation("team")}>
-                            <NavLink activeClassName="dash-active" exact to="/dashboard/team">
+                            <NavLink activeClassName="dash-opt-active" exact to="/dashboard/team">
                                 <div
                                     className="row justify-content-center align-items-center vh-6 p-0 px-lg-1 m-0 cp dash-opt">
                                     <div className="col-12 col-lg-2 offset-lg-1 text-center px-0">
@@ -101,7 +98,7 @@ class Dashboard extends Component {
                     </div>
                 </div>
                 <div className="col-10 col-lg-10 p-0">
-                    {this.state.content == "feed" ? <Feed {...this.props}/> : ""}
+                    {this.state.content == "feed" ? <Feed {...this.props} navigation={this.navigation}/> : ""}
                     {this.state.content == "profile" ? <Profile {...this.props}/> : ""}
                     {this.state.content == "team" ? <Team {...this.props}/> : ""}
                 </div>

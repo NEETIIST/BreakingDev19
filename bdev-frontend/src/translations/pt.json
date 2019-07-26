@@ -198,5 +198,18 @@
   "auth.login": "Entrar",
   "auth.register": "Criar Conta",
 
+  "dash.logout": "Logout",
+  "dash.opt1": "Dashboard",
+  "dash.opt2": "Perfil",
+  "dash.opt3": "Equipa",
+  "dash.feed.title": "Dashboard",
+  "dash.feed.userinfo1": "O Teu Perfil",
+  "dash.feed.userinfo2": "Altera aqui as tuas informações",
+  "dash.feed.teaminfo1": "A Tua Equipa",
+  "dash.feed.teaminfo2": "Gere aqui a tua equipa",
+  "dash.profile.see": "Ver",
+  "dash.profile.edit": "Editar",
+  "dash.profile.validate": "Validar",
+
   " ": ""
 }

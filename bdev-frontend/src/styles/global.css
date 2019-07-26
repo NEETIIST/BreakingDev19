@@ -53,6 +53,7 @@ a:visited { text-decoration: none !important; color:inherit; }
 .vh-100 { min-height: 100vh ; }
 .vh-95 { min-height: 95vh ; }
 .vh-90 { min-height: 90vh ; }
+.vh-87 { min-height: 87vh ; }
 .vh-85 { min-height: 85vh ; }
 .vh-80 { min-height: 80vh ; }
 .vh-70 { min-height: 70vh ; }
@@ -70,6 +71,7 @@ a:visited { text-decoration: none !important; color:inherit; }
 .vh-7 { min-height: 7vh ; }
 .vh-6 { min-height: 6vh ; }
 .vh-5 { min-height: 5vh ; }
+.vh-3 { min-height: 3vh ; }
 
 .vw-100 { min-width: 100vw ; }
 .vw-75 { min-width: 75vw ; }
