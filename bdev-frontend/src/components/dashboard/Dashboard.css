@@ -41,26 +41,13 @@
 
 .dash-subopt {
     color: #595959;
-    //border-bottom: 2px solid #f0f0f0;
+    border-bottom: 2px solid #f0f0f0;
     transition: all 0.3s linear;
-    background-color: #f0f0f0;
 
 }
 
 .dash-subopt-active{
     color: #257183 !important;
-    display: inline;
+    border-bottom: 2px solid #257183;
 }
 
-.dash-subopt-box
-{
-    display: block !important;
-    background-color: #f0f0f0;
-    margin-left: 15%;
-    width: 75%;
-    height: 2px;
-}
-
-.dash-subopt-active > .dash-subopt-box{
-    background-color: currentColor;
-}

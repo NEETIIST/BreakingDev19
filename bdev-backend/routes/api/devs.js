@@ -98,7 +98,7 @@ router.get("/me", verifyToken, (req, res) => {
 
     DevProfile.findOne({"username":req.username}, DevProfile.ownerInfo, function (err, dev) {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
-        if (!dev) return res.status(404).send("No Dev Profile found for this username");
+        if (!dev) return res.status(404).send("No Dev Profile found for this user");
 
         // The Dev Profile will always be the one of the logged user
         return res.status(200).send(dev);
