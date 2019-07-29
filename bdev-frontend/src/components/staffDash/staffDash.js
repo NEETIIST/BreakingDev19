@@ -22,13 +22,29 @@ class staffDash extends Component {
             this.state = { content: "feed" } :
             this.state = { content: props.content }
         );
-        this.props.history.push('/staffDash/'+this.state.content);
+        this.props.history.push('/staffdash/'+this.state.content);
         this.navigation = this.navigation.bind(this)
+    }
+
+    componentWillMount() {
+        switch(this.props.auth.user.role) {
+            case "dev":
+                this.props.history.push('/dashboard/');
+                break;
+            case "staff":
+                break;
+            case "sponsor":
+                this.props.history.push('/');
+                break;
+            case "volunteer":
+                this.props.history.push('/');
+                break;
+        }
     }
 
     navigation = (content) => {
         this.setState(state => ({ content: content }));
-        this.props.history.push('/staffDash/'+content)
+        this.props.history.push('/staffdash/'+content)
     };
 
     onLogoutClick = e => {
@@ -54,33 +70,46 @@ class staffDash extends Component {
                                         <i className="fas fa-fw fa-columns fa-lg py-lg-2"></i>
                                     </div>
                                     <div className="col-lg-9 text-left d-none d-lg-flex">
-                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="dash.opt1"/></span>
+                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="staffdash.opt1"/></span>
                                     </div>
                                 </div>
                             </NavLink>
                         </div>
                         <div className="col-12 p-0 mb-1" onClick={() => this.navigation("devs")}>
-                            <NavLink activeClassName="dash-opt-active" to="/staffDash/profile">
+                            <NavLink activeClassName="dash-opt-active" to="/staffDash/devs">
                                 <div
                                     className="row justify-content-center align-items-center vh-6 p-0 px-lg-1 m-0 cp dash-opt">
                                     <div className="col-12 col-lg-2 offset-lg-1 text-center px-0">
                                         <i className="far fa-fw fa-user fa-lg py-lg-2"></i>
                                     </div>
                                     <div className="col-lg-9 text-lg-left d-none d-lg-flex">
-                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="dash.opt2"/></span>
+                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="staffdash.opt2"/></span>
                                     </div>
                                 </div>
                             </NavLink>
                         </div>
                         <div className="col-12 p-0 mb-1" onClick={() => this.navigation("teams")}>
-                            <NavLink activeClassName="dash-opt-active" exact to="/staffDash/team">
+                            <NavLink activeClassName="dash-opt-active" exact to="/staffDash/teams">
                                 <div
                                     className="row justify-content-center align-items-center vh-6 p-0 px-lg-1 m-0 cp dash-opt">
                                     <div className="col-12 col-lg-2 offset-lg-1 text-center px-0">
                                         <i className="fas fa-fw fa-users fa-lg py-lg-2"></i>
                                     </div>
                                     <div className="col-lg-9 text-lg-left d-none d-lg-flex">
-                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="dash.opt3"/></span>
+                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="staffdash.opt3"/></span>
+                                    </div>
+                                </div>
+                            </NavLink>
+                        </div>
+                        <div className="col-12 p-0 mb-1" onClick={() => this.navigation("ideas")}>
+                            <NavLink activeClassName="dash-opt-active" exact to="/staffDash/ideas">
+                                <div
+                                    className="row justify-content-center align-items-center vh-6 p-0 px-lg-1 m-0 cp dash-opt">
+                                    <div className="col-12 col-lg-2 offset-lg-1 text-center px-0">
+                                        <i className="fas fa-fw fa-users fa-lg py-lg-2"></i>
+                                    </div>
+                                    <div className="col-lg-9 text-lg-left d-none d-lg-flex">
+                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="staffdash.opt4"/></span>
                                     </div>
                                 </div>
                             </NavLink>
@@ -103,6 +132,7 @@ class staffDash extends Component {
                     {this.state.content === "feed" ? "feed" : ""}
                     {this.state.content === "devs" ? "devs" : ""}
                     {this.state.content === "teams" ? "teams" : ""}
+                    {this.state.content === "ideas" ? "ideas" : ""}
                 </div>
             </div>
         );

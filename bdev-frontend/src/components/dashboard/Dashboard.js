@@ -24,6 +24,22 @@ class Dashboard extends Component {
         this.navigation = this.navigation.bind(this)
     }
 
+    componentWillMount() {
+        switch(this.props.auth.user.role) {
+            case "dev":
+                break;
+            case "staff":
+                this.props.history.push('/staffdash/');
+                break;
+            case "sponsor":
+                this.props.history.push('/');
+                break;
+            case "volunteer":
+                this.props.history.push('/');
+                break;
+        }
+    }
+
     navigation = (content) => {
         this.setState(state => ({ content: content }));
         this.props.history.push('/dashboard/'+content)
