@@ -21,6 +21,7 @@ import Sidebar from "./components/sidebar/sidebar";
 import './styles/global.css';
 import './styles/forms.css';
 import './styles/effects.css';
+import './styles/buttons.css';
 
 addLocaleData([...locale_en, ...locale_pt]);
 

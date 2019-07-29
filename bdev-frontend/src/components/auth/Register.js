@@ -52,11 +52,20 @@ class Register extends Component {
                 message: "forms.email.empty"
             },
             {
-                field: "email",
-                method: "isEmail",
-                validWhen: true,
-                message: "forms.email.invalid"
+                field: "role",
+                method: "isEmpty",
+                validWhen: false,
+                message: "forms.role.empty"
             },
+            /* Becomes invalid if the field is empty, which may happen
+            {
+                field: "access_code",
+                method: "isAlphanumeric",
+                args: ['pt-PT'],
+                validWhen: true,
+                message: "forms.access_code.invalid"
+            },
+            */
         ]);
 
         this.state = {
@@ -64,6 +73,8 @@ class Register extends Component {
             email: "",
             password: "",
             password_confirmation: "",
+            role: "",
+            access_code: "",
             validation: this.validator.valid(),
             status: "waiting",
             errors: "",
@@ -112,7 +123,9 @@ class Register extends Component {
                 username: this.state.username,
                 email: this.state.email,
                 password: this.state.password,
-                password_confirmation: this.state.password_confirmation
+                password_confirmation: this.state.password_confirmation,
+                role: this.state.role,
+                access_code: this.state.access_code,
             };
             this.props.registerUser(newUser);
             this.setState({
@@ -124,6 +137,8 @@ class Register extends Component {
     fieldHasValue = field => {
         return ( this.state[field] !== "" ? "form-alt-input-hasvalue" : "");
     };
+
+    assignRole = role => { this.setState({ role: role }); };
 
     render() {
         const { replies } = this.state;
@@ -143,6 +158,43 @@ class Register extends Component {
                             {replies.username}
                             {replies.username_inuse}
                             {replies.email_inuse}
+                            {replies.code_wrong}
+                        </div>
+                    </div>
+                    <div className={"form-group"}>
+                        <div className={validation.role.isInvalid && 'has-error'}>
+                            <div className="row justify-content-center align-items-center m-0">
+                                <div className="col-1 px-0">
+                                    <i className="fas fa-question-circle fa-lg f-primary" title={intl.formatMessage({id: 'role.help'})} />
+                                </div>
+                                <div className="col p-0 m-1 cp" onClick={(role) => this.assignRole("dev")}>
+                                    <div className={"btn btn-block btn-dev-alt"+(this.state.role==="dev"?"-active":"")}>
+                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="role.dev"/></span>
+                                    </div>
+                                </div>
+                                {/*
+                                <div className="col p-0 m-1 cp" onClick={(role) => this.assignRole("volunteer")}>
+                                    <div className={"btn btn-block btn-dev-alt"+(this.state.role==="volunteer"?"-active":"")}>
+                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="role.volunteer"/></span>
+                                    </div>
+                                </div>
+                                */}
+                                <div className="col p-0 m-1 cp" onClick={(role) => this.assignRole("staff")}>
+                                    <div className={"btn btn-block btn-dev-alt"+(this.state.role==="staff"?"-active":"")}>
+                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="role.staff"/></span>
+                                    </div>
+                                </div>
+                                {/*
+                                <div className="col p-0 m-1 cp" onClick={(role) => this.assignRole("sponsor")}>
+                                    <div className={"btn btn-block btn-dev-alt"+(this.state.role==="sponsor"?"-active":"")}>
+                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="role.sponsor"/></span>
+                                    </div>
+                                </div>
+                                */}
+                            </div>
+                            <span className="help-block fs-xs">
+                                <FormattedMessage id={validation.role.message}/>
+                            </span>
                         </div>
                     </div>
                     <div className={"form-group"}>
@@ -202,6 +254,24 @@ class Register extends Component {
                             />
                             <span className="help-block fs-xs">
                                 <FormattedMessage id={validation.password_confirmation.message}/>
+                            </span>
+                        </div>
+                    </div>
+                    <div className={"form-group "+(this.state.role==="staff"||this.state.role==="sponsor"?"":"d-none")}>
+                        {/*<div className={validation.access_code.isInvalid && 'has-error'}>*/}
+                        <div>
+                            <input
+                                onChange={this.onChange}
+                                className={"form-control form-alt-input " + this.fieldHasValue("access_code")}
+                                value={this.state.access_code}
+                                name="access_code"
+                                type="password"
+                                placeholder={intl.formatMessage({id: 'forms.access_code.placeholder'})}
+                            />
+                            <span className="help-block fs-xs">
+                                {/*
+                                <FormattedMessage id={validation.access_code.message}/>
+                                */}
                             </span>
                         </div>
                     </div>

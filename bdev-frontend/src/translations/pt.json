@@ -113,6 +113,9 @@
   "forms.password.wrongsize": "A Password tem de ter pelo menos 6 caracteres",
   "forms.password_confirmation.placeholder": "Password (novamente)",
   "forms.password_confirmation.doesntmatch": "As Passwords não são iguais",
+  "forms.role.empty": "Por favor escolhe um tipo de perfil",
+  "forms.access_code.placeholder": "Código de Acesso",
+  "forms.access_code.invalid": "O formato deste código é inválido",
   "forms.sending": "Enviando...",
   "forms.success": "Confirmado",
   "forms.send": "Enviar",
@@ -197,6 +200,12 @@
 
   "auth.login": "Entrar",
   "auth.register": "Criar Conta",
+
+  "role.dev": "Developer",
+  "role.volunteer": "Voluntário",
+  "role.staff": "Staff",
+  "role.sponsor": "Patrocinador",
+  "role.help": "Tipo de Perfil:\nSe vens para concorrer então escolhe a opção Developer",
 
   "dash.logout": "Logout",
   "dash.opt1": "Dashboard",

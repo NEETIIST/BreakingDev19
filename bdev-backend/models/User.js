@@ -20,7 +20,8 @@ const UserSchema = new Schema({
     },
     role: {
         type: String,
-        default: "starter",
+        required: true,
+        allowedValues: ["dev","volunteer","staff","sponsor"],
     },
 
 });

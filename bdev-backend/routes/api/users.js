@@ -33,10 +33,14 @@ router.post("/register", (req, res) => {
                 //console.log(user);
                 return res.status(403).json({ email_inuse: "Email already in use" });
             }
+            if ( req.body.role === "admin" )
+                if ( req.body.access_code !== keys.adminPass )
+                    return res.status(401).json({ code_wrong: "Wrong Access Code" });
             const newUser = new User({
                 username: req.body.username,
                 email: req.body.email,
-                password: req.body.password
+                password: req.body.password,
+                role: req.body.role,
             });
             // Hash password before saving in database
             bcrypt.genSalt(10, (err, salt) => {

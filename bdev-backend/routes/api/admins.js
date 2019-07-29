@@ -13,6 +13,7 @@ const AdminProfile = require("../../models/AdminProfile");
 // Load input validation
 const validateAdminProfileInput = require("../../validation/adminProfile");
 
+/* THIS ROUTE IS OBSOLETE, users now register as admins on account creation
 // @route POST api/admins/access
 // @desc Grants Admin Access to a user and updates their JWT Token
 router.post("/access", verifyToken, (req, res) => {
@@ -60,6 +61,7 @@ router.post("/access", verifyToken, (req, res) => {
             .catch(err => console.log(err));
     });
 });
+*/
 
 // @route POST api/admins/create
 // @desc Create Admin Profile, logged user must not have a profile already

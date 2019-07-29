@@ -1,6 +1,6 @@
 const Validator = require("validator");
-
 const isEmpty = require("is-empty");
+const User = require("../models/User");
 
 module.exports = function validateRegisterInput(data) {
     let errors = {};
@@ -9,6 +9,8 @@ module.exports = function validateRegisterInput(data) {
     data.email = !isEmpty(data.email) ? data.email : "";
     data.password = !isEmpty(data.password) ? data.password : "";
     data.password_confirmation = !isEmpty(data.password_confirmation) ? data.password_confirmation : "";
+    data.role= !isEmpty(data.role) ? data.role : "";
+    data.access_code= !isEmpty(data.access_code) ? data.access_code : "";
     // Username checks
     if (Validator.isEmpty(data.username)) {
         errors.username = "Username is required";
@@ -35,6 +37,17 @@ module.exports = function validateRegisterInput(data) {
     }
     if (!Validator.equals(data.password, data.password_confirmation)) {
         errors.password_confirmation = "Passwords must match";
+    }
+    // Role checks
+    if (Validator.isEmpty(data.role)) {
+        errors.role = "Role is required";
+    }
+    else if (!Validator.isIn(data.role, User.schema.obj.role.allowedValues )){
+        errors.role = "Invalid Role";
+    }
+    // Access Code checks
+    if (!Validator.isEmpty(data.access_code) && !Validator.isAlphanumeric(data.access_code, 'pt-PT')) {  // Check if it makes sense to use accents
+        errors.access_code = "Please use a valid access code format";
     }
     return {
         errors,

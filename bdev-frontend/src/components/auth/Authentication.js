@@ -35,7 +35,7 @@ class Authentication extends Component {
             <div>
                 <div className="row justify-content-center align-items-center p-0 m-0 vh-100 primary">
                     <div className="col-10 col-lg-4 p-0 text-center">
-                        <div className="row m-0 vh-60 white" id={"auth-form"}>
+                        <div className="row m-0 vh-70 white" id={"auth-form"}>
                             <div className="col-12 p-0">
                                 <div className="row align-items-center m-0">
                                     <div className={"col-6 p-0 cp "+isLogin} onClick={this.showLogin}>
@@ -45,7 +45,7 @@ class Authentication extends Component {
                                         <p className="fs-md fw-4 flh-1 my-3"><FormattedMessage id="auth.register"/></p>
                                     </div>
                                 </div>
-                                <div className="row vh-40 m-0 justify-content-center align-items-start" id={"auth-area"}>
+                                <div className="row vh-50 m-0 justify-content-center align-items-start" id={"auth-area"}>
                                     <div className="col-10 p-0">
                                         <div className="spacer-4"></div>
                                         {this.state.isLogin ?
