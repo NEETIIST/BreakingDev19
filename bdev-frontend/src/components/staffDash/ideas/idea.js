@@ -10,6 +10,7 @@ class Idea extends Component {
             showAll: false,
         };
         this.toggleInfo = this.toggleInfo.bind(this);
+        console.log(props.methods);
     }
 
     toggleInfo(){
@@ -42,14 +43,17 @@ class Idea extends Component {
                         </span>
                     </div>
                     <div className="col-5 col-lg-4 p-0 text-right f-grey">
-                        <i onClick={() => methods.test1(idea.number)}
-                            className={"fas fa-fw fa-md mx-1 fa-check f-green "+(idea.approved?"d-inline":"d-none")}
+                        <i onClick={() => methods.disapproveIdea(idea.number)}
+                           className={"fas fa-fw fa-md mx-1 fa-check f-green "+(idea.approved?"d-inline":"d-none")}
                            title={intl.formatMessage({ id: 'staffdash.ideas.approved' })} />
-                        <i className={"fas fa-fw fa-md mx-1 fa-times f-red "+(idea.approved?"d-none":"d-inline")}
+                        <i onClick={() => methods.approveIdea(idea.number)}
+                           className={"fas fa-fw fa-md mx-1 fa-times f-red "+(idea.approved?"d-none":"d-inline")}
                            title={intl.formatMessage({ id: 'staffdash.ideas.disapproved' })} />
-                        <i className={"fas fa-fw fa-md mx-1 fa-eye f-green "+(!idea.hidden?"d-inline":"d-none")}
+                        <i onClick={() => methods.hideIdea(idea.number)}
+                           className={"fas fa-fw fa-md mx-1 fa-eye f-green "+(!idea.hidden?"d-inline":"d-none")}
                            title={intl.formatMessage({ id: 'staffdash.ideas.isvisible' })} />
-                        <i className={"fas fa-fw fa-md mx-1 fa-eye-slash f-red "+(!idea.hidden?"d-none":"d-inline")}
+                        <i onClick={() => methods.showIdea(idea.number)}
+                           className={"fas fa-fw fa-md mx-1 fa-eye-slash f-red "+(!idea.hidden?"d-none":"d-inline")}
                            title={intl.formatMessage({ id: 'staffdash.ideas.hidden' })} />
                         <i className={"fas fa-fw fa-md mx-1 fa-star f-yellow "+(idea.highlighted?"d-inline":"d-none")}
                            title={intl.formatMessage({ id: 'staffdash.ideas.ishighlighted' })} />

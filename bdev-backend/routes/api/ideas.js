@@ -78,6 +78,8 @@ router.post("/add", (req, res) => {
 // Action for admins only
 router.post("/hide/:number", verifyToken, (req, res) => {
 
+    console.log("THIS!");
+    console.log(req);
     if ( req.role !== 'staff' ) return res.status(403).send("You don't have permission for this action");;
 
     Idea.findOneAndUpdate({"number":req.params["number"]}, {"hidden":true}, function (err, idea) {

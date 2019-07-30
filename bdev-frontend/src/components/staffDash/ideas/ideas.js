@@ -12,7 +12,11 @@ class Ideas extends Component {
             ideas:[],
             content: "pending"
         };
-        this.test = this.test.bind(this);
+
+        this.hideIdea = this.hideIdea.bind(this);
+        this.showIdea = this.showIdea.bind(this);
+        this.approveIdea = this.approveIdea.bind(this);
+        this.disapproveIdea = this.disapproveIdea.bind(this);
     }
 
     componentDidMount() {
@@ -24,8 +28,8 @@ class Ideas extends Component {
         axios.get('http://194.210.234.116:4000/api/ideas/all',
             {
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]
+                    'content-type': 'application/x-www-form-urlencoded',
+                    "x-access-token": localStorage.getItem("jwtToken").split(" ")[1],
                 }
             })
             .then(response => {
@@ -40,25 +44,114 @@ class Ideas extends Component {
         this.setState(state => ({ content: content }));
     };
 
-    // TODO: Put actual methods to call the API's inside the idea
-    test(idea){
-        console.log(idea);
+    hideIdea(number){
+        axios.post('http://194.210.234.116:4000/api/ideas/hide/'+number,{},
+            {
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    "x-access-token": localStorage.getItem("jwtToken").split(" ")[1],
+                }
+            })
+            .then(response => {
+                if ( response.status === 200 )
+                {
+                    let ideas = this.state.ideas;
+                    ideas.find(idea => idea.number === number).hidden = true;
+                    this.setState({ ideas: ideas });
+                }
+            })
+            .catch(function (error){console.log(error);})
     };
 
-    // TODO: Sort Ideas by date, at least the pending Ideas, rethink the hidden/approved mecanics
+    showIdea(number){
+        axios.post('http://194.210.234.116:4000/api/ideas/show/'+number,{},
+            {
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    "x-access-token": localStorage.getItem("jwtToken").split(" ")[1],
+                }
+            })
+            .then(response => {
+                if ( response.status === 200 )
+                {
+                    let ideas = this.state.ideas;
+                    ideas.find(idea => idea.number === number).hidden = false;
+                    this.setState({ ideas: ideas });
+                }
+            })
+            .catch(function (error){console.log(error);})
+    };
+
+    approveIdea(number){
+        axios.post('http://194.210.234.116:4000/api/ideas/approve/'+number,{},
+            {
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    "x-access-token": localStorage.getItem("jwtToken").split(" ")[1],
+                }
+            })
+            .then(response => {
+                if ( response.status === 200 )
+                {
+                    let ideas = this.state.ideas;
+                    ideas.find(idea => idea.number === number).approved = true;
+                    this.setState({ ideas: ideas });
+                }
+            })
+            .catch(function (error){console.log(error);})
+    };
+
+    disapproveIdea(number){
+        axios.post('http://194.210.234.116:4000/api/ideas/disapprove/'+number,{},
+            {
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    "x-access-token": localStorage.getItem("jwtToken").split(" ")[1],
+                }
+            })
+            .then(response => {
+                if ( response.status === 200 )
+                {
+                    let ideas = this.state.ideas;
+                    ideas.find(idea => idea.number === number).approved = false;
+                    this.setState({ ideas: ideas });
+                }
+            })
+            .catch(function (error){console.log(error);})
+    };
+
+    /* TODO:
+        - Sort Ideas by date
+        - Favorite / Unfavorite Ideas
+        - Idea Bank Page display status
+     */
     allIdeas() {
-        return this.state.ideas.map((idea, index) => { return <Idea idea={idea} methods={this.methods} /> });
+        return this.state.ideas.map((idea, index) => { return <Idea idea={idea} methods={{
+            hideIdea: (number) => this.hideIdea(number),
+            showIdea: (number) => this.showIdea(number),
+            approveIdea: (number) => this.approveIdea(number),
+            disapproveIdea: (number) => this.disapproveIdea(number),
+        }} /> });
     };
     visibleIdeas() {
         let filteredData = this.state.ideas.filter( (idea) => { return( idea.hidden===false ? idea : null) });
-        return filteredData.map((idea, index) => { return <Idea idea={idea} methods={this.methods} /> });
+        return filteredData.map((idea, index) => { return <Idea idea={idea} methods={{
+            hideIdea: (number) => this.hideIdea(number),
+            showIdea: (number) => this.showIdea(number),
+            approveIdea: (number) => this.approveIdea(number),
+            disapproveIdea: (number) => this.disapproveIdea(number),
+        }} /> });
     };
     pendingIdeas() {
-        let filteredData = this.state.ideas.filter( (idea) => { return( idea.approved===false ? idea : null) });
-        return filteredData.map((idea, index) => { return <Idea idea={idea} methods={this.methods} /> });
+        let filteredData = this.state.ideas.filter( (idea) => { return( idea.approved===false && idea.hidden===false ? idea : null) });
+        return filteredData.map((idea, index) => { return <Idea idea={idea} methods={{
+            hideIdea: (number) => this.hideIdea(number),
+            showIdea: (number) => this.showIdea(number),
+            approveIdea: (number) => this.approveIdea(number),
+            disapproveIdea: (number) => this.disapproveIdea(number),
+        }} /> });
     };
 
-    methods = {"test1":this.test,"test2":this.test};
 
     render() {
         let content = this.state.content;
