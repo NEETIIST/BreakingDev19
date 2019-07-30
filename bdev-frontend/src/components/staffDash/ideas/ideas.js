@@ -17,6 +17,8 @@ class Ideas extends Component {
         this.showIdea = this.showIdea.bind(this);
         this.approveIdea = this.approveIdea.bind(this);
         this.disapproveIdea = this.disapproveIdea.bind(this);
+        this.favoriteIdea = this.favoriteIdea.bind(this);
+        this.unfavoriteIdea = this.unfavoriteIdea.bind(this);
     }
 
     componentDidMount() {
@@ -120,36 +122,82 @@ class Ideas extends Component {
             .catch(function (error){console.log(error);})
     };
 
-    /* TODO:
-        - Sort Ideas by date
-        - Favorite / Unfavorite Ideas
-        - Idea Bank Page display status
-     */
+    favoriteIdea(number){
+        axios.post('http://194.210.234.116:4000/api/ideas/favorite/'+number,{},
+            {
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    "x-access-token": localStorage.getItem("jwtToken").split(" ")[1],
+                }
+            })
+            .then(response => {
+                if ( response.status === 200 )
+                {
+                    let ideas = this.state.ideas;
+                    ideas.find(idea => idea.number === number).highlighted = true;
+                    this.setState({ ideas: ideas });
+                }
+            })
+            .catch(function (error){console.log(error);})
+    };
+
+    unfavoriteIdea(number){
+        axios.post('http://194.210.234.116:4000/api/ideas/unfavorite/'+number,{},
+            {
+                headers: {
+                    'content-type': 'application/x-www-form-urlencoded',
+                    "x-access-token": localStorage.getItem("jwtToken").split(" ")[1],
+                }
+            })
+            .then(response => {
+                if ( response.status === 200 )
+                {
+                    let ideas = this.state.ideas;
+                    ideas.find(idea => idea.number === number).highlighted = false;
+                    this.setState({ ideas: ideas });
+                }
+            })
+            .catch(function (error){console.log(error);})
+    };
+
+
     allIdeas() {
-        return this.state.ideas.map((idea, index) => { return <Idea idea={idea} methods={{
-            hideIdea: (number) => this.hideIdea(number),
-            showIdea: (number) => this.showIdea(number),
-            approveIdea: (number) => this.approveIdea(number),
-            disapproveIdea: (number) => this.disapproveIdea(number),
-        }} /> });
+        if ( this.state.ideas.length === 0)
+            return <p className="fs-md fw-4 flh-1 my-3"><FormattedMessage id="staffdash.ideas.empty"/></p>;
+        else
+            return (
+                this.state.ideas.map((idea, index) => { return <Idea idea={idea} key={idea.number} methods={{
+                    hideIdea: (number) => this.hideIdea(number),
+                    showIdea: (number) => this.showIdea(number),
+                    approveIdea: (number) => this.approveIdea(number),
+                    disapproveIdea: (number) => this.disapproveIdea(number),
+                }} /> })
+
+            );
     };
     visibleIdeas() {
         let filteredData = this.state.ideas.filter( (idea) => { return( idea.hidden===false ? idea : null) });
-        return filteredData.map((idea, index) => { return <Idea idea={idea} methods={{
-            hideIdea: (number) => this.hideIdea(number),
-            showIdea: (number) => this.showIdea(number),
-            approveIdea: (number) => this.approveIdea(number),
-            disapproveIdea: (number) => this.disapproveIdea(number),
-        }} /> });
+        if ( filteredData.length === 0)
+            return <p className="fs-md fw-4 flh-1 my-3"><FormattedMessage id="staffdash.ideas.empty"/></p>;
+        else
+            return filteredData.map((idea, index) => { return <Idea idea={idea} key={idea.number} methods={{
+                hideIdea: (number) => this.hideIdea(number),
+                showIdea: (number) => this.showIdea(number),
+                approveIdea: (number) => this.approveIdea(number),
+                disapproveIdea: (number) => this.disapproveIdea(number),
+            }} /> });
     };
     pendingIdeas() {
         let filteredData = this.state.ideas.filter( (idea) => { return( idea.approved===false && idea.hidden===false ? idea : null) });
-        return filteredData.map((idea, index) => { return <Idea idea={idea} methods={{
-            hideIdea: (number) => this.hideIdea(number),
-            showIdea: (number) => this.showIdea(number),
-            approveIdea: (number) => this.approveIdea(number),
-            disapproveIdea: (number) => this.disapproveIdea(number),
-        }} /> });
+        if ( filteredData.length === 0)
+            return <p className="fs-md fw-4 flh-1 my-3"><FormattedMessage id="staffdash.ideas.empty"/></p>;
+        else
+            return filteredData.map((idea, index) => { return <Idea idea={idea} key={idea.number} methods={{
+                hideIdea: (number) => this.hideIdea(number),
+                showIdea: (number) => this.showIdea(number),
+                approveIdea: (number) => this.approveIdea(number),
+                disapproveIdea: (number) => this.disapproveIdea(number),
+            }} /> });
     };
 
 
@@ -159,9 +207,9 @@ class Ideas extends Component {
         return(
             <Fade bottom cascade>
                 <div className="row justify-content-center align-content-center m-0 vh-10">
-                    <div className="col-11 col-lg-11 p-0 text-right">
+                    <div className="col-11 col-lg-11 p-0 text-right f-primary">
                         <div className="spacer-2 mb-2"></div>
-                        <span className="fs-lg fw-7 flh-1 f-dark-grey"><FormattedMessage id="staffdash.ideas.title"/></span>
+                        <span className="fs-lg fw-7 flh-1"><FormattedMessage id="staffdash.ideas.title"/></span>
                         <i className="fas fa-fw fa-lightbulb fa-lg flh-1 ml-2"></i>
                         <hr className="m-0 mt-3"/>
                     </div>

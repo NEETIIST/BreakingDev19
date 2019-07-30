@@ -197,6 +197,8 @@
   "ideas.opt1": "Dar uma Ideia",
   "ideas.origin": "Por: {name}",
   "ideas.sentsuccess": "A tua ideia foi registada no banco de ideias. Obrigado por participares.",
+  "ideas.approved": "Ideia Validada",
+  "ideas.favorite": "Destaque do Staff!",
 
   "auth.login": "Entrar",
   "auth.register": "Criar Conta",
@@ -235,7 +237,7 @@
   "staffdash.ideas.isvisible": "Ideia Visível. Click para esconder",
   "staffdash.ideas.ishighlighted": "Ideia Favorita do Staff. Click para remover.",
   "staffdash.ideas.nothighlighted": "Click para tornar Favorita do Staff.",
+  "staffdash.ideas.empty": "Não há ideias aqui",
 
-
-  " ": ""
+  " ": " "
 }

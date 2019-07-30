@@ -59,4 +59,5 @@ Idea.publicInfo = {
     description:1,
     highlighted:1,
     date:1,
+    approved:1,
 };

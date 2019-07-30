@@ -164,19 +164,21 @@ class Ideas extends Component {
     }
 
     ideasList() {
+        const { intl } = this.props;
         return this.state.ideas.map((idea, index) => {
-            return <div className="card text-left question">
+            return <div className="card text-left question" key={idea.number}>
                 <div className="card-body">
                     <p className="fs-md fw-7 flh-2 mb-1">
                         {idea.title}
                         <span className="fs-sm fw-4 f-light-grey ml-2">#{idea.number}</span>
+                        <i className={"fas fa-star fa-md fa-fw ml-2 f-yellow "+(idea.highlighted ? "d-inline":"d-none")}
+                           title={intl.formatMessage({id: 'ideas.favorite'})}/>
                     </p>
                     <p className="fs-sm fw-4 flh-2 mb-1 f-dark-grey">{idea.description}</p>
                     <p className="fs-xxs fw-2 flh-2 mb-0 f-grey text-right">
-                        <FormattedMessage id="ideas.origin" values={{
-                            name: idea.name,
-                            //date: idea.date
-                        }}/>
+                        <i className={"fas fa-check fa-md fa-fw mr-1 f-green "+(idea.approved ? "d-inline":"d-none")}
+                           title={intl.formatMessage({id: 'ideas.approved'})}/>
+                        <FormattedMessage id="ideas.origin" values={{name: idea.name}}/>
                     </p>
                 </div>
             </div>

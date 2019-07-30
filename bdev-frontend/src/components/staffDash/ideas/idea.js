@@ -10,7 +10,6 @@ class Idea extends Component {
             showAll: false,
         };
         this.toggleInfo = this.toggleInfo.bind(this);
-        console.log(props.methods);
     }
 
     toggleInfo(){
@@ -44,22 +43,24 @@ class Idea extends Component {
                     </div>
                     <div className="col-5 col-lg-4 p-0 text-right f-grey">
                         <i onClick={() => methods.disapproveIdea(idea.number)}
-                           className={"fas fa-fw fa-md mx-1 fa-check f-green "+(idea.approved?"d-inline":"d-none")}
+                           className={"cp fas fa-fw fa-md mx-1 fa-check f-green "+(idea.approved?"d-inline":"d-none")}
                            title={intl.formatMessage({ id: 'staffdash.ideas.approved' })} />
                         <i onClick={() => methods.approveIdea(idea.number)}
-                           className={"fas fa-fw fa-md mx-1 fa-times f-red "+(idea.approved?"d-none":"d-inline")}
+                           className={"cp fas fa-fw fa-md mx-1 fa-times f-red "+(idea.approved?"d-none":"d-inline")}
                            title={intl.formatMessage({ id: 'staffdash.ideas.disapproved' })} />
                         <i onClick={() => methods.hideIdea(idea.number)}
-                           className={"fas fa-fw fa-md mx-1 fa-eye f-green "+(!idea.hidden?"d-inline":"d-none")}
+                           className={"cp fas fa-fw fa-md mx-1 fa-eye f-green "+(!idea.hidden?"d-inline":"d-none")}
                            title={intl.formatMessage({ id: 'staffdash.ideas.isvisible' })} />
                         <i onClick={() => methods.showIdea(idea.number)}
-                           className={"fas fa-fw fa-md mx-1 fa-eye-slash f-red "+(!idea.hidden?"d-none":"d-inline")}
+                           className={"cp fas fa-fw fa-md mx-1 fa-eye-slash f-red "+(!idea.hidden?"d-none":"d-inline")}
                            title={intl.formatMessage({ id: 'staffdash.ideas.hidden' })} />
-                        <i className={"fas fa-fw fa-md mx-1 fa-star f-yellow "+(idea.highlighted?"d-inline":"d-none")}
+                        <i onClick={() => methods.favoriteIdea(idea.number)}
+                           className={"cp fas fa-fw fa-md mx-1 fa-star f-yellow "+(idea.highlighted?"d-inline":"d-none")}
                            title={intl.formatMessage({ id: 'staffdash.ideas.ishighlighted' })} />
-                        <i className={"far fa-fw fa-md mx-1 fa-star "+(idea.highlighted?"d-none":"d-inline")}
+                        <i onClick={() => methods.unfavoriteIdea(idea.number)}
+                           className={"cp far fa-fw fa-md mx-1 fa-star "+(idea.highlighted?"d-none":"d-inline")}
                            title={intl.formatMessage({ id: 'staffdash.ideas.nothighlighted' })} />
-                        <i onClick={this.toggleInfo} className={"fas fa-fw fa-md ml-3 "+(showAll?"fa-chevron-down":"fa-chevron-up")} />
+                        <i onClick={this.toggleInfo} className={"cp fas fa-fw fa-md ml-3 "+(showAll?"fa-chevron-down":"fa-chevron-up")} />
                     </div>
                     <div className="col-12 p-0 text-left">
                         <p className="fs-sm fw-7 flh-2 mb-0">{idea.title}</p>

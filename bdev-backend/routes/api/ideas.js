@@ -116,7 +116,7 @@ router.post("/approve/:number", verifyToken, (req, res) => {
     });
 });
 
-// @route POST api/ideas/approve/:number
+// @route POST api/ideas/disapprove/:number
 // @desc "UnConfirms" the idea by the admins
 // Action for admins only
 router.post("/disapprove/:number", verifyToken, (req, res) => {
@@ -124,6 +124,32 @@ router.post("/disapprove/:number", verifyToken, (req, res) => {
     if ( req.role !== 'staff' ) return res.status(403).send("You don't have permission for this action");;
 
     Idea.findOneAndUpdate({"number":req.params["number"]}, {"approved":false}, function (err, idea) {
+        if (err) return res.status(500).send("There was a problem finding the Idea.");
+        return res.status(200).send("Updated Successfully");
+    });
+});
+
+// @route POST api/ideas/favorite/:number
+// @desc Highlights the idea on the bank page
+// Action for admins only
+router.post("/favorite/:number", verifyToken, (req, res) => {
+
+    if ( req.role !== 'staff' ) return res.status(403).send("You don't have permission for this action");;
+
+    Idea.findOneAndUpdate({"number":req.params["number"]}, {"highlighted":true}, function (err, idea) {
+        if (err) return res.status(500).send("There was a problem finding the Idea.");
+        return res.status(200).send("Updated Successfully");
+    });
+});
+
+// @route POST api/ideas/unfavorite/:number
+// @desc Unhighlights the idea on the bank page
+// Action for admins only
+router.post("/unfavorite/:number", verifyToken, (req, res) => {
+
+    if ( req.role !== 'staff' ) return res.status(403).send("You don't have permission for this action");;
+
+    Idea.findOneAndUpdate({"number":req.params["number"]}, {"highlighted":false}, function (err, idea) {
         if (err) return res.status(500).send("There was a problem finding the Idea.");
         return res.status(200).send("Updated Successfully");
     });
