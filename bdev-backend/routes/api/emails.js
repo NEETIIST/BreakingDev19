@@ -20,16 +20,15 @@ var from_who = 'no-reply@breakingdev.pt';
 const validateContactRequest = require("../../validation/beSponsor");
 
 // @route POST api/emails/besponsor
-// @desc Create Dev Profile, logged user must not have a profile already
-// Performs a double check for already existing profiles associated with this username
-// And checks for role permission, must be 'starter'
 router.post("/besponsor", (req, res) => {
 
+    /*
     console.log("Content:");
     console.log(req.body.name);
     console.log(req.body.company);
     console.log(req.body.phone);
     console.log(req.body.email);
+    */
 
     // Form validation
     const { errors, isValid } = validateContactRequest(req.body);

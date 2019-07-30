@@ -6,13 +6,9 @@ import { NavLink } from "react-router-dom";
 
 import { logoutUser } from "../../actions/authActions";
 
-//import './staffDash.css';
+import Ideas from "./ideas/ideas";
 
-/*
-import Profile from './profile/profile';
-import Feed from "./feed/feed";
-import Team from "./team/team";
-*/
+import './staffdash.css';
 
 class staffDash extends Component {
 
@@ -75,15 +71,28 @@ class staffDash extends Component {
                                 </div>
                             </NavLink>
                         </div>
+                        <div className="col-12 p-0 mb-1" onClick={() => this.navigation("profile")}>
+                            <NavLink activeClassName="dash-opt-active" to="/staffDash/profile">
+                                <div
+                                    className="row justify-content-center align-items-center vh-6 p-0 px-lg-1 m-0 cp dash-opt">
+                                    <div className="col-12 col-lg-2 offset-lg-1 text-center px-0">
+                                        <i className="far fa-fw fa-id-card fa-lg py-lg-2"></i>
+                                    </div>
+                                    <div className="col-lg-9 text-lg-left d-none d-lg-flex">
+                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="staffdash.opt2"/></span>
+                                    </div>
+                                </div>
+                            </NavLink>
+                        </div>
                         <div className="col-12 p-0 mb-1" onClick={() => this.navigation("devs")}>
                             <NavLink activeClassName="dash-opt-active" to="/staffDash/devs">
                                 <div
                                     className="row justify-content-center align-items-center vh-6 p-0 px-lg-1 m-0 cp dash-opt">
                                     <div className="col-12 col-lg-2 offset-lg-1 text-center px-0">
-                                        <i className="far fa-fw fa-user fa-lg py-lg-2"></i>
+                                        <i className="fas fa-fw fa-user-friends fa-lg py-lg-2"></i>
                                     </div>
                                     <div className="col-lg-9 text-lg-left d-none d-lg-flex">
-                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="staffdash.opt2"/></span>
+                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="staffdash.opt3"/></span>
                                     </div>
                                 </div>
                             </NavLink>
@@ -96,7 +105,7 @@ class staffDash extends Component {
                                         <i className="fas fa-fw fa-users fa-lg py-lg-2"></i>
                                     </div>
                                     <div className="col-lg-9 text-lg-left d-none d-lg-flex">
-                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="staffdash.opt3"/></span>
+                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="staffdash.opt4"/></span>
                                     </div>
                                 </div>
                             </NavLink>
@@ -106,10 +115,10 @@ class staffDash extends Component {
                                 <div
                                     className="row justify-content-center align-items-center vh-6 p-0 px-lg-1 m-0 cp dash-opt">
                                     <div className="col-12 col-lg-2 offset-lg-1 text-center px-0">
-                                        <i className="fas fa-fw fa-users fa-lg py-lg-2"></i>
+                                        <i className="fas fa-fw fa-lightbulb fa-lg py-lg-2"></i>
                                     </div>
                                     <div className="col-lg-9 text-lg-left d-none d-lg-flex">
-                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="staffdash.opt4"/></span>
+                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="staffdash.opt5"/></span>
                                     </div>
                                 </div>
                             </NavLink>
@@ -130,9 +139,10 @@ class staffDash extends Component {
                 </div>
                 <div className="col-10 col-lg-10 p-0">
                     {this.state.content === "feed" ? "feed" : ""}
+                    {this.state.content === "profile" ? "profile" : ""}
                     {this.state.content === "devs" ? "devs" : ""}
                     {this.state.content === "teams" ? "teams" : ""}
-                    {this.state.content === "ideas" ? "ideas" : ""}
+                    {this.state.content === "ideas" ? <Ideas {...this.props}/> : ""}
                 </div>
             </div>
         );

@@ -74,7 +74,7 @@ router.post("/create", verifyToken, (req, res) => {
         if (adm) return res.status(403).send("This user already has an Admin Profile");
 
         // Only 'admin' role can create a new admin Profile
-        if ( req.role !== 'admin' ){
+        if ( req.role !== 'staff' ){
             return res.status(403).send("You don't have permission for this action");
         }
 

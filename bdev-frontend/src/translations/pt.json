@@ -220,5 +220,22 @@
   "dash.profile.edit": "Editar",
   "dash.profile.validate": "Validar",
 
+  "staffdash.opt1": "Dashboard",
+  "staffdash.opt2": "Perfil",
+  "staffdash.opt3": "Devs",
+  "staffdash.opt4": "Equipas",
+  "staffdash.opt5": "Ideias",
+  "staffdash.ideas.title": "Ideias",
+  "staffdash.ideas.all": "Todas",
+  "staffdash.ideas.visible": "Visíveis",
+  "staffdash.ideas.pending": "Por Confirmar",
+  "staffdash.ideas.approved": "Ideia Aprovada. Click para Desaprovar",
+  "staffdash.ideas.disapproved": "Ideia Desaprovada. Click para Aprovar",
+  "staffdash.ideas.hidden": "Ideia Escondida. Click para tornar visível",
+  "staffdash.ideas.isvisible": "Ideia Visível. Click para esconder",
+  "staffdash.ideas.ishighlighted": "Ideia Favorita do Staff. Click para remover.",
+  "staffdash.ideas.nothighlighted": "Click para tornar Favorita do Staff.",
+
+
   " ": ""
 }

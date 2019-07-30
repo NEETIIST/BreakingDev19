@@ -29,7 +29,7 @@ router.get("/public", (req, res) => {
 // Requires admin access
 router.get("/all", verifyToken, (req, res) => {
 
-    if ( req.role != 'admin' ) return res.status(403).send("You don't have permission for this action");;
+    if ( req.role != 'staff' ) return res.status(403).send("You don't have permission for this action");;
 
     Idea.find({}, function (err, ideas) {
         if (err) return res.status(500).send("There was a problem finding the Ideas.");
@@ -78,7 +78,7 @@ router.post("/add", (req, res) => {
 // Action for admins only
 router.post("/hide/:number", verifyToken, (req, res) => {
 
-    if ( req.role !== 'admin' ) return res.status(403).send("You don't have permission for this action");;
+    if ( req.role !== 'staff' ) return res.status(403).send("You don't have permission for this action");;
 
     Idea.findOneAndUpdate({"number":req.params["number"]}, {"hidden":true}, function (err, idea) {
         if (err) return res.status(500).send("There was a problem finding the Idea.");
@@ -92,13 +92,39 @@ router.post("/hide/:number", verifyToken, (req, res) => {
 // Action for admins only
 router.post("/show/:number", verifyToken, (req, res) => {
 
-    if ( req.role !== 'admin' ) return res.status(403).send("You don't have permission for this action");;
+    if ( req.role !== 'staff' ) return res.status(403).send("You don't have permission for this action");;
 
     Idea.findOneAndUpdate({"number":req.params["number"]}, {"hidden":false}, function (err, idea) {
         if (err) return res.status(500).send("There was a problem finding the Idea.");
         return res.status(200).send("Updated Successfully");
     });
 
+});
+
+// @route POST api/ideas/approve/:number
+// @desc "Confirms" the idea by the admins
+// Action for admins only
+router.post("/approve/:number", verifyToken, (req, res) => {
+
+    if ( req.role !== 'staff' ) return res.status(403).send("You don't have permission for this action");;
+
+    Idea.findOneAndUpdate({"number":req.params["number"]}, {"approved":true}, function (err, idea) {
+        if (err) return res.status(500).send("There was a problem finding the Idea.");
+        return res.status(200).send("Updated Successfully");
+    });
+});
+
+// @route POST api/ideas/approve/:number
+// @desc "UnConfirms" the idea by the admins
+// Action for admins only
+router.post("/disapprove/:number", verifyToken, (req, res) => {
+
+    if ( req.role !== 'staff' ) return res.status(403).send("You don't have permission for this action");;
+
+    Idea.findOneAndUpdate({"number":req.params["number"]}, {"approved":false}, function (err, idea) {
+        if (err) return res.status(500).send("There was a problem finding the Idea.");
+        return res.status(200).send("Updated Successfully");
+    });
 });
 
 

@@ -1,0 +1,13 @@
+.sd-idea{
+    background-color: white;
+    border: 0px;
+    border-radius: 0.3em;
+    border-bottom: 2px solid #257183;
+    color: #257183;
+    transition: all 0.3s linear;
+}
+
+.sd-idea:hover{
+    box-shadow: 0 4px 3px -3px rgba(28,28,28,0.5);
+    transition: all 0.3s linear;
+}

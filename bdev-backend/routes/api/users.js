@@ -33,7 +33,7 @@ router.post("/register", (req, res) => {
                 //console.log(user);
                 return res.status(403).json({ email_inuse: "Email already in use" });
             }
-            if ( req.body.role === "admin" )
+            if ( req.body.role === "staff" )
                 if ( req.body.access_code !== keys.adminPass )
                     return res.status(401).json({ code_wrong: "Wrong Access Code" });
             const newUser = new User({

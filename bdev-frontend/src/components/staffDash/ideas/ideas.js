@@ -1,0 +1,113 @@
+import React, { Component } from "react";
+import Fade from 'react-reveal/Fade';
+import {FormattedMessage} from "react-intl";
+import ReactDOM from "react-dom";
+import axios from "axios";
+import Idea from "./idea";
+
+class Ideas extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            ideas:[],
+            content: "pending"
+        };
+        this.test = this.test.bind(this);
+    }
+
+    componentDidMount() {
+        //ReactDOM.findDOMNode(this).scrollIntoView();
+        this.getIdeas();
+    }
+
+    getIdeas(){
+        axios.get('http://194.210.234.116:4000/api/ideas/all',
+            {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]
+                }
+            })
+            .then(response => {
+                this.setState({ ideas: response.data });
+            })
+            .catch(function (error){
+                console.log(error);
+            })
+    }
+
+    navigation = (content) => {
+        this.setState(state => ({ content: content }));
+    };
+
+    // TODO: Put actual methods to call the API's inside the idea
+    test(idea){
+        console.log(idea);
+    };
+
+    // TODO: Sort Ideas by date, at least the pending Ideas, rethink the hidden/approved mecanics
+    allIdeas() {
+        return this.state.ideas.map((idea, index) => { return <Idea idea={idea} methods={this.methods} /> });
+    };
+    visibleIdeas() {
+        let filteredData = this.state.ideas.filter( (idea) => { return( idea.hidden===false ? idea : null) });
+        return filteredData.map((idea, index) => { return <Idea idea={idea} methods={this.methods} /> });
+    };
+    pendingIdeas() {
+        let filteredData = this.state.ideas.filter( (idea) => { return( idea.approved===false ? idea : null) });
+        return filteredData.map((idea, index) => { return <Idea idea={idea} methods={this.methods} /> });
+    };
+
+    methods = {"test1":this.test,"test2":this.test};
+
+    render() {
+        let content = this.state.content;
+
+        return(
+            <Fade bottom cascade>
+                <div className="row justify-content-center align-content-center m-0 vh-10">
+                    <div className="col-11 col-lg-11 p-0 text-right">
+                        <div className="spacer-2 mb-2"></div>
+                        <span className="fs-lg fw-7 flh-1 f-dark-grey"><FormattedMessage id="staffdash.ideas.title"/></span>
+                        <i className="fas fa-fw fa-lightbulb fa-lg flh-1 ml-2"></i>
+                        <hr className="m-0 mt-3"/>
+                    </div>
+                </div>
+                <div className="row justify-content-center align-content-center m-0 vh-10">
+                    <div className="col-11 p-0">
+                        <div className="spacer-2"></div>
+                        <div className={"row justify-content-center align-content-center m-0 "} >
+                            <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="all" ? "-active" :"")}
+                                 onClick={() => this.navigation("all")}>
+                                <i className="fas fa-fw fa-list fa-lg flh-1 mr-2"/>
+                                <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.ideas.all"/></span>
+                            </div>
+                            <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="visible" ? "-active" :"")}
+                                 onClick={() => this.navigation("visible")}>
+                                <i className="fas fa-fw fa-check fa-lg flh-1 mr-2"/>
+                                <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.ideas.visible"/></span>
+                            </div>
+                            <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="pending" ? "-active" :"")}
+                                 onClick={() => this.navigation("pending")}>
+                                <i className="fas fa-fw fa-gavel fa-lg flh-1 mr-2"/>
+                                <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.ideas.pending"/></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row justify-content-center align-content-start m-0">
+                    <div className="col-11 p-0">
+                        <div className="row justify-content-center align-content-start py-3 vh-80 overflow-auto" style={{maxHeight:"80vh"}}>
+                            {content === "all" ? this.allIdeas() : ""}
+                            {content === "visible" ? this.visibleIdeas() : ""}
+                            {content === "pending" ? this.pendingIdeas() : ""}
+                        </div>
+                    </div>
+                </div>
+            </Fade>
+        );
+
+    }
+}
+
+export default Ideas;

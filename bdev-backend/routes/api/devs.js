@@ -14,7 +14,7 @@ const validateDevProfileInput = require("../../validation/devProfile");
 // @route POST api/devs/create
 // @desc Create Dev Profile, logged user must not have a profile already
 // Performs a double check for already existing profiles associated with this username
-// And checks for role permission, must be 'starter'
+// And checks for role permission, must be 'dev'
 router.post("/create", verifyToken, (req, res) => {
 
     User.findById(req.userId, { password: 0 }, function (err, user) {
@@ -26,8 +26,8 @@ router.post("/create", verifyToken, (req, res) => {
             if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
             if (dev) return res.status(403).send("This user already has a Dev Profile");
 
-            // Only 'starters' role can create a new devProfile
-            if ( req.role != 'starter' ){ // Might add more specific errors here
+            // Only 'devs' role can create a new devProfile
+            if ( req.role !== 'dev' ){ // Might add more specific errors here
                 return res.status(403).send("You don't have permission for this action");
             }
 
@@ -139,7 +139,7 @@ router.get("/_:username", verifyToken, (req, res) => {
     let fields = DevProfile.publicInfo;
 
     // Admins retrieve all the information with this request
-    if ( req.role == 'admin' ) fields = DevProfile.adminInfo;
+    if ( req.role === 'staff' ) fields = DevProfile.adminInfo;
 
     DevProfile.findOne({"username":req.params['username']}, fields, function (err, dev) {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile.");

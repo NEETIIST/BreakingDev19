@@ -41,7 +41,7 @@ export const registerUser = (userData) => dispatch => {
 // Login  - get user token
 export const loginUser = userData => dispatch => {
     axios
-        .post("http://localhost:4000/api/users/login", querystring.stringify(userData), {
+        .post("http://194.210.234.116:4000/api/users/login", querystring.stringify(userData), {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },

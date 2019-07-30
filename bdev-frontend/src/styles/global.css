@@ -128,3 +128,10 @@ a:visited { text-decoration: none !important; color:inherit; }
 .hvr-secondary { color: inherit; transition: all 0.3s linear; }
 .hvr-secondary:hover { color: #4093A8 !important; transition: all 0.3s linear; }
 
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}

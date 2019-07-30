@@ -37,6 +37,11 @@ const IdeaSchema = new Schema({
         required: true,
         default: false
     },
+    approved: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     date: {
         type: Date,
         default: Date.now
