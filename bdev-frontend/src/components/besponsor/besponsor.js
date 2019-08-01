@@ -100,7 +100,7 @@ class BeSponsor extends Component {
         this.setState({ validation });
         this.submitted = true;
 
-        console.log(validation.isValid);
+        //console.log(validation.isValid);
 
         if (validation.isValid) {
             this.setState({

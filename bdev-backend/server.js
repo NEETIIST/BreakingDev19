@@ -8,7 +8,7 @@ const PORT = 4000;
 const passport = require("passport");
 const users = require("./routes/api/users");
 const devs = require("./routes/api/devs");
-const admins = require("./routes/api/admins");
+const admins = require("./routes/api/staffs");
 const emails = require("./routes/api/emails");
 const ideas = require("./routes/api/ideas");
 
@@ -51,7 +51,7 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
 app.use("/api/devs", devs);
-app.use("/api/admins", admins);
+app.use("/api/staff", admins);
 app.use("/api/emails", emails);
 app.use("/api/ideas", ideas);
 

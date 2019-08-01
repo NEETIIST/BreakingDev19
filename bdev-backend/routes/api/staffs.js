@@ -73,7 +73,7 @@ router.post("/create", verifyToken, (req, res) => {
         if (err) return res.status(500).send("There was a problem finding the Admin Profile.");
         if (adm) return res.status(403).send("This user already has an Admin Profile");
 
-        // Only 'admin' role can create a new admin Profile
+        // Only 'staff' role can create a new admin Profile
         if ( req.role !== 'staff' ){
             return res.status(403).send("You don't have permission for this action");
         }
@@ -82,6 +82,7 @@ router.post("/create", verifyToken, (req, res) => {
         const { errors, isValid } = validateAdminProfileInput(req.body);
         // Check validation
         if (!isValid) {
+            console.log(errors);
             return res.status(400).json(errors);
         }
 
@@ -93,7 +94,8 @@ router.post("/create", verifyToken, (req, res) => {
             course: req.body.course,
             phone: req.body.phone,
             bio: req.body.bio,
-            skills: req.body.skills,
+            job: req.body.job,
+            //skills: req.body.skills,
             github: req.body.github,
             twitter: req.body.twitter,
             linkedin: req.body.linkedin,
@@ -103,7 +105,7 @@ router.post("/create", verifyToken, (req, res) => {
             .save()
             .then(adm => {
                 console.log("Sucessfully created an Admin Profile for the user: " + adm.username);
-                return res.status(200).send("Admin Profile Created");
+                return res.status(200).send(adm);
             })
             .catch(err => console.log(err));
 

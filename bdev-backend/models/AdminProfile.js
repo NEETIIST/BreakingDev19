@@ -15,10 +15,12 @@ const AdminProfileSchema = new Schema({
         type: Number,
         required: true
     },
+    /*
     college: {
         type: String,
         required: true,
     },
+    */
     course: {
         type: String,
         required: true,
@@ -30,9 +32,12 @@ const AdminProfileSchema = new Schema({
     bio: {
         type: String,
     },
+    job: {
+        type: String,
+    },
     skills: {
         type: String,
-        required: true,
+        //required: true,
     },
     github: {
         type: String,
@@ -49,16 +54,18 @@ const AdminProfileSchema = new Schema({
 AdminProfile = mongoose.model("adminProfiles", AdminProfileSchema);
 
 AdminProfile.publicInfo = {
-    username:1,
-    name:1,
-    college:1,
-    course:1,
-    bio:1,
-    skills:1,
-    team:1,
-    github:1,
-    twitter:1,
-    linkedin:1,
+    username: 1,
+    name: 1,
+    age: 0,
+    //college:1,
+    course: 1,
+    phone: 0,
+    bio: 1,
+    job: 1,
+    skills: 1,
+    github: 1,
+    twitter: 1,
+    linkedin: 1,
 };
 
 AdminProfile.adminInfo = {};

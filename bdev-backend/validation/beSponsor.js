@@ -13,7 +13,7 @@ module.exports = function validateContactRequest(data) {
     if (Validator.isEmpty(data.name)) {
         errors.name = "Name is necessary";
     }
-    else if (!Validator.isLength(data.title,{min:0, max: 128})) {
+    else if (!Validator.isLength(data.name,{min:0, max: 128})) {
         errors.name = "Should be shorter than 128 characters";
     }
     // Email checks
@@ -26,7 +26,7 @@ module.exports = function validateContactRequest(data) {
     if (Validator.isEmpty(data.company)) {
         errors.company = "Company name is necessary";
     }
-    else if (!Validator.isLength(data.title,{min:0, max: 256})) {
+    else if (!Validator.isLength(data.company,{min:0, max: 256})) {
         errors.company = "Should be shorter than 256 characters";
     }
     // Phone checks

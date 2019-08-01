@@ -39,11 +39,14 @@ module.exports = function validateAdminProfileInput(data) {
     } else if (! Validator.isMobilePhone(data.phone, 'pt-PT') ) {
         errors.phone = "Please use a valid portuguese phone number";
     }
-    // Bio is not checked because it can be empty
+    // Bio and Job are not checked because it can be empty
     // Skills Checks - Must be filled
+    /*
     if (Validator.isEmpty(data.skills)) {
         errors.skills = "Provide some skills";
     }
+    */
+    /*
     // Github Checks - If provided, must be url
     if ( (!Validator.isEmpty(data.github)) && (!Validator.isURL(data.github))) {
         errors.github = "Provide a valid url to your github profile";
@@ -56,6 +59,7 @@ module.exports = function validateAdminProfileInput(data) {
     if ( (!Validator.isEmpty(data.linkedin)) && (!Validator.isURL(data.linkedin))) {
         errors.linkedin = "Provide a valid url to your Linkedin profile";
     }
+    */
     return {
         errors,
         isValid: isEmpty(errors)

@@ -42,6 +42,9 @@
 .has-error > input {
     border-bottom: 2px solid #FFAE68;
 }
+.has-error > textarea {
+    border-bottom: 2px solid #FFAE68;
+}
 .has-error > span {
     color: #FFAE68;
 }

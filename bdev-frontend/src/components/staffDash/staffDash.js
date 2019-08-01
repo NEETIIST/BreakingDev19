@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import { logoutUser } from "../../actions/authActions";
 
 import Ideas from "./ideas/ideas";
+import Profile from "./profile/profile";
 
 import './staffdash.css';
 
@@ -55,8 +56,8 @@ class staffDash extends Component {
         const content =  this.state.content;
 
         return (
-            <div className="row justify-content-start align-items-center m-0 vh-100 very-light-grey">
-                <div className="col-2 col-lg-2 p-0">
+            <div className="row justify-content-start align-items-start m-0 vh-100 very-light-grey">
+                <div className="col-2 col-lg-2 p-0 align-self-center">
                     <div className="row m-0">
                         <div className="col-12 p-0 mb-1" onClick={() => this.navigation("feed")}>
                             <NavLink activeClassName="dash-opt-active" exact to="/staffDash/feed">
@@ -138,10 +139,10 @@ class staffDash extends Component {
                     </div>
                 </div>
                 <div className="col-10 col-lg-10 p-0">
-                    {this.state.content === "feed" ? "feed" : ""}
-                    {this.state.content === "profile" ? "profile" : ""}
-                    {this.state.content === "devs" ? "devs" : ""}
-                    {this.state.content === "teams" ? "teams" : ""}
+                    {this.state.content === "feed" ? "Staff Overview" : ""}
+                    {this.state.content === "profile" ? <Profile {...this.props}/> : ""}
+                    {this.state.content === "devs" ? "Dev List" : ""}
+                    {this.state.content === "teams" ? "Team List" : ""}
                     {this.state.content === "ideas" ? <Ideas {...this.props}/> : ""}
                 </div>
             </div>
