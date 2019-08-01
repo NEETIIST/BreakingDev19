@@ -142,6 +142,7 @@
   "forms.success": "Confirmado",
   "forms.send": "Enviar",
   "forms.add": "Criar",
+  "forms.edit": "Editar",
   "forms.login": "Entrar",
   "forms.signin": "Criar Conta",
 
@@ -265,6 +266,9 @@
   "staffdash.profile.add.title": "Adicionar Perfil",
   "staffdash.profile.add.desc": "Ainda não criaste o teu perfil de Staff, preenche algumas informações para os participantes ficarem a saber mais sobre ti.",
   "staffdash.profile.add.done": "O teu Perfil foi criado com sucesso.",
+  "staffdash.profile.edit.title": "Adicionar Perfil",
+  "staffdash.profile.edit.desc": "Estes são os teus dados de perfil, nesta página podes fazer-lhes alterações:",
+  "staffdash.profile.edit.done": "Os teus dados foram alterados com sucesso.",
 
   " ": " "
 }

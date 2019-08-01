@@ -15,18 +15,15 @@ class Profile extends Component {
             hasProfile: false,
             profile: null,
             content: "see"
-        }
+        };
 
         this.createdProfile = this.createdProfile.bind(this);
+        this.editedProfile = this.editedProfile.bind(this);
     }
 
-    navigation = (content) => {
-        this.setState(state => ({ content: content }));
-    };
+    navigation = (content) => { this.setState(state => ({ content: content })); };
 
-    componentDidMount() {
-        this.getProfile();
-    }
+    componentDidMount() { this.getProfile(); }
 
     getProfile(){
         axios.get('http://192.168.1.161:4000/api/staff/me', {
@@ -35,20 +32,12 @@ class Profile extends Component {
                 "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]
             },
         })
-        .then(response => {
-            this.setState({ hasProfile: true, profile: response.data });
-        })
-        .catch(function (error){
-            if ( error.response.status == 404 )
-                console.log("User doesn't have a dev profile yet");
-        })
+        .then(response => { this.setState({ hasProfile: true, profile: response.data }); })
+        .catch(function (error){ if ( error.response.status == 404 ) console.log("User doesn't have a dev profile yet"); })
     }
 
-    createdProfile(profile){
-        setTimeout(() => {
-            this.setState({ hasProfile: true, profile: profile});
-        }, 3000)
-    }
+    createdProfile(profile){ setTimeout(() => { this.setState({ hasProfile: true, profile: profile, content:"see"});}, 3000)};
+    editedProfile(profile){ setTimeout(() => { this.setState({ profile: profile, content:"see"});}, 2000)};
 
     render() {
         let content = this.state.content;
@@ -87,8 +76,8 @@ class Profile extends Component {
                     <div className="col-11 p-0">
                         <div className="spacer-4"></div>
                         {profile ? "" : <Add {...this.props} onSuccess={this.createdProfile}/>}
-                        {content === "see" && profile ? <See {...this.props}/> : ""}
-                        {content === "edit" && profile ? <Edit {...this.props}/> : ""}
+                        {content === "see" && profile ? <See {...this.props} profile={profile} /> : ""}
+                        {content === "edit" && profile ? <Edit {...this.props} profile={profile} onSuccess={this.editedProfile}/> : ""}
                     </div>
                 </div>
             </Fade>

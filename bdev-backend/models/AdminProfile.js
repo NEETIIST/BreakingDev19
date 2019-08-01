@@ -15,12 +15,10 @@ const AdminProfileSchema = new Schema({
         type: Number,
         required: true
     },
-    /*
     college: {
         type: String,
         required: true,
     },
-    */
     course: {
         type: String,
         required: true,
@@ -57,7 +55,7 @@ AdminProfile.publicInfo = {
     username: 1,
     name: 1,
     age: 0,
-    //college:1,
+    college:1,
     course: 1,
     phone: 0,
     bio: 1,

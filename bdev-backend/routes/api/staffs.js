@@ -70,8 +70,8 @@ router.post("/access", verifyToken, (req, res) => {
 router.post("/create", verifyToken, (req, res) => {
 
     AdminProfile.findOne({"username":req.username}, function (err, adm) {
-        if (err) return res.status(500).send("There was a problem finding the Admin Profile.");
-        if (adm) return res.status(403).send("This user already has an Admin Profile");
+        if (err) return res.status(500).send("There was a problem finding the Staff Profile.");
+        if (adm) return res.status(403).send("This user already has an Staff Profile");
 
         // Only 'staff' role can create a new admin Profile
         if ( req.role !== 'staff' ){
@@ -104,7 +104,7 @@ router.post("/create", verifyToken, (req, res) => {
         newAdmin
             .save()
             .then(adm => {
-                console.log("Sucessfully created an Admin Profile for the user: " + adm.username);
+                console.log("Sucessfully created an Staff Profile for the user: " + adm.username);
                 return res.status(200).send(adm);
             })
             .catch(err => console.log(err));
@@ -114,13 +114,13 @@ router.post("/create", verifyToken, (req, res) => {
 });
 
 // @route GET api/admins/me
-// @desc Returns the logged user admin Profile
-// No permission check necessary, because only authorized users have their admin profile
+// @desc Returns the logged user staff Profile
+// No permission check necessary, because only authorized users have their staff profile
 router.get("/me", verifyToken, (req, res) => {
 
     AdminProfile.findOne({"username":req.username}, DevProfile.adminInfo, function (err, adm) {
-        if (err) return res.status(500).send("There was a problem finding the Admin Profile.");
-        if (!adm) return res.status(404).send("No Admin Profile found for this username");
+        if (err) return res.status(500).send("There was a problem finding the Staff Profile.");
+        if (!adm) return res.status(404).send("No Staff Profile found for this username");
 
         // The Dev Profile will always be the one of the logged user
         return res.status(200).send(adm);
@@ -129,9 +129,10 @@ router.get("/me", verifyToken, (req, res) => {
 });
 
 
-// @route PUT api/admins/me
-// @desc Returns the logged user admin Profile
-// No permission check necessary, because only authorized users have their admin profile
+// @route PUT api/admins/me/edit
+// @desc Edits the logged staff profile
+// No permission check necessary, because only authorized users have their staff profile
+// Returns the Updated Staff Profile
 router.put("/me/edit", verifyToken, (req, res) => {
 
     // Form validation
@@ -141,11 +142,11 @@ router.put("/me/edit", verifyToken, (req, res) => {
         return res.status(400).json(errors);
     }
 
-    AdminProfile.findOneAndUpdate({"username":req.username}, req.body, function (err, adm) {
-        if (err) return res.status(500).send("There was a problem finding the Admin Profile.");
-        if (!adm) return res.status(404).send("No Admin Profile found for this username");
+    AdminProfile.findOneAndUpdate({"username":req.username}, req.body, {new: true}, function (err, adm) {
+        if (err) return res.status(500).send("There was a problem finding the Staff Profile.");
+        if (!adm) return res.status(404).send("No Staff Profile found for this username");
 
-        return res.status(200).send("User Admin Profile Updated");
+        return res.status(200).send(adm);
     });
 
 });

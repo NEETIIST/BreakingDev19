@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {FormattedMessage} from "react-intl";
 //import FormValidator from "../../../utils/FormValidator";
-import { addForm } from "./formValidation";
+import { staffProfileInput } from "./formValidation";
 import axios from "axios";
 import querystring from "query-string";
 import Fade from "react-reveal/Fade";
@@ -11,7 +11,7 @@ class Add extends Component {
     constructor(props) {
         super(props);
 
-        this.validator = addForm;
+        this.validator = staffProfileInput;
         this.state = {
             name:"",
             age:"",
@@ -30,7 +30,7 @@ class Add extends Component {
             errors: ""
         };
 
-        console.log(this.props.onSuccess);
+        //console.log(this.props.onSuccess);
         this.submitted = false;
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -100,7 +100,7 @@ class Add extends Component {
                     <div className="spacer-2"/>
                     <form onSubmit={this.onSubmit} autoComplete="off">
                     <div className="row justify-content-start align-items-start mx-0 my-1">
-                        <div className="col-12 col-lg-8 p-0">
+                        <div className="col-12 col-lg-4 p-0">
                             <div className="form-group">
                                 <div className={validation.name.isInvalid && 'has-error'}>
                                     <input type="text"
@@ -108,16 +108,15 @@ class Add extends Component {
                                            name="name"
                                            placeholder={intl.formatMessage({id: 'forms.name.placeholder'})}
                                            onChange={this.handleInputChange}
+                                           value={this.state.name}
                                     />
                                     <span className="help-block fs-xs">
-                                        <FormattedMessage id={validation.name.message}/>
-                                    </span>
+                                    <FormattedMessage id={validation.name.message}/>
+                                </span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="row justify-content-start align-items-start mx-0 my-1">
-                        <div className="col-7 col-lg-4 p-0">
+                        <div className="col-7 col-lg-4 offset-lg-1 p-0">
                             <div className="form-group">
                                 <div className={validation.phone.isInvalid && 'has-error'}>
                                     <input type="tel"
@@ -125,14 +124,15 @@ class Add extends Component {
                                            name="phone"
                                            placeholder={intl.formatMessage({id: 'forms.phone.placeholder'})}
                                            onChange={this.handleInputChange}
+                                           value={this.state.phone}
                                     />
                                     <span className="help-block fs-xs">
-                                        <FormattedMessage id={validation.phone.message}/>
-                                    </span>
+                                    <FormattedMessage id={validation.phone.message}/>
+                                </span>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-4 col-lg-3 offset-1 p-0">
+                        <div className="col-4 col-lg-2 offset-1 p-0">
                             <div className="form-group">
                                 <div className={validation.age.isInvalid && 'has-error'}>
                                     <input type="number"
@@ -140,10 +140,11 @@ class Add extends Component {
                                            name="age"
                                            placeholder={intl.formatMessage({id: 'forms.age.placeholder'})}
                                            onChange={this.handleInputChange}
+                                           value={this.state.age}
                                     />
                                     <span className="help-block fs-xs">
-                                        <FormattedMessage id={validation.age.message}/>
-                                    </span>
+                                    <FormattedMessage id={validation.age.message}/>
+                                </span>
                                 </div>
                             </div>
                         </div>
@@ -164,7 +165,7 @@ class Add extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-12 col-lg-5 offset-lg-1 p-0">
+                        <div className="col-12 col-lg-6 offset-lg-1 p-0">
                             <div className="form-group">
                                 <div className={validation.course.isInvalid && 'has-error'}>
                                     <input type="text"

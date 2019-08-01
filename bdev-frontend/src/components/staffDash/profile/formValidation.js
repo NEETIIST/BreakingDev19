@@ -1,6 +1,6 @@
 import FormValidator from "../../../utils/FormValidator";
 
-export const addForm = new FormValidator([
+export const staffProfileInput = new FormValidator([
     {
         field: "name",
         method: "isEmpty",
