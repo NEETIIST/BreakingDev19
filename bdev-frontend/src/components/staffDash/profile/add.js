@@ -5,6 +5,7 @@ import { staffProfileInput } from "./formValidation";
 import axios from "axios";
 import querystring from "query-string";
 import Fade from "react-reveal/Fade";
+import URL from "../../../utils/requestsURL";
 
 
 class Add extends Component {
@@ -64,7 +65,7 @@ class Add extends Component {
                 linkedin: this.state.linkedin,
             };
             axios
-                .post("http://localhost:4000/api/staff/create", querystring.stringify(newRequest), {
+                .post(URL+"/api/staff/create", querystring.stringify(newRequest), {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                         "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]
@@ -93,6 +94,7 @@ class Add extends Component {
         const status = this.state.status;
 
         return(
+            <Fade right cascade>
             <div className={"row justify-content-center align-items-start m-0"}>
                 <div className={"col-12 p-0 text-left f-dark-grey "+(status=="waiting"?"d-block":"d-none")}>
                     <p className="fs-md fw-4 flh-1 mb-1"><FormattedMessage id="staffdash.profile.add.title"/></p>
@@ -278,6 +280,7 @@ class Add extends Component {
                     </Fade>
                 </div>
             </div>
+            </Fade>
         );
 
     }

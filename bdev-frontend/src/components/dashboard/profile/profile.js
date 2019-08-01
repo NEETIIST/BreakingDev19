@@ -3,6 +3,7 @@ import Fade from 'react-reveal/Fade';
 import {FormattedMessage} from "react-intl";
 import ReactDOM from "react-dom";
 import axios from "axios";
+import URL from "../../../utils/requestsURL";
 
 import See from "./see";
 import Edit from "./edit";
@@ -29,7 +30,7 @@ class Profile extends Component {
         //ReactDOM.findDOMNode(this).scrollIntoView();
         //console.log(this.props);
 
-        axios.get('http://localhost:4000/api/devs/me', {
+        axios.get(URL+'/api/devs/me', {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]

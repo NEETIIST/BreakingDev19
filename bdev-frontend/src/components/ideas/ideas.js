@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from 'react-dom'
 import Fade from 'react-reveal/Fade';
 import {FormattedMessage, injectIntl} from "react-intl";
+import URL from "../../utils/requestsURL";
 
 import axios from "axios";
 import querystring from "query-string";
@@ -116,7 +117,7 @@ class Ideas extends Component {
                 description: this.state.description
             };
             axios
-                .post("http://localhost:4000/api/ideas/add", querystring.stringify(newRequest), {
+                .post(URL+"/api/ideas/add", querystring.stringify(newRequest), {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },
@@ -141,7 +142,7 @@ class Ideas extends Component {
         this.setState({info: number})
 
         if ( number == 0 ){
-            axios.get('http://localhost:4000/api/ideas/public')
+            axios.get(URL+'/api/ideas/public')
                 .then(response => {
                     this.setState({ ideas: response.data });
                 })
@@ -154,7 +155,7 @@ class Ideas extends Component {
     componentDidMount() {
         ReactDOM.findDOMNode(this).scrollIntoView();
 
-        axios.get('http://localhost:4000/api/ideas/public')
+        axios.get(URL+'/api/ideas/public')
             .then(response => {
                 this.setState({ ideas: response.data });
             })

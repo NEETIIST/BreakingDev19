@@ -11,3 +11,11 @@
     box-shadow: 0 4px 3px -3px rgba(28,28,28,0.5);
     transition: all 0.3s linear;
 }
+
+.profile-pic{
+    width: auto;
+    height: 25vh;
+    border-radius: 10em;
+    border: 2px solid #257183;
+    //box-shadow: 2px 2px 2px #1c1c1c;
+}

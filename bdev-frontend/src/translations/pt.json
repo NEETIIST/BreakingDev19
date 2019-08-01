@@ -269,6 +269,9 @@
   "staffdash.profile.edit.title": "Adicionar Perfil",
   "staffdash.profile.edit.desc": "Estes são os teus dados de perfil, nesta página podes fazer-lhes alterações:",
   "staffdash.profile.edit.done": "Os teus dados foram alterados com sucesso.",
+  "staffdash.profile.see.aboutme": "Sobre mim: ",
+  "staffdash.profile.see.job": "Na organização do BreakingDev, eu sou: ",
+  "staffdash.profile.see.privateinfo": "Informação Pessoal (só tu e a organização é que têm acesso):",
 
   " ": " "
 }

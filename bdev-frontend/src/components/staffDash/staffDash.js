@@ -57,7 +57,8 @@ class staffDash extends Component {
 
         return (
             <div className="row justify-content-start align-items-start m-0 vh-100 very-light-grey">
-                <div className="col-2 col-lg-2 p-0 align-self-center">
+                <div className="col-2 col-lg-2 p-0 align-self-center
+                ">
                     <div className="row m-0">
                         <div className="col-12 p-0 mb-1" onClick={() => this.navigation("feed")}>
                             <NavLink activeClassName="dash-opt-active" exact to="/staffDash/feed">

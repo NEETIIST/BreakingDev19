@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from 'react-dom'
 import Fade from 'react-reveal/Fade';
 import {FormattedMessage, injectIntl} from "react-intl";
+import URL from "../../utils/requestsURL";
 
 import axios from "axios";
 import querystring from "query-string";
@@ -113,7 +114,7 @@ class BeSponsor extends Component {
                 phone: this.state.phone
             };
             axios
-                .post("http://localhost:4000/api/emails/besponsor", querystring.stringify(newRequest), {
+                .post(URL+"/api/emails/besponsor", querystring.stringify(newRequest), {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     },

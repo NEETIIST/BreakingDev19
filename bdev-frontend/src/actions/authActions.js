@@ -2,6 +2,7 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import querystring from 'query-string'
+import URL from "../utils/requestsURL";
 
 import {
     GET_ERRORS,
@@ -13,7 +14,7 @@ import {
 export const registerUser = (userData) => dispatch => {
     //console.log(userData);
     // ITS REALLY IMPORTANT TO USE QUERYSTRING ON THE DATA!
-    axios.post('http://localhost:4000/api/users/register', querystring.stringify(userData) , {
+    axios.post(URL+'/api/users/register', querystring.stringify(userData) , {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
@@ -41,7 +42,7 @@ export const registerUser = (userData) => dispatch => {
 // Login  - get user token
 export const loginUser = userData => dispatch => {
     axios
-        .post("http://192.168.1.161:4000/api/users/login", querystring.stringify(userData), {
+        .post(URL+"/api/users/login", querystring.stringify(userData), {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },

@@ -4,6 +4,7 @@ import {FormattedMessage} from "react-intl";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import Idea from "./idea";
+import URL from "../../../utils/requestsURL";
 
 class Ideas extends Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class Ideas extends Component {
     }
 
     getIdeas(){
-        axios.get('http://194.210.234.116:4000/api/ideas/all',
+        axios.get(URL+'/api/ideas/all',
             {
                 headers: {
                     'content-type': 'application/x-www-form-urlencoded',
@@ -47,7 +48,7 @@ class Ideas extends Component {
     };
 
     hideIdea(number){
-        axios.post('http://194.210.234.116:4000/api/ideas/hide/'+number,{},
+        axios.post(URL+'/api/ideas/hide/'+number,{},
             {
                 headers: {
                     'content-type': 'application/x-www-form-urlencoded',
@@ -66,7 +67,7 @@ class Ideas extends Component {
     };
 
     showIdea(number){
-        axios.post('http://194.210.234.116:4000/api/ideas/show/'+number,{},
+        axios.post(URL+'/api/ideas/show/'+number,{},
             {
                 headers: {
                     'content-type': 'application/x-www-form-urlencoded',
@@ -85,7 +86,7 @@ class Ideas extends Component {
     };
 
     approveIdea(number){
-        axios.post('http://194.210.234.116:4000/api/ideas/approve/'+number,{},
+        axios.post(URL+'/api/ideas/approve/'+number,{},
             {
                 headers: {
                     'content-type': 'application/x-www-form-urlencoded',
@@ -104,7 +105,7 @@ class Ideas extends Component {
     };
 
     disapproveIdea(number){
-        axios.post('http://194.210.234.116:4000/api/ideas/disapprove/'+number,{},
+        axios.post(URL+'/api/ideas/disapprove/'+number,{},
             {
                 headers: {
                     'content-type': 'application/x-www-form-urlencoded',
@@ -123,7 +124,7 @@ class Ideas extends Component {
     };
 
     favoriteIdea(number){
-        axios.post('http://194.210.234.116:4000/api/ideas/favorite/'+number,{},
+        axios.post(URL+'/api/ideas/favorite/'+number,{},
             {
                 headers: {
                     'content-type': 'application/x-www-form-urlencoded',
@@ -142,7 +143,7 @@ class Ideas extends Component {
     };
 
     unfavoriteIdea(number){
-        axios.post('http://194.210.234.116:4000/api/ideas/unfavorite/'+number,{},
+        axios.post(URL+'/api/ideas/unfavorite/'+number,{},
             {
                 headers: {
                     'content-type': 'application/x-www-form-urlencoded',
@@ -159,6 +160,7 @@ class Ideas extends Component {
             })
             .catch(function (error){console.log(error);})
     };
+
 
 
     allIdeas() {
