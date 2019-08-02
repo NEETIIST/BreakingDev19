@@ -95,7 +95,7 @@ router.post("/create", verifyToken, (req, res) => {
             phone: req.body.phone,
             bio: req.body.bio,
             job: req.body.job,
-            //skills: req.body.skills,
+            skills: req.body.skills,
             github: req.body.github,
             twitter: req.body.twitter,
             linkedin: req.body.linkedin,
@@ -134,6 +134,8 @@ router.get("/me", verifyToken, (req, res) => {
 // No permission check necessary, because only authorized users have their staff profile
 // Returns the Updated Staff Profile
 router.put("/me/edit", verifyToken, (req, res) => {
+
+    // TODO: Perform backend validation of skills
 
     // Form validation
     const { errors, isValid } = validateAdminProfileInput(req.body);

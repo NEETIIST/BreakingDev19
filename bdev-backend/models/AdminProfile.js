@@ -34,8 +34,7 @@ const AdminProfileSchema = new Schema({
         type: String,
     },
     skills: {
-        type: String,
-        //required: true,
+        type: [String],
     },
     github: {
         type: String,

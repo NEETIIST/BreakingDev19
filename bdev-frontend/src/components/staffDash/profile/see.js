@@ -5,11 +5,25 @@ import Fade from 'react-reveal/Fade';
 class See extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
+        //console.log(props);
         this.state = {
 
         }
+        this.allSkills = this.allSkills.bind(this);
     }
+
+    allSkills(data) {
+        return (
+            data.map((tag, index) => {
+                return(
+                    <div className="tag px-2 py-0 mr-2 mb-1">
+                        <p key={index} className="fs-xs fw-4 my-1 px-1">{tag}</p>
+                    </div>
+                )
+            })
+        );
+    };
+
 
     render() {
         const profile = this.props.profile;
@@ -69,7 +83,15 @@ class See extends Component {
                     </p>
                 </div>
             </div>
-            <div className={"spacer-4"} />
+                <div className={"row justify-content-center align-items-center m-0 mt-3 "+(profile.skills ? "d-flex":"d-none")}>
+                    <div className="col-12 p-0 f-dark-grey">
+                        <p className="fs-sm fw-4 flh-1 mb-2 f-primary">
+                            <FormattedMessage id="staffdash.profile.see.skills"/>
+                        </p>
+                        {this.allSkills(profile.skills)}
+                    </div>
+                </div>
+            <div className={"spacer-2"} />
             <div className="row justify-content-start align-items-center m-0 mt-2">
                 <div className="col-12 p-0">
                     <p className="fs-xs fw-4 flh-1 mb-3 f-primary">

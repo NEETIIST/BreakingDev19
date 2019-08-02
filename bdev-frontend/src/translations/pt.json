@@ -137,12 +137,16 @@
   "forms.linkedin.toolong": "Por favor utilize um máximo de 128 letras",
   "forms.twitter.placeholder": "Twitter",
   "forms.twitter.toolong": "Por favor utilize um máximo de 128 letras",
-  "forms.usernames.helper": "Se quiseres, deixa os teus usernames de algumas redes sociais. (Escreve apenas o username: ex:NEETIIST )",
+  "forms.usernames.helper": "Se quiseres, deixa os teus usernames de algumas redes sociais. (Escreve apenas o username: ex: NEETIIST )",
+  "forms.skills.helper": "Escreve alguns dos teus skills e tecnologias que usas, separados por virgulas (ex: Javascript,)",
+  "forms.skills.placeholder": "Skill",
+  "forms.skills.empty": "Ainda não adicionaste nenhum skill",
   "forms.sending": "Enviando...",
   "forms.success": "Confirmado",
   "forms.send": "Enviar",
   "forms.add": "Criar",
   "forms.edit": "Editar",
+  "forms.save": "Guardar Alterações",
   "forms.login": "Entrar",
   "forms.signin": "Criar Conta",
 
@@ -272,6 +276,7 @@
   "staffdash.profile.see.aboutme": "Sobre mim: ",
   "staffdash.profile.see.job": "Na organização do BreakingDev, eu sou: ",
   "staffdash.profile.see.privateinfo": "Informação Pessoal (só tu e a organização é que têm acesso):",
+  "staffdash.profile.see.skills": "Estes são alguns dos meus skills: ",
 
   " ": " "
 }

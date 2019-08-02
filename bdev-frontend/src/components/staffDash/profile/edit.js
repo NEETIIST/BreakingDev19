@@ -6,6 +6,7 @@ import axios from "axios";
 import querystring from "query-string";
 import Fade from "react-reveal/Fade";
 import URL from "../../../utils/requestsURL";
+import TagsInput from "../../../utils/TagsInput";
 
 
 class Edit extends Component {
@@ -22,7 +23,7 @@ class Edit extends Component {
             phone: profile.phone,
             bio: profile.bio,
             job: profile.job,
-            //skills: profile.skills,
+            skills: profile.skills,
             github: profile.github,
             twitter: profile.twitter,
             linkedin: profile.linkedin,
@@ -34,6 +35,7 @@ class Edit extends Component {
 
         this.submitted = false;
         this.onSubmit = this.onSubmit.bind(this);
+        this.editedTags = this.editedTags.bind(this);
     }
 
     handleInputChange = event => {
@@ -41,6 +43,7 @@ class Edit extends Component {
         this.setState({ [event.target.name]: event.target.value });
     };
     fieldHasValue = field => {return ( this.state[field] !== "" ? "form-alt-input-hasvalue" : "");};
+    editedTags(newTags){ this.setState(state => ({ skills: newTags })); };
 
     onSubmit(e) {
         e.preventDefault();
@@ -59,7 +62,7 @@ class Edit extends Component {
                 phone: this.state.phone,
                 bio: this.state.bio,
                 job: this.state.job,
-                //skills: this.state.skills,
+                skills: this.state.skills,
                 github: this.state.github,
                 twitter: this.state.twitter,
                 linkedin: this.state.linkedin,
@@ -218,10 +221,16 @@ class Edit extends Component {
                             </div>
                         </div>
                         <div className="row justify-content-start align-items-start mx-0 my-1">
-                            <div className="col-12 px-1">
+                            <div className="col-12 col-lg-12 p-0">
+                                <p className="fs-xs fw-4 flh-1 mb-2"><FormattedMessage id="forms.skills.helper"/></p>
+                                <TagsInput {...this.props} data={this.state.skills} update={this.editedTags}/>
+                            </div>
+                        </div>
+                        <div className="row justify-content-start align-items-start mx-0 my-1">
+                            <div className="col-12 px-0">
                                 <p className="fs-xs fw-4 flh-1 mb-2"><FormattedMessage id="forms.usernames.helper"/></p>
                             </div>
-                            <div className="col-8 col-lg px-0 px-lg-2">
+                            <div className="col-8 col-lg px-0">
                                 <div className="form-group">
                                     <div className={validation.github.isInvalid && 'has-error'}>
                                         <input type="text"
@@ -235,7 +244,7 @@ class Edit extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-8 col-lg px-0 px-lg-2">
+                            <div className="col-8 col-lg px-0">
                                 <div className="form-group">
                                     <div className={validation.linkedin.isInvalid && 'has-error'}>
                                         <input type="text"
@@ -249,7 +258,7 @@ class Edit extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-8 col-lg px-0 px-lg-2">
+                            <div className="col-8 col-lg px-0">
                                 <div className="form-group">
                                     <div className={validation.twitter.isInvalid && 'has-error'}>
                                         <input type="text"
@@ -267,11 +276,12 @@ class Edit extends Component {
                         <div className="row justify-content-end align-items-start mx-0 my-3">
                             <div className="col-6 col-lg-3 p-0">
                                 <input type="submit"
-                                       value={intl.formatMessage({ id: 'forms.edit' })+" "+intl.formatMessage({ id: 'staffdash.profile.title' })}
+                                       value={intl.formatMessage({ id: 'forms.save' })}
                                        className="btn btn-dev-alt btn-block fw-7" />
                             </div>
                         </div>
                     </form>
+                    <div className="spacer-2" />
                 </div>
                 <div className={"col-12 text-center p-0 "+(status=="pending"?"d-block":"d-none")}>
                     <Fade>

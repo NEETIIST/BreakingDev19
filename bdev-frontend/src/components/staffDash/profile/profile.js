@@ -34,7 +34,7 @@ class Profile extends Component {
             },
         })
         .then(response => { this.setState({ hasProfile: true, profile: response.data }); })
-        .catch(function (error){ if ( error.response.status == 404 ) console.log("User doesn't have a dev profile yet"); })
+        .catch(function (error){ if ( error.response.status == 404 ) console.log("User doesn't have a Staff profile yet"); })
     }
 
     createdProfile(profile){ setTimeout(() => { this.setState({ hasProfile: true, profile: profile, content:"see"});}, 3000)};
@@ -73,7 +73,7 @@ class Profile extends Component {
                         </div>
                     </div>
                 </div>
-                <div className={"row justify-content-center align-content-start m-0 overflow-auto vh-"+remainingSize} style={{maxHeight:remainingSize+"vh"}}>
+                <div className={"row justify-content-center align-content-start m-0 vh-"+remainingSize} style={{maxHeight:remainingSize+"vh", overflowX: "hidden", overFlowY: "scroll"}}>
                     <div className="col-11 p-0">
                         <div className="spacer-4"></div>
                         {profile ? "" : <Add {...this.props} onSuccess={this.createdProfile}/>}
