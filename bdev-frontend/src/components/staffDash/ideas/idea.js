@@ -54,10 +54,10 @@ class Idea extends Component {
                         <i onClick={() => methods.showIdea(idea.number)}
                            className={"cp fas fa-fw fa-md mx-1 fa-eye-slash f-red "+(!idea.hidden?"d-none":"d-inline")}
                            title={intl.formatMessage({ id: 'staffdash.ideas.hidden' })} />
-                        <i onClick={() => methods.favoriteIdea(idea.number)}
+                        <i onClick={() => methods.unfavoriteIdea(idea.number)}
                            className={"cp fas fa-fw fa-md mx-1 fa-star f-yellow "+(idea.highlighted?"d-inline":"d-none")}
                            title={intl.formatMessage({ id: 'staffdash.ideas.ishighlighted' })} />
-                        <i onClick={() => methods.unfavoriteIdea(idea.number)}
+                        <i onClick={() => methods.favoriteIdea(idea.number)}
                            className={"cp far fa-fw fa-md mx-1 fa-star "+(idea.highlighted?"d-none":"d-inline")}
                            title={intl.formatMessage({ id: 'staffdash.ideas.nothighlighted' })} />
                         <i onClick={this.toggleInfo} className={"cp fas fa-fw fa-md ml-3 "+(showAll?"fa-chevron-down":"fa-chevron-up")} />

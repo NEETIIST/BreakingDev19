@@ -1,3 +1,5 @@
 {
+  "auth.login": "Login",
+  "auth.register": "Create Account",
   "app.test": "Welcome to react-intl EN"
 }

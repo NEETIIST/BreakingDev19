@@ -173,6 +173,8 @@ class Ideas extends Component {
                     showIdea: (number) => this.showIdea(number),
                     approveIdea: (number) => this.approveIdea(number),
                     disapproveIdea: (number) => this.disapproveIdea(number),
+                    favoriteIdea: (number) => this.favoriteIdea(number),
+                    unfavoriteIdea: (number) => this.unfavoriteIdea(number),
                 }} /> })
 
             );
@@ -187,6 +189,8 @@ class Ideas extends Component {
                 showIdea: (number) => this.showIdea(number),
                 approveIdea: (number) => this.approveIdea(number),
                 disapproveIdea: (number) => this.disapproveIdea(number),
+                favoriteIdea: (number) => this.favoriteIdea(number),
+                unfavoriteIdea: (number) => this.unfavoriteIdea(number),
             }} /> });
     };
     pendingIdeas() {
@@ -199,6 +203,8 @@ class Ideas extends Component {
                 showIdea: (number) => this.showIdea(number),
                 approveIdea: (number) => this.approveIdea(number),
                 disapproveIdea: (number) => this.disapproveIdea(number),
+                favoriteIdea: (number) => this.favoriteIdea(number),
+                unfavoriteIdea: (number) => this.unfavoriteIdea(number),
             }} /> });
     };
 

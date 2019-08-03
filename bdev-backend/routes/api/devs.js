@@ -95,17 +95,12 @@ router.get("/me", verifyToken, (req, res) => {
 // No permission check necessary, because only authorized users have their dev profile
 router.put("/me/edit", verifyToken, (req, res) => {
 
-    console.log("HEEEEEEEEEEEEEEERE");
-    console.log(req.username);
-
     // Form validation
     const { errors, isValid } = validateDevProfileInput (req.body);
     // Check validation
     if (!isValid) {
         return res.status(400).json(errors);
     }
-
-    console.log(req.username);
 
     DevProfile.findOneAndUpdate({"username":req.username}, req.body, {projection: DevProfile.ownerInfo, new: true}, function (err, dev) {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile.");

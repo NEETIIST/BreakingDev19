@@ -1,1 +1,1 @@
-export default URL = "http://localhost:4000";
+export default URL = "http://breakingdev.pt:4000";
