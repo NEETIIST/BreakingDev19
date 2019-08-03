@@ -1,6 +1,6 @@
 import FormValidator from "../../../utils/FormValidator";
 
-export const staffProfileInput = new FormValidator([
+export const devProfileInput = new FormValidator([
     {
         field: "name",
         method: "isEmpty",
@@ -23,7 +23,7 @@ export const staffProfileInput = new FormValidator([
     {
         field: "age",
         method: "isInt",
-        args: [{min:15, max: 100}],
+        args: [{min:15, max: 99}],
         validWhen: true,
         message: "forms.age.invalid"
     },
@@ -69,16 +69,28 @@ export const staffProfileInput = new FormValidator([
     {
         field: "bio",
         method: "isLength",
-        args: [{min:0, max: 1024}],
+        args: [{max: 1024}],
         validWhen: true,
         message: "forms.bio.toolong"
     },
     {
-        field: "job",
+        field: "food",
         method: "isLength",
-        args: [{min:0, max: 512}],
+        args: [{max: 1024}],
         validWhen: true,
-        message: "forms.job.toolong"
+        message: "forms.food.toolong"
+    },
+    {
+        field: "needsTeam",
+        method: "isEmpty",
+        validWhen: false,
+        message: "forms.needsTeam.empty"
+    },
+    {
+        field: "needsTeam",
+        method: "isBoolean",
+        validWhen: true,
+        message: "forms.needsTeam.invalid"
     },
     {
         field: "github",

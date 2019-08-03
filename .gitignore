@@ -6,3 +6,5 @@ bdev-backend/node_modules/
 bdev-frontend/node_modules/
 bdev-backend/package-lock.json
 bdev-frontend/package-lock.json
+
+server/

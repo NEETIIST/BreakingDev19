@@ -16,7 +16,7 @@ class Edit extends Component {
         let profile = props.profile;
         this.validator = staffProfileInput;
         this.state = {
-            name: props.profile.name,
+            name: profile.name,
             age: profile.age,
             college: profile.college,
             course: profile.course,
@@ -244,7 +244,7 @@ class Edit extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-8 col-lg px-0">
+                            <div className="col-8 col-lg px-0 px-lg-2">
                                 <div className="form-group">
                                     <div className={validation.linkedin.isInvalid && 'has-error'}>
                                         <input type="text"

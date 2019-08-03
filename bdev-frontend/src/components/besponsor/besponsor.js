@@ -53,8 +53,8 @@ class BeSponsor extends Component {
             },
             {
                 field: "phone",
-                method: "isNumeric",  // isMobilePhone not working, try later
-                //arguments: [{locale:['pt-PT']}],
+                method: "isMobilePhone",
+                args: ["pt-PT"],
                 validWhen: true,
                 message: "forms.phone.invalid"
             },

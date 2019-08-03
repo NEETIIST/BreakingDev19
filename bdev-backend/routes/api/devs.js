@@ -50,38 +50,22 @@ router.post("/create", verifyToken, (req, res) => {
                 github: req.body.github,
                 twitter: req.body.twitter,
                 linkedin: req.body.linkedin,
+                food: req.body.food,
+                needsTeam: req.body.needsTeam,
+                hasTeam: false,
+                pending: false,
+                validated: false,
                 payment: false,
+
             });
 
             newDev
                 .save()
                 .then(dev => {
-                    // Create JWT Payload
-                    const payload = {
-                        id: user.id,
-                        username: user.username,
-                        role: "dev",
-                    };
-                    // Sign token
-                    jwt.sign(
-                        payload,
-                        keys.secretOrKey,
-                        {
-                            expiresIn: 31556926 // 1 year in seconds
-                        },
-                        (err, token) => {
-                            res.status(200).json({
-                                success: true,
-                                token: "Bearer " + token
-                            });
-                        }
-                    );
+                    console.log("Sucessfully created a Dev Profile for the user: " + dev.username);
+                    return res.status(200).send(dev);
                 })
                 .catch(err => console.log(err));
-
-            // After creating the DevProfile, change the current user Role to dev and sign new auth-token
-            user.role = "dev";
-            user.save();
 
             console.log("Sucessfully created a Dev Profile for the user: " + user.username);
         });
@@ -111,6 +95,9 @@ router.get("/me", verifyToken, (req, res) => {
 // No permission check necessary, because only authorized users have their dev profile
 router.put("/me/edit", verifyToken, (req, res) => {
 
+    console.log("HEEEEEEEEEEEEEEERE");
+    console.log(req.username);
+
     // Form validation
     const { errors, isValid } = validateDevProfileInput (req.body);
     // Check validation
@@ -118,11 +105,13 @@ router.put("/me/edit", verifyToken, (req, res) => {
         return res.status(400).json(errors);
     }
 
-    DevProfile.findOneAndUpdate({"username":req.username}, req.body, function (err, dev) {
+    console.log(req.username);
+
+    DevProfile.findOneAndUpdate({"username":req.username}, req.body, {projection: DevProfile.ownerInfo, new: true}, function (err, dev) {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
         if (!dev) return res.status(404).send("No Dev Profile found for this username");
 
-        return res.status(200).send("User Dev Profile Updated");
+        return res.status(200).send(dev);
     });
 
 });

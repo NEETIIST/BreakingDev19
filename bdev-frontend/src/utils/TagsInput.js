@@ -51,8 +51,8 @@ class TagsInput extends Component {
             return (
                 this.state.tags.map((tag, index) => {
                     return(
-                        <div className="tag px-2 py-0 m-1">
-                            <span key={index} className="fs-xs fw-4 flh-1 my-1">{tag}</span>
+                        <div className="tag px-2 py-0 m-1" key={index}>
+                            <span className="fs-xs fw-4 flh-1 my-1">{tag}</span>
                             <i onClick={() => this.removeTag(index)} className="fas fa-minus-circle fa-sm f-primary flh-1 ml-2 my-1 cp" />
                         </div>
                     )
