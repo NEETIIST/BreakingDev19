@@ -36,7 +36,6 @@ class Index extends Component {
         //console.log(this.state.extraInfo==0);
         return (
             <div>
-
                 <div className="row vh-100 justify-content-center align-items-center m-0" id="splash">
                     <div className="col-12 col-lg-10 p-0 m-0 text-center">
                         <img src="img/splashAlt.png" className="img-fluid" />
@@ -154,7 +153,7 @@ class Index extends Component {
                             </div>
                             </Fade>
                             <div className="col-12 col-lg-4 px-3 py-3 m-0 text-left d-none d-lg-block">
-                                <img src="img/img1.png" className="img-fluid"/>
+                                <img src="img/Pic2.png" className="img-fluid"/>
                             </div>
                         </div>
                     </div>
@@ -264,9 +263,9 @@ class Index extends Component {
                         <p className="fs-md fw-4 mb-1 flh-2 mb-1 "><FormattedMessage id="index.sec4.desc1"/></p>
                         <div className="spacer-4"></div>
                         <div className="row justify-content-end align-items-start m-0">
-                            <div className="col-lg-4 px-3 text-left d-none d-lg-block">
+                            <div className="col-lg-4 px-3 text-left d-none d-lg-block p-0">
                                 <Fade left>
-                                    <img src="img/img1.png" className="img-fluid p-3"/>
+                                    <img src={"img/Pic"+(this.state.extraInfo+6)+".png"} className="img-fluid"/>
                                 </Fade>
                             </div>
                             <div className="col-12 col-lg-8 p-0">
@@ -314,7 +313,7 @@ class Index extends Component {
                     </div>
                     <div className="col-10 col-lg-4 p-0">
                         <Fade right>
-                            <img src="img/img1.png" className="img-fluid p-3"/>
+                            <img src="img/Pic4.png" className="img-fluid"/>
                         </Fade>
                     </div>
                 </div>
@@ -441,12 +440,12 @@ class Index extends Component {
                             </div>
                             <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
                                 <p className="fs-sm fw-4 flh-1 mb-1 f-white">.</p>
-                                <a href="https://www.create.pt/en/" target="_blank">
-                                    <img src="sponsors/CreateIT.png" className="img-fluid cp"
-                                         title="CreateIT"/>
+                                <a href="https://dellentconsulting.com/" target="_blank">
+                                    <img src="sponsors/Dellent.png" className="img-fluid cp"
+                                         title="Dellent"/>
                                 </a>
                             </div>
-                            <div className="col-lg-4 d-none d-lg-block"></div>
+                            <div className="col-lg-4 d-none d-lg-block" />
                             <div className="col-12 col-lg-4 text-center p-0 px-lg-3 my-2 my-lg-3 align-self-center">
                                 <Link to="/besponsor">
                                     <button type="button" className="btn btn-block btn-dev py-2 px-3 mt-3">
@@ -457,6 +456,7 @@ class Index extends Component {
                         </div>
                         <hr className="f-primary primary"/>
                         <div className="row justify-content-center align-items-center m-0">
+                            {/*
                             <div className="col-6 col-lg-4 p-0 text-center">
                                 <p className="fs-xs fw-4 flh-2 mb-3">
                                     <FormattedMessage id="index.sec8.madeby"/>
@@ -465,7 +465,8 @@ class Index extends Component {
                                     </a>
                                 </p>
                             </div>
-                            <div className="col-6 col-lg-4 p-0 text-center">
+                            */}
+                            <div className="col-6 col-lg-6 p-0 text-center">
                                 <p className="fs-xs fw-4 flh-2 mb-3">
                                     <FormattedMessage id="index.sec8.madewith"/>
                                     <a href="http://mern.io/" target="_blank" className="hvr-primary">
@@ -473,7 +474,7 @@ class Index extends Component {
                                     </a>
                                 </p>
                             </div>
-                            <div className="col-12 col-lg-4 p-0 text-center">
+                            <div className="col-6 col-lg-6 p-0 text-center">
                                 <p className="fs-xs fw-4 flh-2 mb-3"><FormattedMessage id="index.sec8.copyright"/></p>
                             </div>
                         </div>
