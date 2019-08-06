@@ -207,6 +207,8 @@ class Ideas extends Component {
                 unfavoriteIdea: (number) => this.unfavoriteIdea(number),
             }} /> });
     };
+    pendingIdeasCount() { let filteredData = this.state.ideas.filter( (idea) => { return( idea.approved===false && idea.hidden===false ? idea : null) }); return filteredData.length;}
+
 
 
     render() {
@@ -239,7 +241,8 @@ class Ideas extends Component {
                             <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="pending" ? "-active" :"")}
                                  onClick={() => this.navigation("pending")}>
                                 <i className="fas fa-fw fa-gavel fa-lg flh-1 mr-2"/>
-                                <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.ideas.pending"/></span>
+                                <span className="fs-md fw-4 flh-1 mb-0 mr-2 d-none d-lg-inline"><FormattedMessage id="staffdash.ideas.pending"/></span>
+                                <span className={"fs-xs fw-7 flh-1 mb-0 count-notification py-1 px-2 "+(this.pendingIdeasCount()===0?"d-none":"d-inline")}>{this.pendingIdeasCount()}</span>
                             </div>
                         </div>
                     </div>

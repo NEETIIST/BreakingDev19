@@ -72,6 +72,7 @@
   "index.sec8.sponsor": "Patrocinado por:",
   "index.sec8.besponsor": "Seja um patrocinador",
   "index.sec8.madeby": "Website feito por ",
+  "index.sec8.seegit": "Repositório Github",
   "index.sec8.madewith": "Construído com ",
   "index.sec8.copyright": "© NEETI 2019",
 
@@ -265,6 +266,9 @@
   "dash.profile.see.aboutme": "Sobre mim: ",
   "dash.profile.see.privateinfo": "Informação Pessoal (só tu e a organização é que têm acesso):",
   "dash.profile.see.skills": "Estes são alguns dos meus skills: ",
+  "dash.team.title": "Equipa",
+  "dash.team.soon1": "Esta página ainda não está pronta, mas...",
+  "dash.team.soon2": "Nesta zona vais poder criar a tua equipa, convidar amigos ou juntares-te a uma já existente. As inscrições abrem muito em breve, mantem-te atento!",
 
   "staffdash.opt1": "Dashboard",
   "staffdash.opt2": "Perfil",
@@ -293,6 +297,20 @@
   "staffdash.profile.see.job": "Na organização do BreakingDev, eu sou: ",
   "staffdash.profile.see.privateinfo": "Informação Pessoal (só tu e a organização é que têm acesso):",
   "staffdash.profile.see.skills": "Estes são alguns dos meus skills: ",
+  "staffdash.devs.title" : "Devs",
+  "staffdash.devs.all" : "Todos",
+  "staffdash.devs.approved" : "Aprovados",
+  "staffdash.devs.pending" : "Pendentes",
+  "staffdash.devs.goback": "Voltar à Lista",
+  "staffdash.devs.see.aboutme": "Sobre este Dev: ",
+  "staffdash.devs.see.privateinfo": "Informação Pessoal",
+  "staffdash.devs.see.skills": "Skills: ",
+  "staffdash.devs.seemore": "Ver em Detalhe",
+  "staffdash.feed.title": "Dashboard",
+  "staffdash.feed.devinfo1": "Devs com perfil preenchido",
+  "staffdash.feed.devinfo2": "Staffs inscritos",
+  "staffdash.feed.ideainfo1": "Ideia(s) Aprovadas",
+  "staffdash.feed.ideainfo2": "Ideia(s) Pendentes",
 
   " ": " "
 }

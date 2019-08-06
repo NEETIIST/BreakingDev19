@@ -456,17 +456,14 @@ class Index extends Component {
                         </div>
                         <hr className="f-primary primary"/>
                         <div className="row justify-content-center align-items-center m-0">
-                            {/*
                             <div className="col-6 col-lg-4 p-0 text-center">
                                 <p className="fs-xs fw-4 flh-2 mb-3">
-                                    <FormattedMessage id="index.sec8.madeby"/>
-                                    <a href="https://github.com/TJacoob" target="_blank" className="hvr-primary">
-                                        @TJacoob
+                                    <a href="https://github.com/NEETIIST/BreakingDev19" target="_blank" className="hvr-primary">
+                                        <FormattedMessage id="index.sec8.seegit"/>
                                     </a>
                                 </p>
                             </div>
-                            */}
-                            <div className="col-6 col-lg-6 p-0 text-center">
+                            <div className="col-6 col-lg-4 p-0 text-center">
                                 <p className="fs-xs fw-4 flh-2 mb-3">
                                     <FormattedMessage id="index.sec8.madewith"/>
                                     <a href="http://mern.io/" target="_blank" className="hvr-primary">
@@ -474,8 +471,10 @@ class Index extends Component {
                                     </a>
                                 </p>
                             </div>
-                            <div className="col-6 col-lg-6 p-0 text-center">
-                                <p className="fs-xs fw-4 flh-2 mb-3"><FormattedMessage id="index.sec8.copyright"/></p>
+                            <div className="col-12 col-lg-4 p-0 text-center">
+                                <a href="http://neeti.tecnico.ulisboa.pt" target="_blank" className="hvr-primary">
+                                    <p className="fs-xs fw-4 flh-2 mb-3"><FormattedMessage id="index.sec8.copyright"/></p>
+                                </a>
                             </div>
                         </div>
                     </div>

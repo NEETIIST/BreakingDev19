@@ -3,12 +3,13 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const verifyToken = require('../../auth/tokenVerification');
-
-// Load input validation
+var async = require('async');
 
 // Load User model
 const User = require("../../models/User");
 const AdminProfile = require("../../models/AdminProfile");
+const DevProfile = require("../../models/DevProfile");
+const Idea = require("../../models/Idea");
 
 // Load input validation
 const validateAdminProfileInput = require("../../validation/adminProfile");
@@ -149,6 +150,39 @@ router.put("/me/edit", verifyToken, (req, res) => {
         if (!adm) return res.status(404).send("No Staff Profile found for this username");
 
         return res.status(200).send(adm);
+    });
+
+});
+
+
+// @route GET api/admins/overview
+// @desc Returns some information for Overview
+// @permissions Only admins can get this information
+router.get("/overview", verifyToken, (req, res) => {
+
+    if ( req.role !== 'staff' ){
+        return res.status(403).send("You don't have permission for this action");
+    }
+
+
+    let response = {
+        "devCount":undefined,
+        "staffCount":undefined,
+        "teamCount": 0,
+        "ideasApproved": undefined,
+        "ideasPending": undefined,
+    };
+    var tasks = [
+        // idea.approved===false && idea.hidden===false
+        function(callback) { DevProfile.find( function (err, devs) { response.devCount = devs.length; callback(); }); },
+        function(callback) { AdminProfile.find( function (err, adms) { response.staffCount = adms.length; callback(); }); },
+        function(callback) { Idea.find({approved:true}, function (err, ideas) { response.ideasApproved = ideas.length; callback(); }); },
+        function(callback) { Idea.find({$and:[{approved:false},{hidden:false}]}, function (err, ideas) { console.log(":"+ideas);response.ideasPending = ideas.length; callback(); }); },
+    ];
+
+    async.parallel(tasks, function(err) {
+        if (err) return res.status(500).send(err);
+        return res.status(200).send(response);
     });
 
 });

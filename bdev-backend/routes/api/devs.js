@@ -131,9 +131,49 @@ router.get("/_:username", verifyToken, (req, res) => {
 
         return res.status(200).send(dev);
     });
+});
+
+
+// @route GET api/devs/all
+// @desc Returns all dev profiles
+// @permissions For Staff Only
+router.get("/all", verifyToken, (req, res) => {
+
+    // Only 'staff' role can request all devs
+    if ( req.role !== 'staff' ){
+        return res.status(403).send("You don't have permission for this action");
+    }
+
+    DevProfile.find({}, DevProfile.adminInfo, function (err, devs) {
+        if (err) return res.status(500).send("There was a problem finding the Dev Profiles.");
+        if (!devs) return res.status(404).send("No Dev Profiles were found");
+
+        return res.status(200).send(devs);
+    });
 
 });
 
+/*
+// @route PUT api/devs/me/validate
+// @desc Request validation to the admins
+// No permission check necessary, because only authorized users have their dev profile
+router.put("me/validate", verifyToken, (req, res) => {
+
+    DevProfile.findOneAndUpdate({"username":req.username}, req.body, {projection: DevProfile.ownerInfo, new: true}, function (err, dev) {
+        if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
+        if (!dev) return res.status(404).send("No Dev Profile found for this username");
+
+        return res.status(200).send(dev);
+    });
+
+    Idea.findOneAndUpdate({"number":req.params["number"]}, {"approved":false}, function (err, idea) {
+        if (err) return res.status(500).send("There was a problem finding the Idea.");
+        return res.status(200).send("Updated Successfully");
+    });
+
+});
+
+*/
 
 module.exports = router;
 
