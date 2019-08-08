@@ -170,7 +170,7 @@ class Sidebar extends Component {
                                             <a href="https://www.facebook.com/BreakingDev/" target="_blank">
                                                 <i className="fab fa-facebook-square fa-2x px-2 hvr-secondary"></i>
                                             </a>
-                                            <a href="https://www.instagram.com/neeti_ist/" target="_blank">
+                                            <a href="https://www.instagram.com/breaking.dev/" target="_blank">
                                                 <i className="fab fa-instagram fa-2x px-2 hvr-secondary"></i>
                                             </a>
                                             <a href="https://www.linkedin.com/company/neerci/about" target="_blank">
@@ -198,6 +198,8 @@ class Sidebar extends Component {
 
                     <Route exact path="/besponsor" component={BeSponsor} />
                     <Route exact path="/faqs" component={Faqs} />
+
+                    {/*
                     <Route exact path="/ideas" component={Ideas} />
 
                     <RestrictedRoute path="/login" component={Authentication} isLogin={true}/>
@@ -217,6 +219,7 @@ class Sidebar extends Component {
 
                     <Route exact path="/staff" component={Staff} />
 
+                    */}
 
                 </Switch>
             </Router>

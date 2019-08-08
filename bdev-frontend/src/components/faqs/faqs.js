@@ -31,7 +31,13 @@ class Faqs extends Component {
                             <div className="spacer-6"></div>
                             <p className="fs-xl fw-7 flh-2 mb-0"><FormattedMessage id="faqs.title"/></p>
                             <div className="spacer-2"></div>
-                            <p className="fs-md fw-4 flh-2 mb-3"><FormattedMessage id="faqs.desc1"/></p>
+                            {/*
+                            <p className="fs-md fw-4 flh-2 mb-0"><FormattedMessage id="faqs.desc1"/></p>
+                            <div className="spacer-2"></div>
+                            */}
+                            <a href="/docs/RegulamentoGeral.pdf" target="_blank" className="hvr-secondary">
+                                <p className="fs-md fw-4 flh-2 mb-3"><FormattedMessage id="faqs.desc4"/></p>
+                            </a>
                             <div className="spacer-2"></div>
                             <hr className="m-0 f-secondary secondary" style={{height:2}}/>
                         </div>

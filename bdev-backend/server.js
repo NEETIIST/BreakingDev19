@@ -48,11 +48,15 @@ app.listen(PORT, function() {
 app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
+
 // Routes
+/*
 app.use("/api/users", users);
 app.use("/api/devs", devs);
 app.use("/api/staff", admins);
-app.use("/api/emails", emails);
 app.use("/api/ideas", ideas);
+*/
+app.use("/api/emails", emails);
+
 
 

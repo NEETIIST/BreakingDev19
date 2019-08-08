@@ -58,7 +58,9 @@ class Feed extends Component {
                         <div className="spacer-2"></div>
                         <div className="row justify-content-center align-content-start m-0">
                             <div className="col-12 p-0">
+                                {/*
                                 <p className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="dash.feed.userinfo"/></p>
+                                */}
                             </div>
                         </div>
                     </div>

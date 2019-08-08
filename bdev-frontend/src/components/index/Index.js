@@ -360,7 +360,7 @@ class Index extends Component {
                                         <a href="https://www.facebook.com/BreakingDev/" target="_blank">
                                             <i className="fab fa-facebook-square fa-3x px-2 hvr-secondary"></i>
                                         </a>
-                                        <a href="https://www.instagram.com/neeti_ist/" target="_blank">
+                                        <a href="https://www.instagram.com/breaking.dev/" target="_blank">
                                             <i className="fab fa-instagram fa-3x px-2 hvr-secondary"></i>
                                         </a>
                                         <a href="https://www.linkedin.com/company/neerci/about" target="_blank">
@@ -458,8 +458,8 @@ class Index extends Component {
                         <div className="row justify-content-center align-items-center m-0">
                             <div className="col-6 col-lg-4 p-0 text-center">
                                 <p className="fs-xs fw-4 flh-2 mb-3">
-                                    <a href="https://github.com/NEETIIST/BreakingDev19" target="_blank" className="hvr-primary">
-                                        <FormattedMessage id="index.sec8.seegit"/>
+                                    <a href="/docs/Privacidade.pdf" target="_blank" className="hvr-primary">
+                                        <FormattedMessage id="index.sec8.privacy"/>
                                     </a>
                                 </p>
                             </div>
