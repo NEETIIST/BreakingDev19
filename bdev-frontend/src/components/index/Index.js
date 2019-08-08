@@ -69,6 +69,13 @@ class Index extends Component {
                                         </button>
                                     </Scroll>
                                 </div>
+                                <div className="col-11 col-lg-4 text-center my-2 p-0 px-lg-3">
+                                    <a href={"https://www.youtube.com/watch?v=uQhjh7OV6jU"} target={"_blank"}>
+                                        <button type="button" className="btn btn-block btn-dev py-2 px-3">
+                                            <span className="fs-lg fw-7"><FormattedMessage id="index.seevideo"/></span>
+                                        </button>
+                                    </a>
+                                </div>
                                 {/*
                                 <div className="col-11 col-lg-4 text-center my-2 p-0 px-lg-3">
                                     <Link to="/register">
