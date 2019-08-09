@@ -199,7 +199,6 @@ class Sidebar extends Component {
                     <Route exact path="/besponsor" component={BeSponsor} />
                     <Route exact path="/faqs" component={Faqs} />
 
-                    {/*
                     <Route exact path="/ideas" component={Ideas} />
 
                     <RestrictedRoute path="/login" component={Authentication} isLogin={true}/>
@@ -217,8 +216,8 @@ class Sidebar extends Component {
                     <PrivateRoute exact path="/staffdash/teams" component={staffDash} content={"teams"}/>
                     <PrivateRoute exact path="/staffdash/ideas" component={staffDash} content={"ideas"}/>
 
+                    {/*
                     <Route exact path="/staff" component={Staff} />
-
                     */}
 
                 </Switch>
