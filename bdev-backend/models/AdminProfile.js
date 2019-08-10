@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const AdminProfileSchema = new Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        immutable: true
     },
     name: {
         type: String,

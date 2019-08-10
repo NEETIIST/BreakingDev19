@@ -56,8 +56,10 @@ class Dashboard extends Component {
         const { user } = this.props.auth;
         const content =  this.state.content;
 
+
+
         return (
-            <div className="row justify-content-center align-items-center m-0 vh-100 very-light-grey">
+            <div className="row justify-content-center align-items-center vh-100 m-0 very-light-grey">
                 <div className="col-12 col-lg-2 p-0 align-self-center order-2 order-lg-1 dash-nav">
                     <div className="row justify-content-center align-items-center m-0 pt-2 pt-lg-0 very-light-grey ">
                         <div className="col-2 col-lg-12 p-0 mb-0 mb-lg-1" onClick={() => this.navigation("feed")}>

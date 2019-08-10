@@ -16,6 +16,7 @@ class Devs extends Component {
             isDetail: false,
             profile: null,
             content: "all",
+            ready: false,
         };
         this.seeList = this.seeList.bind(this);
         this.validateProfile = this.validateProfile.bind(this);
@@ -92,31 +93,40 @@ class Devs extends Component {
                 "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]
             },
         })
-            .then(response => { this.setState({ devs: response.data }); })
+            .then(response => { this.setState({ devs: response.data, ready:true }); })
             .catch(function (error){ if ( error.response.status == 404 ) console.log("Something Went Wrong"); })
     }
 
-    allDevs() {
+    showDevs() {
         const { intl } = this.props;
-        if ( this.state.devs.length === 0)
+        let condition = (dev) => { return(dev) };
+        if ( this.state.content === "pending") condition = (dev) => { return( dev.pending? dev : null) };
+        if ( this.state.content === "validated") condition = (dev) => { return( dev.validated? dev : null) };
+        let filteredDevs = this.state.devs.filter(condition).sort((a, b) => a.name.localeCompare(b.name)) ;
+        if ( filteredDevs.length === 0 && this.state.ready)
             return <p className="fs-md fw-4 flh-1 my-3"><FormattedMessage id="staffdash.devs.empty"/></p>;
         else
             return (
-                this.state.devs.map((dev, index) => {
+                filteredDevs.map((dev, index) => {
                     return(
                         <div className="col-12 col-lg-6 px-1">
-                            <div className="row justify-content-start align-content-center m-0 f-dark-grey py-1 my-1 dev-profile ">
+                            <div className="row justify-content-start align-content-center m-0 f-dark-grey py-1 my-1 dev-profile cp"
+                                 onClick={() => this.seeProfile(dev)}>
                                 <div className="col-8 col-lg-9 py-0 pl-2 text-left">
                                     <span className={"fs-sm fw-7 flh-1"}>{dev.name}</span>
                                     <span className={"fs-xs fw-4 flh-1 f-grey ml-2"}>({dev.username})</span>
                                 </div>
                                 <div className="col-4 col-lg-3 py-0 pr-2 text-right">
-                                    <i className={"fas fa-fw fa-times f-green fa-lg flh-1 "+(dev.approved?"d-flex":"d-none")}/>
-                                    <i className={"fas fa-fw fa-exclamation-triangle f-yellow fa-lg flh-1 "+(dev.pending?"d-flex":"d-none")}/>
-                                    <i className={"fas fa-fw fa-users fa-lg flh-1 "+(dev.hasTeam?"d-flex":"d-none")}/>
-                                    <i onClick={() => this.seeProfile(dev)}
-                                       title={intl.formatMessage({id: 'staffdash.devs.seemore'})}
-                                       className="fas fa-fw fa-search-plus fa-lg flh-1 cp hvr-primary"/>
+                                    <i className={"fas fa-fw fa-user-check f-green fa-md flh-1 mx-1 "+(dev.validated?"d-inline":"d-none")}
+                                       title={intl.formatMessage({id: 'staffdash.devs.validated'})}/>
+                                    <i className={"fas fa-fw fa-exclamation-triangle f-yellow fa-md flh-1 mx-1 "+(dev.pending?"d-inline":"d-none")}
+                                       title={intl.formatMessage({id: 'staffdash.devs.pending'})}/>
+                                    <i className={"fas fa-fw fa-euro-sign f-green fa-md flh-1 mx-1 "+(dev.payment?"d-inline":"d-none")}
+                                       title={intl.formatMessage({id: 'staffdash.devs.payment'})}/>
+                                    <i className={"fas fa-fw fa-users fa-md flh-1 mx-1 "+(dev.hasTeam?"d-inline":"d-none")}
+                                       title={intl.formatMessage({id: 'staffdash.devs.seemore'})}/>
+                                    <i className="fas fa-fw fa-chevron-right fa-md flh-1 hvr-primary ml-1"
+                                       title={intl.formatMessage({id: 'staffdash.devs.seemore'})}/>
                                 </div>
                             </div>
                         </div>
@@ -124,6 +134,8 @@ class Devs extends Component {
                 })
             );
     };
+
+    pendingDevsCount(){return this.state.devs.filter((dev) => { return( dev.pending? dev : null) }).length}
 
     seeProfile(profile){ this.setState({ isDetail: true, profile: profile }); }
     seeList(){ this.setState({ isDetail: false, profile: null }); }
@@ -144,7 +156,6 @@ class Devs extends Component {
                         <hr className="m-0 mt-3"/>
                     </div>
                 </div>
-                {/*
                 <div className={"row justify-content-center align-content-center m-0 vh-10 "+(isDetail?"d-none":"d-flex")} >
                     <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="all" ? "-active" :"")}
                          onClick={() => this.navigation("all")}>
@@ -154,30 +165,38 @@ class Devs extends Component {
                     <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="validated" ? "-active" :"")}
                          onClick={() => this.navigation("validated")}>
                         <i className="fas fa-fw fa-check fa-lg flh-1 mr-2"/>
-                        <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.devs.validated"/></span>
+                        <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.devs.all.validated"/></span>
                     </div>
                     <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="pending" ? "-active" :"")}
                          onClick={() => this.navigation("pending")}>
                         <i className="fas fa-fw fa-gavel fa-lg flh-1 mr-2"/>
-                        <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.devs.pending"/></span>
+                        <span className="fs-md fw-4 flh-1 mb-0 mr-2 d-none d-lg-inline"><FormattedMessage id="staffdash.devs.all.pending"/></span>
+                        <span className={"fs-xs fw-7 flh-1 mb-0 count-notification py-1 px-2 "+(this.pendingDevsCount()===0?"d-none":"d-inline")}>{this.pendingDevsCount()}</span>
                     </div>
                 </div>
-                */}
                 <div className={"row justify-content-center align-content-start m-0 vh-"+remainingSize} style={{maxHeight:remainingSize+"vh", overflowX: "hidden", overFlowY: "scroll"}}>
                     <div className="col-11 p-0">
-                        {isDetail ? "" : <div className="spacer-4" /> }
-                    </div>
-                    {isDetail ? <div className="col-11 p-0">
-                                    <Dev {...this.props} profile={profile}
-                                    methods={{
-                                        seeList: () => this.seeList(),
-                                        validateProfile: (profile) => this.validateProfile(profile),
-                                        invalidateProfile: (profile) => this.invalidateProfile(profile),
-                                        confirmPayment: (profile) => this.confirmPayment(profile),
-                                        cancelPayment: (profile) => this.cancelPayment(profile),
-                                    }}/>
+                        {!this.state.ready ?
+                            <div className={"row justify-content-center align-content-center vh-40"}>
+                                <div className={"col-12 p-0 text-center f-grey"}>
+                                    <i className="fas fa-fw fa-circle-notch fa-spin fa-3x mb-3" />
+                                    <p className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="forms.loading"/></p>
                                 </div>
-                              : this.allDevs() }
+                            </div>
+                            : ""}
+                        {isDetail && this.state.ready ? "" : <div className="spacer-4" /> }
+                    </div>
+                    {isDetail && this.state.ready ?
+                        <div className="col-11 p-0">
+                            <Dev {...this.props} profile={profile}
+                                 methods={{
+                                     seeList: () => this.seeList(),
+                                     validateProfile: (profile) => this.validateProfile(profile),
+                                     invalidateProfile: (profile) => this.invalidateProfile(profile),
+                                     confirmPayment: (profile) => this.confirmPayment(profile),
+                                     cancelPayment: (profile) => this.cancelPayment(profile),
+                                 }}/>
+                        </div> : this.showDevs() }
                 </div>
             </Fade>
         );

@@ -36,7 +36,21 @@ class See extends Component {
                         <img src="https://via.placeholder.com/150" className="profile-pic mb-3 mb-lg-0"/>
                     </div>
                     <div className="col-12 col-lg-9 p-0 text-left f-dark-grey">
-                        <p className="fs-xl fw-7 flh-1 mb-2">
+                        <div className="row justify-content-start align-items-center m-0">
+                            <div className={"col-auto px-2 py-1 alert alert-warning mr-2 my-1 my-lg-0 "+(profile.pending?"d-inline":"d-none")}>
+                                <i className="fas fa-fw fa-exclamation-triangle fa-md flh-1 mx-1"/>
+                                <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="dash.profile.see.pending"/></span>
+                            </div>
+                            <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(profile.validated?"d-inline":"d-none")}>
+                                <i className="fas fa-fw fa-user-check fa-md flh-1 mx-1"/>
+                                <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="dash.profile.see.validated"/></span>
+                            </div>
+                            <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(profile.payment?"d-inline":"d-none")}>
+                                <i className="fas fa-fw fa-euro-sign fa-md flh-1"/>
+                                <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="dash.profile.see.paymentConfirmed"/></span>
+                            </div>
+                        </div>
+                        <p className="fs-xl fw-7 flh-1 mb-2 mt-3">
                             {profile.name}
                             <span className="fs-sm fw-4 flh-1 f-grey ml-2">(@{profile.username})</span>
                         </p>
@@ -91,15 +105,15 @@ class See extends Component {
                             <FormattedMessage id="staffdash.profile.see.privateinfo"/>
                         </p>
                     </div>
-                    <div className="col-6 col-lg-3 p-0 f-dark-grey">
+                    <div className="col-6 col-lg-3 px-0 py-1 f-dark-grey">
                         <i className="fas fa-fw fa-mobile-alt fa-lg mr-2 mt-1" title={intl.formatMessage({id: 'forms.phone.placeholder'})}/>
                         <span className="fs-md fw-4 flh-1 mb-0">{profile.phone}</span>
                     </div>
-                    <div className="col-6 col-lg-3 p-0 f-dark-grey">
+                    <div className="col-6 col-lg-3 px-0 py-1 f-dark-grey">
                         <i className="fas fa-fw fa-birthday-cake fa-lg mr-2 mt-1" title={intl.formatMessage({id: 'forms.age.placeholder'})}/>
                         <span className="fs-md fw-4 flh-1 mb-0">{profile.age}</span>
                     </div>
-                    <div className="col-6 col-lg-3 p-0 f-dark-grey">
+                    <div className="col-6 col-lg-3 px-0 py-1 f-dark-grey">
                         <i className="fas fa-fw fa-drumstick-bite fa-lg mr-2 mt-1" title={intl.formatMessage({id: 'forms.food.placeholder'})}/>
                         <span className="fs-md fw-4 flh-1 mb-0">{profile.food}</span>
                     </div>

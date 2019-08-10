@@ -93,6 +93,7 @@ router.get("/me", verifyToken, (req, res) => {
 // @route PUT api/devs/me/edit
 // @desc Expects an updated Dev Profile form
 // No permission check necessary, because only authorized users have their dev profile
+// If user is validated or pending, some fields cannot be changed
 router.put("/me/edit", verifyToken, (req, res) => {
 
     // Form validation
@@ -102,11 +103,17 @@ router.put("/me/edit", verifyToken, (req, res) => {
         return res.status(400).json(errors);
     }
 
-    DevProfile.findOneAndUpdate({"username":req.username}, req.body, {projection: DevProfile.ownerInfo, new: true}, function (err, dev) {
+    DevProfile.findOne({"username":req.username}, DevProfile.ownerInfo, function (err, dev) {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
         if (!dev) return res.status(404).send("No Dev Profile found for this username");
 
-        return res.status(200).send(dev);
+        if ( dev.validated || dev.pending ){ req.body.name=dev.name; req.body.age=dev.age; req.body.phone=dev.phone; req.body.college=dev.college; req.body.course=dev.course; }
+
+        Object.assign(dev, req.body);
+        dev .save()
+            .then(dev => { return res.status(200).send(dev); })
+            .catch(err => console.log(err));
+
     });
 
 });
@@ -158,12 +165,13 @@ router.get("/all", verifyToken, (req, res) => {
 // @desc Request validation to the admins
 // The logged user requests validation for himself
 router.put("/me/validate", verifyToken, (req, res) => {
+
     DevProfile.findOne({"username":req.username}, DevProfile.ownerInfo, function (err, dev) {
         if (err) return res.status(500).send("There was a problem updating the Dev Profile.");
         if (!dev) return res.status(404).send("No Dev Profile found for this username");
 
-        if ( dev.approved ) return res.status(403).send("This Dev is already approved.");
-        if ( dev.pending ) return res.status(403).send("This Dev is already pending approval.");
+        if ( dev.validated ) return res.status(403).send("This Dev is already validated.");
+        if ( dev.pending ) return res.status(403).send("This Dev is already pending validation.");
 
         let updatedDev = dev;
         updatedDev.pending = true;
@@ -183,8 +191,8 @@ router.put("/me/validate/cancel", verifyToken, (req, res) => {
         if (err) return res.status(500).send("There was a problem updating the Dev Profile.");
         if (!dev) return res.status(404).send("No Dev Profile found for this username");
 
-        if ( dev.approved ) return res.status(403).send("This Dev is already approved.");
-        if ( !dev.pending ) return res.status(403).send("This Dev is not currently pending any approval.");
+        if ( dev.validated ) return res.status(403).send("This Dev is already validated.");
+        if ( !dev.pending ) return res.status(403).send("This Dev is not currently pending any validation.");
 
         let updatedDev = dev;
         updatedDev.pending = false;
@@ -218,7 +226,6 @@ router.put("/_:username/validate", verifyToken, (req, res) => {
 // @permissions Staffs Only
 router.put("/_:username/invalidate", verifyToken, (req, res) => {
 
-    console.log("here");
     // Only Staffs can approve other Devs
     if ( req.role !== 'staff' ){ return res.status(403).send("You don't have permission for this action"); }
 

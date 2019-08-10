@@ -8,6 +8,7 @@ import URL from "../../../utils/requestsURL";
 import See from "./see";
 import Edit from "./edit";
 import Add from './add';
+import Validate from './validate';
 
 class Profile extends Component {
     constructor(props) {
@@ -15,11 +16,13 @@ class Profile extends Component {
         this.state = {
             hasProfile: false,
             profile: null,
-            content: "see"
+            content: "see",
+            loaded: false,
         };
 
         this.createdProfile = this.createdProfile.bind(this);
         this.editedProfile = this.editedProfile.bind(this);
+        this.changedValidation = this.changedValidation.bind(this);
     }
 
     navigation = (content) => { this.setState(state => ({ content: content })); };
@@ -35,15 +38,18 @@ class Profile extends Component {
         })
             .then(response => { this.setState({ hasProfile: true, profile: response.data }); })
             .catch(function (error){ if ( error.response.status == 404 ) console.log("User doesn't have a Dev profile yet"); })
+            .then(()=>{this.setState({loaded:true})})
     }
 
     createdProfile(profile){ setTimeout(() => { this.setState({ hasProfile: true, profile: profile, content:"see"});}, 3000)};
     editedProfile(profile){ setTimeout(() => { this.setState({ profile: profile, content:"see"});}, 2000)};
+    changedValidation(profile){ this.setState({ profile: profile }) }
 
     render() {
         let content = this.state.content;
         let profile = this.state.profile;
         let hasProfile = this.state.hasProfile;
+        let loaded = this.state.loaded;
         let remainingSize = ( hasProfile ? "80":"90");
 
         return(
@@ -70,15 +76,28 @@ class Profile extends Component {
                                 <i className="fas fa-fw fa-user-edit fa-lg flh-1 mr-2"/>
                                 <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="dash.profile.edit"/></span>
                             </div>
+                            <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="validate" ? "-active" :"")+(hasProfile && profile.validated ? " d-none" :"") }
+                                 onClick={() => this.navigation("validate")}>
+                                <i className="fas fa-fw fa-user-check fa-lg flh-1 mr-2"/>
+                                <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="dash.profile.validate"/></span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div className={"row justify-content-center align-content-start m-0 vh-"+remainingSize} style={{maxHeight:remainingSize+"vh", overflowX: "hidden", overFlowY: "scroll"}}>
                     <div className="col-11 p-0">
                         <div className="spacer-4"></div>
-                        {profile ? "" : <Add {...this.props} onSuccess={this.createdProfile}/>}
-                        {content === "see" && profile ? <See {...this.props} profile={profile} /> : ""}
-                        {content === "edit" && profile ? <Edit {...this.props} profile={profile} onSuccess={this.editedProfile}/> : ""}
+                        {loaded ? "":
+                            <div className={"row justify-content-center align-content-center vh-40"}>
+                                <div className={"col-12 p-0 text-center f-grey"}>
+                                    <i className="fas fa-fw fa-circle-notch fa-spin fa-3x mb-3" />
+                                    <p className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="forms.loading"/></p>
+                                </div>
+                            </div>}
+                        {profile === null && loaded ? <Add {...this.props} onSuccess={this.createdProfile}/> : ""}
+                        {content === "see" && profile && loaded ? <See {...this.props} profile={profile} /> : ""}
+                        {content === "edit" && profile && loaded ? <Edit {...this.props} profile={profile} onSuccess={this.editedProfile}/> : ""}
+                        {content === "validate" && profile && loaded ? <Validate {...this.props} profile={profile} onSuccess={this.changedValidation}/> : ""}
                     </div>
                 </div>
             </Fade>

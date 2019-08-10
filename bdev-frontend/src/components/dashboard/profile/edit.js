@@ -100,14 +100,24 @@ class Edit extends Component {
         const { intl } = this.props;
         const status = this.state.status;
 
+        let requested = this.props.profile.validated || this.props.profile.pending ;
+
         return(
             <Fade right cascade>
                 <div className={"row justify-content-center align-items-start m-0"}>
-                    <div className={"col-12 p-0 text-left f-dark-grey "+(status=="waiting"?"d-block":"d-none")}>
-                        <p className="fs-sm fw-4 flh-1 mb-0"><FormattedMessage id="dash.profile.edit.desc"/></p>
-                        <div className="spacer-2"/>
+                    <div className={"col-12 p-0 text-left f-dark-grey no-scrollbar "+(status=="waiting"?"d-block":"d-none")} >
+                        <p className="fs-sm fw-4 flh-1 mb-3"><FormattedMessage id="dash.profile.edit.desc"/></p>
+                        <div className={"alert alert-warning p-2 "+(this.props.profile.pending?"d-inline-flex":"d-none")}>
+                            <i className="fas fa-fw fa-exclamation-triangle fa-md flh-1 mx-1"/>
+                            <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="dash.profile.edit.pending"/></span>
+                        </div>
+                        <div className={"alert alert-success p-2 "+(this.props.profile.validated?"d-inline-flex":"d-none")}>
+                            <i className="fas fa-fw fa-user-check fa-md flh-1 mx-1"/>
+                            <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="dash.profile.edit.validated"/></span>
+                        </div>
+                        <div className={"spacer-2 "+(this.props.profile.pending || this.props.profile.validated ?"d-block":"d-none")} />
                         <form onSubmit={this.onSubmit} autoComplete="off">
-                            <div className="row justify-content-start align-items-start mx-0 my-1">
+                            <div className={"row justify-content-start align-items-start mx-0 my-1 "+(requested?"d-none":"")}>
                                 <div className="col-12 col-lg-4 p-0">
                                     <div className="form-group">
                                         <div className={validation.name.isInvalid && 'has-error'}>
@@ -126,7 +136,7 @@ class Edit extends Component {
                                 </div>
                                 <div className="col-7 col-lg-4 offset-lg-1 p-0">
                                     <div className="form-group">
-                                        <div className={validation.phone.isInvalid && 'has-error'}>
+                                        <div className={validation.phone.isInvalid && 'has-error'} >
                                             <input type="tel"
                                                    className={"form-control form-alt-input " + this.fieldHasValue("phone")}
                                                    name="phone"
@@ -157,7 +167,7 @@ class Edit extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="row justify-content-start align-items-start mx-0 my-1">
+                            <div className={"row justify-content-start align-items-start mx-0 my-1 "+(requested?"d-none":"")}>
                                 <div className="col-12 col-lg-5 p-0">
                                     <div className="form-group">
                                         <div className={validation.college.isInvalid && 'has-error'}>
@@ -209,15 +219,16 @@ class Edit extends Component {
                                 </div>
                             </div>
                             <div className="row justify-content-start align-items-start mx-0 my-1">
-                                <div className="col-12 col-lg-7 p-0 mt-lg-2 mb-1">
+                                <div className="col-12 col-lg-7 p-0 mt-lg-2 mb-1 ">
                                     <div className={validation.needsTeam.isInvalid && 'has-error'}>
                                         <span className="fs-sm fw-4 flh-2"><FormattedMessage id="forms.needsTeam.helper"/></span>
-                                        <div className={"d-inline cp hvr-primary"} onClick={() => this.toggleNeedsTeam(true)}>
-                                            <span className="fs-sm fw-4 flh-2 ml-2"><FormattedMessage id="forms.yes"/></span>
+                                        <br className={"d-inline d-lg-none"}/>
+                                        <div className={"d-inline cp hvr-primary ml-0 ml-lg-2"} onClick={() => this.toggleNeedsTeam(true)}>
+                                            <span className="fs-sm fw-4 flh-2"><FormattedMessage id="forms.yes"/></span>
                                             <i className={"far fa-fw fa-lg flh-2 ml-1 fa-"+(this.state.needsTeam ? "check-circle":"circle")} />
                                         </div>
-                                        <div className={"d-inline cp hvr-primary"} onClick={() => this.toggleNeedsTeam(false)}>
-                                            <span className="fs-sm fw-4 flh-2 ml-2"><FormattedMessage id="forms.no"/></span>
+                                        <div className={"d-inline cp hvr-primary ml-2"} onClick={() => this.toggleNeedsTeam(false)}>
+                                            <span className="fs-sm fw-4 flh-2"><FormattedMessage id="forms.no"/></span>
                                             <i className={"far fa-fw fa-lg flh-1 ml-1 fa-"+(this.state.needsTeam ? "circle":"times-circle")} />
                                         </div>
                                         <span className="help-block fs-xs"><FormattedMessage id={validation.needsTeam.message}/></span>

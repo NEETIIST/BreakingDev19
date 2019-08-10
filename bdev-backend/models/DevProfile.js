@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const DevProfileSchema = new Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        immutable: true
     },
     name: {
         type: String,
