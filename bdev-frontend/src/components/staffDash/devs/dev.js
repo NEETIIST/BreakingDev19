@@ -9,6 +9,7 @@ class Dev extends Component {
 
         };
         this.allSkills = this.allSkills.bind(this);
+        console.log(props);
     }
 
     allSkills(data) {
@@ -34,30 +35,56 @@ class Dev extends Component {
         return(
             <Fade right cascade>
                 <div className={"row justify-content-center align-content-center m-0 vh-10"} >
-                    <div className={"col col-lg-3 p-2 text-left cp hvr-primary"}
+                    <div className={"col-2 col-lg-4 p-2 text-left cp hvr-primary"}
                          onClick={() => methods.seeList()}>
                         <i className="fas fa-fw fa-chevron-left fa-lg flh-1 mr-2"/>
-                        <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.devs.goback"/></span>
+                        <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.devs.goback"/></span>
                     </div>
-                    {/*
-                    <div className={"col col-lg-3 p-2 text-center cp"}
-                         onClick={() => this.test()}>
-                        <i className="fas fa-fw fa-list fa-lg flh-1 mr-2"/>
-                        <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.devs.all"/></span>
+                    <div className={"col-5 col-lg-4 p-2 text-center cp hvr-green "+(profile.validated?"d-none":"d-flex")}
+                         onClick={() => methods.validateProfile(profile)}>
+                        <i className="fas fa-fw fa-user-check fa-lg flh-1 mr-2"/>
+                        <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.devs.validate"/></span>
                     </div>
-                    <div className={"col col-lg-3 p-2 text-center cp"}
-                         onClick={() => methods.seeList()}>
-                        <i className="fas fa-fw fa-list fa-lg flh-1 mr-2"/>
-                        <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.devs.all"/></span>
+                    <div className={"col-5 col-lg-4 p-2 text-center cp hvr-red "+(!profile.validated?"d-none":"d-flex")}
+                         onClick={() => methods.invalidateProfile(profile)}>
+                        <i className="fas fa-fw fa-user-times fa-lg flh-1 mr-2"/>
+                        <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.devs.invalidate"/></span>
                     </div>
-                    */}
+                    <div className={"col-5 col-lg-4 p-2 text-center cp hvr-green "+(profile.payment?"d-none":"d-flex")}
+                         onClick={() => methods.confirmPayment(profile)}>
+                        <i className="fas fa-fw fa-euro-sign fa-lg flh-1 mr-2"/>
+                        <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.devs.confirmPayment"/></span>
+                    </div>
+                    <div className={"col-5 col-lg-4 p-2 text-center cp hvr-red "+(!profile.payment?"d-none":"d-flex")}
+                         onClick={() => methods.cancelPayment(profile)}>
+                        <i className="fas fa-fw fa-times fa-lg flh-1"/>
+                        <i className="fas fa-euro-sign fa-lg flh-1 mr-2"/>
+                        <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.devs.cancelPayment"/></span>
+                    </div>
+
                 </div>
+                <hr className={"mt-0 mb-2"} />
+                <div className={"spacer-2"} />
                 <div className="row justify-content-center align-items-center m-0 vh-20">
                     <div className="col-12 col-lg-3 p-0 text-center">
                         <img src="https://via.placeholder.com/150" className="profile-pic mb-3 mb-lg-0"/>
                     </div>
                     <div className="col-12 col-lg-9 p-0 text-left f-dark-grey">
-                        <p className="fs-xl fw-7 flh-1 mb-2">
+                        <div className="row justify-content-start align-items-center m-0">
+                            <div className={"col-auto px-2 py-1 alert alert-warning mr-2 my-1 my-lg-0 "+(profile.pending?"d-inline":"d-none")}>
+                                <i className="fas fa-fw fa-exclamation-triangle fa-md flh-1 mx-1"/>
+                                <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="staffdash.devs.pending"/></span>
+                            </div>
+                            <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(profile.validated?"d-inline":"d-none")}>
+                                <i className="fas fa-fw fa-user-check fa-md flh-1 mx-1"/>
+                                <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="staffdash.devs.validated"/></span>
+                            </div>
+                            <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(profile.payment?"d-inline":"d-none")}>
+                                <i className="fas fa-fw fa-euro-sign fa-md flh-1"/>
+                                <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="staffdash.devs.payment"/></span>
+                            </div>
+                        </div>
+                        <p className="fs-xl fw-7 flh-1 mb-2 mt-3">
                             {profile.name}
                             <span className="fs-sm fw-4 flh-1 f-grey ml-2">(@{profile.username})</span>
                         </p>

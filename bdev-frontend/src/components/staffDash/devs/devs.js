@@ -18,16 +18,72 @@ class Devs extends Component {
             content: "all",
         };
         this.seeList = this.seeList.bind(this);
+        this.validateProfile = this.validateProfile.bind(this);
+        this.invalidateProfile = this.invalidateProfile.bind(this);
+        this.confirmPayment = this.confirmPayment.bind(this);
+        this.cancelPayment = this.cancelPayment.bind(this);
     }
 
     navigation = (content) => { this.setState(state => ({ content: content })); };
     componentDidMount() { this.getDevs(); }
 
     // TODOS:
-    validateProfile(profile){  };
-    unvalidateProfile(profile){  };
-    confirmPayment(profile){  };
-    cancelPayment(profile){  };
+    validateProfile(profile){
+        axios.put(URL+'/api/devs/_'+profile.username+'/validate', {}, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]
+            },
+        })
+            .then(response => {
+                let updatedDevs = this.state.devs.filter( function(dev){ return dev !== profile } );
+                updatedDevs.push( response.data );
+                this.setState({ devs: updatedDevs, profile: response.data });
+            })
+            .catch(function (error){ console.log(error); })
+    };
+    invalidateProfile(profile){
+        axios.put(URL+'/api/devs/_'+profile.username+'/invalidate', {}, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]
+            },
+        })
+            .then(response => {
+                let updatedDevs = this.state.devs.filter( function(dev){ return dev !== profile } );
+                updatedDevs.push( response.data );
+                this.setState({ devs: updatedDevs, profile: response.data });
+            })
+            .catch(function (error){ console.log(error); })
+    };
+    confirmPayment(profile){
+        axios.put(URL+'/api/devs/_'+profile.username+'/confirmPayment', {}, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]
+            },
+        })
+            .then(response => {
+                let updatedDevs = this.state.devs.filter( function(dev){ return dev !== profile } );
+                updatedDevs.push( response.data );
+                this.setState({ devs: updatedDevs, profile: response.data });
+            })
+            .catch(function (error){ console.log(error); })
+    };
+    cancelPayment(profile){
+        axios.put(URL+'/api/devs/_'+profile.username+'/cancelPayment', {}, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]
+            },
+        })
+            .then(response => {
+                let updatedDevs = this.state.devs.filter( function(dev){ return dev !== profile } );
+                updatedDevs.push( response.data );
+                this.setState({ devs: updatedDevs, profile: response.data });
+            })
+            .catch(function (error){ console.log(error); })
+    };
 
     getDevs(){
         axios.get(URL+'/api/devs/all', {
@@ -95,10 +151,10 @@ class Devs extends Component {
                         <i className="fas fa-fw fa-list fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.devs.all"/></span>
                     </div>
-                    <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="approved" ? "-active" :"")}
-                         onClick={() => this.navigation("approved")}>
+                    <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="validated" ? "-active" :"")}
+                         onClick={() => this.navigation("validated")}>
                         <i className="fas fa-fw fa-check fa-lg flh-1 mr-2"/>
-                        <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.devs.approved"/></span>
+                        <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.devs.validated"/></span>
                     </div>
                     <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="pending" ? "-active" :"")}
                          onClick={() => this.navigation("pending")}>
@@ -113,7 +169,13 @@ class Devs extends Component {
                     </div>
                     {isDetail ? <div className="col-11 p-0">
                                     <Dev {...this.props} profile={profile}
-                                    methods={{seeList: () => this.seeList()}}/>
+                                    methods={{
+                                        seeList: () => this.seeList(),
+                                        validateProfile: (profile) => this.validateProfile(profile),
+                                        invalidateProfile: (profile) => this.invalidateProfile(profile),
+                                        confirmPayment: (profile) => this.confirmPayment(profile),
+                                        cancelPayment: (profile) => this.cancelPayment(profile),
+                                    }}/>
                                 </div>
                               : this.allDevs() }
                 </div>

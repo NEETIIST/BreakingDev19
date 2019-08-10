@@ -153,27 +153,118 @@ router.get("/all", verifyToken, (req, res) => {
 
 });
 
-/*
+
 // @route PUT api/devs/me/validate
 // @desc Request validation to the admins
-// No permission check necessary, because only authorized users have their dev profile
-router.put("me/validate", verifyToken, (req, res) => {
+// The logged user requests validation for himself
+router.put("/me/validate", verifyToken, (req, res) => {
+    DevProfile.findOne({"username":req.username}, DevProfile.ownerInfo, function (err, dev) {
+        if (err) return res.status(500).send("There was a problem updating the Dev Profile.");
+        if (!dev) return res.status(404).send("No Dev Profile found for this username");
 
-    DevProfile.findOneAndUpdate({"username":req.username}, req.body, {projection: DevProfile.ownerInfo, new: true}, function (err, dev) {
+        if ( dev.approved ) return res.status(403).send("This Dev is already approved.");
+        if ( dev.pending ) return res.status(403).send("This Dev is already pending approval.");
+
+        let updatedDev = dev;
+        updatedDev.pending = true;
+
+        dev .save(updatedDev)
+            .then(dev => { return res.status(200).send(dev); })
+            .catch(err => console.log(err));
+    });
+});
+
+// @route PUT api/devs/me/validate/cancel
+// @desc Request to cancel the validation to the admins
+// The logged user cancels it's own request
+router.put("/me/validate/cancel", verifyToken, (req, res) => {
+
+    DevProfile.findOne({"username":req.username}, DevProfile.ownerInfo, function (err, dev) {
+        if (err) return res.status(500).send("There was a problem updating the Dev Profile.");
+        if (!dev) return res.status(404).send("No Dev Profile found for this username");
+
+        if ( dev.approved ) return res.status(403).send("This Dev is already approved.");
+        if ( !dev.pending ) return res.status(403).send("This Dev is not currently pending any approval.");
+
+        let updatedDev = dev;
+        updatedDev.pending = false;
+
+        dev .save(updatedDev)
+            .then(dev => { return res.status(200).send(dev); })
+            .catch(err => console.log(err));
+    });
+
+});
+
+// @route PUT api/devs/_:username/validate
+// @desc Validates a Dev Profile
+// @permissions Staffs Only
+router.put("/_:username/validate", verifyToken, (req, res) => {
+
+    // Only Staffs can approve other Devs
+    if ( req.role !== 'staff' ){ return res.status(403).send("You don't have permission for this action"); }
+
+    DevProfile.findOneAndUpdate({"username":req.params['username']}, {validated:true, pending:false}, {projection: DevProfile.adminInfo, new: true}, function (err, dev) {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
         if (!dev) return res.status(404).send("No Dev Profile found for this username");
 
         return res.status(200).send(dev);
     });
 
-    Idea.findOneAndUpdate({"number":req.params["number"]}, {"approved":false}, function (err, idea) {
-        if (err) return res.status(500).send("There was a problem finding the Idea.");
-        return res.status(200).send("Updated Successfully");
+});
+
+// @route PUT api/devs/_:username/invalidate
+// @desc Cancels the Validation of a dev profile
+// @permissions Staffs Only
+router.put("/_:username/invalidate", verifyToken, (req, res) => {
+
+    console.log("here");
+    // Only Staffs can approve other Devs
+    if ( req.role !== 'staff' ){ return res.status(403).send("You don't have permission for this action"); }
+
+    DevProfile.findOneAndUpdate({"username":req.params['username']}, {validated:false, pending:false}, {projection: DevProfile.adminInfo, new: true}, function (err, dev) {
+        if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
+        if (!dev) return res.status(404).send("No Dev Profile found for this username");
+
+        return res.status(200).send(dev);
     });
 
 });
 
-*/
+
+// @route PUT api/devs/_:username/confirmPayment
+// @desc Confirms Dev Payment
+// @permissions Staffs Only
+router.put("/_:username/confirmPayment", verifyToken, (req, res) => {
+
+    // Only Staffs can approve other Devs
+    if ( req.role !== 'staff' ){ return res.status(403).send("You don't have permission for this action"); }
+
+    DevProfile.findOneAndUpdate({"username":req.params['username']}, {payment:true}, {projection: DevProfile.adminInfo, new: true}, function (err, dev) {
+        if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
+        if (!dev) return res.status(404).send("No Dev Profile found for this username");
+
+        return res.status(200).send(dev);
+    });
+
+});
+
+// @route PUT api/devs/_:username/cancelPayment
+// @desc Cancel Dev Payment
+// @permissions Staffs Only
+router.put("/_:username/cancelPayment", verifyToken, (req, res) => {
+
+    // Only Staffs can approve other Devs
+    if ( req.role !== 'staff' ){ return res.status(403).send("You don't have permission for this action"); }
+
+    DevProfile.findOneAndUpdate({"username":req.params['username']}, {payment:false}, {projection: DevProfile.adminInfo, new: true}, function (err, dev) {
+        if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
+        if (!dev) return res.status(404).send("No Dev Profile found for this username");
+
+        return res.status(200).send(dev);
+    });
+
+});
 
 module.exports = router;
 
