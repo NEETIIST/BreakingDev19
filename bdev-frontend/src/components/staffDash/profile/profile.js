@@ -75,7 +75,7 @@ class Profile extends Component {
                 </div>
                 <div className={"row justify-content-center align-content-start m-0 vh-"+remainingSize} style={{maxHeight:remainingSize+"vh", overflowX: "hidden", overFlowY: "scroll"}}>
                     <div className="col-11 p-0">
-                        <div className="spacer-4"></div>
+                        <div className="spacer-4" />
                         {profile ? "" : <Add {...this.props} onSuccess={this.createdProfile}/>}
                         {content === "see" && profile ? <See {...this.props} profile={profile} /> : ""}
                         {content === "edit" && profile ? <Edit {...this.props} profile={profile} onSuccess={this.editedProfile}/> : ""}

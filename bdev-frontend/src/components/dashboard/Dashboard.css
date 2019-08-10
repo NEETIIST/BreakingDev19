@@ -23,6 +23,25 @@
     border-left: 0px solid #f0f0f0 ;
 }
 
+@media (max-width: 767.99px){
+    .dash-nav{
+        position: fixed;
+        bottom: 0;
+        left:0;
+        z-index: 10;
+    }
+    .dash-opt {
+        border-bottom: 4px solid #f0f0f0;
+    }
+    .dash-opt:hover {
+        border-left: 0px solid currentColor;
+    }
+    .dash-opt-active{
+        border-bottom: 4px solid currentColor;
+        border-left: 0px solid white;
+    }
+}
+
 .dash-button-box {
     color: white;
     border-radius: 0.25em;
