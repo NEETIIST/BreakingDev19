@@ -148,6 +148,7 @@
   "forms.needsTeam.empty": "Por favor indica se",
   "forms.needsTeam.invalid": "Deve ser verdadeiro ou falso",
   "forms.food.placeholder": "Restrições Alimentares",
+  "forms.picture.upload": "Enviar Foto",
   "forms.sending": "Enviando...",
   "forms.success": "Confirmado",
   "forms.send": "Enviar",
@@ -306,9 +307,11 @@
   "staffdash.profile.add.title": "Adicionar Perfil",
   "staffdash.profile.add.desc": "Ainda não criaste o teu perfil de Staff, preenche algumas informações para os participantes ficarem a saber mais sobre ti.",
   "staffdash.profile.add.done": "O teu Perfil foi criado com sucesso.",
+  "staffdash.profile.edit": "Editar",
   "staffdash.profile.edit.title": "Editar Perfil",
   "staffdash.profile.edit.desc": "Estes são os teus dados de perfil, nesta página podes fazer-lhes alterações:",
   "staffdash.profile.edit.done": "Os teus dados foram alterados com sucesso.",
+  "staffdash.profile.see": "Ver",
   "staffdash.profile.see.aboutme": "Sobre mim: ",
   "staffdash.profile.see.job": "Na organização do BreakingDev, eu sou: ",
   "staffdash.profile.see.privateinfo": "Informação Pessoal (só tu e a organização é que têm acesso):",
@@ -335,6 +338,18 @@
   "staffdash.feed.devinfo2": "Staffs inscritos",
   "staffdash.feed.ideainfo1": "Ideia(s) Aprovadas",
   "staffdash.feed.ideainfo2": "Ideia(s) Pendentes",
+  "staffdash.profile.files": "Ficheiros",
+  "staffdash.profile.files.photo.empty": "Faz upload de uma fotografia para aparecer no teu perfil.",
+  "staffdash.profile.files.photo.notempty": "Esta é a fotografia de perfil que aparece no teu perfil.",
+  "staffdash.profile.files.photo2": "Por favor usa uma fotografia quadrada, formato jpeg ou png e com menos de 3 MB.",
+  "staffdash.profile.files.photo.add": "Carregar Fotografia",
+  "staffdash.profile.files.photo.addnew": "Carregar Nova Fotografia",
+  "staffdash.profile.files.photo.delete": "Remover Fotografia",
+  "staffdash.profile.files.photo.add.success": "Carregada com sucesso",
+  "staffdash.profile.files.photo.toobig": "Ficheiro demasiado grande",
+  "staffdash.profile.files.photo.notimage": "Este ficheiro não é uma imagem",
+  "staffdash.profile.files.photo.remove.success": "Fotografia Removida",
+
 
   " ": " "
 }

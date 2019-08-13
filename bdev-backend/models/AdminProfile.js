@@ -46,6 +46,12 @@ const AdminProfileSchema = new Schema({
     linkedin: {
         type: String,
     },
+    picture: {
+        type: String,
+    },
+    cv: {
+        type: String,
+    },
 
 });
 
@@ -64,6 +70,8 @@ AdminProfile.publicInfo = {
     github: 1,
     twitter: 1,
     linkedin: 1,
+    picture: 0,
+    cv: 0,
 };
 
 AdminProfile.adminInfo = {};

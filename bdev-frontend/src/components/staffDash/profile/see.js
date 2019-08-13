@@ -28,12 +28,14 @@ class See extends Component {
     render() {
         const profile = this.props.profile;
         const { intl } = this.props;
+        let hasPicture = (profile.picture!=="");
 
         return(
             <Fade right cascade>
             <div className="row justify-content-center align-items-center m-0 vh-20">
                 <div className="col-12 col-lg-3 p-0 text-center">
-                    <img src="https://via.placeholder.com/150" className="profile-pic mb-3 mb-lg-0"/>
+                    <img src={"/profile/"+profile.picture} className={"profile-pic pic-img mb-3 mb-lg-0 "+(hasPicture?"":"d-none")}/>
+                    <img src={"/profile/profile_default.png"} className={"profile-pic pic-img mb-3 mb-lg-0 "+(hasPicture?"d-none":"")}/>
                 </div>
                 <div className="col-12 col-lg-9 p-0 text-left f-dark-grey">
                     <p className="fs-xl fw-7 flh-1 mb-2">

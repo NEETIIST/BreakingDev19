@@ -33,6 +33,10 @@ const speedLimiter = slowDown({
 });
 app.use(speedLimiter);
 
+// File Upload
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
+
 mongoose.connect('mongodb://127.0.0.1:27017/bdev', { useNewUrlParser: true });
 const connection = mongoose.connection;
 

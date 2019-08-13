@@ -8,6 +8,7 @@ import URL from "../../../utils/requestsURL";
 import See from "./see";
 import Edit from "./edit";
 import Add from './add';
+import Files from './files';
 
 class Profile extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class Profile extends Component {
 
         this.createdProfile = this.createdProfile.bind(this);
         this.editedProfile = this.editedProfile.bind(this);
+        this.changedPicture = this.changedPicture.bind(this);
     }
 
     navigation = (content) => { this.setState(state => ({ content: content })); };
@@ -39,6 +41,7 @@ class Profile extends Component {
 
     createdProfile(profile){ setTimeout(() => { this.setState({ hasProfile: true, profile: profile, content:"see"});}, 3000)};
     editedProfile(profile){ setTimeout(() => { this.setState({ profile: profile, content:"see"});}, 2000)};
+    changedPicture(profile){ this.setState({ profile: profile}); };
 
     render() {
         let content = this.state.content;
@@ -63,12 +66,17 @@ class Profile extends Component {
                             <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="see" ? "-active" :"")}
                                  onClick={() => this.navigation("see")}>
                                 <i className="fas fa-fw fa-search fa-lg flh-1 mr-2"/>
-                                <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="dash.profile.see"/></span>
+                                <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.profile.see"/></span>
                             </div>
                             <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="edit" ? "-active" :"")}
                                  onClick={() => this.navigation("edit")}>
                                 <i className="fas fa-fw fa-user-edit fa-lg flh-1 mr-2"/>
-                                <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="dash.profile.edit"/></span>
+                                <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.profile.edit"/></span>
+                            </div>
+                            <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="files" ? "-active" :"")}
+                                 onClick={() => this.navigation("files")}>
+                                <i className="fas fa-fw fa-file-alt fa-lg flh-1 mr-2"/>
+                                <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.profile.files"/></span>
                             </div>
                         </div>
                     </div>
@@ -79,6 +87,7 @@ class Profile extends Component {
                         {profile ? "" : <Add {...this.props} onSuccess={this.createdProfile}/>}
                         {content === "see" && profile ? <See {...this.props} profile={profile} /> : ""}
                         {content === "edit" && profile ? <Edit {...this.props} profile={profile} onSuccess={this.editedProfile}/> : ""}
+                        {content === "files" && profile ? <Files {...this.props} profile={profile} onSuccess={this.changedPicture} /> : ""}
                     </div>
                 </div>
             </Fade>
