@@ -121,8 +121,8 @@ class Files extends Component {
             <Fade right cascade>
                 <div className="row justify-content-center align-items-center m-0 vh-30">
                     <div className="col-12 col-lg-3 p-0 text-center">
-                        <img src={"/profile/"+this.state.picture} className={"profile-pic pic-img mb-3 mb-lg-0 "+(hasPicture?"":"d-none")}/>
-                        <img src={"/profile/profile_default.png"} className={"profile-pic pic-img mb-3 mb-lg-0 "+(hasPicture?"d-none":"")}/>
+                        <img src={URL+"/files/profile/"+this.state.picture} className={"profile-pic pic-img mb-3 mb-lg-0 "+(hasPicture?"":"d-none")}/>
+                        <img src={URL+"/files/profile/profile_default.png"} className={"profile-pic pic-img mb-3 mb-lg-0 "+(hasPicture?"d-none":"")}/>
                     </div>
                     <div className="col-12 col-lg-9 p-0 text-left f-grey">
                         <p className={"fs-md fw-4 flh-1 mb-2 "+(hasPicture?"d-none":"")}><FormattedMessage id="staffdash.profile.files.photo.empty"/></p>
@@ -166,7 +166,7 @@ class Files extends Component {
                 <div className="row justify-content-center align-items-center m-0 vh-30">
                     <div className="col-12 col-lg-3 p-0 text-center f-primary">
                         <i className={"far fa-fw fa-file f-grey fa-6x flh-1 "+(hasCV?"d-none":"")}/>
-                        <a href={"/cv/"+this.state.cv} target={"_blank"} >
+                        <a href={URL+"/files/cv/"+this.state.cv} target={"_blank"} >
                             <i className={"far fa-fw fa-file-alt hvr-secondary fa-6x flh-1 "+(hasCV?"":"d-none")}/>
                         </a>
                     </div>

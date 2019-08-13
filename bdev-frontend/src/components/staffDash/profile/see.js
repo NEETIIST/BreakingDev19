@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {FormattedMessage} from "react-intl";
 import Fade from 'react-reveal/Fade';
+import URL from "../../../utils/requestsURL";
 
 class See extends Component {
     constructor(props) {
@@ -34,8 +35,8 @@ class See extends Component {
             <Fade right cascade>
             <div className="row justify-content-center align-items-center m-0 vh-20">
                 <div className="col-12 col-lg-3 p-0 text-center">
-                    <img src={"/profile/"+profile.picture} className={"profile-pic pic-img mb-3 mb-lg-0 "+(hasPicture?"":"d-none")}/>
-                    <img src={"/profile/profile_default.png"} className={"profile-pic pic-img mb-3 mb-lg-0 "+(hasPicture?"d-none":"")}/>
+                    <img src={URL+"/files/profile/"+profile.picture} className={"profile-pic pic-img mb-3 mb-lg-0 "+(hasPicture?"":"d-none")}/>
+                    <img src={URL+"/files/profile/profile_default.png"} className={"profile-pic pic-img mb-3 mb-lg-0 "+(hasPicture?"d-none":"")}/>
                 </div>
                 <div className="col-12 col-lg-9 p-0 text-left f-dark-grey">
                     <p className="fs-xl fw-7 flh-1 mb-2">
@@ -65,7 +66,7 @@ class See extends Component {
                             </a>
                         </div>
                         <div className={"col-6 col-lg-3 p-0 hvr-primary cp my-1 "+(profile.cv ? "d-flex":"d-none")}>
-                            <a href={"/cv/"+profile.cv} target={"_blank"}>
+                            <a href={URL+"/files/cv/"+profile.cv} target={"_blank"}>
                                 <i className="fas fa-fw fa-file-alt fa-lg mr-2 mt-1"/>
                                 <span className="fs-md fw-4 flh-1 mb-1"><FormattedMessage id="staffdash.profile.see.cv"/></span>
 

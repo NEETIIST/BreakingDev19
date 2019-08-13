@@ -218,7 +218,8 @@ router.post("/me/files/:target", verifyToken, (req, res) => {
     }
 
     const appRoot = require('app-root-path');
-    let dir = appRoot.path.substr(0, appRoot.path.lastIndexOf("/"))+"/bdev-frontend";
+    //let dir = appRoot.path.substr(0, appRoot.path.lastIndexOf("/"))+"/bdev-frontend";
+    let dir = appRoot;
 
     file.mv(dir+"/public/"+target+"/"+filename, function(err) {
         if (err) { console.log(err); return res.status(500).send(err); }

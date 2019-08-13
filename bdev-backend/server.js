@@ -37,6 +37,9 @@ app.use(speedLimiter);
 const fileUpload = require('express-fileupload');
 app.use(fileUpload());
 
+// Serve Static Files
+app.use('/files', express.static('public'))
+
 mongoose.connect('mongodb://127.0.0.1:27017/bdev', { useNewUrlParser: true });
 const connection = mongoose.connection;
 
