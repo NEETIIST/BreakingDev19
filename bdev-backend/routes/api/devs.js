@@ -52,6 +52,8 @@ router.post("/create", verifyToken, (req, res) => {
                 linkedin: req.body.linkedin,
                 food: req.body.food,
                 needsTeam: req.body.needsTeam,
+                cv: "",
+                picture: "",
                 hasTeam: false,
                 pending: false,
                 validated: false,
@@ -268,6 +270,70 @@ router.put("/_:username/cancelPayment", verifyToken, (req, res) => {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
         if (!dev) return res.status(404).send("No Dev Profile found for this username");
 
+        return res.status(200).send(dev);
+    });
+
+});
+
+
+// @route POST api/devs/me/files/:target
+// @desc Upload New File (CV or Profile Picture)
+// @access Own, user changes its own profile picture
+router.post("/me/files/:target", verifyToken, (req, res) => {
+
+    // TODO: TEST AFTER DEPLOYMENT
+    const target = req.params['target'];
+    let data;
+    if ( target !== "cv" && target !== "profile" ) return res.status(403).send("Not a valid Target");
+    if ( req.files === undefined ) return res.status(403).send("Didn't receive a file");
+    let file = req.files.file;
+
+    const uuidv1 = require('uuid/v1');
+    const filename = uuidv1()+"."+file.name.split(".")[1];   // Randomly Unique Generated To Prevent Scrapping
+
+    if ( target === "cv")
+    {
+        if( file.size > 10000000) return res.status(403).send("File too big");
+        if( !(file.mimetype==="application/pdf" || file.mimetype==="application/x-pdf" )) return res.status(403).send("Not a PDF File");
+        data = {"cv":filename};
+    }
+    else if ( target === "profile")
+    {
+        if( file.size > 3000000) return res.status(403).send("Image too big");
+        if( !(file.mimetype==="image/png" || file.mimetype==="image/jpg" || file.mimetype==="image/jpeg")) return res.status(403).send("Not an Image");
+        data = {"picture":filename};
+    }
+
+    const appRoot = require('app-root-path');
+    //let dir = appRoot.path.substr(0, appRoot.path.lastIndexOf("/"))+"/bdev-frontend";
+    let dir = appRoot;
+
+    file.mv(dir+"/public/"+target+"/"+filename, function(err) {
+        if (err) { console.log(err); return res.status(500).send(err); }
+
+        DevProfile.findOneAndUpdate({"username":req.username}, data, {new: true}, function (err, dev) {
+            if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
+            if (!dev) return res.status(404).send("No Dev Profile found for this username");
+            return res.status(200).send(dev);
+        });
+    });
+
+});
+
+// @route PUT api/devs/me/files/picture
+// @desc Remove current profile picture
+// @access Own, user changes its own profile picture
+router.put("/me/files/:target/remove", verifyToken, (req, res) => {
+
+    const target = req.params['target'];
+    if ( target !== "cv" && target !== "profile" ) return res.status(403).send("Not a valid Target");
+    let data;
+    if ( target === "cv" ) data = {"cv":""};
+    if ( target === "profile" ) data = {"profile":""};
+
+    DevProfile.findOneAndUpdate({"username":req.username}, data, {new: true}, function (err, dev) {
+        if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
+        if (!dev) return res.status(404).send("No Dev Profile found for this username");
         return res.status(200).send(dev);
     });
 

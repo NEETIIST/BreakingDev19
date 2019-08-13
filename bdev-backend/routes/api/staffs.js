@@ -200,7 +200,6 @@ router.post("/me/files/:target", verifyToken, (req, res) => {
     if ( req.files === undefined ) return res.status(403).send("Didn't receive a file");
     let file = req.files.file;
 
-    // TODO: Look for a better way to name files, or serve them from the backend
     const uuidv1 = require('uuid/v1');
     const filename = uuidv1()+"."+file.name.split(".")[1];   // Randomly Unique Generated To Prevent Scrapping
 

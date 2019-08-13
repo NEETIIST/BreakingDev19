@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Fade from 'react-reveal/Fade';
-import {FormattedMessage} from 'react-intl';
+import {FormattedMessage, injectIntl} from 'react-intl';
 import { BrowserRouter as Router, Route, Link, Switch, NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 import './sidebar.css';
 import Index from "../index/Index";
@@ -15,9 +17,10 @@ import Faqs from "../faqs/faqs";
 import Ideas from "../ideas/ideas";
 import Staff from "../staffTeam/staffTeam";
 
+
 class Sidebar extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             isOpen: false
         };
@@ -32,6 +35,9 @@ class Sidebar extends Component {
 
     render() {
         const show = this.state.isOpen ? "visible" : "hidden";
+        const { user } = this.props.auth;
+        let isAuth = (user.username!== undefined) ;
+
         return(
             <Router>
                 <div>
@@ -73,46 +79,21 @@ class Sidebar extends Component {
                                                         <i className="fas fa-home fa-lg py-2"></i>
                                                     </div>
                                                     <div className="col-9 text-left">
-                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt1"/></span>
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.homepage"/></span>
                                                     </div>
                                                 </div>
                                             </NavLink>
-                                            {/*
-                                            <NavLink activeClassName="sidebar-active" to="/dashboard">
+                                            <NavLink exact activeClassName="sidebar-active" to="/ideas">
                                                 <div
                                                     className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
                                                     <div className="col-3 text-center">
-                                                        <i className="fas fa-clipboard-list fa-lg py-2"></i>
+                                                        <i className="far fa-lightbulb fa-lg py-2"></i>
                                                     </div>
                                                     <div className="col-9 text-left">
-                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt2"/></span>
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.ideas"/></span>
                                                     </div>
                                                 </div>
                                             </NavLink>
-                                            <NavLink exact activeClassName="sidebar-active" to="/register">
-                                                <div
-                                                    className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
-                                                    <div className="col-3 text-center">
-                                                        <i className="fas fa-user fa-lg py-2"></i>
-                                                    </div>
-                                                    <div className="col-9 text-left">
-                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt3"/></span>
-                                                    </div>
-                                                </div>
-                                            </NavLink>
-                                            <NavLink exact activeClassName="sidebar-active" to="/register">
-                                                <div
-                                                    className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
-                                                    <div className="col-3 text-center">
-                                                        <i className="fas fa-users fa-lg py-2"></i>
-                                                    </div>
-                                                    <div className="col-9 text-left">
-                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt4"/></span>
-                                                    </div>
-                                                </div>
-                                            </NavLink>
-                                            */}
-                                            <hr className="f-white white"/>
                                             <NavLink exact activeClassName="sidebar-active" to="/faqs">
                                                 <div
                                                     className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
@@ -120,7 +101,56 @@ class Sidebar extends Component {
                                                         <i className="far fa-question-circle fa-lg py-2"></i>
                                                     </div>
                                                     <div className="col-9 text-left">
-                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt5"/></span>
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.faqs"/></span>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
+                                            <hr className="f-white white"/>
+                                            <NavLink activeClassName="sidebar-active" to="/login">
+                                                <div
+                                                    className={"row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt "+(isAuth?"d-none":"d-flex")}
+                                                    onClick={this.toggleSidebar}>
+                                                    <div className="col-3 text-center">
+                                                        <i className="fas fa-sign-in-alt fa-lg py-2"></i>
+                                                    </div>
+                                                    <div className="col-9 text-left">
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.login"/></span>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
+                                            <NavLink activeClassName="sidebar-active" to="/register">
+                                                <div
+                                                    className={"row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt "+(isAuth?"d-none":"d-flex")}
+                                                    onClick={this.toggleSidebar}>
+                                                    <div className="col-3 text-center">
+                                                        <i className="fas fa-user-plus fa-lg py-2"></i>
+                                                    </div>
+                                                    <div className="col-9 text-left">
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.register"/></span>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
+                                            <NavLink activeClassName="sidebar-active" to="/dashboard">
+                                                <div
+                                                    className={"row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt "+(user.role==="dev"?"d-flex":"d-none")}
+                                                    onClick={this.toggleSidebar}>
+                                                    <div className="col-3 text-center">
+                                                        <i className="fas fa-user-cog fa-lg py-2"></i>
+                                                    </div>
+                                                    <div className="col-9 text-left">
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.dashboard"/></span>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
+                                            <NavLink activeClassName="sidebar-active" to="/staffdash">
+                                                <div
+                                                    className={"row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt "+(user.role==="staff"?"d-flex":"d-none")}
+                                                    onClick={this.toggleSidebar}>
+                                                    <div className="col-3 text-center">
+                                                        <i className="fas fa-columns fa-lg py-2"></i>
+                                                    </div>
+                                                    <div className="col-9 text-left">
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.staffdash"/></span>
                                                     </div>
                                                 </div>
                                             </NavLink>
@@ -150,6 +180,7 @@ class Sidebar extends Component {
                                                 </div>
                                             </NavLink>
                                             */}
+                                            {/*
                                             <hr className="f-white white"/>
                                             <NavLink exact activeClassName="sidebar-active" to="/besponsor">
                                                 <div
@@ -162,6 +193,7 @@ class Sidebar extends Component {
                                                     </div>
                                                 </div>
                                             </NavLink>
+                                            */}
                                         </div>
                                     </div>
                                     <hr className="m-0"/>
@@ -198,7 +230,6 @@ class Sidebar extends Component {
 
                     <Route exact path="/besponsor" component={BeSponsor} />
                     <Route exact path="/faqs" component={Faqs} />
-
                     <Route exact path="/ideas" component={Ideas} />
 
                     <RestrictedRoute path="/login" component={Authentication} isLogin={true}/>
@@ -244,4 +275,15 @@ class Sidebar extends Component {
     }
 }
 
-export default Sidebar;
+staffDash.propTypes = {
+    //logoutUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+export default injectIntl(
+    connect(mapStateToProps, {  }, null, { forwardRef: true }
+    )(Sidebar));

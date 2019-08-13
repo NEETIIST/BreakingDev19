@@ -11,4 +11,5 @@ server/
 
 bdev-frontend/src/utils/requestsURL.js
 
-bdev-frontend/public/profile/
+bdev-backend/public/profile/
+bdev-backend/public/cv/

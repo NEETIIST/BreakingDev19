@@ -21,7 +21,7 @@ class Profile extends Component {
 
         this.createdProfile = this.createdProfile.bind(this);
         this.editedProfile = this.editedProfile.bind(this);
-        this.changedPicture = this.changedPicture.bind(this);
+        this.changedFiles = this.changedFiles.bind(this);
     }
 
     navigation = (content) => { this.setState(state => ({ content: content })); };
@@ -41,7 +41,7 @@ class Profile extends Component {
 
     createdProfile(profile){ setTimeout(() => { this.setState({ hasProfile: true, profile: profile, content:"see"});}, 3000)};
     editedProfile(profile){ setTimeout(() => { this.setState({ profile: profile, content:"see"});}, 2000)};
-    changedPicture(profile){ this.setState({ profile: profile}); };
+    changedFiles(profile){ this.setState({ profile: profile}); };
 
     render() {
         let content = this.state.content;
@@ -87,7 +87,7 @@ class Profile extends Component {
                         {profile ? "" : <Add {...this.props} onSuccess={this.createdProfile}/>}
                         {content === "see" && profile ? <See {...this.props} profile={profile} /> : ""}
                         {content === "edit" && profile ? <Edit {...this.props} profile={profile} onSuccess={this.editedProfile}/> : ""}
-                        {content === "files" && profile ? <Files {...this.props} profile={profile} onSuccess={this.changedPicture} /> : ""}
+                        {content === "files" && profile ? <Files {...this.props} profile={profile} onSuccess={this.changedFiles} /> : ""}
                     </div>
                 </div>
             </Fade>
