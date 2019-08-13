@@ -52,15 +52,22 @@ class staffDash extends Component {
         this.props.history.push('/login');
     };
 
+    componentDidMount() {
+        setTimeout(function(){
+            // This hides the address bar:
+            window.scrollTo(0, 1);
+        }, 0);
+    }
+
 
     render() {
         const { user } = this.props.auth;
         const content =  this.state.content;
 
         return (
-            <div className="row justify-content-center align-items-start m-0 vh-100 very-light-grey">
+            <div className="row justify-content-center align-items-start m-0 very-light-grey dash-holder">
                 <div className="col-12 col-lg-2 p-0 align-self-center order-2 order-lg-1 dash-nav">
-                    <div className="row justify-content-center align-items-center m-0 pt-2 pt-lg-0 very-light-grey ">
+                    <div className="row justify-content-center align-items-start m-0 pt-2 pt-lg-0 very-light-grey">
                         <div className="col-2 col-lg-12 p-0 mb-0 mb-lg-1" onClick={() => this.navigation("feed")}>
                             <NavLink activeClassName="dash-opt-active" exact to="/staffDash/feed">
                                 <div
@@ -143,12 +150,15 @@ class staffDash extends Component {
                     </div>
                 </div>
                 <div className="col-11 col-lg-10 p-0 order-1 order-lg-2">
-                    {this.state.content === "feed" ? <Feed {...this.props} navigation={this.navigation}/> : ""}
-                    {this.state.content === "profile" ? <Profile {...this.props}/> : ""}
-                    {this.state.content === "devs" ? <Devs {...this.props} /> : ""}
-                    {this.state.content === "teams" ? "Team List" : ""}
-                    {this.state.content === "ideas" ? <Ideas {...this.props}/> : ""}
-                    <div className="spacer-8 d-lg-none" />
+                    <div className="row justify-content-center align-items-start m-0 pt-2 pt-lg-0 very-light-grey dash-content-holder">
+                        <div className="col-12 col-lg-11 p-0">
+                        {this.state.content === "feed" ? <Feed {...this.props} navigation={this.navigation}/> : ""}
+                        {this.state.content === "profile" ? <Profile {...this.props}/> : ""}
+                        {this.state.content === "devs" ? <Devs {...this.props} /> : ""}
+                        {this.state.content === "teams" ? "Team List" : ""}
+                        {this.state.content === "ideas" ? <Ideas {...this.props}/> : ""}
+                        </div>
+                    </div>
                 </div>
             </div>
         );

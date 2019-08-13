@@ -23,6 +23,14 @@
     border-left: 0px solid #f0f0f0 ;
 }
 
+/* Dashboard Organization */
+.dash-holder{
+    min-height: calc(var(--vh, 1vh) * 100);
+}
+.dash-content-holder{
+    overflow:hidden;
+}
+
 @media (max-width: 767.99px){
     .dash-nav{
         position: fixed;
@@ -39,6 +47,41 @@
     .dash-opt-active{
         border-bottom: 4px solid currentColor;
         border-left: 0px solid white;
+    }
+}
+.dash-title{
+    min-height:  calc(var(--vh, 1vh) * 10);
+    max-height:  calc(var(--vh, 1vh) * 10);
+}
+
+.dash-subnav{
+    min-height:  calc(var(--vh, 1vh) * 10);
+    max-height:  calc(var(--vh, 1vh) * 10);
+
+}
+
+.dash-content {
+    min-height:  calc(var(--vh, 1vh) * 80);
+    max-height:  calc(var(--vh, 1vh) * 80);
+    overflow-Y: auto;
+    overflow-X: hidden;
+}
+
+@media (max-width: 767.99px) {
+    .dash-subnav{
+        min-height:  calc(var(--vh, 1vh) * 8);
+        max-height:  calc(var(--vh, 1vh) * 8);
+        overflow-x: scroll;
+        white-space: nowrap;
+        display: block;
+    }
+    .dash-content {
+        min-height:  calc(var(--vh, 1vh) * 72);
+        max-height:  calc(var(--vh, 1vh) * 72);
+    }
+    .dash-subnav > .col-auto{
+        display: inline-block;
+        float: none;
     }
 }
 

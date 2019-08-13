@@ -144,50 +144,49 @@ class Devs extends Component {
         let isDetail = this.state.isDetail;
         let profile =  this.state.profile;
         let content = this.state.content;
-        let remainingSize = ( isDetail ? "90":"80");
 
         return(
-            <Fade bottom cascade>
-                <div className="row justify-content-center align-content-center m-0 vh-10">
-                    <div className="col-11 col-lg-11 p-0 text-right f-dark-grey">
-                        <div className="spacer-2 mb-2" />
+            <Fade right cascade>
+                <div className="row justify-content-center align-content-center m-0 dash-title">
+                    <div className="col-12 col-lg-11 p-0 text-right f-dark-grey">
+                        <div className="spacer-2 mb-2 d-none d-lg-block" />
                         <span className="fs-lg fw-7 flh-1"><FormattedMessage id="staffdash.devs.title"/></span>
-                        <i className="fas fa-fw fa-user-friends fa-lg flh-1 ml-2" />
+                        <i className="fas fa-fw fa-user-friends fa-lg flh-1 ml-2"></i>
                         <hr className="m-0 mt-3"/>
                     </div>
                 </div>
-                <div className={"row justify-content-center align-content-center m-0 vh-10 "+(isDetail?"d-none":"d-flex")} >
-                    <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="all" ? "-active" :"")}
+                <div className={"row justify-content-center align-content-start py-lg-3 p-0 m-0 dash-subnav no-scrollbar "+(isDetail?"d-none":"")} >
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 text-center cp dash-subopt"+ (content==="all" ? "-active" :"")}
                          onClick={() => this.navigation("all")}>
                         <i className="fas fa-fw fa-list fa-lg flh-1 mr-2"/>
-                        <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.devs.all"/></span>
+                        <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.devs.all"/></span>
                     </div>
-                    <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="validated" ? "-active" :"")}
-                         onClick={() => this.navigation("validated")}>
-                        <i className="fas fa-fw fa-check fa-lg flh-1 mr-2"/>
-                        <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.devs.all.validated"/></span>
-                    </div>
-                    <div className={"col col-lg-3 p-2 text-center cp dash-subopt"+ (content==="pending" ? "-active" :"")}
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 text-center cp dash-subopt"+ (content==="pending" ? "-active" :"")}
                          onClick={() => this.navigation("pending")}>
                         <i className="fas fa-fw fa-gavel fa-lg flh-1 mr-2"/>
-                        <span className="fs-md fw-4 flh-1 mb-0 mr-2 d-none d-lg-inline"><FormattedMessage id="staffdash.devs.all.pending"/></span>
+                        <span className="fs-md fw-4 flh-1 mb-0 mr-2"><FormattedMessage id="staffdash.devs.all.pending"/></span>
                         <span className={"fs-xs fw-7 flh-1 mb-0 count-notification py-1 px-2 "+(this.pendingDevsCount()===0?"d-none":"d-inline")}>{this.pendingDevsCount()}</span>
                     </div>
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 text-center cp dash-subopt"+ (content==="validated" ? "-active" :"")}
+                         onClick={() => this.navigation("validated")}>
+                        <i className="fas fa-fw fa-check fa-lg flh-1 mr-2"/>
+                        <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.devs.all.validated"/></span>
+                    </div>
                 </div>
-                <div className={"row justify-content-center align-content-start m-0 vh-"+remainingSize} style={{maxHeight:remainingSize+"vh", overflowX: "hidden", overFlowY: "scroll"}}>
-                    <div className="col-11 p-0">
+                <div className={"row justify-content-center align-content-start m-0 dash-content"}>
                         {!this.state.ready ?
-                            <div className={"row justify-content-center align-content-center vh-40"}>
-                                <div className={"col-12 p-0 text-center f-grey"}>
-                                    <i className="fas fa-fw fa-circle-notch fa-spin fa-3x mb-3" />
-                                    <p className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="forms.loading"/></p>
+                            <div className="col-12 p-0">
+                                <div className={"row justify-content-center align-content-center vh-40"}>
+                                    <div className={"col-12 p-0 text-center f-grey"}>
+                                        <i className="fas fa-fw fa-circle-notch fa-spin fa-3x mb-3" />
+                                        <p className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="forms.loading"/></p>
+                                    </div>
                                 </div>
                             </div>
                             : ""}
                         {isDetail && this.state.ready ? "" : <div className="spacer-4" /> }
-                    </div>
                     {isDetail && this.state.ready ?
-                        <div className="col-11 p-0">
+                        <div className="col-12 p-0">
                             <Dev {...this.props} profile={profile}
                                  methods={{
                                      seeList: () => this.seeList(),
@@ -196,7 +195,8 @@ class Devs extends Component {
                                      confirmPayment: (profile) => this.confirmPayment(profile),
                                      cancelPayment: (profile) => this.cancelPayment(profile),
                                  }}/>
-                        </div> : this.showDevs() }
+                        </div>
+                        : this.showDevs() }
                 </div>
             </Fade>
         );

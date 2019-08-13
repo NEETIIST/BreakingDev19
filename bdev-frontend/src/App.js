@@ -50,6 +50,9 @@ if (localStorage.jwtToken) {
     }
 }
 
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
 class App extends Component {
     render() {
         return (

@@ -38,28 +38,28 @@ class Dev extends Component {
         // TODO: Implement system to remove a user files
         return(
             <Fade right cascade>
-                <div className={"row justify-content-center align-content-center m-0 vh-10"} >
-                    <div className={"col-2 col-lg-4 p-2 text-left cp hvr-primary"}
+                <div className={"row justify-content-center align-content-start py-lg-3 p-0 m-0 mb-2 dash-subnav no-scrollbar f-grey"} >
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 text-center cp hvr-primary"}
                          onClick={() => methods.seeList()}>
                         <i className="fas fa-fw fa-chevron-left fa-lg flh-1 mr-2"/>
-                        <span className="fs-md fw-4 flh-1 mb-0 d-none d-lg-inline"><FormattedMessage id="staffdash.devs.goback"/></span>
+                        <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.devs.goback"/></span>
                     </div>
-                    <div className={"col-5 col-lg-4 p-2 text-center cp hvr-green "+(profile.validated?"d-none":"d-flex")}
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 text-center cp hvr-green dash-subopt "+(profile.validated?"d-none":"")}
                          onClick={() => methods.validateProfile(profile)}>
                         <i className="fas fa-fw fa-user-check fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.devs.validate"/></span>
                     </div>
-                    <div className={"col-5 col-lg-4 p-2 text-center cp hvr-red "+(!profile.validated?"d-none":"d-flex")}
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 text-center cp hvr-red "+(!profile.validated?"d-none":"")}
                          onClick={() => methods.invalidateProfile(profile)}>
                         <i className="fas fa-fw fa-user-times fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.devs.invalidate"/></span>
                     </div>
-                    <div className={"col-5 col-lg-4 p-2 text-center cp hvr-green "+(profile.payment?"d-none":"d-flex")}
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 text-center cp hvr-green "+(profile.payment?"d-none":"")}
                          onClick={() => methods.confirmPayment(profile)}>
                         <i className="fas fa-fw fa-euro-sign fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.devs.confirmPayment"/></span>
                     </div>
-                    <div className={"col-5 col-lg-4 p-2 text-center cp hvr-red "+(!profile.payment?"d-none":"d-flex")}
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 text-center cp hvr-red "+(!profile.payment?"d-none":"")}
                          onClick={() => methods.cancelPayment(profile)}>
                         <i className="fas fa-fw fa-times fa-lg flh-1"/>
                         <i className="fas fa-euro-sign fa-lg flh-1 mr-2"/>
@@ -67,9 +67,7 @@ class Dev extends Component {
                     </div>
 
                 </div>
-                <hr className={"mt-0 mb-2"} />
-                <div className={"spacer-2"} />
-                <div className="row justify-content-center align-items-center m-0 vh-20">
+                <div className="row justify-content-center align-items-start m-0">
                     <div className="col-12 col-lg-3 p-0 text-center">
                         <img src={URL+"/files/profile/"+profile.picture} className={"profile-pic pic-img mb-3 mb-lg-0 "+(hasPicture?"":"d-none")}/>
                         <img src={URL+"/files/profile/profile_default.png"} className={"profile-pic pic-img mb-3 mb-lg-0 "+(hasPicture?"d-none":"")}/>
@@ -163,7 +161,6 @@ class Dev extends Component {
                         <span className="fs-md fw-4 flh-1 mb-0">{profile.food}</span>
                     </div>
                 </div>
-                <div className={"spacer-2"} />
             </Fade>
         );
 

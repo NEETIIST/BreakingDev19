@@ -53,6 +53,7 @@ a:visited { text-decoration: none !important; color:inherit; }
 /* Viewports */
 .vh-100 { min-height: 100vh ; }
 .vh-95 { min-height: 95vh ; }
+.vh-92 { min-height: 92vh ; }
 .vh-90 { min-height: 90vh ; }
 .vh-87 { min-height: 87vh ; }
 .vh-85 { min-height: 85vh ; }

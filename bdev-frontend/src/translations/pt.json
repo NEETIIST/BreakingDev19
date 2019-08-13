@@ -277,6 +277,7 @@
   "dash.profile.see.pending": "Validação Pendente",
   "dash.profile.see.paymentConfirmed": "Pagamento Confirmado",
   "dash.profile.see.skills": "Estes são alguns dos meus skills: ",
+  "dash.profile.see.cv": "Curriculum Vitae",
   "dash.profile.validate.info1": "Já com todos os teus dados preenchidos, chegou a hora de pedires à organização para validar os teus dados. Só assim poderás criar ou juntar-te a uma equipa.",
   "dash.profile.validate.info2": "Depois de fazeres o teu pedido de validação, a organização vai verificar se os teus dados estão corretos e validar o teu perfil. Este processo é bastante rápido, devendo durar menos de 24 horas. Assim que estiver concluído vais receber no teu email um alerta (pode ir parar à tua caixa de spam).",
   "dash.profile.validate.info3": "Atenção, depois de pedires a validação do teu perfil já não vais poder alterar alguns dados pessoais como o teu Nome e Idade, entre outros. Podes sempre cancelar o teu pedido de validação, mas quando fores confirmado já não podes cancelar.",
