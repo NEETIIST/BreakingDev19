@@ -188,27 +188,42 @@ router.get("/overview", verifyToken, (req, res) => {
 });
 
 
-// @route POST api/staff/me/upload/picture
-// @desc Upload New Admin Profile Picture
+// @route POST api/staff/me/files/:target
+// @desc Upload New File (CV or Profile Picture)
 // @access Own, user changes its own profile picture
-router.post("/me/upload/picture", verifyToken, (req, res) => {
+router.post("/me/files/:target", verifyToken, (req, res) => {
 
-    // TEST AFTER DEPLOYMENT
+    // TODO: TEST AFTER DEPLOYMENT
+    const target = req.params['target'];
+    let data;
+    if ( target !== "cv" && target !== "profile" ) return res.status(403).send("Not a valid Target");
+    if ( req.files === undefined ) return res.status(403).send("Didn't receive a file");
+    let file = req.files.file;
 
-    let imageFile = req.files.file;
-    if( imageFile.size > 3000000) return res.status(403).send("Image too big");
-    if( !(imageFile.mimetype==="image/png" || imageFile.mimetype==="image/jpg" || imageFile.mimetype==="image/jpeg")) return res.status(403).send("Not an Image");
+    // TODO: Look for a better way to name files, or serve them from the backend
+    const uuidv1 = require('uuid/v1');
+    const filename = uuidv1()+"."+file.name.split(".")[1];   // Randomly Unique Generated To Prevent Scrapping
+
+    if ( target === "cv")
+    {
+        if( file.size > 10000000) return res.status(403).send("File too big");
+        if( !(file.mimetype==="application/pdf" || file.mimetype==="application/x-pdf" )) return res.status(403).send("Not a PDF File");
+        data = {"cv":filename};
+    }
+    else if ( target === "profile")
+    {
+        if( file.size > 3000000) return res.status(403).send("Image too big");
+        if( !(file.mimetype==="image/png" || file.mimetype==="image/jpg" || file.mimetype==="image/jpeg")) return res.status(403).send("Not an Image");
+        data = {"picture":filename};
+    }
 
     const appRoot = require('app-root-path');
     let dir = appRoot.path.substr(0, appRoot.path.lastIndexOf("/"))+"/bdev-frontend";
 
-    const uuidv1 = require('uuid/v1');
-    const filename = uuidv1()+"."+imageFile.name.split(".")[1];   // Randomly Unique Generated To Prevent Scrapping
-
-    imageFile.mv(dir+"/public/profile/"+filename, function(err) {
+    file.mv(dir+"/public/"+target+"/"+filename, function(err) {
         if (err) { console.log(err); return res.status(500).send(err); }
 
-        AdminProfile.findOneAndUpdate({"username":req.username}, {picture:filename}, {new: true}, function (err, adm) {
+        AdminProfile.findOneAndUpdate({"username":req.username}, data, {new: true}, function (err, adm) {
             if (err) return res.status(500).send("There was a problem finding the Staff Profile.");
             if (!adm) return res.status(404).send("No Staff Profile found for this username");
             return res.status(200).send(adm);
@@ -217,12 +232,18 @@ router.post("/me/upload/picture", verifyToken, (req, res) => {
 
 });
 
-// @route Put api/staff/me/upload/picture
+// @route Put api/staff/me/files/picture
 // @desc Remove current profile picture
 // @access Own, user changes its own profile picture
-router.put("/me/upload/picture/remove", verifyToken, (req, res) => {
+router.put("/me/files/:target/remove", verifyToken, (req, res) => {
 
-    AdminProfile.findOneAndUpdate({"username":req.username}, {picture:""}, {new: true}, function (err, adm) {
+    const target = req.params['target'];
+    if ( target !== "cv" && target !== "profile" ) return res.status(403).send("Not a valid Target");
+    let data;
+    if ( target === "cv" ) data = {"cv":""};
+    if ( target === "profile" ) data = {"profile":""};
+
+    AdminProfile.findOneAndUpdate({"username":req.username}, data, {new: true}, function (err, adm) {
         if (err) return res.status(500).send("There was a problem finding the Staff Profile.");
         if (!adm) return res.status(404).send("No Staff Profile found for this username");
         return res.status(200).send(adm);

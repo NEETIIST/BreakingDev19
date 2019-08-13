@@ -8,3 +8,7 @@ bdev-backend/package-lock.json
 bdev-frontend/package-lock.json
 
 server/
+
+bdev-frontend/src/utils/requestsURL.js
+
+bdev-frontend/public/profile/

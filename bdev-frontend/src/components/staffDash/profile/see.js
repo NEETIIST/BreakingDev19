@@ -46,22 +46,29 @@ class See extends Component {
                         {profile.college} - {profile.course}
                     </p>
                     <div className="row justify-content-start align-items-center m-0 mt-3">
-                        <div className={"col p-0 hvr-primary cp "+(profile.github ? "d-flex":"d-none")}>
+                        <div className={"col-6 col-lg-3 p-0 hvr-primary cp my-1 "+(profile.github ? "d-flex":"d-none")}>
                             <a href={"https://github.com/"+profile.github} target={"_blank"}>
                                 <i className="fab fa-fw fa-github fa-lg mr-2 mt-1"/>
                                 <span className="fs-md fw-4 flh-1 mb-1">{profile.github}</span>
                             </a>
                         </div>
-                        <div className={"col p-0 hvr-primary cp "+(profile.linkedin ? "d-flex":"d-none")}>
+                        <div className={"col-6 col-lg-3 p-0 hvr-primary cp my-1 "+(profile.linkedin ? "d-flex":"d-none")}>
                             <a href={"https://www.linkedin.com/in/"+profile.linkedin} target={"_blank"}>
                                 <i className="fab fa-fw fa-linkedin fa-lg mr-2 mt-1"/>
                                 <span className="fs-md fw-4 flh-1 mb-1">{profile.linkedin}</span>
                             </a>
                         </div>
-                        <div className={"col p-0 hvr-primary cp "+(profile.twitter ? "d-flex":"d-none")}>
+                        <div className={"col-6 col-lg-3 p-0 hvr-primary cp my-1 "+(profile.twitter ? "d-flex":"d-none")}>
                             <a href={"https://twitter.com/"+profile.twitter} target={"_blank"}>
                                 <i className="fab fa-fw fa-twitter fa-lg mr-2 mt-1"/>
                                 <span className="fs-md fw-4 flh-1 mb-1">{profile.twitter}</span>
+                            </a>
+                        </div>
+                        <div className={"col-6 col-lg-3 p-0 hvr-primary cp my-1 "+(profile.cv ? "d-flex":"d-none")}>
+                            <a href={"/cv/"+profile.cv} target={"_blank"}>
+                                <i className="fas fa-fw fa-file-alt fa-lg mr-2 mt-1"/>
+                                <span className="fs-md fw-4 flh-1 mb-1"><FormattedMessage id="staffdash.profile.see.cv"/></span>
+
                             </a>
                         </div>
                     </div>
