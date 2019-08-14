@@ -23,7 +23,7 @@ router.post("/register", (req, res) => {
     if (!isValid) {
         return res.status(400).json(errors);
     }
-    User.findOne({ username: req.body.username }).then(user => {
+    User.findOne({ username: req.body.username.toLowerCase() }).then(user => {
         if (user) {
             //console.log(user);
             return res.status(403).json({ username_inuse: "Username already in use" });
@@ -37,7 +37,7 @@ router.post("/register", (req, res) => {
                 if ( req.body.access_code !== keys.adminPass )
                     return res.status(401).json({ code_wrong: "Wrong Access Code" });
             const newUser = new User({
-                username: req.body.username,
+                username: req.body.username.toLowerCase(),
                 email: req.body.email,
                 password: req.body.password,
                 role: req.body.role,

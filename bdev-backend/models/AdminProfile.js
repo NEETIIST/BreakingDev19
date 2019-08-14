@@ -6,7 +6,8 @@ const AdminProfileSchema = new Schema({
     username: {
         type: String,
         required: true,
-        immutable: true
+        immutable: true,
+        unique: true,
     },
     name: {
         type: String,

@@ -75,6 +75,13 @@ class Profile extends Component {
                         <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.profile.files"/></span>
                     </div>
                 </div>
+                <div className={"row justify-content-center align-content-start m-0 dash-content"}>
+                    <div className="col-12 p-0">
+                        <div className="spacer-4" />
+
+
+                    </div>
+                </div>
             </Fade>
         );
 

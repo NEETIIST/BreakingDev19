@@ -54,7 +54,7 @@ router.post("/create", verifyToken, (req, res) => {
                 needsTeam: req.body.needsTeam,
                 cv: "",
                 picture: "",
-                hasTeam: false,
+                team: 0,
                 pending: false,
                 validated: false,
                 payment: false,
@@ -109,6 +109,10 @@ router.put("/me/edit", verifyToken, (req, res) => {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
         if (!dev) return res.status(404).send("No Dev Profile found for this username");
 
+        // Fields that the user can't update on his own
+
+        // Fields that can't be changed after
+        delete req.body.validated; delete req.body.pending; delete req.body.payment; delete req.body.team; delete req.body.username;
         if ( dev.validated || dev.pending ){ req.body.name=dev.name; req.body.age=dev.age; req.body.phone=dev.phone; req.body.college=dev.college; req.body.course=dev.course; }
 
         Object.assign(dev, req.body);

@@ -11,6 +11,7 @@ const devs = require("./routes/api/devs");
 const admins = require("./routes/api/staffs");
 const emails = require("./routes/api/emails");
 const ideas = require("./routes/api/ideas");
+const teams = require("./routes/api/teams");
 
 app.use(cors());
 app.use(bodyParser.urlencoded({
@@ -62,6 +63,7 @@ app.use("/api/devs", devs);
 app.use("/api/staff", admins);
 app.use("/api/ideas", ideas);
 app.use("/api/emails", emails);
+app.use("/api/teams", teams);
 
 
 
