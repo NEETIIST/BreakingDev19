@@ -101,14 +101,176 @@ router.post("/create", verifyToken, (req, res) => {
 
 });
 
+
+// @route GET api/teams/own/
+// @desc Get Own Team Info
+// @permission Users that are enroled in a team ( captain or member )
+router.get("/own", verifyToken, (req, res) => {
+
+    DevProfile.findOne({"username":req.username}, function (err, dev) {
+        if (err) return res.status(500).send("There was a problem finding the Dev Profile to create a Team.");
+        if (!dev) return res.status(404).send("No Dev Profiles was found for this user.");
+        if (dev.team === 0) return res.status(404).send("User hasn't joined a team");
+
+        Team.findOne({"disbanded":false, $or:[{captain:req.username},{members:req.username}]}, Team.membersInfo, function (err, team) {
+            if (err) return res.status(500).send("There was a problem finding the Team");
+            if (!team) return res.status(404).send("No team was found for this user");
+
+            return res.status(200).send(team);
+        });
+    });
+
+});
+
+
+
+// @route PUT api/teams/own/edit
+// @desc Allows Editing the user own team
+// @permission Only the team captain can edit
+router.put("/own/edit", verifyToken, (req, res) => {
+
+    // Form validation
+    const { errors, isValid } = validateTeamInput(req.body);
+    // Check validation
+    if (!isValid) { return res.status(400).json(errors); }
+
+    DevProfile.findOne({"username":req.username}, function (err, dev) {
+        if (err) return res.status(500).send("There was a problem finding the Dev Profile to create a Team.");
+        if (!dev) return res.status(404).send("No Dev Profiles was found for this user.");
+        if (dev.team === 0) return res.status(404).send("User hasn't joined a team");
+
+        Team.findOne({"disbanded":false, number: dev.team }, Team.membersInfo, function (err, team) {
+            if (err) return res.status(500).send("There was a problem finding the Team");
+            if (!team) return res.status(404).send("No team was found with the user information");
+
+            // TODO: If team is validated don't allow editing of some fields
+
+            // Delete all fields in the request, except the ones that can be edited (prevents adding unverified fields)
+            for ( field in req.body ){ if(Team.allowEdit[field] === undefined ) delete req.body[field]; }
+
+            // Fields that can't be changed after
+            //delete req.body.validated; delete req.body.pending; delete req.body.payment; delete req.body.team; delete req.body.username;
+            //if ( dev.validated || dev.pending ){ req.body.name=dev.name; req.body.age=dev.age; req.body.phone=dev.phone; req.body.college=dev.college; req.body.course=dev.course; }
+
+            Object.assign(team, req.body );
+            team.save()
+                .then(team => { return res.status(200).send(team); })
+                .catch(err => console.log(err));
+        });
+    });
+
+});
+
+// @route PUT api/teams/_:number/join
+// @desc Allows User to join a team
+// @permission Every Validated User that is not on a team already can join
+router.put("/_:number/join", verifyToken, (req, res) => {
+
+    if ( req.role !== "dev" ){ return res.status(403).send("Only Devs can join Teams"); }
+
+    DevProfile.findOne({"username":req.username}, function (err, dev) {
+        if (err) return res.status(500).send("There was a problem finding the Dev Profile to create a Team.");
+        if (!dev) return res.status(404).send("No Dev Profiles was found for this user.");
+
+        console.log(req.username);
+
+        if ( !dev.validated ) return res.status(403).send("Only Validated Devs can join Teams");
+        if ( dev.team !== 0 ) return res.status(403).send("User already is on a Team");
+
+        Team.findOne({"disbanded":false, number:req.params['number']}, function (err, team) {
+            if (err) return res.status(500).send("There was a problem finding the Team");
+            if (!team) return res.status(404).send("No active team was found for this number");
+
+            if ( req.body.password !== team.password ) return res.status(403).send("Wrong Password");
+
+            team.members.push(req.username);
+            team.save()
+                .then( team => {
+                    Object.assign(dev, { team: team.number });
+                    console.log(team);
+                    console.log(dev);
+                    dev .save()
+                        .then(dev => { return res.status(200).send(team); })
+                        .catch(err => console.log(err));
+                })
+                .catch(err => console.log(err));
+        });
+
+    });
+
+});
+
+
+// @route PUT api/teams/own/remove/_username
+// @desc Removes Member From Team
+// @permission Only the Team Captain can remove other members
+router.put("/own/remove/_:username", verifyToken, (req, res) => {
+
+    Team.findOne({"disbanded":false, captain:req.username}, function (err, team) {
+        if (err) return res.status(500).send("There was a problem finding the Team");
+        if (!team) return res.status(404).send("No active team was found with this user as captain");
+
+        targetUser = req.params['username'];
+
+        let newMembers = team.members;
+        let index = newMembers.indexOf(targetUser);
+        if (index !== -1) { newMembers.splice(index, 1);}
+        else return res.status(404).send("No user on your team has the requested username");
+
+        team.save()
+            .then( team => {
+                DevProfile.findOneAndUpdate({"username":targetUser}, {team:0}, function (err, dev) {
+                    if (err) return res.status(500).send("There was a problem finding the Dev Profile to remove him from the Team.");
+                    if (!dev) return res.status(404).send("No Dev Profile was found for this user.");
+
+                    return res.status(200).send(team);
+                });
+            })
+            .catch(err => console.log(err));
+    });
+
+});
+
+
+// @route PUT api/teams/own/disband
+// @desc Disbands Team
+// @permission Only the Team Captain can disband the team, after removing every member
+router.put("/own/disband", verifyToken, (req, res) => {
+
+    Team.findOne({"disbanded":false, captain:req.username}, function (err, team) {
+        if (err) return res.status(500).send("There was a problem finding the Team");
+        if (!team) return res.status(404).send("No active team was found with this user as captain");
+
+        if (team.members.length !== 0) return res.status(403).send("You must remove every member before disbanding the team");
+
+        team.disbanded = true;
+        team.save()
+            .then( team => {
+                DevProfile.findOneAndUpdate({"username":req.username}, {team:0}, {new:true}, function (err, dev) {
+                    if (err) return res.status(500).send("There was a problem finding the Dev Profile to remove him from the Team.");
+                    if (!dev) return res.status(404).send("No Dev Profile was found for this user.");
+
+                    return res.status(200).send(dev);
+                });
+            })
+            .catch(err => console.log(err));
+    });
+
+});
+
+
+
 /* TODO Routes:
-    - Edit Team
-    - Disband Team
+    - Edit Team (DONE)
+    - Add Member / Join Team (DONE)
+    - Remove Member (DONE)
+    - Leave and Disband Team (DONE)
+    - Leave Team
     - Request Validation
     - Validate Team
-    - Add Member
-    - Remove Member
     - Reset Password (?)
+    - Invite Members (?)
+
 
 */
 
