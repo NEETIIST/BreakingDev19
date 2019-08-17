@@ -235,17 +235,23 @@ router.put("/own/disband", verifyToken, (req, res) => {
         if ( team.validated ) return res.status(403).send("Team is already Validated.");
         if (team.members.length !== 0) return res.status(403).send("You must remove every member before disbanding the team");
 
-        team.disbanded = true;
-        team.save()
-            .then( team => {
-                DevProfile.findOneAndUpdate({"username":req.username}, {team:0}, DevProfile.ownerInfo, {new:true}, function (err, dev) {
-                    if (err) return res.status(500).send("There was a problem finding the Dev Profile to remove him from the Team.");
-                    if (!dev) return res.status(404).send("No Dev Profile was found for this user.");
+        DevProfile.findOne({"username":req.username}, DevProfile.ownerInfo, function (err, dev) {
+            if (err) return res.status(500).send("There was a problem finding the Dev Profile to remove him from the Team.");
+            if (!dev) return res.status(404).send("No Dev Profile was found for this user.");
 
-                    return res.status(200).send(dev);
-                });
-            })
-            .catch(err => console.log(err));
+            team.disbanded = true;
+            team.save()
+                .then( team => {
+                    dev.team = 0;
+                    dev .save()
+                        .then(dev => { return res.status(200).send(dev); })
+                        .catch(err => console.log(err));
+                })
+                .catch(err => console.log(err));
+
+        });
+
+
     });
 
 });
@@ -262,17 +268,22 @@ router.put("/own/leave", verifyToken, (req, res) => {
 
         if ( team.validated ) return res.status(403).send("Team is already Validated.");
 
-        team.members.splice(team.members.indexOf(req.username), 1);
-        team.save()
-            .then( team => {
-                DevProfile.findOneAndUpdate({"username":req.username}, {team:0}, DevProfile.ownerInfo, {new:true}, function (err, dev) {
-                    if (err) return res.status(500).send("There was a problem finding the Dev Profile to remove him from the Team.");
-                    if (!dev) return res.status(404).send("No Dev Profile was found for this user.");
+        DevProfile.findOne({"username":req.username}, DevProfile.ownerInfo, function (err, dev) {
+            if (err) return res.status(500).send("There was a problem finding the Dev Profile to remove him from the Team.");
+            if (!dev) return res.status(404).send("No Dev Profile was found for this user.");
 
-                    return res.status(200).send(dev);
-                });
-            })
-            .catch(err => console.log(err));
+            team.members.splice(team.members.indexOf(req.username), 1);
+            team.save()
+                .then( team => {
+                    dev.team = 0;
+                    dev .save()
+                        .then(dev => { return res.status(200).send(dev); })
+                        .catch(err => console.log(err));
+                })
+                .catch(err => console.log(err));
+
+        });
+
     });
 });
 

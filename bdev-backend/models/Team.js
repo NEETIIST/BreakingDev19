@@ -16,7 +16,7 @@ const TeamSchema = new Schema({
     category: {
         type: String,
         required: true,
-        allowedValues: ["web","games"],
+        allowedValues: ["Web","Games"],
     },
     proj_name: {
         type: String,

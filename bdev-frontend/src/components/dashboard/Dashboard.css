@@ -112,3 +112,13 @@
     color: #257183 !important;
     border-bottom: 2px solid #257183;
 }
+
+
+.dash-team-member {
+    border: 2px solid #257183;
+    border-radius: 0.5em;
+}
+
+.dash-team-member > .own {
+
+}
