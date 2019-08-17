@@ -134,29 +134,19 @@ router.put("/own/edit", verifyToken, (req, res) => {
     // Check validation
     if (!isValid) { return res.status(400).json(errors); }
 
-    DevProfile.findOne({"username":req.username}, function (err, dev) {
-        if (err) return res.status(500).send("There was a problem finding the Dev Profile to create a Team.");
-        if (!dev) return res.status(404).send("No Dev Profiles was found for this user.");
-        if (dev.team === 0) return res.status(404).send("User hasn't joined a team");
+    Team.findOne({"disbanded":false, captain: req.username }, Team.membersInfo, function (err, team) {
+        if (err) return res.status(500).send("There was a problem finding the Team");
+        if (!team) return res.status(404).send("No team was found with this user as captain");
 
-        Team.findOne({"disbanded":false, number: dev.team }, Team.membersInfo, function (err, team) {
-            if (err) return res.status(500).send("There was a problem finding the Team");
-            if (!team) return res.status(404).send("No team was found with the user information");
+        if ( team.validated ) return res.status(403).send("Team is already Validated");
 
-            // TODO: If team is validated don't allow editing of some fields
+        // Delete all fields in the request, except the ones that can be edited (prevents adding unverified fields)
+        for ( field in req.body ){ if(Team.allowEdit[field] === undefined ) delete req.body[field]; }
 
-            // Delete all fields in the request, except the ones that can be edited (prevents adding unverified fields)
-            for ( field in req.body ){ if(Team.allowEdit[field] === undefined ) delete req.body[field]; }
-
-            // Fields that can't be changed after
-            //delete req.body.validated; delete req.body.pending; delete req.body.payment; delete req.body.team; delete req.body.username;
-            //if ( dev.validated || dev.pending ){ req.body.name=dev.name; req.body.age=dev.age; req.body.phone=dev.phone; req.body.college=dev.college; req.body.course=dev.course; }
-
-            Object.assign(team, req.body );
-            team.save()
-                .then(team => { return res.status(200).send(team); })
-                .catch(err => console.log(err));
-        });
+        Object.assign(team, req.body );
+        team.save()
+            .then(team => { return res.status(200).send(team); })
+            .catch(err => console.log(err));
     });
 
 });
@@ -172,23 +162,22 @@ router.put("/_:number/join", verifyToken, (req, res) => {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile to create a Team.");
         if (!dev) return res.status(404).send("No Dev Profiles was found for this user.");
 
-        console.log(req.username);
-
         if ( !dev.validated ) return res.status(403).send("Only Validated Devs can join Teams");
         if ( dev.team !== 0 ) return res.status(403).send("User already is on a Team");
 
-        Team.findOne({"disbanded":false, number:req.params['number']}, function (err, team) {
+        Team.findOne({"disbanded":false, number:req.params['number']}, Team.membersInfo, function (err, team) {
             if (err) return res.status(500).send("There was a problem finding the Team");
             if (!team) return res.status(404).send("No active team was found for this number");
 
+            if ( team.members.length >= 3) return res.status(403).send("Team is already full");
+            if ( team.validated ) return res.status(403).send("Team is already Validated.");
             if ( req.body.password !== team.password ) return res.status(403).send("Wrong Password");
 
             team.members.push(req.username);
+
             team.save()
                 .then( team => {
                     Object.assign(dev, { team: team.number });
-                    console.log(team);
-                    console.log(dev);
                     dev .save()
                         .then(dev => { return res.status(200).send(team); })
                         .catch(err => console.log(err));
@@ -206,9 +195,11 @@ router.put("/_:number/join", verifyToken, (req, res) => {
 // @permission Only the Team Captain can remove other members
 router.put("/own/remove/_:username", verifyToken, (req, res) => {
 
-    Team.findOne({"disbanded":false, captain:req.username}, function (err, team) {
+    Team.findOne({"disbanded":false, captain:req.username}, Team.membersInfo, function (err, team) {
         if (err) return res.status(500).send("There was a problem finding the Team");
         if (!team) return res.status(404).send("No active team was found with this user as captain");
+
+        if ( team.validated ) return res.status(403).send("Team is already Validated.");
 
         targetUser = req.params['username'];
 
@@ -241,12 +232,13 @@ router.put("/own/disband", verifyToken, (req, res) => {
         if (err) return res.status(500).send("There was a problem finding the Team");
         if (!team) return res.status(404).send("No active team was found with this user as captain");
 
+        if ( team.validated ) return res.status(403).send("Team is already Validated.");
         if (team.members.length !== 0) return res.status(403).send("You must remove every member before disbanding the team");
 
         team.disbanded = true;
         team.save()
             .then( team => {
-                DevProfile.findOneAndUpdate({"username":req.username}, {team:0}, {new:true}, function (err, dev) {
+                DevProfile.findOneAndUpdate({"username":req.username}, {team:0}, DevProfile.ownerInfo, {new:true}, function (err, dev) {
                     if (err) return res.status(500).send("There was a problem finding the Dev Profile to remove him from the Team.");
                     if (!dev) return res.status(404).send("No Dev Profile was found for this user.");
 
@@ -259,17 +251,89 @@ router.put("/own/disband", verifyToken, (req, res) => {
 });
 
 
+// @route PUT api/teams/own/leave
+// @desc Dev leaves the team
+// @permission Only Devs on a team can leave it
+router.put("/own/leave", verifyToken, (req, res) => {
+
+    Team.findOne({"disbanded":false, members:req.username}, function (err, team) {
+        if (err) return res.status(500).send("There was a problem finding the Team");
+        if (!team) return res.status(404).send("No active team was found with this user as a member");
+
+        if ( team.validated ) return res.status(403).send("Team is already Validated.");
+
+        team.members.splice(team.members.indexOf(req.username), 1);
+        team.save()
+            .then( team => {
+                DevProfile.findOneAndUpdate({"username":req.username}, {team:0}, DevProfile.ownerInfo, {new:true}, function (err, dev) {
+                    if (err) return res.status(500).send("There was a problem finding the Dev Profile to remove him from the Team.");
+                    if (!dev) return res.status(404).send("No Dev Profile was found for this user.");
+
+                    return res.status(200).send(dev);
+                });
+            })
+            .catch(err => console.log(err));
+    });
+});
+
+
+// @route PUT api/teams/own/validate
+// @desc Request validation of the team
+// @permission Only the team Captain can request validation
+router.put("/own/validate", verifyToken, (req, res) => {
+
+    Team.findOne({"disbanded":false, captain:req.username}, Team.membersInfo, function (err, team) {
+        if (err) return res.status(500).send("There was a problem finding the Team");
+        if (!team) return res.status(404).send("No active team was found with this user as captain");
+
+        // Team must have at least captain and one more member
+        if ( team.validated ) return res.status(403).send("Team is already Validated.");
+        if ( team.members.length < 1 ) return res.status(403).send("Team needs at least two members.");
+
+        team.pending = true;
+        team.registration = new Date();
+        team.save()
+            .then( team => { return res.status(200).send(team); })
+            .catch(err => console.log(err));
+    });
+
+});
+
+
+
+// @route PUT api/teams/_:number/validate
+// @desc Validates Team Enrollment
+// @permission Only Staff can Validate Teams
+router.put("/_:number/validate", verifyToken, (req, res) => {
+
+    if ( req.role !== 'staff' ){ return res.status(403).send("You don't have permission for this action"); }
+
+    Team.findOne({"disbanded":false, number:req.params['number']}, Team.adminInfo, function (err, team) {
+        if (err) return res.status(500).send("There was a problem finding the Team");
+        if (!team) return res.status(404).send("No active team was found with that number");
+
+        team.pending = false;
+        team.validated = true;
+        team.save()
+            .then( team => { return res.status(200).send(team); })
+            .catch(err => console.log(err));
+    });
+
+});
+
+
 
 /* TODO Routes:
     - Edit Team (DONE)
     - Add Member / Join Team (DONE)
     - Remove Member (DONE)
     - Leave and Disband Team (DONE)
-    - Leave Team
-    - Request Validation
-    - Validate Team
+    - Leave Team (DONE)
+    - Request Validation (DONE)
+    - Validate Team (DONE)
     - Reset Password (?)
     - Invite Members (?)
+    - Check if team is validated on most methods (DONE)
 
 
 */
