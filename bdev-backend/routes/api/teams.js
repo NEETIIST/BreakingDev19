@@ -151,6 +151,25 @@ router.put("/own/edit", verifyToken, (req, res) => {
 
 });
 
+
+
+// @route GET api/teams/_:number
+// @desc Returns Team Info by Number
+// @permission Logged Users, ammount of info varies by role
+router.get("/_:number", verifyToken, (req, res) => {
+
+    let info = Team.publicInfo;
+    if ( req.role === "staff" ) info = Team.adminInfo;
+
+    Team.findOne({"disbanded":false, number:req.params['number'] }, info, function (err, team) {
+        if (err) {console.log(err);return res.status(500).send("There was a problem finding the Team");}
+        if (!team) return res.status(404).send("No Team found");
+
+        return res.status(200).send(team);
+    });
+
+});
+
 // @route PUT api/teams/_:number/join
 // @desc Allows User to join a team
 // @permission Every Validated User that is not on a team already can join
@@ -165,12 +184,12 @@ router.put("/_:number/join", verifyToken, (req, res) => {
         if ( !dev.validated ) return res.status(403).send("Only Validated Devs can join Teams");
         if ( dev.team !== 0 ) return res.status(403).send("User already is on a Team");
 
-        Team.findOne({"disbanded":false, number:req.params['number']}, Team.membersInfo, function (err, team) {
+        Team.findOne({"disbanded":false, number:parseInt(req.params['number'])}, Team.membersInfo, function (err, team) {
             if (err) return res.status(500).send("There was a problem finding the Team");
             if (!team) return res.status(404).send("No active team was found for this number");
 
             if ( team.members.length >= 3) return res.status(403).send("Team is already full");
-            if ( team.validated ) return res.status(403).send("Team is already Validated.");
+            if ( team.validated ) return res.status(403).send("Team is already Validated");
             if ( req.body.password !== team.password ) return res.status(403).send("Wrong Password");
 
             team.members.push(req.username);
@@ -186,6 +205,27 @@ router.put("/_:number/join", verifyToken, (req, res) => {
         });
 
     });
+
+});
+
+// @route GET api/teams/own/members
+// @desc Get Dev Profiles of the Team Members
+// @permission The user gets the profiles of it's own team members
+router.get("/own/members", verifyToken, (req, res) => {
+
+    Team.findOne({"disbanded":false, $or:[{captain:req.username},{members:req.username}]}, Team.membersInfo, function (err, team) {
+        if (err) return res.status(500).send("There was a problem finding the Team");
+        if (!team) return res.status(404).send("No team was found for this user");
+
+        DevProfile.find({$or:[{"username":team.captain},{"username":{ $in: team.members }}]}, DevProfile.publicInfo, function (err, devs) {
+            if (err) {console.log(err);return res.status(500).send("There was a problem finding the Dev Profile of this team.")};
+            if (!devs) return res.status(404).send("No Dev Profile was found for this team user's");
+
+            return res.status(200).send(devs);
+        });
+    });
+
+
 
 });
 

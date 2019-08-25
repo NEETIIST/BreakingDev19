@@ -93,7 +93,7 @@ class Add extends Component {
         return(
             <Fade right cascade>
                 <div className={"row justify-content-center align-items-start m-0"}>
-                    <div className={"col-12 p-0 text-left f-dark-grey "+(status=="waiting"?"d-block":"d-none")}>
+                    <div className={"col-12 p-0 text-left f-dark-grey "+(status==="waiting"?"d-block":"d-none")}>
                         <p className="fs-md fw-4 flh-1 mb-1"><FormattedMessage id="dash.team.add.title"/></p>
                         <p className="fs-sm fw-4 flh-1 mb-0"><FormattedMessage id="dash.team.add.desc"/></p>
                         <div className="spacer-2"/>

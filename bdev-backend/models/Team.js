@@ -88,11 +88,11 @@ Team.publicInfo = {
     wants_members:1,
     skills:1,
     website: 1,
-    password: 0,
-    pending: 0,
-    validated: 0,
-    registration: 0,
-    disbanded: 0,
+    //password: 0,
+    //pending: 0,
+    //validated: 0,
+    //registration: 0,
+    //disbanded: 0,
 };
 
 Team.membersInfo = {

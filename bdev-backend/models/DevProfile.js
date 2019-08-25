@@ -98,7 +98,7 @@ DevProfile.publicInfo = {
     team:1,
     needsTeam:1,
     picture:1,
-    cv:0,
+    //cv:0,
     //pending: 0,
     //validated:0,
     //payment:0,

@@ -117,8 +117,24 @@
 .dash-team-member {
     border: 2px solid #257183;
     border-radius: 0.5em;
+    background-color: whitesmoke;
 }
 
-.dash-team-member > .own {
+.dash-team-member-own {
+    border: 2px solid #257183;
+    border-radius: 0.5em;
+    background-color: rgba(37, 113, 131, 0.1) !important;
+}
 
+.dash-team-options {
+    border: 1px solid #c0c0c0;
+    border-radius: 0.25em;
+    transition: all 0.3s linear;
+}
+
+.dash-team-options:hover {
+    color: #257183;
+    border: 1px solid #257183;
+    border-radius: 0.25em;
+    transition: all 0.3s linear;
 }

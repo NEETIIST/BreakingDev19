@@ -94,7 +94,7 @@ router.post("/login", (req, res) => {
     if (!isValid) {
         return res.status(400).json(errors);
     }
-    const username = req.body.username;
+    const username = req.body.username.toLowerCase();
     const password = req.body.password;
     // Find user by email
     User.findOne({ username }).then(user => {

@@ -84,3 +84,28 @@ export const teamInput = new FormValidator([
 
 ]);
 
+
+export const passwordInput = new FormValidator([
+    {
+        field: "password",
+        method: "isEmpty",
+        validWhen: false,
+        message: "forms.access_code.empty"
+    },
+    {
+        field: "password",
+        method: "isLength",
+        args: [{min:0, max: 128}],
+        validWhen: true,
+        message: "forms.access_code.toolong"
+    },
+    {
+        field: "password",
+        method: "contains",
+        args: ["-"],
+        validWhen: true,
+        message: "forms.access_code.invalid"
+    },
+
+]);
+
