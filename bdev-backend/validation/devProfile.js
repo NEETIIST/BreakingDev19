@@ -50,7 +50,7 @@ module.exports = function validateDevProfileInput(data) {
         errors.phone = "Please use a valid Portuguese phone number";
     }
     // Bio Checks - Must be smaller than
-    if ( (!Validator.isEmpty(data.bio)) && (!Validator.isLength(data.bio,{max: 1024}))) {
+    if ( (!Validator.isEmpty(data.bio)) && (!Validator.isLength(data.bio,{max: 512}))) {
         errors.bio = "Please use less than 1024 characters";
     }
     // Food Checks - Must be filled

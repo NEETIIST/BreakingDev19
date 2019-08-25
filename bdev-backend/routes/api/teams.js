@@ -45,6 +45,23 @@ router.get("/active", verifyToken, (req, res) => {
 });
 
 
+// @route GET api/teams/wantsmembers
+// @desc Returns teams looking for members to join
+// @permission Logged Users
+router.get("/wantsmembers", verifyToken, (req, res) => {
+
+    let info = Team.publicInfo;
+    //if ( req.role === "staff" ) info = Team.adminInfo;
+
+    Team.find({"disbanded":false, "wants_members":true}, info, function (err, teams) {
+        if (err) return res.status(500).send("There was a problem finding the Teams");
+        if (!teams) return res.status(404).send("No Teams found");
+
+        return res.status(200).send(teams);
+    });
+
+});
+
 // @route POST api/teams/create
 // @desc Create a Team
 // @permission Logged Users with a VALIDATED Dev Profile and Without a team

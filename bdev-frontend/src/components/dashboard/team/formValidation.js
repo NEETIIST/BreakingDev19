@@ -49,7 +49,7 @@ export const teamInput = new FormValidator([
     {
         field: "proj_desc",
         method: "isLength",
-        args: [{min:0, max: 1024}],
+        args: [{min:0, max: 512}],
         validWhen: true,
         message: "forms.proj_desc.toolong"
     },

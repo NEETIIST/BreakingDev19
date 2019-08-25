@@ -10,6 +10,7 @@ import Edit from "./edit";
 import Add from './add';
 import Members from './members';
 import Join from './join';
+import Find from './find';
 
 class Profile extends Component {
     constructor(props) {
@@ -47,8 +48,9 @@ class Profile extends Component {
             },
         })
             .then(response => {
+                this.setState({ dev: response.data });
                 if ( response.data.team === 0)
-                    this.setState({ dev: response.data, team: response.data.team, loaded:true });
+                    this.setState({ team: 0, loaded:true});
                 else
                     this.getTeam();
             })
@@ -187,7 +189,7 @@ class Profile extends Component {
                             </div>
                             : ""}
                         {content === "add" && loaded ? <Add {...this.props} onSuccess={this.createdTeam}/> : ""}
-                        {content === "search" && loaded ? "<Find {...this.props} />" : ""}
+                        {content === "search" && loaded ? <Find {...this.props} /> : ""}
                         {content === "join" && loaded ? <Join {...this.props} query={this.state.query}/> : ""}
                         {content === "see" && hasTeam && loaded ? <See {...this.props} team={this.state.team} /> : ""}
                         {content === "edit" && hasTeam && loaded ? <Edit {...this.props} team={this.state.team} onSuccess={this.editedTeam} /> : ""}

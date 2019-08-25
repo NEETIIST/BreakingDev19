@@ -37,8 +37,8 @@ module.exports = function validateTeamInput(data) {
     if (Validator.isEmpty(data.proj_desc)) {
         errors.proj_desc = "Project Description is necessary";
     }
-    else if (!Validator.isLength(data.proj_desc,{max: 1024})) {
-        errors.proj_desc = "Project Name must have less than 1024 characters";
+    else if (!Validator.isLength(data.proj_desc,{max: 512})) {
+        errors.proj_desc = "Project Name must have less than 512 characters";
     }
     // Wants Members Check - Must be not empty boolean
     if (Validator.isEmpty(data.wants_members)) {

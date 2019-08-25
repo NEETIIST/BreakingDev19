@@ -13,7 +13,7 @@ class Join extends Component {
 
         this.validator = passwordInput;
         this.state = {
-            team: "",
+            team: {members:[], skills:[]},
             password: "",
             //
             validation: this.validator.valid(),
@@ -29,7 +29,7 @@ class Join extends Component {
 
     }
 
-    componentWillMount(){
+    componentDidMount(){
         if ( this.props.query !== undefined )
             this.state.password = this.props.query;
     }
@@ -110,6 +110,18 @@ class Join extends Component {
         this.setState({ status: "waiting", reply:" ", password: "" });
     }
 
+    allSkills(data) {
+        return (
+            data.map((tag, index) => {
+                return(
+                    <div className="tag px-2 py-0 mr-2 mb-1">
+                        <p key={index} className="fs-xs fw-4 my-1 px-1">{tag}</p>
+                    </div>
+                )
+            })
+        );
+    };
+
     render() {
         let validation = this.submitted ?        // if the form has been submitted at least once
             this.validator.validate(this.state) :   // then check validity every time we render
@@ -117,7 +129,7 @@ class Join extends Component {
 
         const { intl } = this.props;
         const status = this.state.status;
-        let team = this.state.team;
+        const team = this.state.team;
         const reply = this.state.reply;
 
         return(
@@ -125,7 +137,7 @@ class Join extends Component {
                 <div className="row justify-content-center align-items-start m-0">
                     <div className={"col-12 p-0 text-left f-dark-grey "+(status==="waiting"?"d-block":"d-none")}>
                         <p className="fs-md fw-4 flh-2 mb-1"><FormattedMessage id="dash.team.join.desc1"/></p>
-                        <p className="fs-xs fw-4 flh-1 mb-0"><FormattedMessage id="dash.team.join.desc2"/></p>
+                            <p className="fs-xs fw-4 flh-1 mb-0"><FormattedMessage id="dash.team.join.desc2"/></p>
                         <div className="spacer-2"/>
                         <form onSubmit={this.onSubmit} autoComplete="off">
                             <div className={"row justify-content-start align-items-start mx-0 my-1 "+(reply===" "?"d-none":"")}>
@@ -170,8 +182,36 @@ class Join extends Component {
                                 </div>
                             </div>
                             <div className="row justify-content-center align-items-start m-0">
-                                <div className={"col-12 text-center p-0"}>
-                                    <p>{team.team_name}</p>
+                                <div className="col-12 col-lg-6 text-center p-0">
+                                <div className="card text-left dash-team white">
+                                <div className="card-body">
+                                    <div className="row justify-content-center align-items-center m-0">
+                                        <div className={"col-3 p-0 p-0 pr-2 text-left"}>
+                                            <img src={"/icons/WebAlt.png"} className={"img-fluid "+(team.category==="Web"?"":"d-none")}/>
+                                            <img src={"/icons/JogosAlt.png"} className={"img-fluid "+(team.category==="Games"?"":"d-none")}/>
+                                        </div>
+                                        <div className={"col-9 p-0 px-1 text-left f-dark-grey"}>
+                                            <span className="fs-md fw-7 flh-2 mb-0 f-primary">{team.team_name}</span>
+                                            <span className="fs-md fw-4 ml-2">
+                                                <i className={"fas fa-fw fa-sm mx-1 mb-2 fa-users"}
+                                                   title={intl.formatMessage({ id: 'dash.team.members' })} />
+                                                   {team.members.length+1}
+                                            </span>
+                                            <div className="row justify-content-center align-items-center m-0 mt-1">
+                                                <div className="col-12 p-0 text-left no-scrollbar" style={{whiteSpace:"nowrap", overflowX: "scroll"}}>
+                                                    {this.allSkills(team.skills)}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row justify-content-center align-items-start m-0 pt-1">
+                                        <div className={"col-12 p-0 px-2 text-left f-dark-grey"}>
+                                            <p className="fs-sm fw-7 flh-1 mb-1 ">{team.proj_name}</p>
+                                            <p className="fs-xs fw-4 flh-2 mb-0 ">{team.proj_desc}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
                                 </div>
                             </div>
                             <p className="fs-sm fw-4 flh-1 mb-0"><FormattedMessage id="dash.team.join.areyousure"/></p>
