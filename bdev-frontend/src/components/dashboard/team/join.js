@@ -94,6 +94,7 @@ class Join extends Component {
                 }
             })
             .catch(err => {
+                console.log(err);
                 console.log(err.response);
                 if ( err.response.data === "Team is already full" )
                     this.setState({ status: "results", reply:"dash.team.join.full" });
@@ -181,7 +182,7 @@ class Join extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="row justify-content-center align-items-start m-0">
+                            <div className="row justify-content-center align-items-center m-0">
                                 <div className="col-12 col-lg-6 text-center p-0">
                                 <div className="card text-left dash-team white">
                                 <div className="card-body">
@@ -213,18 +214,22 @@ class Join extends Component {
                                 </div>
                                 </div>
                                 </div>
-                            </div>
-                            <p className="fs-sm fw-4 flh-1 mb-0"><FormattedMessage id="dash.team.join.areyousure"/></p>
-                            <div className="row justify-content-center align-items-start m-0">
-                                <div className={"col-5 col-lg-4 text-center p-0"} onClick={this.joinTeam}>
-                                    <button className="btn btn-dev-alt btn-block fw-7">
-                                        <p className="fs-sm fw-7 flh-1 mb-0"><FormattedMessage id="dash.team.join.confirm"/></p>
-                                    </button>
-                                </div>
-                                <div className={"col-5 col-lg-4 offset-1 text-center p-0"}>
-                                    <button className="btn btn-dev-alt btn-block fw-7" onClick={this.repeatInput}>
-                                        <p className="fs-sm fw-7 flh-1 mb-0"><FormattedMessage id="dash.team.join.cancel"/></p>
-                                    </button>
+                                <div className={"col-12 col-lg-6 text-center p-0"}>
+                                    <p className="fs-md fw-4 flh-1 mb-2"><FormattedMessage id="dash.team.join.areyousure"/></p>
+                                    <div className="row justify-content-center align-items-start m-0">
+                                        <div className={"col-8 text-center p-0 py-2"} onClick={this.joinTeam}>
+                                            <button className="btn btn-dev-alt btn-block fw-7">
+                                                <i className="fas fa-check fa-md mr-2" />
+                                                <span className="fs-sm fw-7 flh-1 mb-0 p-1"><FormattedMessage id="dash.team.join.confirm"/></span>
+                                            </button>
+                                        </div>
+                                        <div className={"col-8 text-center p-0 py-2"}>
+                                            <button className="btn btn-dev-alt btn-block fw-7" onClick={this.repeatInput}>
+                                                <i className="fas fa-redo fa-md mr-2" />
+                                                <span className="fs-sm fw-7 flh-1 mb-0 p-1"><FormattedMessage id="dash.team.join.cancel"/></span>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

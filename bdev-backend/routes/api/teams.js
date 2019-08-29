@@ -260,6 +260,8 @@ router.put("/own/remove/_:username", verifyToken, (req, res) => {
 
         targetUser = req.params['username'];
 
+        if ( targetUser === req.username ) return res.status(403).send("Can't remove one self through this method");
+
         let newMembers = team.members;
         let index = newMembers.indexOf(targetUser);
         if (index !== -1) { newMembers.splice(index, 1);}
@@ -390,6 +392,27 @@ router.put("/_:number/validate", verifyToken, (req, res) => {
 });
 
 
+// @route PUT api/teams/own/resetcode
+// @desc Changes the Access Code of the Team
+// @permission Only the team Captain can reset the code
+router.put("/own/resetcode", verifyToken, (req, res) => {
+
+    Team.findOne({"disbanded":false, captain:req.username}, function (err, team) {
+        if (err) return res.status(500).send("There was a problem finding the Team");
+        if (!team) return res.status(404).send("No active team was found with this user as captain");
+
+        if ( team.validated ) return res.status(403).send("Team is already Validated.");
+
+        var crypto = require("crypto");
+        team.password = crypto.randomBytes(3).toString('hex');
+        team.save()
+            .then( team => { return res.status(200).send(team); })
+            .catch(err => console.log(err));
+    });
+
+});
+
+
 
 /* TODO Routes:
     - Edit Team (DONE)
@@ -399,7 +422,7 @@ router.put("/_:number/validate", verifyToken, (req, res) => {
     - Leave Team (DONE)
     - Request Validation (DONE)
     - Validate Team (DONE)
-    - Reset Password (?)
+    - Reset Password (DONE)
     - Invite Members (?)
     - Check if team is validated on most methods (DONE)
 

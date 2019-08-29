@@ -22,10 +22,16 @@ class Profile extends Component {
             content: "see",
             loaded: false,
             query: null,
+            isCaptain: false,
         };
 
         this.createdTeam = this.createdTeam.bind(this);
         this.editedTeam = this.editedTeam.bind(this);
+        this.removedMember = this.removedMember.bind(this);
+        this.disbandedTeam = this.disbandedTeam.bind(this);
+        this.joinedTeam = this.joinedTeam.bind(this);
+        this.leftTeam = this.leftTeam.bind(this);
+        this.resetCode = this.resetCode.bind(this);
     }
 
     componentDidMount() {
@@ -35,7 +41,6 @@ class Profile extends Component {
             this.state.query = this.props.location.search.replace(/^.*?\=/, '');
             this.state.content = "join";
         }
-
     }
 
     navigation = (content) => { this.setState(state => ({ content: content })); };
@@ -64,7 +69,7 @@ class Profile extends Component {
                 "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]
             },
         })
-            .then(response => { this.setState({ team: response.data });  })
+            .then(response => { this.setState({ team: response.data, isCaptain:(response.data.captain===this.props.auth.user.username) });  })
             .catch(function (error){ if ( error.response.status == 404 ) console.log("User doesn't have a Team yet"); })
             .then(()=>{this.setState({loaded:true})})
     }
@@ -72,6 +77,11 @@ class Profile extends Component {
 
     createdTeam(team){ setTimeout(() => { this.setState({ team: team, content:"see"});}, 3000)};
     editedTeam(team){ setTimeout(() => { this.setState({ team: team, content:"see"});}, 2000)};
+    joinedTeam(team){ setTimeout(() => { this.setState({ team: team, content:"see"});}, 3000)};
+    removedMember(team){this.setState({ team: team });}
+    disbandedTeam(dev){ this.setState({team:0, dev:dev, content:"see"});}
+    leftTeam(dev){ this.setState({team:0, dev:dev, content:"see"});}
+    resetCode(team){this.setState({ team: team });}
 
     render() {
         let content = this.state.content;
@@ -80,6 +90,8 @@ class Profile extends Component {
         let loaded = this.state.loaded;
         let isValidated;
         if (loaded) isValidated = this.state.dev.validated;
+        let isCaptain = this.state.isCaptain;
+
 
         return(
             <Fade right cascade>
@@ -97,7 +109,7 @@ class Profile extends Component {
                         <i className="fas fa-fw fa-search fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="dash.team.see"/></span>
                     </div>
-                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="edit" ? "-active" :"")}
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="edit" ? "-active" :"")+(isCaptain?"":" d-none")}
                          onClick={() => this.navigation("edit")}>
                         <i className="fas fa-fw fa-user-edit fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.edit"/></span>
@@ -190,10 +202,10 @@ class Profile extends Component {
                             : ""}
                         {content === "add" && loaded ? <Add {...this.props} onSuccess={this.createdTeam}/> : ""}
                         {content === "search" && loaded ? <Find {...this.props} /> : ""}
-                        {content === "join" && loaded ? <Join {...this.props} query={this.state.query}/> : ""}
+                        {content === "join" && loaded ? <Join {...this.props} query={this.state.query} onSuccess={this.joinedTeam}/>: ""}
                         {content === "see" && hasTeam && loaded ? <See {...this.props} team={this.state.team} /> : ""}
                         {content === "edit" && hasTeam && loaded ? <Edit {...this.props} team={this.state.team} onSuccess={this.editedTeam} /> : ""}
-                        {content === "members" && hasTeam && loaded ? <Members {...this.props} team={this.state.team} onSuccess={this.editedTeam} /> : ""}
+                        {content === "members" && hasTeam && loaded ? <Members {...this.props} team={this.state.team} onRemove={this.removedMember} onDisband={this.disbandedTeam} onLeave={this.leftTeam} onResetCode={this.resetCode} /> : ""}
                         {content === "validate" && hasTeam && loaded ? "<Validate {...this.props} profile={profile} onSuccess={this.changedValidation}/>" : ""}
                     </div>
                 </div>

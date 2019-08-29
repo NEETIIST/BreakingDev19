@@ -27,7 +27,7 @@ const slowDown = require("express-slow-down");
 //app.enable("trust proxy"); // only if you're behind a reverse proxy (Heroku, Bluemix, AWS if you use an ELB, custom Nginx setup, etc)
 const speedLimiter = slowDown({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    delayAfter: 5000, // allow 50 requests per 15 minutes, then...
+    delayAfter: 50000000, // allow 50 requests per 15 minutes, then...
     delayMs: 200 // begin adding 200ms of delay per request above 100:
     // request # 101 is delayed by 200ms
     // request # 102 is delayed by 400ms
