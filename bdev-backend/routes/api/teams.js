@@ -370,6 +370,29 @@ router.put("/own/validate", verifyToken, (req, res) => {
 });
 
 
+// @route PUT api/teams/own/validate/cancel
+// @desc Cancel Validation Request of the team
+// @permission Only the team Captain can cancel the request
+router.put("/own/validate/cancel", verifyToken, (req, res) => {
+
+    Team.findOne({"disbanded":false, captain:req.username}, Team.membersInfo, function (err, team) {
+        if (err) return res.status(500).send("There was a problem finding the Team");
+        if (!team) return res.status(404).send("No active team was found with this user as captain");
+
+        // Team must have at least captain and one more member
+        if ( team.validated ) return res.status(403).send("Team is already Validated.");
+        if ( team.members.length < 1 ) return res.status(403).send("Team needs at least two members.");
+
+        team.pending = false;
+        team.registration = null;
+        team.save()
+            .then( team => { return res.status(200).send(team); })
+            .catch(err => console.log(err));
+    });
+
+});
+
+
 
 // @route PUT api/teams/_:number/validate
 // @desc Validates Team Enrollment
@@ -382,8 +405,31 @@ router.put("/_:number/validate", verifyToken, (req, res) => {
         if (err) return res.status(500).send("There was a problem finding the Team");
         if (!team) return res.status(404).send("No active team was found with that number");
 
+        if ( team.validated ) return res.status(403).send("Team is already Validated.");
+        if ( team.members.length < 1 ) return res.status(403).send("Team needs at least two members.");
+
         team.pending = false;
         team.validated = true;
+        team.save()
+            .then( team => { return res.status(200).send(team); })
+            .catch(err => console.log(err));
+    });
+
+});
+
+
+// @route PUT api/teams/_:number/invalidate
+// @desc Invalidates Team Enrollment
+// @permission Only Staff can invalidate Teams
+router.put("/_:number/invalidate", verifyToken, (req, res) => {
+
+    if ( req.role !== 'staff' ){ return res.status(403).send("You don't have permission for this action"); }
+
+    Team.findOne({"disbanded":false, number:req.params['number']}, Team.adminInfo, function (err, team) {
+        if (err) return res.status(500).send("There was a problem finding the Team");
+        if (!team) return res.status(404).send("No active team was found with that number");
+
+        team.validated = false;
         team.save()
             .then( team => { return res.status(200).send(team); })
             .catch(err => console.log(err));

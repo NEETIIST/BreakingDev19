@@ -459,6 +459,16 @@
   "staffdash.feed.devinfo2": "Staffs inscritos",
   "staffdash.feed.ideainfo1": "Ideia(s) Aprovadas",
   "staffdash.feed.ideainfo2": "Ideia(s) Pendentes",
+  "staffdash.teams.title" : "Equipas",
+  "staffdash.teams.all" : "Todas",
+  "staffdash.teams.all.validated" : "Validadas",
+  "staffdash.teams.all.pending" : "Pendentes",
+  "staffdash.teams.goback": "Voltar à Lista",
+  "staffdash.teams.empty": "Não há Equipas aqui",
+  "staffdash.teams.validate": "Validar Equipa",
+  "staffdash.teams.validated": "Equipa Validada",
+  "staffdash.teams.pending": "Equipa Pendente",
+  "staffdash.teams.invalidate": "Invalidar Equipa",
 
   " ": " "
 }

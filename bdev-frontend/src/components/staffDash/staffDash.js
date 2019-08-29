@@ -10,6 +10,7 @@ import Feed from "./feed/feed";
 import Ideas from "./ideas/ideas";
 import Profile from "./profile/profile";
 import Devs from "./devs/devs";
+import Teams from "./teams/teams";
 
 import './staffdash.css';
 
@@ -107,8 +108,7 @@ class staffDash extends Component {
                                 </div>
                             </NavLink>
                         </div>
-                        {/*
-                        <div className="col-12 p-0 mb-1" onClick={() => this.navigation("teams")}>
+                        <div className="col-2 col-lg-12 p-0 mb-0 mb-lg-1" onClick={() => this.navigation("teams")}>
                             <NavLink activeClassName="dash-opt-active" exact to="/staffDash/teams">
                                 <div
                                     className="row justify-content-center align-items-center vh-6 p-0 px-lg-1 m-0 cp dash-opt">
@@ -121,7 +121,6 @@ class staffDash extends Component {
                                 </div>
                             </NavLink>
                         </div>
-                        */}
                         <div className="col-2 col-lg-12 p-0 mb-0 mb-lg-1" onClick={() => this.navigation("ideas")}>
                             <NavLink activeClassName="dash-opt-active" exact to="/staffDash/ideas">
                                 <div
@@ -136,7 +135,7 @@ class staffDash extends Component {
                             </NavLink>
                         </div>
                         <div className="spacer-8 d-none d-lg-inline"></div>
-                        <div className="col-2 col-lg-12 p-0 mb-0 mb-lg-1 offset-1 offset-lg-0" onClick={this.onLogoutClick}>
+                        <div className="col-2 col-lg-12 p-0 mb-0 mb-lg-1 offset-lg-0" onClick={this.onLogoutClick}>
                             <div
                                 className="row justify-content-center align-items-center vh-6 p-0 px-lg-1 m-0 cp dash-opt">
                                 <div className="col-12 col-lg-2 offset-lg-1 text-center px-0">
@@ -155,7 +154,7 @@ class staffDash extends Component {
                         {this.state.content === "feed" ? <Feed {...this.props} navigation={this.navigation}/> : ""}
                         {this.state.content === "profile" ? <Profile {...this.props}/> : ""}
                         {this.state.content === "devs" ? <Devs {...this.props} /> : ""}
-                        {this.state.content === "teams" ? "Team List" : ""}
+                        {this.state.content === "teams" ? <Teams {...this.props} />  : ""}
                         {this.state.content === "ideas" ? <Ideas {...this.props}/> : ""}
                         </div>
                     </div>

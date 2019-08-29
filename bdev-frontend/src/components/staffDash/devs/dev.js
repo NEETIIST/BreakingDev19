@@ -10,7 +10,7 @@ class Dev extends Component {
 
         };
         this.allSkills = this.allSkills.bind(this);
-        console.log(props);
+        //console.log(props);
     }
 
     allSkills(data) {
