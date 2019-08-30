@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {FormattedMessage, injectIntl} from "react-intl";
 import { NavLink } from "react-router-dom";
+import ReactGA from 'react-ga';
 
 import { logoutUser } from "../../actions/authActions";
 
@@ -38,6 +39,11 @@ class Dashboard extends Component {
                 this.props.history.push('/');
                 break;
         }
+
+        ReactGA.event({
+            category: 'Dashboard',
+            action: 'Visited Dashboard'
+        });
     }
 
     navigation = (content) => {
