@@ -112,3 +112,54 @@
     color: #257183 !important;
     border-bottom: 2px solid #257183;
 }
+
+
+.dash-team-member {
+    border: 2px solid #257183;
+    border-radius: 0.5em;
+    background-color: whitesmoke;
+}
+
+.dash-team-member-own {
+    border: 2px solid #257183;
+    border-radius: 0.5em;
+    background-color: rgba(37, 113, 131, 0.1) !important;
+}
+
+.dash-team-options {
+    border: 1px solid #c0c0c0;
+    border-radius: 0.25em;
+    transition: all 0.3s linear;
+}
+
+.dash-team-options:hover {
+    color: #257183;
+    border: 1px solid #257183;
+    border-radius: 0.25em;
+    transition: all 0.3s linear;
+}
+
+
+/* Team List */
+.dash-team{
+    background-color: #f3f3f3;
+    border: 0px;
+    border-radius: 0.3em;
+    border-bottom: 2px solid #257183;
+    color: #257183;
+    transition: all 0.3s linear;
+}
+
+.dash-team:hover{
+    box-shadow: 0 4px 3px -3px rgba(28,28,28,0.5);
+    transition: all 0.3s linear;
+}
+
+.dash-team-list > .card-columns {
+    column-count: 2;
+}
+@media (max-width: 767.99px){
+    .dash-team-list > .card-columns {
+        column-count: 1;
+    }
+}

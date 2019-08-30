@@ -69,7 +69,7 @@ export const devProfileInput = new FormValidator([
     {
         field: "bio",
         method: "isLength",
-        args: [{max: 1024}],
+        args: [{max: 512}],
         validWhen: true,
         message: "forms.bio.toolong"
     },

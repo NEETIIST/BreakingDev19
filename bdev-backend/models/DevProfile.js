@@ -5,7 +5,8 @@ const DevProfileSchema = new Schema({
     username: {
         type: String,
         required: true,
-        immutable: true
+        immutable: true,
+        unique: true,
     },
     name: {
         type: String,
@@ -55,10 +56,10 @@ const DevProfileSchema = new Schema({
     cv: {
         type: String,
     },
-    hasTeam: {
-        type: Boolean,
+    team: {
+        type: Number,
         required: true,
-        default: false,
+        default: 0, // If 0, user doesnt have a team
     },
     pending: {
         type: Boolean,
@@ -94,10 +95,10 @@ DevProfile.publicInfo = {
     github:1,
     twitter:1,
     linkedin:1,
-    hasTeam:1,
+    team:1,
     needsTeam:1,
     picture:1,
-    cv:0,
+    //cv:0,
     //pending: 0,
     //validated:0,
     //payment:0,
@@ -116,7 +117,7 @@ DevProfile.ownerInfo = {
     github:1,
     twitter:1,
     linkedin:1,
-    hasTeam:1,
+    team:1,
     needsTeam:1,
     picture:1,
     cv:1,
@@ -138,7 +139,7 @@ DevProfile.adminInfo = {
     github:1,
     twitter:1,
     linkedin:1,
-    hasTeam:1,
+    team:1,
     needsTeam:1,
     picture:1,
     cv:1,

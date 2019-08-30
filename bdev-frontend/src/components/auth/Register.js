@@ -73,7 +73,7 @@ class Register extends Component {
             email: "",
             password: "",
             password_confirmation: "",
-            role: "",
+            role: "dev",
             access_code: "",
             validation: this.validator.valid(),
             status: "waiting",
