@@ -70,7 +70,7 @@ class Teams extends Component {
         if ( this.state.content === "validated") condition = (team) => { return( team.validated? team : null) };
         let filteredTeams = this.state.teams.filter(condition).sort((a, b) => a.name.localeCompare(b.name)) ;
         if ( filteredTeams.length === 0 && this.state.ready)
-            return <p className="fs-md fw-4 flh-1 my-3"><FormattedMessage id="staffdash.teams.empty"/></p>;
+            return <p className="fs-md fw-4 flh-1 my-3 f-dark-grey"><FormattedMessage id="staffdash.teams.empty"/></p>;
         else
             return (
                 filteredTeams.map((team, index) => {
@@ -101,7 +101,7 @@ class Teams extends Component {
                         <hr className="m-0 mt-3"/>
                     </div>
                 </div>
-                <div className={"row justify-content-center align-content-start py-lg-3 p-0 m-0 dash-subnav no-scrollbar "+(isDetail?"d-none":"")} >
+                <div className={"row justify-content-center align-content-start py-lg-3 p-0 m-0 dash-subnav no-scrollbar "} >
                     <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 text-center cp dash-subopt"+ (content==="all" ? "-active" :"")}
                          onClick={() => this.navigation("all")}>
                         <i className="fas fa-fw fa-list fa-lg flh-1 mr-2"/>

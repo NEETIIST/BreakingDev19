@@ -59,7 +59,7 @@ class See extends Component {
                                 <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="dash.team.see.pending"/></span>
                             </div>
                             <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(team.validated?"":"d-none")}>
-                                <i className="fas fa-fw fa-user-check fa-md flh-1 mx-1"/>
+                                <i className="fas fa-fw fa-check fa-md flh-1 mx-1"/>
                                 <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="dash.team.see.validated"/></span>
                             </div>
                         </div>

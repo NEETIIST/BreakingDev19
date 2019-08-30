@@ -11,6 +11,7 @@ import Add from './add';
 import Members from './members';
 import Join from './join';
 import Find from './find';
+import Validate from './validate';
 
 class Profile extends Component {
     constructor(props) {
@@ -32,6 +33,7 @@ class Profile extends Component {
         this.joinedTeam = this.joinedTeam.bind(this);
         this.leftTeam = this.leftTeam.bind(this);
         this.resetCode = this.resetCode.bind(this);
+        this.changedValidation = this.changedValidation.bind(this);
     }
 
     componentDidMount() {
@@ -82,6 +84,7 @@ class Profile extends Component {
     disbandedTeam(dev){ this.setState({team:0, dev:dev, content:"see"});}
     leftTeam(dev){ this.setState({team:0, dev:dev, content:"see"});}
     resetCode(team){this.setState({ team: team });}
+    changedValidation(team){ this.setState({ team: team }) }
 
     render() {
         let content = this.state.content;
@@ -91,7 +94,6 @@ class Profile extends Component {
         let isValidated;
         if (loaded) isValidated = this.state.dev.validated;
         let isCaptain = this.state.isCaptain;
-
 
         return(
             <Fade right cascade>
@@ -119,10 +121,10 @@ class Profile extends Component {
                         <i className="fas fa-fw fa-users fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.members"/></span>
                     </div>
-                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="files" ? "-active" :"")}
-                         onClick={() => this.navigation("files")}>
-                        <i className="fas fa-fw fa-file-alt fa-lg flh-1 mr-2"/>
-                        <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.files"/></span>
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="validate" ? "-active" :"")+(isCaptain?"":" d-none")}
+                         onClick={() => this.navigation("validate")}>
+                        <i className="fas fa-fw fa-check fa-lg flh-1 mr-2"/>
+                        <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.validate"/></span>
                     </div>
                 </div>
                 <div className={"row justify-content-center align-content-start py-lg-3 p-0 m-0 dash-subnav no-scrollbar "+((!hasTeam&&content!=="see")?"":"d-none")}>
@@ -206,7 +208,7 @@ class Profile extends Component {
                         {content === "see" && hasTeam && loaded ? <See {...this.props} team={this.state.team} /> : ""}
                         {content === "edit" && hasTeam && loaded ? <Edit {...this.props} team={this.state.team} onSuccess={this.editedTeam} /> : ""}
                         {content === "members" && hasTeam && loaded ? <Members {...this.props} team={this.state.team} onRemove={this.removedMember} onDisband={this.disbandedTeam} onLeave={this.leftTeam} onResetCode={this.resetCode} /> : ""}
-                        {content === "validate" && hasTeam && loaded ? "<Validate {...this.props} profile={profile} onSuccess={this.changedValidation}/>" : ""}
+                        {content === "validate" && hasTeam && loaded ? <Validate {...this.props} team={this.state.team} onSuccess={this.changedValidation}/> : ""}
                     </div>
                 </div>
             </Fade>

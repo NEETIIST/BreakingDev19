@@ -124,6 +124,8 @@ class Members extends Component {
                 const amCaptain = (user.username === this.props.team.captain);
                 const amSelf = (user.username === dev.username);
                 const emptyTeam = (this.props.team.members.length === 0);
+                const team = this.props.team;
+                const isClosed = (team.validated||team.pending)
                 return(
                     <div className={"col-12 col-lg-3 px-0 px-lg-2 my-2"}>
                         <div className={"row justify-content-center align-items-center m-0 px-lg-2 px-3 vh-20 dash-team-member"+(amSelf?"-own":"")}>
@@ -144,21 +146,21 @@ class Members extends Component {
                                         {this.allSkills(dev.skills)}
                                     </div>
                                     <hr />
-                                    <div className={"col-12 p-0 "+(amCaptain && !amSelf?"":"d-none")}>
+                                    <div className={"col-12 p-0 "+(amCaptain && !amSelf && !isClosed?"":"d-none")}>
                                         <hr className={"my-2"} />
                                         <div className={"hvr-red cp"} onClick={()=>this.removeMember(dev.username)}>
                                             <i className="fas fa-fw fa-user-times fa-md flh-1 mr-2"/>
                                             <span className="fs-sm fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.members.remove"/></span>
                                         </div>
                                     </div>
-                                    <div className={"col-12 p-0 "+(amCaptain && amSelf && emptyTeam?"":"d-none")}>
+                                    <div className={"col-12 p-0 "+(amCaptain && amSelf && emptyTeam && !isClosed?"":"d-none")}>
                                         <hr className={"my-2"} />
                                         <div className={"hvr-red cp"} onClick={()=>this.disbandTeam()}>
                                             <i className="fas fa-fw fa-trash-alt fa-md flh-1 mr-2"/>
                                             <span className="fs-sm fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.members.disband"/></span>
                                         </div>
                                     </div>
-                                    <div className={"col-12 p-0 "+(!amCaptain && amSelf?"":"d-none")}>
+                                    <div className={"col-12 p-0 "+(!amCaptain && amSelf && !isClosed?"":"d-none")}>
                                         <hr className={"my-2"} />
                                         <div className={"hvr-red cp"} onClick={()=>this.leaveTeam()}>
                                             <i className="fas fa-fw fa-user-times fa-md flh-1 mr-2"/>
@@ -194,7 +196,7 @@ class Members extends Component {
                         <div className={"col-12 p-0 text-left"}>
                             <div className="row justify-content-center align-items-center m-0">
                                 {this.allDevs()}
-                                <div className={"col-12 col-lg-3 px-0 px-lg-2 my-2"}>
+                                <div className={"col-12 col-lg-3 px-0 px-lg-2 my-2 " +(team.validated||team.pending?"d-none":"")}>
                                     <div className={"row justify-content-center align-items-center m-0 px-lg-2 px-3 vh-20 dash-team-member "+(teamFull?"d-none":"")}>
                                         <div className="col-12 col-lg-12 p-0 py-3 text-center">
                                             <i className="fas fa-fw fa-user-plus fa-lg my-1 mr-2" />

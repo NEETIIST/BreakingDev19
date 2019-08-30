@@ -53,7 +53,8 @@ router.get("/wantsmembers", verifyToken, (req, res) => {
     let info = Team.publicInfo;
     //if ( req.role === "staff" ) info = Team.adminInfo;
 
-    Team.find({"disbanded":false, "wants_members":true}, info, function (err, teams) {
+    // TODO: Pending team shouldnt show up aswell
+    Team.find({"disbanded":false, "wants_members":true, "validated":"false"}, info, function (err, teams) {
         if (err) return res.status(500).send("There was a problem finding the Teams");
         if (!teams) return res.status(404).send("No Teams found");
 
@@ -158,7 +159,10 @@ router.put("/own/edit", verifyToken, (req, res) => {
         if ( team.validated ) return res.status(403).send("Team is already Validated");
 
         // Delete all fields in the request, except the ones that can be edited (prevents adding unverified fields)
-        for ( field in req.body ){ if(Team.allowEdit[field] === undefined ) delete req.body[field]; }
+        if ( team.verified )
+            for ( field in req.body ){ if(Team.allowEditAfterVerification[field] === undefined ) delete req.body[field]; }
+        else
+            for ( field in req.body ){ if(Team.allowEdit[field] === undefined ) delete req.body[field]; }
 
         Object.assign(team, req.body );
         team.save()

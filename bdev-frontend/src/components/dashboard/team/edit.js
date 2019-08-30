@@ -91,7 +91,7 @@ class Edit extends Component {
         const { intl } = this.props;
         const status = this.state.status;
 
-        //let requested = this.props.profile.validated || this.props.profile.pending ;
+        let requested = this.props.team.validated || this.props.team.pending ;
 
         return(
             <Fade right cascade>
@@ -108,7 +108,7 @@ class Edit extends Component {
                         </div>
                         <div className={"spacer-2 "+(this.props.team.pending || this.props.team.validated ?"d-block":"d-none")} />
                         <form onSubmit={this.onSubmit} autoComplete="off">
-                            <div className="row justify-content-start align-items-start mx-0 my-1">
+                            <div className={"row justify-content-start align-items-start mx-0 my-1 "+(requested?"d-none":"")}>
                                 <div className="col-12 col-lg-4 p-0">
                                     <div className="form-group">
                                         <div className={validation.team_name.isInvalid && 'has-error'}>
@@ -145,14 +145,15 @@ class Edit extends Component {
                             </div>
                             <div className="row justify-content-start align-items-start mx-0 my-1">
                                 <div className="col-12 col-lg-6 p-0">
-                                    <div className="form-group">
+                                    <div className={"form-group"}>
                                         <div className={validation.proj_name.isInvalid && 'has-error'}>
                                             <input type="text"
-                                                   className={"form-control form-alt-input " + this.fieldHasValue("proj_name")}
+                                                   className={"form-control form-alt-input " + this.fieldHasValue("proj_name") + (requested?" cna":"")}
                                                    name="proj_name"
                                                    placeholder={intl.formatMessage({id: 'forms.proj_name.placeholder'})}
                                                    onChange={this.handleInputChange}
                                                    value={this.state.proj_name}
+                                                   disabled={requested}
                                             />
                                             <span className="help-block fs-xs">
                                                 <FormattedMessage id={validation.proj_name.message}/>
@@ -200,7 +201,7 @@ class Edit extends Component {
                                     <TagsInput {...this.props} data={this.state.skills} update={this.editedTags}/>
                                 </div>
                             </div>
-                            <div className="row justify-content-start align-items-start mx-0 my-1">
+                            <div className={"row justify-content-start align-items-start mx-0 my-1 "+(requested?"d-none":"")}>
                                 <div className="col-12 col-lg-12 p-0">
                                     <div className={validation.wants_members.isInvalid && 'has-error'}>
                                         <span className="fs-sm fw-4 flh-2"><FormattedMessage id="forms.wants_members.helper"/></span>

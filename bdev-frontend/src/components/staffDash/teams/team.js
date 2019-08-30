@@ -58,14 +58,15 @@ class Team extends Component {
                         </div>
                         <div className={"col-9 p-0 px-1 text-left f-dark-grey"}>
                             <span className="fs-md fw-7 flh-2 mb-0 f-primary">{team.team_name}</span>
-                            <span className={"fs-md fw-4 ml-2 " +(team.pending?"":"d-none") }>
-                                <i className={"fas fa-fw fa-sm mx-1 fa-exclamation-triangle f-yellow"}
+                            <span className={"fs-xxs fw-4 ml-2 " +(team.pending?"":"d-none") }>
+                                <i className={"fas fa-fw fa-lg mx-1 fa-exclamation-triangle f-yellow"}
                                    title={intl.formatMessage({ id: 'staffdash.teams.pending' })} />
                                 {timeago.format(team.registration)}
                             </span>
-                            <span className={"fs-md fw-4 ml-2 " +(team.validated?"":"d-none") }>
-                                <i className={"fas fa-fw fa-sm mx-1 fa-check f-green"}
+                            <span className={"fs-xxs fw-4 ml-2 " +(team.validated?"":"d-none") }>
+                                <i className={"fas fa-fw fa-lg mx-1 fa-check f-green"}
                                    title={intl.formatMessage({ id: 'staffdash.teams.validated' })} />
+                                {timeago.format(team.registration)}
                             </span>
                             <br/>
                             <span className="fs-sm fw-4">
