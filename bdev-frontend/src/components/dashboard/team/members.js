@@ -210,11 +210,19 @@ class Members extends Component {
                                             <span className={"fs-md fw-7 flh-2 mb-1 "+(showCode?"d-none":"")}> --------- </span>
                                             <i className={"fas fa-fw fa-eye fa-md ml-2 cp "+(showCode?"d-none":"")} onClick={()=>{this.toogleCode()}}/>
                                         </div>
+                                        <div className={"col-12 p-0"}><hr className={"my-1"} /></div>
                                         <div className={"col-12 p-0 py-2 text-center "+(amCaptain?"":"d-none")}>
-                                            <hr className={"my-2"} />
+
                                             <div className={"hvr-red cp"} onClick={()=>this.resetCode()}>
                                                 <i className="fas fa-fw fa-redo fa-md flh-1 mr-2"/>
                                                 <span className="fs-sm fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.members.resetcode"/></span>
+                                            </div>
+                                        </div>
+                                        <div className={"col-12 p-0"}><hr className={"my-1"} /></div>
+                                        <div className={"col-12 p-0 py-2 text-center "+(amCaptain?"":"d-none")}>
+                                            <div className={"hvr-primary cp"} onClick={()=>this.props.navigation("search")}>
+                                                <i className="fas fa-fw fa-search fa-md flh-1 mr-2"/>
+                                                <span className="fs-sm fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.members.search"/></span>
                                             </div>
                                         </div>
                                         {/* TODO: Input Email Address and backend sends an email inviting the person

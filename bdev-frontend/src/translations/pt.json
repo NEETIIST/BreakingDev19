@@ -364,6 +364,8 @@
   "dash.team.members.invite.desc3": "Podes sempre dizeres-nos o email do teu amigo e nós enviamos-lhe um email com um convite e o código de acesso:",
   "dash.team.members.resetcode": "Renovar Password",
   "dash.team.members.resetcode.desc": "A password atual vai ser destruída e gerada uma nova para a tua equipa. Terás de enviar novamente o código aos teus amigos e os convites que tiveres enviado ficarão desatualizados. Tens a certeza que queres continuar?",
+  "dash.team.members.search": "Procurar membros",
+  "dash.team.members.search.desc1": "Procurar membros",
   "dash.team.search": "Procurar",
   "dash.team.search.title": "Procurar Equipa",
   "dash.team.search.short": "Vê as equipas que estão à procura de membros",
@@ -401,6 +403,9 @@
   "dash.team.validate.info10": "Cada membro da tua equipa deve agora processar o pagamento no seu perfil. A vossa inscrição está garantida, mas devem processar o pagamento assim que possível.",
   "dash.team.validate.request": "Pedir Validação da Equipa",
   "dash.team.validate.cancel": "Cancelar Pedido de Validação",
+  "dash.team.search.desc1": "Estes utilizadores estão à procura de equipa!",
+  "dash.team.search.desc2": "Se estiveres interessado podes convidá-los para a tua equipa, ou falar diretamente com eles.",
+  "dash.team.search.invitetojoin": "Iniciar Conversa",
 
   "dash.team": "",
 
@@ -472,6 +477,7 @@
   "staffdash.devs.payment": "Pagamento Efetuado",
   "staffdash.devs.confirmPayment": "Confirmar Pagamento",
   "staffdash.devs.cancelPayment": "Cancelar Pagamento",
+  "staffdash.devs.hasteam": "Tem Equipa",
   "staffdash.feed.title": "Dashboard",
   "staffdash.feed.devinfo1": "Devs com perfil preenchido",
   "staffdash.feed.devinfo2": "Staffs inscritos",

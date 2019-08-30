@@ -52,9 +52,8 @@ router.get("/wantsmembers", verifyToken, (req, res) => {
 
     let info = Team.publicInfo;
     //if ( req.role === "staff" ) info = Team.adminInfo;
-
-    // TODO: Pending team shouldnt show up aswell
-    Team.find({"disbanded":false, "wants_members":true, "validated":"false"}, info, function (err, teams) {
+    
+    Team.find({"disbanded":false, "wants_members":true, "validated":false, "pending":false}, info, function (err, teams) {
         if (err) return res.status(500).send("There was a problem finding the Teams");
         if (!teams) return res.status(404).send("No Teams found");
 
@@ -62,6 +61,26 @@ router.get("/wantsmembers", verifyToken, (req, res) => {
     });
 
 });
+
+
+// @route GET api/teams/needsteam
+// @desc Returns devs looking for a team
+// @permission Logged Users
+router.get("/needsteam", verifyToken, (req, res) => {
+
+    let info = DevProfile.publicInfo;
+    //if ( req.role === "staff" ) info = Team.adminInfo;
+
+    DevProfile.find({"needsTeam":true, "team":0}, info, function (err, devs) {
+        if (err) return res.status(500).send("There was a problem finding Devs");
+        if (!devs) return res.status(404).send("No Devs found");
+
+        return res.status(200).send(devs);
+    });
+
+});
+
+
 
 // @route POST api/teams/create
 // @desc Create a Team

@@ -12,6 +12,7 @@ import Members from './members';
 import Join from './join';
 import Find from './find';
 import Validate from './validate';
+import Search from './search';
 
 class Profile extends Component {
     constructor(props) {
@@ -106,17 +107,17 @@ class Profile extends Component {
                     </div>
                 </div>
                 <div className={"row justify-content-center align-content-start py-lg-3 p-0 m-0 dash-subnav no-scrollbar "+(hasTeam?"":"d-none")}>
-                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="see" ? "-active" :"")}
+                    <div className={"col-auto col-lg-2 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="see" ? "-active" :"")}
                          onClick={() => this.navigation("see")}>
                         <i className="fas fa-fw fa-search fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="dash.team.see"/></span>
                     </div>
-                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="edit" ? "-active" :"")+(isCaptain?"":" d-none")}
+                    <div className={"col-auto col-lg-2 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="edit" ? "-active" :"")+(isCaptain?"":" d-none")}
                          onClick={() => this.navigation("edit")}>
                         <i className="fas fa-fw fa-user-edit fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.edit"/></span>
                     </div>
-                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="members" ? "-active" :"")}
+                    <div className={"col-auto col-lg-2 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="members" ? "-active" :"")}
                          onClick={() => this.navigation("members")}>
                         <i className="fas fa-fw fa-users fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.members"/></span>
@@ -126,6 +127,11 @@ class Profile extends Component {
                         <i className="fas fa-fw fa-check fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.validate"/></span>
                     </div>
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="search" ? "-active" :"")+(isCaptain&&content==="search"?"":" d-none")}
+                         onClick={() => this.navigation("search")}>
+                        <i className="fas fa-fw fa-search fa-lg flh-1 mr-2"/>
+                        <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.search"/></span>
+                    </div>
                 </div>
                 <div className={"row justify-content-center align-content-start py-lg-3 p-0 m-0 dash-subnav no-scrollbar "+((!hasTeam&&content!=="see")?"":"d-none")}>
                     <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="add" ? "-active" :"")}
@@ -133,10 +139,10 @@ class Profile extends Component {
                         <i className="far fa-fw fa-plus-square fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="dash.team.add"/></span>
                     </div>
-                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="search" ? "-active" :"")}
-                         onClick={() => this.navigation("search")}>
-                        <i className="fas fa-fw fa-search fa-lg flh-1 mr-2"/>
-                        <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.search"/></span>
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="find" ? "-active" :"")}
+                         onClick={() => this.navigation("find")}>
+                        <i className="fas fa-fw find fa-lg flh-1 mr-2"/>
+                        <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.find"/></span>
                     </div>
                     <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="join" ? "-active" :"")}
                          onClick={() => this.navigation("join")}>
@@ -203,12 +209,13 @@ class Profile extends Component {
                             </div>
                             : ""}
                         {content === "add" && loaded ? <Add {...this.props} onSuccess={this.createdTeam}/> : ""}
-                        {content === "search" && loaded ? <Find {...this.props} /> : ""}
+                        {content === "find" && loaded ? <Find {...this.props} /> : ""}
                         {content === "join" && loaded ? <Join {...this.props} query={this.state.query} onSuccess={this.joinedTeam}/>: ""}
                         {content === "see" && hasTeam && loaded ? <See {...this.props} team={this.state.team} /> : ""}
                         {content === "edit" && hasTeam && loaded ? <Edit {...this.props} team={this.state.team} onSuccess={this.editedTeam} /> : ""}
-                        {content === "members" && hasTeam && loaded ? <Members {...this.props} team={this.state.team} onRemove={this.removedMember} onDisband={this.disbandedTeam} onLeave={this.leftTeam} onResetCode={this.resetCode} /> : ""}
+                        {content === "members" && hasTeam && loaded ? <Members {...this.props} team={this.state.team} onRemove={this.removedMember} onDisband={this.disbandedTeam} onLeave={this.leftTeam} onResetCode={this.resetCode} navigation={this.navigation}/> : ""}
                         {content === "validate" && hasTeam && loaded ? <Validate {...this.props} team={this.state.team} onSuccess={this.changedValidation}/> : ""}
+                        {content === "search" && hasTeam && loaded ? <Search {...this.props} /> : ""}
                     </div>
                 </div>
             </Fade>
