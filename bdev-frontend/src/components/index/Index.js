@@ -62,6 +62,7 @@ class Index extends Component {
                         <div className="spacer-6"></div>
                         <Fade bottom>
                             <div className="row justify-content-center align-items-center m-0">
+                                {/*
                                 <div className="col-11 col-lg-4 text-center my-2 p-0 px-lg-3">
                                     <Scroll to="allinfo" spy={true} smooth={true} duration={1000}>
                                         <button type="button" className="btn btn-block btn-dev py-2 px-3">
@@ -69,6 +70,7 @@ class Index extends Component {
                                         </button>
                                     </Scroll>
                                 </div>
+                                */}
                                 <div className="col-11 col-lg-4 text-center my-2 p-0 px-lg-3">
                                     <a href={"https://www.youtube.com/watch?v=uQhjh7OV6jU"} target={"_blank"}>
                                         <button type="button" className="btn btn-block btn-dev py-2 px-3">
@@ -76,7 +78,6 @@ class Index extends Component {
                                         </button>
                                     </a>
                                 </div>
-                                {/*
                                 <div className="col-11 col-lg-4 text-center my-2 p-0 px-lg-3">
                                     <Link to="/register">
                                         <button type="button" className="btn btn-block btn-dev py-2 px-3">
@@ -84,7 +85,6 @@ class Index extends Component {
                                         </button>
                                     </Link>
                                 </div>
-                                */}
                             </div>
                         </Fade>
                         <div className="spacer-8"></div>
@@ -175,8 +175,9 @@ class Index extends Component {
                             <div className="col-12 col-lg-6 m-0 p-0">
                                 <div className="row justify-content-center align-items-center m-0 my-3 category-left">
                                     <div className="col-8 p-0 p-2 text-right">
-                                        <p className="fs-lg fw-7 mb-1 flh-2 mb-1"><FormattedMessage id="index.sec3.web1"/></p>
-                                        <p className="fs-sm fw-4 mb-1 flh-2 mb-1"><FormattedMessage id="index.sec3.web2"/></p>
+                                        <p className="fs-xl fw-7 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.web1"/></p>
+                                        <p className="fs-lg fw-4 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.websponsor"/></p>
+                                        <p className="fs-sm fw-4 mb-0 flh-1"><FormattedMessage id="index.sec3.web2"/></p>
                                     </div>
                                     <div className="col-4 p-0 text-right">
                                         <img src="icons/Web.png" className="img-fluid"/>
@@ -189,8 +190,11 @@ class Index extends Component {
                                         <img src="icons/Jogos.png" className="img-fluid"/>
                                     </div>
                                     <div className="col-8 p-0 p-2 text-left">
-                                        <p className="fs-lg fw-7 mb-1 flh-2 mb-1"><FormattedMessage id="index.sec3.games1"/></p>
-                                        <p className="fs-sm fw-4 mb-1 flh-2 mb-1"><FormattedMessage id="index.sec3.games2"/></p>
+                                        <p className="fs-xl fw-7 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.games1"/></p>
+                                        {/*
+                                        <p className="fs-lg fw-4 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.gamessponsor"/></p>
+                                        */}
+                                        <p className="fs-sm fw-4 mb-0 flh-1"><FormattedMessage id="index.sec3.games2"/></p>
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +215,8 @@ class Index extends Component {
                                     </div>
                                     <div className="col-12 col-lg-8 p-2 text-center text-lg-left">
                                         <p className="fs-sm fw-7 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.aplus1"/></p>
-                                        <p className="fs-xs fw-4 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.aplus2"/></p>
+                                        <p className="fs-xs fw-7 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.aplussponsor"/></p>
+                                        <p className="fs-xs fw-4 mb-0 flh-1 "><FormattedMessage id="index.sec3.aplus2"/></p>
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +227,8 @@ class Index extends Component {
                                     </div>
                                     <div className="col-12 col-lg-8 p-2 text-center text-lg-left">
                                         <p className="fs-sm fw-7 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.innov1"/></p>
-                                        <p className="fs-xs fw-4 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.innov2"/></p>
+                                        <p className="fs-xs fw-7 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.innovsponsor"/></p>
+                                        <p className="fs-xs fw-4 mb-0 flh-1"><FormattedMessage id="index.sec3.innov2"/></p>
                                     </div>
                                 </div>
                             </div>
@@ -233,10 +239,24 @@ class Index extends Component {
                                     </div>
                                     <div className="col-12 col-lg-8 p-2 text-center text-lg-left">
                                         <p className="fs-sm fw-7 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.picasso1"/></p>
-                                        <p className="fs-xs fw-4 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.picasso2"/></p>
+                                        <p className="fs-xs fw-7 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.picassosponsor"/></p>
+                                        <p className="fs-xs fw-4 mb-0 flh-1 "><FormattedMessage id="index.sec3.picasso2"/></p>
                                     </div>
                                 </div>
                             </div>
+                            <div className="col-3 col-lg-3 m-0 p-0 text-center">
+                                <div className="row justify-content-center align-items-center m-0 py-1 challenge">
+                                    <div className="col-12 col-lg-4 p-0 text-center text-lg-left">
+                                        <img src="icons/Impact.png" className="img-fluid px-1 p-lg-0"/>
+                                    </div>
+                                    <div className="col-12 col-lg-8 p-2 text-center text-lg-left">
+                                        <p className="fs-sm fw-7 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.impact1"/></p>
+                                        <p className="fs-xs fw-7 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.impactsponsor"/></p>
+                                        <p className="fs-xs fw-4 mb-0 flh-1 "><FormattedMessage id="index.sec3.impact2"/></p>
+                                    </div>
+                                </div>
+                            </div>
+                            {/*
                             <div className="col-3 col-lg-3 m-0 p-0 text-center">
                                 <div className="row justify-content-center align-items-center m-0 py-1 challenge">
                                     <div className="col-12 col-lg-4 p-0 text-center text-lg-left">
@@ -248,6 +268,7 @@ class Index extends Component {
                                     </div>
                                 </div>
                             </div>
+                            */}
                         </div>
                         <div className="spacer-4"></div>
                         <div className="row justify-content-center align-items-start m-0">
@@ -306,6 +327,64 @@ class Index extends Component {
                         <div className="spacer-6"></div>
                     </div>
                 </div>
+                <div className="row justify-content-center align-items-center m-0 white f-black" id="awards">
+                    <div className={"col-11 col-lg-10 text-center p-0"}>
+                        <div className={"spacer-4"} />
+                        <p className="fs-xl fw-7 flh-2 mb-2"><FormattedMessage id="index.sec9.title"/></p>
+                        <p className="fs-md fw-4 flh-2 mb-2 "><FormattedMessage id="index.sec9.desc"/></p>
+                        <div className="row justify-content-end align-items-start m-0">
+                            <div className="col-12 col-lg-4 p-0 py-2 hvr-primary">
+                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.web1"/></p>
+                                <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.web2"/></p>
+                                <p className="fs-xxs fw-4 flh-2 mb-0 "><FormattedMessage id="index.sec9.web3"/></p>
+                            </div>
+                            <div className="col-12 col-lg-4 p-0 py-2 hvr-primary">
+                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.event1"/></p>
+                                <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.event2"/></p>
+                                <p className="fs-xxs fw-4 flh-2 mb-0 "><FormattedMessage id="index.sec9.event3"/></p>
+                            </div>
+                            <div className="col-12 col-lg-4 p-0 py-2 hvr-primary">
+                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.games1"/></p>
+                                <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.games2"/></p>
+                                <p className="fs-xxs fw-4 flh-2 mb-0 "><FormattedMessage id="index.sec9.games3"/></p>
+                            </div>
+                        </div>
+                        <div className={"spacer-2"} />
+                        <div className="row justify-content-end align-items-start m-0 ">
+                            <div className="col-6 col-lg p-0 py-2 hvr-primary cp">
+                                <Link to="/ideas">
+                                    <img src="awards/Web.png" className="img-fluid py-1"/>
+                                    <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.ideas1"/></p>
+                                    <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.ideas2"/></p>
+                                </Link>
+                            </div>
+                            <div className="col-6 col-lg p-0 py-2 hvr-primary">
+                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.aplus1"/></p>
+                                <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.aplus2"/></p>
+                            </div>
+                            <div className="col-6 col-lg p-0 py-2 hvr-primary">
+                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.innovation1"/></p>
+                                <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.innovation2"/></p>
+                            </div>
+                            <div className="col-6 col-lg p-0 py-2 hvr-primary">
+                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.picasso1"/></p>
+                                <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.picasso2"/></p>
+                            </div>
+                            <div className="col-6 col-lg p-0 py-2 hvr-primary">
+                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.impact1"/></p>
+                                <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.impact2"/></p>
+                            </div>
+                        </div>
+                        <div className={"spacer-4"} />
+                    </div>
+                </div>
                 <div className="row vh-70 justify-content-center align-items-center m-0 primary f-white" id="location">
                     <div className="col-11 col-lg-6 text-justify text-lg-left p-0">
                         <div className="spacer-4"></div>
@@ -327,42 +406,23 @@ class Index extends Component {
                 <div className="row vh-40 justify-content-center align-items-center m-0 black f-white" id="end">
                     <div className="col-11 col-lg-10 text-left p-0">
                         <div className="spacer-4"></div>
-                        <div className="row justify-content-center align-items-center m-0">
-                            <div className="col-12 col-lg-5 p-0 text-justify">
-                                {/*
+                        <div className="row justify-content-start align-items-center m-0">
+                            <div className="col-12 col-lg-7 p-0 text-justify">
                                 <p className="fs-md fw-7 flh-2 mb-3 text-left"><FormattedMessage id="index.sec7.title"/></p>
                                 <p className="fs-sm fw-4 flh-2 mb-3"><FormattedMessage id="index.sec7.desc"/></p>
-                                */}
+                                {/*
                                 <p className="fs-md fw-7 flh-3 mb-3"><FormattedMessage id="index.sec7.desc"/></p>
+                                */}
                             </div>
-                            <div className="col-2 col-lg-2 p-0 d-none d-lg-block"></div>
-                            <div className="col-12 col-lg-5 p-0 text-center">
+                            <div className="col-12 col-lg-4 offset-lg-1 p-0 text-center">
                                 <Fade cascade right>
                                 <div className="row justify-content-center align-items-center m-0">
                                     <div className="col-12 p-0">
-                                        {/*
                                         <Link to="/register">
                                             <button type="button" className="btn btn-block btn-dev-black py-2 px-3 my-3">
                                                 <span className="fs-lg fw-7"><FormattedMessage id="index.signup"/></span>
                                             </button>
                                         </Link>
-                                        <div className="spacer-2"></div>
-                                        <a href="https://www.facebook.com/BreakingDev/" target="_blank">
-                                            <i className="fab fa-facebook-square fa-2x px-2 hvr-secondary"></i>
-                                        </a>
-                                        <a href="#" target="_blank">
-                                            <i className="fab fa-instagram fa-2x px-2 hvr-secondary"></i>
-                                        </a>
-                                        <a href="https://www.linkedin.com/company/neerci/about" target="_blank">
-                                            <i className="fab fa-linkedin fa-2x px-2 hvr-secondary"></i>
-                                        </a>
-                                        <a href="https://github.com/NEETIIST" target="_blank">
-                                            <i className="fab fa-github-square fa-2x px-2 hvr-secondary"></i>
-                                        </a>
-                                        <a href="https://www.youtube.com/channel/UCdpC_uftQikmRw3-N8fV2lg" target="_blank">
-                                            <i className="fab fa-youtube-square fa-2x px-2 hvr-secondary"></i>
-                                        </a>
-                                        */}
                                         <div className="spacer-2"></div>
                                         <a href="https://www.facebook.com/BreakingDev/" target="_blank">
                                             <i className="fab fa-facebook-square fa-3x px-2 hvr-secondary"></i>
@@ -389,7 +449,7 @@ class Index extends Component {
                 </div>
                 <div className="row vh-40 justify-content-center align-items-center m-0 white f-black" id="sponsors">
                     <div className="col-11 col-lg-10 text-left p-0">
-                        <div className="spacer-4"></div>
+                        <div className="spacer-4" />
                         <div className="row justify-content-start align-items-start m-0">
                             <div className="col-12 col-lg-3 text-left p-0 px-lg-3">
                                 <p className="fs-sm fw-4 flh-1 mb-1"><FormattedMessage id="index.sec8.organization"/></p>
@@ -398,37 +458,25 @@ class Index extends Component {
                                          title="Núcleo de Estudantes de Engenharia de Telecomunicações e Informática do Instituto Superior Técnico"/>
                                 </a>
                             </div>
-                            <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
-                                <p className="fs-sm fw-4 flh-1 mb-1"><FormattedMessage id="index.sec8.support"/></p>
-                                <a href="https://tecnico.ulisboa.pt/pt/" target="_blank">
-                                    <img src="sponsors/IST.png" className="img-fluid cp"
-                                        title="Instituto Superior Técnico"/>
+                            <div className="col-12 col-lg-3 text-left p-0 px-lg-3">
+                                <p className="fs-xs fw-4 flh-1 mb-1"><FormattedMessage id="index.sec8.sponsor"/></p>
+                                <a href="https://www.farfetch.com/pt/" target="_blank">
+                                    <img src="sponsors/Farfetch.png" className="img-fluid cp"
+                                         title="Farfetch"/>
                                 </a>
                             </div>
                             <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
                                 <p className="fs-sm fw-4 flh-1 mb-1 f-white">.</p>
-                                <a href="https://www.santandertotta.pt/pt_PT/Particulares/Universitarios.html" target="_blank">
-                                    <img src="sponsors/Santander.png" className="img-fluid cp"
-                                         title="Banco Santander Totta"/>
+                                <a href="https://www.altran.com/pt/pt-pt/" target="_blank">
+                                    <img src="sponsors/Altran.png" className="img-fluid cp"
+                                         title="Altran"/>
                                 </a>
                             </div>
-                            {/*
                             <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
-                                <p className="fs-sm fw-4 flh-2 mb-3 f-white">.</p>
-                                <a href="#" target="_blank">
-                                    <img src="sponsors/AEIST.png" className="img-fluid cp"
-                                        title="Associação dos Estudantes do Instituto Superior Técnico"/>
-                                </a>
-                            </div>
-                            */}
-                        </div>
-                        <div className="spacer-2"></div>
-                        <div className="row justify-content-start align-items-start m-0">
-                            <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
-                                <p className="fs-sm fw-4 flh-1 mb-1"><FormattedMessage id="index.sec8.sponsor"/></p>
-                                <a href="https://www.farfetch.com/pt/" target="_blank">
-                                    <img src="sponsors/Farfetch.png" className="img-fluid cp"
-                                         title="Farfetch"/>
+                                <p className="fs-sm fw-4 flh-1 mb-1 f-white">.</p>
+                                <a href="https://www2.deloitte.com/pt/pt.html" target="_blank">
+                                    <img src="sponsors/Deloitte.png" className="img-fluid cp"
+                                         title="Deloitte"/>
                                 </a>
                             </div>
                             <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
@@ -440,6 +488,13 @@ class Index extends Component {
                             </div>
                             <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
                                 <p className="fs-sm fw-4 flh-1 mb-1 f-white">.</p>
+                                <a href="https://dellentconsulting.com/" target="_blank">
+                                    <img src="sponsors/Dellent.png" className="img-fluid cp"
+                                         title="Dellent"/>
+                                </a>
+                            </div>
+                            <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
+                                <p className="fs-sm fw-4 flh-1 mb-1 f-white">.</p>
                                 <a href="https://www.outsystems.com/" target="_blank">
                                     <img src="sponsors/OutSystems.png" className="img-fluid cp"
                                          title="OutSystems"/>
@@ -447,30 +502,69 @@ class Index extends Component {
                             </div>
                             <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
                                 <p className="fs-sm fw-4 flh-1 mb-1 f-white">.</p>
-                                <a href="https://dellentconsulting.com/" target="_blank">
-                                    <img src="sponsors/Dellent.png" className="img-fluid cp"
-                                         title="Dellent"/>
+                                <a href="http://theros.digital" target="_blank">
+                                    <img src="sponsors/Theros.png" className="img-fluid cp"
+                                         title="Theros"/>
                                 </a>
                             </div>
-                            <div className="col-lg-4 d-none d-lg-block" />
-                            <div className="col-12 col-lg-4 text-center p-0 px-lg-3 my-2 my-lg-3 align-self-center">
+                        </div>
+                        <div className={"spacer-2"} />
+                        <div className="row justify-content-start align-items-start m-0">
+                            <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
+                                <p className="fs-xs fw-4 flh-1 mb-1"><FormattedMessage id="index.sec8.support"/></p>
+                                <a href="https://tecnico.ulisboa.pt/pt/" target="_blank">
+                                    <img src="sponsors/IST.png" className="img-fluid cp"
+                                         title="Instituto Superior Técnico"/>
+                                </a>
+                            </div>
+                            <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
+                                <p className="fs-sm fw-4 flh-1 mb-1 f-white">.</p>
+                                <a href="https://www.santandertotta.pt/pt_PT/Particulares/Universitarios.html" target="_blank">
+                                    <img src="sponsors/Santander.png" className="img-fluid cp"
+                                         title="Banco Santander Totta"/>
+                                </a>
+                            </div>
+                            <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
+                                <p className="fs-sm fw-4 flh-2 mb-3 f-white">.</p>
+                                <a href="https://aeist.pt/" target="_blank">
+                                    <img src="sponsors/AEIST.png" className="img-fluid cp"
+                                         title="Associação dos Estudantes do Instituto Superior Técnico"/>
+                                </a>
+                            </div>
+                            <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
+                                <p className="fs-sm fw-4 flh-2 mb-3 f-white">.</p>
+                                <a href="http://www.cm-oeiras.pt/pt/Paginas/default.aspx" target="_blank">
+                                    <img src="sponsors/Oeiras.png" className="img-fluid cp"
+                                         title="Camâra Municipal de Oeiras"/>
+                                </a>
+                            </div>
+                            {/*
+                            <div className="col-12 col-lg-4 offset-lg-4 text-center p-0 px-lg-3 my-2 my-lg-3 align-self-center">
                                 <Link to="/besponsor">
                                     <button type="button" className="btn btn-block btn-dev py-2 px-3 mt-3">
                                         <span className="fs-lg fw-7"><FormattedMessage id="index.sec8.besponsor"/></span>
                                     </button>
                                 </Link>
                             </div>
+                            */}
                         </div>
                         <hr className="f-primary primary"/>
                         <div className="row justify-content-center align-items-center m-0">
-                            <div className="col-6 col-lg-4 p-0 text-center">
+                            <div className="col-6 col-lg-3 p-0 text-center">
                                 <p className="fs-xs fw-4 flh-2 mb-3">
                                     <a href="/docs/Privacidade.pdf" target="_blank" className="hvr-primary">
                                         <FormattedMessage id="index.sec8.privacy"/>
                                     </a>
                                 </p>
                             </div>
-                            <div className="col-6 col-lg-4 p-0 text-center">
+                            <div className="col-6 col-lg-3 p-0 text-center">
+                                <p className="fs-xs fw-4 flh-2 mb-3 hvr-primary cp">
+                                    <Link to="/besponsor">
+                                        <FormattedMessage id="index.sec8.besponsor"/>
+                                    </Link>
+                                </p>
+                            </div>
+                            <div className="col-6 col-lg-3 p-0 text-center">
                                 <p className="fs-xs fw-4 flh-2 mb-3">
                                     <FormattedMessage id="index.sec8.madewith"/>
                                     <a href="http://mern.io/" target="_blank" className="hvr-primary">
@@ -478,7 +572,7 @@ class Index extends Component {
                                     </a>
                                 </p>
                             </div>
-                            <div className="col-12 col-lg-4 p-0 text-center">
+                            <div className="col-6 col-lg-3 p-0 text-center">
                                 <a href="http://neeti.tecnico.ulisboa.pt" target="_blank" className="hvr-primary">
                                     <p className="fs-xs fw-4 flh-2 mb-3"><FormattedMessage id="index.sec8.copyright"/></p>
                                 </a>
