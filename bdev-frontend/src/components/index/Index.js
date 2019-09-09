@@ -327,6 +327,7 @@ class Index extends Component {
                         <div className="spacer-6"></div>
                     </div>
                 </div>
+                {/*
                 <div className="row justify-content-center align-items-center m-0 white f-black" id="awards">
                     <div className={"col-11 col-lg-10 text-center p-0"}>
                         <div className={"spacer-4"} />
@@ -385,6 +386,7 @@ class Index extends Component {
                         <div className={"spacer-4"} />
                     </div>
                 </div>
+                */}
                 <div className="row vh-70 justify-content-center align-items-center m-0 primary f-white" id="location">
                     <div className="col-11 col-lg-6 text-justify text-lg-left p-0">
                         <div className="spacer-4"></div>
