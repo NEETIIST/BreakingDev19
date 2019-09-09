@@ -138,7 +138,7 @@ class Dashboard extends Component {
                         <div className="col-12 col-lg-11 p-0">
                             {this.state.content == "feed" ? <Feed {...this.props} navigation={this.navigation}/> : ""}
                             {this.state.content == "profile" ? <Profile {...this.props}/> : ""}
-                            {this.state.content == "team" ? <Team {...this.props}/> : ""}
+                            {this.state.content == "team" ? <Team {...this.props} navigation={this.navigation}/> : ""}
                             {this.state.content == "chats" ? <Chats {...this.props}/> : ""}
                         </div>
                     </div>

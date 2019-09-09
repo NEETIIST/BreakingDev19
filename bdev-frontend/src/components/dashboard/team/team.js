@@ -141,7 +141,7 @@ class Profile extends Component {
                     </div>
                     <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="find" ? "-active" :"")}
                          onClick={() => this.navigation("find")}>
-                        <i className="fas fa-fw find fa-lg flh-1 mr-2"/>
+                        <i className="fas fa-fw fa-search fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.find"/></span>
                     </div>
                     <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="join" ? "-active" :"")}
@@ -183,14 +183,14 @@ class Profile extends Component {
                                     </div>
                                 </div>
                                 <div className={"col-9 col-lg-3 mx-3 my-2 p-0 text-center cp dash-team-options"}
-                                     onClick={() => this.navigation("search")}>
+                                     onClick={() => this.navigation("find")}>
                                     <div className={"row justify-content-center align-content-center vh-15 px-2 py-3 m-0"} style={{alignItems:"center"}}>
                                         <div className={"col-3 col-lg-12 text-center py-1 px-2"}>
                                             <i className="fas fa-fw fa-search fa-3x" />
                                         </div>
                                         <div className={"col-9 col-lg-12 text-left text-lg-center py-1"}>
-                                            <p className="fs-md fw-7 flh-1 mb-1"><FormattedMessage id="dash.team.search.title"/></p>
-                                            <p className="fs-sm fw-4 flh-1 mb-0"><FormattedMessage id="dash.team.search.short"/></p>
+                                            <p className="fs-md fw-7 flh-1 mb-1"><FormattedMessage id="dash.team.find.title"/></p>
+                                            <p className="fs-sm fw-4 flh-1 mb-0"><FormattedMessage id="dash.team.find.short"/></p>
                                         </div>
                                     </div>
                                 </div>
