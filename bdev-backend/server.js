@@ -49,6 +49,8 @@ const socketio = require("./socketio");
 io.on('connection', socketio );
 io.listen(8000);
 
+app.set('io', io);
+
 mongoose.connect('mongodb://127.0.0.1:27017/bdev', { useNewUrlParser: true });
 const connection = mongoose.connection;
 

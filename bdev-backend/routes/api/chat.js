@@ -11,6 +11,7 @@ const DevProfile = require("../../models/DevProfile");
 // Load input validation
 //const validateIdeaSubmission = require("../../validation/ideas");
 
+
 // @route POST api/chat/create/
 // @desc Creates a Chat Channel
 // @permission Must be logged user
@@ -40,7 +41,10 @@ router.post("/create", verifyToken, (req, res) => {
                     //number: "",
                     socket_id: socket,
                     members: [origin_dev.username, target_dev.username],
-                    messages: [],
+                    messages: [
+                        {author:origin_dev.username,
+                        content:"Esta conversa foi iniciada por mim. (gerado automáticamente)"}
+                    ],
                 });
 
                 newChannel
@@ -101,25 +105,22 @@ router.put("/_:channel/send", verifyToken, (req, res) => {
 
     Chat.findOneAndUpdate(
         {$and:[{"members":{ $in: [req.username] }},{"channel":req.params['channel']}]},
-        {$push: { "messages": req.body.message } },
+        {$push: { "messages": {content:req.body.message, author: req.username} } },
         {new: true},
         function (err, chat) {
             if (err) return res.status(500).send("There was a problem finding the Chats.");
             if (!chat) return res.status(404).send("No Chats found");
+            req.app.get('io').to(chat.socket_id).emit('has_messages');
             return res.status(200).send(chat);
         }
     );
+
+
 
 });
 
 
 
-
-/* TODO:
-    - Create Channel ( when creating, must check if doesn't exist already
-    - Send Message to Channel
-    - Get Messages from Channel
- */
 
 
 module.exports = router;

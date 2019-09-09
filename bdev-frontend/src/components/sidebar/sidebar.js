@@ -16,7 +16,6 @@ import BeSponsor from "../besponsor/besponsor";
 import Faqs from "../faqs/faqs";
 import Ideas from "../ideas/ideas";
 import Staff from "../staffTeam/staffTeam";
-import Chat from "../chat/chat";
 
 
 class Sidebar extends Component {
@@ -233,8 +232,6 @@ class Sidebar extends Component {
                     <Route exact path="/faqs" component={Faqs} />
                     <Route exact path="/ideas" component={Ideas} />
 
-                    <Route exact path="/chat" component={Chat} />
-
                     <RestrictedRoute path="/login" component={Authentication} isLogin={true}/>
                     <RestrictedRoute path="/register" component={Authentication} isLogin={false}/>
 
@@ -242,6 +239,7 @@ class Sidebar extends Component {
                     <PrivateRoute exact path="/dashboard/feed" component={Dashboard} content={"feed"}/>
                     <PrivateRoute exact path="/dashboard/profile" component={Dashboard} content={"profile"}/>
                     <PrivateRoute path="/dashboard/team" component={Dashboard} content={"team"}/>
+                    <PrivateRoute path="/dashboard/chats" component={Dashboard} content={"chats"}/>
 
                     <PrivateRoute exact path="/staffdash" component={staffDash} content={"default"}/>
                     <PrivateRoute exact path="/staffdash/feed" component={staffDash} content={"feed"}/>

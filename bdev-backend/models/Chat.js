@@ -17,9 +17,11 @@ const ChatSchema = new Schema({
         type: [String],
         required: true
     },
-    messages: {
-        type: [String],
-    },
+    // TODO: Messages should have the time they were sent
+    messages: [{
+        content: { type: String},
+        author: { type: String},
+    }],
 
 });
 
