@@ -12,6 +12,7 @@ import './Dashboard.css';
 import Profile from './profile/profile';
 import Feed from "./feed/feed";
 import Team from "./team/team";
+import Chats from "./chats/chats";
 
 class Dashboard extends Component {
 
@@ -105,6 +106,19 @@ class Dashboard extends Component {
                                 </div>
                             </NavLink>
                         </div>
+                        <div className="col-2 col-lg-12 p-0 mb-0 mb-lg-1" onClick={() => this.navigation("chats")}>
+                            <NavLink activeClassName="dash-opt-active" exact to="/dashboard/chats">
+                                <div
+                                    className="row justify-content-center align-items-center vh-6 p-0 px-lg-1 m-0 cp dash-opt">
+                                    <div className="col-12 col-lg-2 offset-lg-1 text-center px-0">
+                                        <i className="fas fa-fw fa-comments fa-lg py-lg-2"></i>
+                                    </div>
+                                    <div className="col-lg-9 text-lg-left d-none d-lg-flex">
+                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="dash.opt4"/></span>
+                                    </div>
+                                </div>
+                            </NavLink>
+                        </div>
                         <div className="spacer-8 d-none d-lg-inline"></div>
                         <div className="col-2 col-lg-12 p-0 mb-0 mb-lg-1 offset-1 offset-lg-0" onClick={this.onLogoutClick}>
                             <div
@@ -124,7 +138,8 @@ class Dashboard extends Component {
                         <div className="col-12 col-lg-11 p-0">
                             {this.state.content == "feed" ? <Feed {...this.props} navigation={this.navigation}/> : ""}
                             {this.state.content == "profile" ? <Profile {...this.props}/> : ""}
-                            {this.state.content == "team" ? <Team {...this.props}/> : ""}
+                            {this.state.content == "team" ? <Team {...this.props} navigation={this.navigation}/> : ""}
+                            {this.state.content == "chats" ? <Chats {...this.props}/> : ""}
                         </div>
                     </div>
                 </div>

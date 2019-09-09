@@ -3,19 +3,32 @@ import {FormattedMessage} from "react-intl";
 import Fade from 'react-reveal/Fade';
 import URL from "../../../utils/requestsURL";
 import axios from "axios";
+import querystring from "query-string";
 
 class Find extends Component {
     constructor(props) {
         super(props);
-        //console.log(props);
+        console.log(props);
         this.state = {
             teams: [],
         }
 
+        this.chatCaptain = this.chatCaptain.bind(this);
     }
 
     componentDidMount() {
         this.getTeams();
+    }
+
+    chatCaptain(username){
+        axios.post(URL+'/api/chat/create', querystring.stringify({target_username:username}), {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]
+            },
+        })
+            .then(response => { this.props.navigation("chats") })
+            .catch(err => console.log(err.response))
     }
 
     getTeams(){
@@ -73,8 +86,9 @@ class Find extends Component {
                         </div>
                     </div>
                     <hr className={"mt-2 mb-1"} />
-                    <div className="row justify-content-center align-items-start m-0 pt-1 f-dark-grey">
-                        <div className={"col-6 p-0 px-2 text-left hvr-primary cp"} onClick={"something"}>
+                    <div className="row justify-content-center align-items-center m-0 pt-1 f-dark-grey">
+                        <div className={"col-12 p-0 px-2 text-left hvr-primary cp"}
+                             onClick={()=>this.chatCaptain(team.captain)}>
                             <i className={"fas fa-md mx-2 fa-comments"}
                                title={intl.formatMessage({ id: 'dash.team.asktojoin' })} />
                             <span className="fs-sm fw-4 flh-1 mb-0 "><FormattedMessage id="dash.team.find.asktojoin"/></span>

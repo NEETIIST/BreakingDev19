@@ -12,6 +12,7 @@ const admins = require("./routes/api/staffs");
 const emails = require("./routes/api/emails");
 const ideas = require("./routes/api/ideas");
 const teams = require("./routes/api/teams");
+const chat = require("./routes/api/chat");
 
 app.use(cors());
 app.use(bodyParser.urlencoded({
@@ -41,6 +42,15 @@ app.use(fileUpload());
 // Serve Static Files
 app.use('/files', express.static('public'))
 
+// Socket.io
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const socketio = require("./socketio");
+io.on('connection', socketio );
+io.listen(8000);
+
+app.set('io', io);
+
 mongoose.connect('mongodb://127.0.0.1:27017/bdev', { useNewUrlParser: true });
 const connection = mongoose.connection;
 
@@ -64,6 +74,7 @@ app.use("/api/staff", admins);
 app.use("/api/ideas", ideas);
 app.use("/api/emails", emails);
 app.use("/api/teams", teams);
+app.use("/api/chat", chat);
 
 
 
