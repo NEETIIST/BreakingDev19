@@ -46,9 +46,11 @@ module.exports = function validateRegisterInput(data) {
         errors.role = "Invalid Role";
     }
     // Access Code checks
+    /*
     if (!Validator.isEmpty(data.access_code)) {  // Check if it makes sense to use accents
         errors.access_code = "Please use a valid access code format";
     }
+    */
     return {
         errors,
         isValid: isEmpty(errors)
