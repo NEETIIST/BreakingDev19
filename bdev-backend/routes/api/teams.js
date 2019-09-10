@@ -11,6 +11,9 @@ const DevProfile = require("../../models/DevProfile");
 // Load input validation
 const validateTeamInput = require("../../validation/teams");
 
+// Load Email Templates and Function
+const emails = require('../../emails');
+
 // @route GET api/teams/all
 // @desc Returns all teams
 // @permission Staff Only
@@ -386,7 +389,11 @@ router.put("/own/validate", verifyToken, (req, res) => {
         team.pending = true;
         team.registration = new Date();
         team.save()
-            .then( team => { return res.status(200).send(team); })
+            .then( team => {
+                // Send Email informing the Staff
+                emails.sendStaffEmail(emails.teamRequestedValidation({name:team.team_name}));
+                return res.status(200).send(team);
+            })
             .catch(err => console.log(err));
     });
 
@@ -434,7 +441,11 @@ router.put("/_:number/validate", verifyToken, (req, res) => {
         team.pending = false;
         team.validated = true;
         team.save()
-            .then( team => { return res.status(200).send(team); })
+            .then( team => {
+                // Send Email informing the Captain
+                //emails.sendEmail(emails.teamValidated({}), team.captain);
+                return res.status(200).send(team);
+            })
             .catch(err => console.log(err));
     });
 

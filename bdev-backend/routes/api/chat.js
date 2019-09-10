@@ -11,6 +11,8 @@ const DevProfile = require("../../models/DevProfile");
 // Load input validation
 //const validateIdeaSubmission = require("../../validation/ideas");
 
+// Load Email Templates and Function
+const emails = require('../../emails');
 
 // @route POST api/chat/create/
 // @desc Creates a Chat Channel
@@ -22,6 +24,7 @@ router.post("/create", verifyToken, (req, res) => {
     if ( req.username === req.body.target_username) return res.status(403).send("Sender and Receiver cannot be the same user.")
     // If channel with said user already exists, returns that channel
     // If no channel exists, creates a new one
+    // TODO: This system doesn't allow chats for other users (like Staff and volunteers)
     DevProfile.findOne({"username":req.username}, function (err, origin_dev) {
         if (err) return res.status(500).send("There was a problem finding the Dev");
         if (!origin_dev) return res.status(404).send("No Dev Profile was found for the username");
@@ -49,15 +52,11 @@ router.post("/create", verifyToken, (req, res) => {
 
                 newChannel
                     .save()
-                    .then(chat => { return res.status(200).send(chat);
-                        /*
-                        console.log("Sucessfully created a Team, with the captain: " + team.captain);
-                        // Update Dev Profile With the New Team Number, if all is sucessfull, sends team
-                        dev .update({team:team.number})
-                            .then(dev => { return res.status(200).send(team); })
-                            .catch(err => console.log(err));
+                    .then(chat => {
+                        // Send Email Informing the target User
+                        emails.sendEmail(emails.channelStarted({originUser:origin_dev.username, targetUser:target_dev.username}), target_dev.username);
+                        return res.status(200).send(chat);
 
-                        */
                     })
                     .catch(err => console.log(err));
             });
@@ -103,6 +102,11 @@ router.get("/_:channel", verifyToken, (req, res) => {
 // @permission Logged User must belong to the target channel
 router.put("/_:channel/send", verifyToken, (req, res) => {
 
+    // Form validation
+    const { errors, isValid } = validateMessageInput(req.body);
+    // Check validation
+    if (!isValid) { return res.status(400).json(errors); }
+
     Chat.findOneAndUpdate(
         {$and:[{"members":{ $in: [req.username] }},{"channel":req.params['channel']}]},
         {$push: { "messages": {content:req.body.message, author: req.username} } },
@@ -120,6 +124,23 @@ router.put("/_:channel/send", verifyToken, (req, res) => {
 });
 
 
+function validateMessageInput(data) {
+    let errors = {};
+    // Convert empty fields to an empty string so we can use validator functions
+    data.message = !isEmpty(data.message) ? data.message : "";
+
+    // Name Checks - Must be filled
+    if (Validator.isEmpty(data.message)) {
+        errors.name = "Name is necessary";
+    }
+    else if (!Validator.isLength(data.message,{max: 256})) {
+        errors.name = "Name must have less than 256 characters";
+    }
+    return {
+        errors,
+        isValid: isEmpty(errors)
+    };
+};
 
 
 

@@ -14,6 +14,9 @@ const Idea = require("../../models/Idea");
 // Load input validation
 const validateAdminProfileInput = require("../../validation/adminProfile");
 
+// Load Email Templates and Function
+const emails = require('../../emails');
+
 /* THIS ROUTE IS OBSOLETE, users now register as admins on account creation
 // @route POST api/admins/access
 // @desc Grants Admin Access to a user and updates their JWT Token
@@ -122,6 +125,8 @@ router.get("/me", verifyToken, (req, res) => {
     AdminProfile.findOne({"username":req.username}, AdminProfile.adminInfo, function (err, adm) {
         if (err) return res.status(500).send("There was a problem finding the Staff Profile.");
         if (!adm) return res.status(404).send("No Staff Profile found for this username");
+
+        //emails.sendEmail(emails.createdAccount({}), req.username);
 
         // The Dev Profile will always be the one of the logged user
         return res.status(200).send(adm);

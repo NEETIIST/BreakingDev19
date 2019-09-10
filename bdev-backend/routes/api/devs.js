@@ -11,6 +11,9 @@ const DevProfile = require("../../models/DevProfile");
 // Load input validation
 const validateDevProfileInput = require("../../validation/devProfile");
 
+// Load Email Templates and Function
+const emails = require('../../emails');
+
 // @route POST api/devs/create
 // @desc Create Dev Profile, logged user must not have a profile already
 // Performs a double check for already existing profiles associated with this username
@@ -183,7 +186,11 @@ router.put("/me/validate", verifyToken, (req, res) => {
         updatedDev.pending = true;
 
         dev .save(updatedDev)
-            .then(dev => { return res.status(200).send(dev); })
+            .then(dev => {
+                // Send Email informing the Staff
+                emails.sendStaffEmail(emails.userRequestedValidation({name:dev.name, username:dev.username}));
+                return res.status(200).send(dev);
+            })
             .catch(err => console.log(err));
     });
 });
@@ -221,6 +228,9 @@ router.put("/_:username/validate", verifyToken, (req, res) => {
     DevProfile.findOneAndUpdate({"username":req.params['username']}, {validated:true, pending:false}, {projection: DevProfile.adminInfo, new: true}, function (err, dev) {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
         if (!dev) return res.status(404).send("No Dev Profile found for this username");
+
+        // Send Email informing the User
+        emails.sendEmail(emails.profileValidated({name:dev.name}), dev.username);
 
         return res.status(200).send(dev);
     });
