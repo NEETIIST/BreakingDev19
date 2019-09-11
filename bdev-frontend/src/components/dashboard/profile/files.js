@@ -16,7 +16,7 @@ class Files extends Component {
             newCV: null,
             cvStatus: null,
             teamValidated: false,
-            paymentFile:  props.profile.paymentFile,
+            paymentFile:  props.profile.payment.file,
             newPaymentFile: null,
             paymentFileStatus: null,
         }
@@ -232,7 +232,7 @@ class Files extends Component {
                     <div className="col-12 col-lg-3 p-0 text-center f-primary">
                         <i className={"far fa-fw fa-file f-grey fa-6x flh-1 "+(hasCV?"d-none":"")}/>
                         <a href={URL+"/files/cv/"+this.state.cv} target={"_blank"} >
-                            <i className={"far fa-fw fa-file-alt hvr-secondary fa-6x flh-1 "+(hasCV?"":"d-none")}/>
+                            <i className={"fas fa-fw fa-file-pdf hvr-secondary fa-6x flh-1 "+(hasCV?"":"d-none")}/>
                         </a>
                     </div>
                     <div className="col-12 col-lg-9 p-0 text-left f-grey">
@@ -277,7 +277,7 @@ class Files extends Component {
                     <div className="col-12 col-lg-3 p-0 text-center f-primary">
                         <i className={"far fa-fw fa-file f-grey fa-6x flh-1 "+(hasPaymentFile?"d-none":"")}/>
                         <a href={URL+"/files/paymentFile/"+this.state.paymentFile} target={"_blank"} >
-                            <i className={"far fa-fw fa-file-alt hvr-secondary fa-6x flh-1 "+(hasPaymentFile?"":"d-none")}/>
+                            <i className={"fas fa-fw fa-file-invoice hvr-secondary fa-6x flh-1 "+(hasPaymentFile?"":"d-none")}/>
                         </a>
                     </div>
                     <div className="col-12 col-lg-9 p-0 text-left f-grey">

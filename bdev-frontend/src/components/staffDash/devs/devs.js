@@ -117,14 +117,16 @@ class Devs extends Component {
                                     <span className={"fs-xs fw-4 flh-1 f-grey ml-2"}>({dev.username})</span>
                                     <i className={"fas fa-fw fa-users fa-md flh-1 ml-2 mr-1 "+(dev.team!==0?"":"d-none")}
                                        title={intl.formatMessage({id: 'staffdash.devs.hasteam'})}/>
+                                    <i className={"fas fa-fw fa-file-invoice fa-md flh-1 ml-2 mr-1 "+(dev.payment.file?"":"d-none")}
+                                       title={intl.formatMessage({id: 'staffdash.devs.haspaymentfile'})}/>
                                 </div>
                                 <div className="col-4 col-lg-3 py-0 pr-2 text-right">
                                     <i className={"fas fa-fw fa-user-check f-green fa-md flh-1 mx-1 "+(dev.validated?"d-inline":"d-none")}
                                        title={intl.formatMessage({id: 'staffdash.devs.validated'})}/>
                                     <i className={"fas fa-fw fa-exclamation-triangle f-yellow fa-md flh-1 mx-1 "+(dev.pending?"d-inline":"d-none")}
                                        title={intl.formatMessage({id: 'staffdash.devs.pending'})}/>
-                                    <i className={"fas fa-fw fa-euro-sign f-green fa-md flh-1 mx-1 "+(dev.payment?"d-inline":"d-none")}
-                                       title={intl.formatMessage({id: 'staffdash.devs.payment'})}/>
+                                    <i className={"fas fa-fw fa-euro-sign f-green fa-md flh-1 mx-1 "+(dev.payment.confirmed?"d-inline":"d-none")}
+                                       title={intl.formatMessage({id: 'staffdash.devs.payment.confirmed'})}/>
                                     <i className={"fas fa-fw fa-users fa-md flh-1 mx-1 "+(dev.hasTeam?"d-inline":"d-none")}
                                        title={intl.formatMessage({id: 'staffdash.devs.seemore'})}/>
                                     <i className="fas fa-fw fa-chevron-right fa-md flh-1 hvr-primary ml-1"
