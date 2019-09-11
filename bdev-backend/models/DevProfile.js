@@ -76,6 +76,16 @@ const DevProfileSchema = new Schema({
         required: true,
         default: false,
     },
+    paymentFile: {
+        type: String,
+    },
+    /*
+    payment:{
+        confirmed: { type: Boolean }
+        promocode: { type: String },
+        price: { type: String },
+    }
+    */
 
 
 });
@@ -102,6 +112,7 @@ DevProfile.publicInfo = {
     //pending: 0,
     //validated:0,
     //payment:0,
+    //paymentFile:0,
 };
 
 DevProfile.ownerInfo = {
@@ -124,6 +135,7 @@ DevProfile.ownerInfo = {
     pending: 1,
     validated:1,
     payment:1,
+    paymentFile:1,
 };
 
 DevProfile.adminInfo = {
@@ -146,6 +158,7 @@ DevProfile.adminInfo = {
     pending: 1,
     validated:1,
     payment:1,
+    paymentFile:1,
 };
 
 module.exports = DevProfile;

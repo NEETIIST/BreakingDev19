@@ -9,7 +9,7 @@ bdev-frontend/package-lock.json
 
 server/
 
-bdev-frontend/src/utils/requestsURL.js
+bdev-frontend/src/utils/requestsURL\.js
 
 bdev-backend/public/profile/
 bdev-backend/public/cv/

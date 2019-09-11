@@ -61,6 +61,7 @@ router.post("/create", verifyToken, (req, res) => {
                 pending: false,
                 validated: false,
                 payment: false,
+                paymentFile: "",
 
             });
 
@@ -295,10 +296,9 @@ router.put("/_:username/cancelPayment", verifyToken, (req, res) => {
 // @access Own, user changes its own profile picture
 router.post("/me/files/:target", verifyToken, (req, res) => {
 
-    // TODO: TEST AFTER DEPLOYMENT
     const target = req.params['target'];
     let data;
-    if ( target !== "cv" && target !== "profile" ) return res.status(403).send("Not a valid Target");
+    if ( target !== "cv" && target !== "profile" && target !== "paymentFile" ) return res.status(403).send("Not a valid Target");
     if ( req.files === undefined ) return res.status(403).send("Didn't receive a file");
     let file = req.files.file;
 
@@ -317,6 +317,12 @@ router.post("/me/files/:target", verifyToken, (req, res) => {
         if( !(file.mimetype==="image/png" || file.mimetype==="image/jpg" || file.mimetype==="image/jpeg")) return res.status(403).send("Not an Image");
         data = {"picture":filename};
     }
+    else if ( target === "paymentFile")
+    {
+        if( file.size > 3000000) return res.status(403).send("Image too big");
+        if( !(file.mimetype==="image/png" || file.mimetype==="image/jpg" || file.mimetype==="image/jpeg" || file.mimetype==="application/pdf" || file.mimetype==="application/x-pdf")) return res.status(403).send("Not an Image or PDF");
+        data = {"paymentFile":filename};
+    }
 
     const appRoot = require('app-root-path');
     //let dir = appRoot.path.substr(0, appRoot.path.lastIndexOf("/"))+"/bdev-frontend";
@@ -334,16 +340,17 @@ router.post("/me/files/:target", verifyToken, (req, res) => {
 
 });
 
-// @route PUT api/devs/me/files/picture
-// @desc Remove current profile picture
-// @access Own, user changes its own profile picture
+// @route PUT api/devs/me/files/:target/remove
+// @desc Remove current profile picture / file
+// @access Own, user changes its own files
 router.put("/me/files/:target/remove", verifyToken, (req, res) => {
 
     const target = req.params['target'];
-    if ( target !== "cv" && target !== "profile" ) return res.status(403).send("Not a valid Target");
+    if ( target !== "cv" && target !== "profile" && target !== "paymentFile") return res.status(403).send("Not a valid Target");
     let data;
     if ( target === "cv" ) data = {"cv":""};
     if ( target === "profile" ) data = {"profile":""};
+    if ( target === "paymentFile" ) data = {"paymentFile":""};
 
     DevProfile.findOneAndUpdate({"username":req.username}, data, {new: true}, function (err, dev) {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile.");

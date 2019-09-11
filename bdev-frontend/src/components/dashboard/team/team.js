@@ -20,7 +20,7 @@ class Profile extends Component {
 
         this.state = {
             dev: null,
-            team: null,
+            team: "",
             content: "see",
             loaded: false,
             query: null,
@@ -89,12 +89,14 @@ class Profile extends Component {
 
     render() {
         let content = this.state.content;
-        let team = this.state.team;
+        let teamValidated = this.state.team.validated;
         let hasTeam = (this.state.team!==0);
         let loaded = this.state.loaded;
         let isValidated;
         if (loaded) isValidated = this.state.dev.validated;
         let isCaptain = this.state.isCaptain;
+
+        console.log(teamValidated);
 
         return(
             <Fade right cascade>
@@ -106,7 +108,7 @@ class Profile extends Component {
                         <hr className="m-0 mt-3"/>
                     </div>
                 </div>
-                <div className={"row justify-content-center align-content-start py-lg-3 p-0 m-0 dash-subnav no-scrollbar "+(hasTeam?"":"d-none")}>
+                <div className={"row justify-content-center align-content-start py-lg-3 p-0 m-0 dash-subnav no-scrollbar "+(hasTeam&&loaded?"":"d-none")}>
                     <div className={"col-auto col-lg-2 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="see" ? "-active" :"")}
                          onClick={() => this.navigation("see")}>
                         <i className="fas fa-fw fa-search fa-lg flh-1 mr-2"/>
@@ -122,7 +124,7 @@ class Profile extends Component {
                         <i className="fas fa-fw fa-users fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.members"/></span>
                     </div>
-                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="validate" ? "-active" :"")+(isCaptain?"":" d-none")}
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="validate" ? "-active" :"")+(isCaptain||teamValidated?"":" d-none")}
                          onClick={() => this.navigation("validate")}>
                         <i className="fas fa-fw fa-check fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.validate"/></span>
@@ -133,7 +135,7 @@ class Profile extends Component {
                         <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.search"/></span>
                     </div>
                 </div>
-                <div className={"row justify-content-center align-content-start py-lg-3 p-0 m-0 dash-subnav no-scrollbar "+((!hasTeam&&content!=="see")?"":"d-none")}>
+                <div className={"row justify-content-center align-content-start py-lg-3 p-0 m-0 dash-subnav no-scrollbar "+((!hasTeam&&content&&loaded!=="see")?"":"d-none")}>
                     <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="add" ? "-active" :"")}
                          onClick={() => this.navigation("add")}>
                         <i className="far fa-fw fa-plus-square fa-lg flh-1 mr-2"/>

@@ -15,6 +15,10 @@ class Files extends Component {
             cv:  props.profile.cv,
             newCV: null,
             cvStatus: null,
+            teamValidated: false,
+            paymentFile:  props.profile.paymentFile,
+            newPaymentFile: null,
+            paymentFileStatus: null,
         }
 
         this.openPictureDialog = this.openPictureDialog.bind(this);
@@ -25,6 +29,23 @@ class Files extends Component {
         this.uploadCV = this.uploadCV.bind(this);
         this.handleCVChange = this.handleCVChange.bind(this);
         this.removeCV = this.removeCV.bind(this);
+        this.openPaymentFileDialog = this.openPaymentFileDialog.bind(this);
+        this.uploadPaymentFile = this.uploadPaymentFile.bind(this);
+        this.handlePaymentFileChange = this.handlePaymentFileChange.bind(this);
+        this.removePaymentFile = this.removePaymentFile.bind(this);
+    }
+
+    componentDidMount() {
+        if ( this.props.profile.team === 0) return;
+        axios
+            .get(URL+"/api/teams/own", {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]
+                },
+            })
+            .then(res => { this.setState({teamValidated:res.data.validated}); })
+            .catch(err => { console.log(err); });
     }
 
     handlePictureChange(ev) { ev.preventDefault(); this.setState({ newPicture: this.pictureInput.files[0] }, () => { this.uploadPicture() });};
@@ -107,6 +128,46 @@ class Files extends Component {
             .catch(err => { console.log(err); });
     }
 
+    handlePaymentFileChange(ev) { ev.preventDefault(); this.setState({ newPaymentFile: this.paymentFileInput.files[0] }, () => { this.uploadPaymentFile() });};
+    openPaymentFileDialog(){ this.paymentFileInput.click(); }
+    uploadPaymentFile(){
+
+        // Validation, under 3MB and PNG or JPEG
+        let payment = this.state.newPaymentFile;
+        if ( payment === undefined ) return;
+        if (payment.size > 10000000) { this.setState({paymentFileStatus:"toobig"}); return; }
+        let extension = payment.type.split("/")[1];
+        if (! (extension === "pdf" || extension === "png" || extension === "jpg" || extension === "jpeg") )
+        { this.setState({paymentFileStatus:"notimageorpdf"}); return; }
+
+        this.setState({paymentFileStatus:""});
+
+        const data = new FormData();
+        data.append('file', payment);
+
+        axios
+            .post(URL+"/api/devs/me/files/paymentFile", data, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]
+                },
+            })
+            .then(res => { this.setState({paymentFileStatus:"success", newPaymentFile:null, paymentFile:res.data.paymentFile}); this.props.onSuccess(res.data); })
+            .catch(err => { console.log(err); });
+    }
+    removePaymentFile(){
+        this.setState({paymentFileStatus:""});
+        axios
+            .put(URL+"/api/devs/me/files/paymentFile/remove", {}, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]
+                },
+            })
+            .then(res => { this.setState({paymentFileStatus:"removed", newPaymentFile:null, paymentFile:""}); this.props.onSuccess(res.data); })
+            .catch(err => { console.log(err); });
+    }
+
     render() {
         const { intl } = this.props;
         let hasPicture = (this.state.picture !== "");
@@ -116,6 +177,10 @@ class Files extends Component {
 
         let hasCV = (this.state.cv !== "");
         let cvStatus = this.state.cvStatus;
+
+        let teamValidated = (this.state.teamValidated);
+        let hasPaymentFile = (this.state.paymentFile !== "");
+        let paymentFileStatus = this.state.paymentFileStatus;
 
         return(
             <Fade right cascade>
@@ -204,6 +269,51 @@ class Files extends Component {
                             name="newCV"
                             ref={(ref) => this.cvInput = ref}
                             onChange={this.handleCVChange}
+                            className={"d-none"}/>
+                    </div>
+                </div>
+                <hr />
+                <div className={"row justify-content-center align-items-center m-0 vh-30 "+(teamValidated?"":"d-none")}>
+                    <div className="col-12 col-lg-3 p-0 text-center f-primary">
+                        <i className={"far fa-fw fa-file f-grey fa-6x flh-1 "+(hasPaymentFile?"d-none":"")}/>
+                        <a href={URL+"/files/paymentFile/"+this.state.paymentFile} target={"_blank"} >
+                            <i className={"far fa-fw fa-file-alt hvr-secondary fa-6x flh-1 "+(hasPaymentFile?"":"d-none")}/>
+                        </a>
+                    </div>
+                    <div className="col-12 col-lg-9 p-0 text-left f-grey">
+                        <p className={"fs-md fw-4 flh-1 mb-2 "+(hasPaymentFile?"d-none":"")}><FormattedMessage id="dash.profile.files.payment.empty"/></p>
+                        <p className={"fs-md fw-4 flh-1 mb-2 "+(hasPaymentFile?"":"d-none")}><FormattedMessage id="dash.profile.files.payment.notempty"/></p>
+                        <div className={"alert alert-success py-2 "+(paymentFileStatus==="success"?"d-inline-flex":"d-none")} role="alert">
+                            <p className="fs-sm fw-4 flh-1 mb-0"><FormattedMessage id="dash.profile.files.payment.add.success"/></p>
+                        </div>
+                        <div className={"alert alert-danger py-2 "+(paymentFileStatus==="toobig"?"d-inline-flex":"d-none")} role="alert">
+                            <p className="fs-sm fw-4 flh-1 mb-0"><FormattedMessage id="dash.profile.files.payment.toobig"/></p>
+                        </div>
+                        <div className={"alert alert-danger py-2 "+(paymentFileStatus==="notimageorpdf"?"d-inline-flex":"d-none")} role="alert">
+                            <p className="fs-sm fw-4 flh-1 mb-0"><FormattedMessage id="dash.profile.files.payment.notimageorpdf"/></p>
+                        </div>
+                        <div className={"alert alert-danger py-2 "+(paymentFileStatus==="removed"?"d-inline-flex":"d-none")} role="alert">
+                            <p className="fs-sm fw-4 flh-1 mb-0"><FormattedMessage id="dash.profile.files.payment.remove.success"/></p>
+                        </div>
+                        <br />
+                        <button onClick={() => this.openPaymentFileDialog()}
+                                className={"btn btn-dev-alt mr-3 my-1 "+(hasPaymentFile?"d-none":"d-inline-flex")}>
+                            <p className="fs-sm fw-7 flh-1 mb-0"><FormattedMessage id="dash.profile.files.payment.add"/></p>
+                        </button>
+                        <button onClick={() => this.openPaymentFileDialog()}
+                                className={"btn btn-dev-alt mr-3 my-1 "+(hasPaymentFile?"d-inline-flex":"d-none")}>
+                            <p className="fs-sm fw-7 flh-1 mb-0 mx"><FormattedMessage id="dash.profile.files.payment.addnew"/></p>
+                        </button>
+                        <button onClick={() => this.removePaymentFile()}
+                                className={"btn btn-dev-alt mr-3 my-1 "+(hasPaymentFile?"d-inline-flex":"d-none")}>
+                            <p className="fs-sm fw-7 flh-1 mb-0"><FormattedMessage id="dash.profile.files.payment.delete"/></p>
+                        </button>
+                        <p className="fs-xs fw-4 flh-1 mt-1"><FormattedMessage id="dash.profile.files.payment.helper"/></p>
+                        <input
+                            type="file"
+                            name="newPaymentFile"
+                            ref={(ref) => this.paymentFileInput = ref}
+                            onChange={this.handlePaymentFileChange}
                             className={"d-none"}/>
                     </div>
                 </div>
