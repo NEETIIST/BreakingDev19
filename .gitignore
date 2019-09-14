@@ -13,3 +13,5 @@ bdev-frontend/src/utils/requestsURL\.js
 
 bdev-backend/public/profile/
 bdev-backend/public/cv/
+
+bdev-backend/public/paymentFile/

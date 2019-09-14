@@ -54,12 +54,12 @@ class Dev extends Component {
                         <i className="fas fa-fw fa-user-times fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.devs.invalidate"/></span>
                     </div>
-                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 text-center cp hvr-green "+(profile.payment?"d-none":"")}
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 text-center cp hvr-green "+(profile.payment.confirmed?"d-none":"")}
                          onClick={() => methods.confirmPayment(profile)}>
                         <i className="fas fa-fw fa-euro-sign fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.devs.confirmPayment"/></span>
                     </div>
-                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 text-center cp hvr-red "+(!profile.payment?"d-none":"")}
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 text-center cp hvr-red "+(!profile.payment.confirmed?"d-none":"")}
                          onClick={() => methods.cancelPayment(profile)}>
                         <i className="fas fa-fw fa-times fa-lg flh-1"/>
                         <i className="fas fa-euro-sign fa-lg flh-1 mr-2"/>
@@ -74,17 +74,23 @@ class Dev extends Component {
                     </div>
                     <div className="col-12 col-lg-9 p-0 text-left f-dark-grey">
                         <div className="row justify-content-start align-items-center m-0">
-                            <div className={"col-auto px-2 py-1 alert alert-warning mr-2 my-1 my-lg-0 "+(profile.pending?"d-inline":"d-none")}>
+                            <div className={"col-auto px-2 py-1 alert alert-warning mr-2 my-1 my-lg-0 "+(profile.pending?"":"d-none")}>
                                 <i className="fas fa-fw fa-exclamation-triangle fa-md flh-1 mx-1"/>
                                 <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="staffdash.devs.pending"/></span>
                             </div>
-                            <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(profile.validated?"d-inline":"d-none")}>
+                            <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(profile.validated?"":"d-none")}>
                                 <i className="fas fa-fw fa-user-check fa-md flh-1 mx-1"/>
                                 <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="staffdash.devs.validated"/></span>
                             </div>
-                            <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(profile.payment?"d-inline":"d-none")}>
+                            <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(profile.payment.confirmed?"":"d-none")}>
                                 <i className="fas fa-fw fa-euro-sign fa-md flh-1"/>
                                 <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="staffdash.devs.payment"/></span>
+                            </div>
+                            <div className={"col-auto px-2 py-1 alert alert-secondary mr-2 my-1 my-lg-0 "+(profile.payment.promocode?"":"d-none")}>
+                                <i className="fas fa-fw fa-percentage fa-md flh-1"/>
+                                <span className="fs-sm fw-4 flh-1 f-grey mx-1">
+                                    <FormattedMessage id="staffdash.devs.codeinfo" values={{code:profile.payment.promocode,price:profile.payment.price}}/>
+                                </span>
                             </div>
                         </div>
                         <p className="fs-xl fw-7 flh-1 mb-2 mt-3">
@@ -95,28 +101,36 @@ class Dev extends Component {
                             {profile.college} - {profile.course}
                         </p>
                         <div className="row justify-content-start align-items-center m-0 mt-3">
-                            <div className={"col-6 col-lg-3 p-0 hvr-primary cp my-1 "+(profile.github ? "d-flex":"d-none")}>
+                            <div className={"col-6 col-lg-4 p-0 hvr-primary cp my-1 "+(profile.github ? "d-flex":"d-none")}>
                                 <a href={"https://github.com/"+profile.github} target={"_blank"}>
                                     <i className="fab fa-fw fa-github fa-lg mr-2 mt-1"/>
                                     <span className="fs-md fw-4 flh-1 mb-1">{profile.github}</span>
                                 </a>
                             </div>
-                            <div className={"col-6 col-lg-3 p-0 hvr-primary cp my-1 "+(profile.linkedin ? "d-flex":"d-none")}>
+                            <div className={"col-6 col-lg-4 p-0 hvr-primary cp my-1 "+(profile.linkedin ? "d-flex":"d-none")}>
                                 <a href={"https://www.linkedin.com/in/"+profile.linkedin} target={"_blank"}>
                                     <i className="fab fa-fw fa-linkedin fa-lg mr-2 mt-1"/>
                                     <span className="fs-md fw-4 flh-1 mb-1">{profile.linkedin}</span>
                                 </a>
                             </div>
-                            <div className={"col-6 col-lg-3 p-0 hvr-primary cp my-1 "+(profile.twitter ? "d-flex":"d-none")}>
+                            <div className={"col-6 col-lg-4 p-0 hvr-primary cp my-1 "+(profile.twitter ? "d-flex":"d-none")}>
                                 <a href={"https://twitter.com/"+profile.twitter} target={"_blank"}>
                                     <i className="fab fa-fw fa-twitter fa-lg mr-2 mt-1"/>
                                     <span className="fs-md fw-4 flh-1 mb-1">{profile.twitter}</span>
                                 </a>
                             </div>
-                            <div className={"col-6 col-lg-3 p-0 hvr-primary cp my-1 "+(profile.cv ? "d-flex":"d-none")}>
+                        </div>
+                        <div className="row justify-content-start align-items-center m-0 mt-2">
+                            <div className={"col-6 col-lg-4 p-0 hvr-primary cp my-1 "+(profile.cv ? "d-flex":"d-none")}>
                                 <a href={URL+"/files/cv/"+profile.cv} target={"_blank"}>
                                     <i className="fas fa-fw fa-file-alt fa-lg mr-2 mt-1"/>
                                     <span className="fs-md fw-4 flh-1 mb-1"><FormattedMessage id="staffdash.profile.see.cv"/></span>
+                                </a>
+                            </div>
+                            <div className={"col-6 col-lg-4 p-0 hvr-primary cp my-1 "+(profile.payment.file ? "d-flex":"d-none")}>
+                                <a href={URL+"/files/paymentFile/"+profile.payment.file} target={"_blank"}>
+                                    <i className="fas fa-fw fa-file-invoice fa-lg mr-2 mt-1"/>
+                                    <span className="fs-md fw-4 flh-1 mb-1"><FormattedMessage id="staffdash.profile.see.payment"/></span>
                                 </a>
                             </div>
                         </div>

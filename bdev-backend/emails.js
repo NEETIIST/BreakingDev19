@@ -125,7 +125,7 @@ const sendStaffEmail = async (email) => {
         if (err) return res.status(500).send("There was a problem finding the user.");
         if (!user) return res.status(404).send("No user could be found for that username");
 
-        email.to = "breakingdev@neeti.tecnico.ulisboa.pt";
+        email.to = "neeti.isttagus@gmail.com";
         mailgun.messages().send(email, function (err, body) {
             if (err) { console.log("got an error: ", err); }
             else { console.log(body); }

@@ -49,7 +49,7 @@ class See extends Component {
                                 <i className="fas fa-fw fa-user-check fa-md flh-1 mx-1"/>
                                 <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="dash.profile.see.validated"/></span>
                             </div>
-                            <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(profile.payment?"d-inline":"d-none")}>
+                            <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(profile.payment.confirmed?"d-inline":"d-none")}>
                                 <i className="fas fa-fw fa-euro-sign fa-md flh-1"/>
                                 <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="dash.profile.see.paymentConfirmed"/></span>
                             </div>

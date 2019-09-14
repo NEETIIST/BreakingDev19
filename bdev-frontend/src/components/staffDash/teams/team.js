@@ -57,6 +57,7 @@ class Team extends Component {
                             <img src={"/icons/JogosAlt.png"} className={"img-fluid "+(team.category==="Games"?"":"d-none")}/>
                         </div>
                         <div className={"col-9 p-0 px-1 text-left f-dark-grey"}>
+                            <span className="fs-md fw-4 flh-2 mb-0 mr-1 f-light-grey">(#{team.number})</span>
                             <span className="fs-md fw-7 flh-2 mb-0 f-primary">{team.team_name}</span>
                             <span className={"fs-xxs fw-4 ml-2 " +(team.pending?"":"d-none") }>
                                 <i className={"fas fa-fw fa-lg mx-1 fa-exclamation-triangle f-yellow"}

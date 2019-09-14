@@ -60,8 +60,12 @@ router.post("/create", verifyToken, (req, res) => {
                 team: 0,
                 pending: false,
                 validated: false,
-                payment: false,
-                paymentFile: "",
+                payment: {
+                    confirmed: false,
+                    promocode: "",
+                    price: -1,
+                    file: "",
+                }
 
             });
 
@@ -264,7 +268,7 @@ router.put("/_:username/confirmPayment", verifyToken, (req, res) => {
     // Only Staffs can approve other Devs
     if ( req.role !== 'staff' ){ return res.status(403).send("You don't have permission for this action"); }
 
-    DevProfile.findOneAndUpdate({"username":req.params['username']}, {payment:true}, {projection: DevProfile.adminInfo, new: true}, function (err, dev) {
+    DevProfile.findOneAndUpdate({"username":req.params['username']}, {$set:{"payment.confirmed":true}}, {projection: DevProfile.adminInfo, new: true}, function (err, dev) {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
         if (!dev) return res.status(404).send("No Dev Profile found for this username");
 
@@ -281,7 +285,7 @@ router.put("/_:username/cancelPayment", verifyToken, (req, res) => {
     // Only Staffs can approve other Devs
     if ( req.role !== 'staff' ){ return res.status(403).send("You don't have permission for this action"); }
 
-    DevProfile.findOneAndUpdate({"username":req.params['username']}, {payment:false}, {projection: DevProfile.adminInfo, new: true}, function (err, dev) {
+    DevProfile.findOneAndUpdate({"username":req.params['username']}, {$set:{"payment.confirmed":false}}, {projection: DevProfile.adminInfo, new: true}, function (err, dev) {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
         if (!dev) return res.status(404).send("No Dev Profile found for this username");
 
@@ -321,7 +325,7 @@ router.post("/me/files/:target", verifyToken, (req, res) => {
     {
         if( file.size > 3000000) return res.status(403).send("Image too big");
         if( !(file.mimetype==="image/png" || file.mimetype==="image/jpg" || file.mimetype==="image/jpeg" || file.mimetype==="application/pdf" || file.mimetype==="application/x-pdf")) return res.status(403).send("Not an Image or PDF");
-        data = {"paymentFile":filename};
+        data = {$set:{"payment.file":filename}};
     }
 
     const appRoot = require('app-root-path');
@@ -350,12 +354,31 @@ router.put("/me/files/:target/remove", verifyToken, (req, res) => {
     let data;
     if ( target === "cv" ) data = {"cv":""};
     if ( target === "profile" ) data = {"profile":""};
-    if ( target === "paymentFile" ) data = {"paymentFile":""};
+    if ( target === "paymentFile" ) data = {$set:{"payment.file":""}};
 
     DevProfile.findOneAndUpdate({"username":req.username}, data, {new: true}, function (err, dev) {
         if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
         if (!dev) return res.status(404).send("No Dev Profile found for this username");
         return res.status(200).send(dev);
+    });
+
+});
+
+
+// @route GET api/devs/me/price
+// @desc Returns this user admission price
+// @access Own, returns the user who made the request
+router.get("/me/price", verifyToken, (req, res) => {
+
+    DevProfile.findOne({"username":req.username}, function (err, dev) {
+        if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
+        if (!dev) return res.status(404).send("No Dev Profile found for this username");
+
+        // If no code used, price equals current admission price
+        if ( dev.payment.price === -1 )
+            dev.payment.price = keys.admissionPrice;
+
+        return res.status(200).send(dev.payment);
     });
 
 });
