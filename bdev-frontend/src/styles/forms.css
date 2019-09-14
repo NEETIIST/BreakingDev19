@@ -119,3 +119,60 @@ select:-webkit-autofill:focus {
     color: #2d2d2d;
     transition: all 0.3s linear;
 }
+
+
+/* Picture Upload */
+.pic-container{
+    position: relative;
+    transition: all 0.3s linear;
+}
+.pic-img{
+    display: block;
+    //width: 100%;
+    height: auto;
+}
+
+.pic-overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    background-color: rgba(0,0,0, 0.5);
+    transition: all 0.3s linear;
+}
+
+.pic-container:hover .pic-overlay{
+    opacity: 1;
+    transition: all 0.3s linear;
+}
+
+.profile-pic{
+    margin: auto;
+    object-fit: cover;
+    width:175px;
+    height:175px;
+    border-radius: 10em;
+    border: 2px solid #257183;
+    //box-shadow: 2px 2px 2px #1c1c1c;
+}
+
+.profile-pic-fluid
+{
+    //margin: auto;
+    width: 100%;
+    height: auto;
+    border-radius: 10em;
+    border: 2px solid #257183;
+}
+
+.pic-text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    -webkit-transform: translate(-50%, -50%);
+}

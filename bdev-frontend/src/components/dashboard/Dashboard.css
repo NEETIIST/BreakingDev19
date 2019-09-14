@@ -23,6 +23,68 @@
     border-left: 0px solid #f0f0f0 ;
 }
 
+/* Dashboard Organization */
+.dash-holder{
+    min-height: calc(var(--vh, 1vh) * 100);
+}
+.dash-content-holder{
+    overflow:hidden;
+}
+
+@media (max-width: 767.99px){
+    .dash-nav{
+        position: fixed;
+        bottom: 0;
+        left:0;
+        z-index: 10;
+    }
+    .dash-opt {
+        border-bottom: 4px solid #f0f0f0;
+    }
+    .dash-opt:hover {
+        border-left: 0px solid currentColor;
+    }
+    .dash-opt-active{
+        border-bottom: 4px solid currentColor;
+        border-left: 0px solid white;
+    }
+}
+.dash-title{
+    min-height:  calc(var(--vh, 1vh) * 10);
+    max-height:  calc(var(--vh, 1vh) * 10);
+}
+
+.dash-subnav{
+    min-height:  calc(var(--vh, 1vh) * 10);
+    max-height:  calc(var(--vh, 1vh) * 10);
+
+}
+
+.dash-content {
+    min-height:  calc(var(--vh, 1vh) * 80);
+    max-height:  calc(var(--vh, 1vh) * 80);
+    overflow-Y: auto;
+    overflow-X: hidden;
+}
+
+@media (max-width: 767.99px) {
+    .dash-subnav{
+        min-height:  calc(var(--vh, 1vh) * 8);
+        max-height:  calc(var(--vh, 1vh) * 8);
+        overflow-x: scroll;
+        white-space: nowrap;
+        display: block;
+    }
+    .dash-content {
+        min-height:  calc(var(--vh, 1vh) * 72);
+        max-height:  calc(var(--vh, 1vh) * 72);
+    }
+    .dash-subnav > .col-auto{
+        display: inline-block;
+        float: none;
+    }
+}
+
 .dash-button-box {
     color: white;
     border-radius: 0.25em;
@@ -49,4 +111,55 @@
 .dash-subopt-active{
     color: #257183 !important;
     border-bottom: 2px solid #257183;
+}
+
+
+.dash-team-member {
+    border: 2px solid #257183;
+    border-radius: 0.5em;
+    background-color: whitesmoke;
+}
+
+.dash-team-member-own {
+    border: 2px solid #257183;
+    border-radius: 0.5em;
+    background-color: rgba(37, 113, 131, 0.1) !important;
+}
+
+.dash-team-options {
+    border: 1px solid #c0c0c0;
+    border-radius: 0.25em;
+    transition: all 0.3s linear;
+}
+
+.dash-team-options:hover {
+    color: #257183;
+    border: 1px solid #257183;
+    border-radius: 0.25em;
+    transition: all 0.3s linear;
+}
+
+
+/* Team List */
+.dash-team{
+    background-color: #f3f3f3;
+    border: 0px;
+    border-radius: 0.3em;
+    border-bottom: 2px solid #257183;
+    color: #257183;
+    transition: all 0.3s linear;
+}
+
+.dash-team:hover{
+    box-shadow: 0 4px 3px -3px rgba(28,28,28,0.5);
+    transition: all 0.3s linear;
+}
+
+.dash-team-list > .card-columns {
+    column-count: 2;
+}
+@media (max-width: 767.99px){
+    .dash-team-list > .card-columns {
+        column-count: 1;
+    }
 }

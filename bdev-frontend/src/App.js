@@ -15,6 +15,8 @@ import locale_pt from 'react-intl/locale-data/pt';
 import messages_en from "./translations/en.json";
 import messages_pt from "./translations/pt.json";
 
+import ReactGA from 'react-ga';
+
 // Other components are imported in the Sidebar
 import Sidebar from "./components/sidebar/sidebar";
 
@@ -49,6 +51,12 @@ if (localStorage.jwtToken) {
         window.location.href = "./login";
     }
 }
+
+ReactGA.initialize('UA-96053155-1');
+ReactGA.pageview('/');
+
+let vh = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${vh}px`);
 
 class App extends Component {
     render() {

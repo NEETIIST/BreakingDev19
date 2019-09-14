@@ -209,12 +209,13 @@ class Add extends Component {
                                 <div className="col-12 col-lg-7 p-0 mt-lg-2 mb-1 ">
                                     <div className={validation.needsTeam.isInvalid && 'has-error'}>
                                         <span className="fs-sm fw-4 flh-2"><FormattedMessage id="forms.needsTeam.helper"/></span>
-                                        <div className={"d-inline cp hvr-primary"} onClick={() => this.toggleNeedsTeam(true)}>
-                                            <span className="fs-sm fw-4 flh-2 ml-2"><FormattedMessage id="forms.yes"/></span>
+                                        <br className={"d-inline d-lg-none"}/>
+                                        <div className={"d-inline cp hvr-primary ml-0 ml-lg-2"} onClick={() => this.toggleNeedsTeam(true)}>
+                                            <span className="fs-sm fw-4 flh-2"><FormattedMessage id="forms.yes"/></span>
                                             <i className={"far fa-fw fa-lg flh-2 ml-1 fa-"+(this.state.needsTeam ? "check-circle":"circle")} />
                                         </div>
-                                        <div className={"d-inline cp hvr-primary"} onClick={() => this.toggleNeedsTeam(false)}>
-                                            <span className="fs-sm fw-4 flh-2 ml-2"><FormattedMessage id="forms.no"/></span>
+                                        <div className={"d-inline cp hvr-primary ml-2"} onClick={() => this.toggleNeedsTeam(false)}>
+                                            <span className="fs-sm fw-4 flh-2"><FormattedMessage id="forms.no"/></span>
                                             <i className={"far fa-fw fa-lg flh-1 ml-1 fa-"+(this.state.needsTeam ? "circle":"times-circle")} />
                                         </div>
                                         <span className="help-block fs-xs"><FormattedMessage id={validation.needsTeam.message}/></span>

@@ -12,14 +12,6 @@
     transition: all 0.3s linear;
 }
 
-.profile-pic{
-    width: auto;
-    height: 25vh;
-    border-radius: 10em;
-    border: 2px solid #257183;
-    //box-shadow: 2px 2px 2px #1c1c1c;
-}
-
 .dev-profile{
     border-left: 2px solid #d1d1d1;
     border-right: 2px solid #d1d1d1;
@@ -40,4 +32,13 @@
     border-radius: 0.2em;
     background-color: rgba(186, 40, 40, 0.5);
     color: white;
+}
+
+.promocode-columns{
+    column-count: 3;
+}
+@media (max-width: 767.99px){
+    .promocode-columns {
+        column-count: 1;
+    }
 }

@@ -254,8 +254,12 @@ class Ideas extends Component {
                                         <p className="fs-sm fw-4 flh-2 mb-3 mr-3"><FormattedMessage id="ideas.desc3"/></p>
                                         <p className="fs-sm fw-4 flh-2 mb-3 mr-3"><FormattedMessage id="ideas.desc4"/></p>
                                         <p className="fs-sm fw-4 flh-2 mb-3 mr-3"><FormattedMessage id="ideas.desc5"/></p>
-                                        <p className="fs-sm fw-4 flh-2 mb-3 mr-3"><FormattedMessage id="ideas.desc6"/></p>
-                                        <p className="fs-sm fw-4 flh-2 mb-3 mr-3"><FormattedMessage id="ideas.desc7"/></p>
+                                        <img src="awards/Ideas.png" className="img-fluid py-1"/>
+                                        <p className="fs-sm fw-4 flh-2 mb-3 mr-3">
+                                            <a href="/docs/RegulamentoBancoDeIdeias.pdf" target="_blank" className="hvr-primary" styl>
+                                                <FormattedMessage id="ideas.desc7"/>
+                                            </a>
+                                        </p>
                                         <hr/>
                                         <p className="fs-xxxs fw-4 flh-2 mb-3 mr-3"><FormattedMessage id="ideas.desc8"/></p>
                                     </div>

@@ -4,7 +4,9 @@ const Schema = mongoose.Schema;
 const DevProfileSchema = new Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        immutable: true,
+        unique: true,
     },
     name: {
         type: String,
@@ -48,10 +50,16 @@ const DevProfileSchema = new Schema({
         type: Boolean,
         required: true,
     },
-    hasTeam: {
-        type: Boolean,
+    picture: {
+        type: String,
+    },
+    cv: {
+        type: String,
+    },
+    team: {
+        type: Number,
         required: true,
-        default: false,
+        default: 0, // If 0, user doesnt have a team
     },
     pending: {
         type: Boolean,
@@ -63,11 +71,23 @@ const DevProfileSchema = new Schema({
         required: true,
         default: false,
     },
+    /*
     payment: {
         type: Boolean,
         required: true,
         default: false,
     },
+    paymentFile: {
+        type: String,
+    },
+    */
+    payment:{
+        //required: true,
+        confirmed: { type: Boolean },
+        promocode: { type: String },
+        price: { type: Number },
+        file: { type: String },
+    }
 
 
 });
@@ -87,11 +107,14 @@ DevProfile.publicInfo = {
     github:1,
     twitter:1,
     linkedin:1,
-    hasTeam:1,
+    team:1,
     needsTeam:1,
+    picture:1,
+    //cv:0,
     //pending: 0,
     //validated:0,
     //payment:0,
+    //paymentFile:0,
 };
 
 DevProfile.ownerInfo = {
@@ -107,11 +130,14 @@ DevProfile.ownerInfo = {
     github:1,
     twitter:1,
     linkedin:1,
-    hasTeam:1,
+    team:1,
     needsTeam:1,
+    picture:1,
+    cv:1,
     pending: 1,
     validated:1,
     payment:1,
+    //paymentFile:1,
 };
 
 DevProfile.adminInfo = {
@@ -127,11 +153,14 @@ DevProfile.adminInfo = {
     github:1,
     twitter:1,
     linkedin:1,
-    hasTeam:1,
+    team:1,
     needsTeam:1,
+    picture:1,
+    cv:1,
     pending: 1,
     validated:1,
     payment:1,
+    //paymentFile:1,
 };
 
 module.exports = DevProfile;

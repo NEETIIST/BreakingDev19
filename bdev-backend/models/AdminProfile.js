@@ -5,7 +5,9 @@ const Schema = mongoose.Schema;
 const AdminProfileSchema = new Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        immutable: true,
+        unique: true,
     },
     name: {
         type: String,
@@ -45,6 +47,12 @@ const AdminProfileSchema = new Schema({
     linkedin: {
         type: String,
     },
+    picture: {
+        type: String,
+    },
+    cv: {
+        type: String,
+    },
 
 });
 
@@ -63,6 +71,8 @@ AdminProfile.publicInfo = {
     github: 1,
     twitter: 1,
     linkedin: 1,
+    picture: 0,
+    cv: 0,
 };
 
 AdminProfile.adminInfo = {};

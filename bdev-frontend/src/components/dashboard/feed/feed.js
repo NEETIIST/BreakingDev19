@@ -14,16 +14,16 @@ class Feed extends Component {
     render() {
         return(
             <Fade bottom cascade>
-                <div className="row justify-content-center align-content-center m-0 vh-10">
-                    <div className="col-11 col-lg-11 p-0 text-right">
-                        <div className="spacer-2 mb-2"></div>
+                <div className="row justify-content-center align-content-center m-0 dash-title">
+                    <div className="col-12 p-0 text-right f-dark-grey">
+                        <div className="spacer-2 mb-2 d-none d-lg-block" />
                         <span className="fs-lg fw-7 flh-1 f-dark-grey"><FormattedMessage id="dash.feed.title"/></span>
                         <i className="fas fa-fw fa-columns fa-lg flh-1 ml-2"></i>
                         <hr className="m-0 mt-3"/>
                     </div>
                 </div>
-                <div className="row justify-content-center align-content-start m-0 vh-90 overflow-auto" style={{maxHeight:"90vh"}}>
-                    <div className="col-11 p-0">
+                <div className="row justify-content-center align-content-start m-0 dash-content">
+                    <div className="col-12 p-0">
                         <div className="spacer-2"></div>
                         <div className="row justify-content-center align-content-start m-0">
                             <div className="col-12 col-lg dash-button-box cp mx-0 mx-lg-2 my-1" style={{backgroundImage:

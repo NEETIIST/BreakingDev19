@@ -53,6 +53,7 @@ a:visited { text-decoration: none !important; color:inherit; }
 /* Viewports */
 .vh-100 { min-height: 100vh ; }
 .vh-95 { min-height: 95vh ; }
+.vh-92 { min-height: 92vh ; }
 .vh-90 { min-height: 90vh ; }
 .vh-87 { min-height: 87vh ; }
 .vh-85 { min-height: 85vh ; }
@@ -103,7 +104,7 @@ a:visited { text-decoration: none !important; color:inherit; }
 .f-dark-grey { color: #484848}
 .f-grey { color: #595959 }
 .f-light-grey { color: #d1d1d1 }
-.f-very-light-grey { background-color: #F0F0F0 }
+.f-very-light-grey { color: #F0F0F0 }
 .f-white { color: #ffffff }
 .f-primary { color: #257183 }
 .f-secondary { color: #4093A8 }
@@ -115,6 +116,7 @@ a:visited { text-decoration: none !important; color:inherit; }
 /* Cursors */
 .cp { cursor: pointer; }
 .cd { cursor: no-drop; }
+.cna { cursor: not-allowed }
 
 /* Images */
 .round { border-radius: 3em; }
@@ -128,6 +130,12 @@ a:visited { text-decoration: none !important; color:inherit; }
 
 .hvr-secondary { color: inherit; transition: all 0.3s linear; }
 .hvr-secondary:hover { color: #4093A8 !important; transition: all 0.3s linear; }
+
+.hvr-green { color: inherit; transition: all 0.3s linear; }
+.hvr-green:hover { color: #60AD53 !important; transition: all 0.3s linear; }
+
+.hvr-red { color: inherit; transition: all 0.3s linear; }
+.hvr-red:hover { color: #BA2828 !important; transition: all 0.3s linear; }
 
 .no-scrollbar {
     -ms-overflow-style: none;

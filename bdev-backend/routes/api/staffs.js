@@ -14,6 +14,9 @@ const Idea = require("../../models/Idea");
 // Load input validation
 const validateAdminProfileInput = require("../../validation/adminProfile");
 
+// Load Email Templates and Function
+const emails = require('../../emails');
+
 /* THIS ROUTE IS OBSOLETE, users now register as admins on account creation
 // @route POST api/admins/access
 // @desc Grants Admin Access to a user and updates their JWT Token
@@ -119,9 +122,11 @@ router.post("/create", verifyToken, (req, res) => {
 // No permission check necessary, because only authorized users have their staff profile
 router.get("/me", verifyToken, (req, res) => {
 
-    AdminProfile.findOne({"username":req.username}, DevProfile.adminInfo, function (err, adm) {
+    AdminProfile.findOne({"username":req.username}, AdminProfile.adminInfo, function (err, adm) {
         if (err) return res.status(500).send("There was a problem finding the Staff Profile.");
         if (!adm) return res.status(404).send("No Staff Profile found for this username");
+
+        //emails.sendEmail(emails.createdAccount({}), req.username);
 
         // The Dev Profile will always be the one of the logged user
         return res.status(200).send(adm);
@@ -183,6 +188,70 @@ router.get("/overview", verifyToken, (req, res) => {
     async.parallel(tasks, function(err) {
         if (err) return res.status(500).send(err);
         return res.status(200).send(response);
+    });
+
+});
+
+
+// @route POST api/staff/me/files/:target
+// @desc Upload New File (CV or Profile Picture)
+// @access Own, user changes its own profile picture
+router.post("/me/files/:target", verifyToken, (req, res) => {
+
+    // TODO: TEST AFTER DEPLOYMENT
+    const target = req.params['target'];
+    let data;
+    if ( target !== "cv" && target !== "profile" ) return res.status(403).send("Not a valid Target");
+    if ( req.files === undefined ) return res.status(403).send("Didn't receive a file");
+    let file = req.files.file;
+
+    const uuidv1 = require('uuid/v1');
+    const filename = uuidv1()+"."+file.name.split(".")[1];   // Randomly Unique Generated To Prevent Scrapping
+
+    if ( target === "cv")
+    {
+        if( file.size > 10000000) return res.status(403).send("File too big");
+        if( !(file.mimetype==="application/pdf" || file.mimetype==="application/x-pdf" )) return res.status(403).send("Not a PDF File");
+        data = {"cv":filename};
+    }
+    else if ( target === "profile")
+    {
+        if( file.size > 3000000) return res.status(403).send("Image too big");
+        if( !(file.mimetype==="image/png" || file.mimetype==="image/jpg" || file.mimetype==="image/jpeg")) return res.status(403).send("Not an Image");
+        data = {"picture":filename};
+    }
+
+    const appRoot = require('app-root-path');
+    //let dir = appRoot.path.substr(0, appRoot.path.lastIndexOf("/"))+"/bdev-frontend";
+    let dir = appRoot;
+
+    file.mv(dir+"/public/"+target+"/"+filename, function(err) {
+        if (err) { console.log(err); return res.status(500).send(err); }
+
+        AdminProfile.findOneAndUpdate({"username":req.username}, data, {new: true}, function (err, adm) {
+            if (err) return res.status(500).send("There was a problem finding the Staff Profile.");
+            if (!adm) return res.status(404).send("No Staff Profile found for this username");
+            return res.status(200).send(adm);
+        });
+    });
+
+});
+
+// @route Put api/staff/me/files/picture
+// @desc Remove current profile picture
+// @access Own, user changes its own profile picture
+router.put("/me/files/:target/remove", verifyToken, (req, res) => {
+
+    const target = req.params['target'];
+    if ( target !== "cv" && target !== "profile" ) return res.status(403).send("Not a valid Target");
+    let data;
+    if ( target === "cv" ) data = {"cv":""};
+    if ( target === "profile" ) data = {"profile":""};
+
+    AdminProfile.findOneAndUpdate({"username":req.username}, data, {new: true}, function (err, adm) {
+        if (err) return res.status(500).send("There was a problem finding the Staff Profile.");
+        if (!adm) return res.status(404).send("No Staff Profile found for this username");
+        return res.status(200).send(adm);
     });
 
 });
