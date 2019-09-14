@@ -109,3 +109,20 @@ export const passwordInput = new FormValidator([
 
 ]);
 
+
+export const paymentInput = new FormValidator([
+    {
+        field: "code",
+        method: "isEmpty",
+        validWhen: false,
+        message: "forms.code.empty"
+    },
+    {
+        field: "code",
+        method: "isLength",
+        args: [{min:5, max: 12}],
+        validWhen: true,
+        message: "forms.code.toolong"
+    },
+
+]);

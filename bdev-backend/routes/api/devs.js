@@ -364,5 +364,24 @@ router.put("/me/files/:target/remove", verifyToken, (req, res) => {
 
 });
 
+
+// @route GET api/devs/me/price
+// @desc Returns this user admission price
+// @access Own, returns the user who made the request
+router.get("/me/price", verifyToken, (req, res) => {
+
+    DevProfile.findOne({"username":req.username}, function (err, dev) {
+        if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
+        if (!dev) return res.status(404).send("No Dev Profile found for this username");
+
+        // If no code used, price equals current admission price
+        if ( dev.payment.price === -1 )
+            dev.payment.price = keys.admissionPrice;
+
+        return res.status(200).send(dev.payment);
+    });
+
+});
+
 module.exports = router;
 

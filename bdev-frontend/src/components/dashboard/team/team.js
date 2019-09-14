@@ -13,6 +13,7 @@ import Join from './join';
 import Find from './find';
 import Validate from './validate';
 import Search from './search';
+import Payment from './payment';
 
 class Profile extends Component {
     constructor(props) {
@@ -124,10 +125,15 @@ class Profile extends Component {
                         <i className="fas fa-fw fa-users fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.members"/></span>
                     </div>
-                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="validate" ? "-active" :"")+(isCaptain||teamValidated?"":" d-none")}
+                    <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="validate" ? "-active" :"")+(isCaptain&&!teamValidated?"":" d-none")}
                          onClick={() => this.navigation("validate")}>
                         <i className="fas fa-fw fa-check fa-lg flh-1 mr-2"/>
                         <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.validate"/></span>
+                    </div>
+                    <div className={"col-auto col-lg-2 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="payment" ? "-active" :"")+(teamValidated?"":" d-none")}
+                         onClick={() => this.navigation("payment")}>
+                        <i className="fas fa-fw fa-money-check-alt fa-lg flh-1 mr-2"/>
+                        <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.team.payment"/></span>
                     </div>
                     <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="search" ? "-active" :"")+(isCaptain&&content==="search"?"":" d-none")}
                          onClick={() => this.navigation("search")}>
@@ -217,6 +223,7 @@ class Profile extends Component {
                         {content === "edit" && hasTeam && loaded ? <Edit {...this.props} team={this.state.team} onSuccess={this.editedTeam} /> : ""}
                         {content === "members" && hasTeam && loaded ? <Members {...this.props} team={this.state.team} onRemove={this.removedMember} onDisband={this.disbandedTeam} onLeave={this.leftTeam} onResetCode={this.resetCode} navigation={this.navigation}/> : ""}
                         {content === "validate" && hasTeam && loaded ? <Validate {...this.props} team={this.state.team} onSuccess={this.changedValidation}/> : ""}
+                        {content === "payment" && hasTeam && isValidated && loaded ? <Payment {...this.props} team={this.state.team}/> : ""}
                         {content === "search" && hasTeam && loaded ? <Search {...this.props} /> : ""}
                     </div>
                 </div>

@@ -15,7 +15,7 @@ import staffDash from "../staffDash/staffDash";
 import BeSponsor from "../besponsor/besponsor";
 import Faqs from "../faqs/faqs";
 import Ideas from "../ideas/ideas";
-import Staff from "../staffTeam/staffTeam";
+//import Staff from "../staffTeam/staffTeam";
 
 
 class Sidebar extends Component {
@@ -247,6 +247,7 @@ class Sidebar extends Component {
                     <PrivateRoute exact path="/staffdash/devs" component={staffDash} content={"devs"}/>
                     <PrivateRoute exact path="/staffdash/teams" component={staffDash} content={"teams"}/>
                     <PrivateRoute exact path="/staffdash/ideas" component={staffDash} content={"ideas"}/>
+                    <PrivateRoute exact path="/staffdash/promocodes" component={staffDash} content={"promocodes"}/>
 
                     {/*
                     <Route exact path="/staff" component={Staff} />

@@ -10,7 +10,9 @@ import './chats.css'
 // Socket.IO
 import 'whatwg-fetch';
 import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:8000');
+
+const url_socket = URL.split(":")[0]+":"+URL.split(":")[1]+":8000"
+const socket = openSocket(url_socket);
 
 class Chat extends Component {
     constructor(props) {

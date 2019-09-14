@@ -74,17 +74,23 @@ class Dev extends Component {
                     </div>
                     <div className="col-12 col-lg-9 p-0 text-left f-dark-grey">
                         <div className="row justify-content-start align-items-center m-0">
-                            <div className={"col-auto px-2 py-1 alert alert-warning mr-2 my-1 my-lg-0 "+(profile.pending?"d-inline":"d-none")}>
+                            <div className={"col-auto px-2 py-1 alert alert-warning mr-2 my-1 my-lg-0 "+(profile.pending?"":"d-none")}>
                                 <i className="fas fa-fw fa-exclamation-triangle fa-md flh-1 mx-1"/>
                                 <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="staffdash.devs.pending"/></span>
                             </div>
-                            <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(profile.validated?"d-inline":"d-none")}>
+                            <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(profile.validated?"":"d-none")}>
                                 <i className="fas fa-fw fa-user-check fa-md flh-1 mx-1"/>
                                 <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="staffdash.devs.validated"/></span>
                             </div>
-                            <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(profile.payment.confirmed?"d-inline":"d-none")}>
+                            <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(profile.payment.confirmed?"":"d-none")}>
                                 <i className="fas fa-fw fa-euro-sign fa-md flh-1"/>
                                 <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="staffdash.devs.payment"/></span>
+                            </div>
+                            <div className={"col-auto px-2 py-1 alert alert-secondary mr-2 my-1 my-lg-0 "+(profile.payment.promocode?"":"d-none")}>
+                                <i className="fas fa-fw fa-percentage fa-md flh-1"/>
+                                <span className="fs-sm fw-4 flh-1 f-grey mx-1">
+                                    <FormattedMessage id="staffdash.devs.codeinfo" values={{code:profile.payment.promocode,price:profile.payment.price}}/>
+                                </span>
                             </div>
                         </div>
                         <p className="fs-xl fw-7 flh-1 mb-2 mt-3">

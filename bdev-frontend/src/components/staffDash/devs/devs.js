@@ -116,9 +116,11 @@ class Devs extends Component {
                                     <span className={"fs-sm fw-7 flh-1"}>{dev.name}</span>
                                     <span className={"fs-xs fw-4 flh-1 f-grey ml-2"}>({dev.username})</span>
                                     <i className={"fas fa-fw fa-users fa-md flh-1 ml-2 mr-1 "+(dev.team!==0?"":"d-none")}
-                                       title={intl.formatMessage({id: 'staffdash.devs.hasteam'})}/>
+                                       title={intl.formatMessage({id: 'staffdash.devs.hasteam'},{team:dev.team})}/>
                                     <i className={"fas fa-fw fa-file-invoice fa-md flh-1 ml-2 mr-1 "+(dev.payment.file?"":"d-none")}
                                        title={intl.formatMessage({id: 'staffdash.devs.haspaymentfile'})}/>
+                                    <i className={"fas fa-fw fa-percentage fa-md flh-1 ml-2 mr-1 "+(dev.payment.promocode?"":"d-none")}
+                                       title={intl.formatMessage({id: 'staffdash.devs.usedcode'},{code:dev.payment.promocode, price:dev.payment.price})}/>
                                 </div>
                                 <div className="col-4 col-lg-3 py-0 pr-2 text-right">
                                     <i className={"fas fa-fw fa-user-check f-green fa-md flh-1 mx-1 "+(dev.validated?"d-inline":"d-none")}
