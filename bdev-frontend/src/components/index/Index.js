@@ -341,13 +341,13 @@ class Index extends Component {
                                 <p className="fs-xxs fw-4 flh-2 mb-0 "><FormattedMessage id="index.sec9.web3"/></p>
                             </div>
                             <div className="col-12 col-lg-4 p-0 py-2 hvr-primary">
-                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <img src="awards/Event.png" className="img-fluid py-1"/>
                                 <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.event1"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.event2"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-0 "><FormattedMessage id="index.sec9.event3"/></p>
                             </div>
                             <div className="col-12 col-lg-4 p-0 py-2 hvr-primary">
-                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <img src="awards/Games.png" className="img-fluid py-1"/>
                                 <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.games1"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.games2"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-0 "><FormattedMessage id="index.sec9.games3"/></p>
@@ -357,31 +357,33 @@ class Index extends Component {
                         <div className="row justify-content-end align-items-start m-0 ">
                             <div className="col-6 col-lg p-0 py-2 hvr-primary cp">
                                 <Link to="/ideas">
-                                    <img src="awards/Web.png" className="img-fluid py-1"/>
+                                    <img src="awards/IdeaBank.png" className="img-fluid py-1"/>
                                     <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.ideas1"/></p>
                                     <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.ideas2"/></p>
                                 </Link>
                             </div>
                             <div className="col-6 col-lg p-0 py-2 hvr-primary">
-                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <img src="awards/A+.png" className="img-fluid py-1"/>
                                 <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.aplus1"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.aplus2"/></p>
                             </div>
                             <div className="col-6 col-lg p-0 py-2 hvr-primary">
-                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <img src="awards/Innovation.png" className="img-fluid py-1"/>
                                 <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.innovation1"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.innovation2"/></p>
                             </div>
                             <div className="col-6 col-lg p-0 py-2 hvr-primary">
-                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <img src="awards/Picasso.png" className="img-fluid py-1"/>
                                 <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.picasso1"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.picasso2"/></p>
                             </div>
+
                             <div className="col-6 col-lg p-0 py-2 hvr-primary">
                                 <img src="awards/Web.png" className="img-fluid py-1"/>
                                 <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.impact1"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.impact2"/></p>
                             </div>
+
                         </div>
                         <div className={"spacer-4"} />
                     </div>
