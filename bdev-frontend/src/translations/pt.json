@@ -180,6 +180,7 @@
   "forms.needsTeam.helper": "Já tens uma equipa planeada para te juntares?",
   "forms.needsTeam.empty": "Por favor indica se",
   "forms.needsTeam.invalid": "Deve ser verdadeiro ou falso",
+  "forms.needsTeam.placeholder": "Precisa de Equipa",
   "forms.team_name.placeholder": "Nome da Equipa",
   "forms.team_name.empty": "Por favor dá um nome à tua equipa",
   "forms.team_name.toolong": "Por favor usa um máximo de 128 letras",

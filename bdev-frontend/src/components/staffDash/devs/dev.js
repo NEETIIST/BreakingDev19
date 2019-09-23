@@ -170,9 +170,13 @@ class Dev extends Component {
                         <i className="fas fa-fw fa-birthday-cake fa-lg mr-2 mt-1" title={intl.formatMessage({id: 'forms.age.placeholder'})}/>
                         <span className="fs-md fw-4 flh-1 mb-0">{profile.age}</span>
                     </div>
-                    <div className="col-6 col-lg-3 px-0 py-1 f-dark-grey">
+                    <div className={"col-6 col-lg-3 px-0 py-1 f-dark-grey "+(profile.food ? "d-flex":"d-none")}>
                         <i className="fas fa-fw fa-drumstick-bite fa-lg mr-2 mt-1" title={intl.formatMessage({id: 'forms.food.placeholder'})}/>
                         <span className="fs-md fw-4 flh-1 mb-0">{profile.food}</span>
+                    </div>
+                    <div className={"col-6 col-lg-3 px-0 py-1 f-dark-grey "+(profile.needsTeam ? "d-flex":"d-none")}>
+                        <i className="fas fa-fw fa-users fa-lg mr-2 mt-1" title={intl.formatMessage({id: 'forms.needsTeam.placeholder'})}/>
+                        <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="forms.needsTeam.placeholder"/></span>
                     </div>
                 </div>
             </Fade>

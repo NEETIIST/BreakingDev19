@@ -327,7 +327,7 @@ class Index extends Component {
                         <div className="spacer-6"></div>
                     </div>
                 </div>
-                {/*
+
                 <div className="row justify-content-center align-items-center m-0 white f-black" id="awards">
                     <div className={"col-11 col-lg-10 text-center p-0"}>
                         <div className={"spacer-4"} />
@@ -356,7 +356,7 @@ class Index extends Component {
                         <div className={"spacer-2"} />
                         <div className="row justify-content-end align-items-start m-0 ">
                             <div className="col-6 col-lg p-0 py-2 hvr-primary cp">
-                                <Link to="/ideas">
+                                <Link to="/ideias">
                                     <img src="awards/IdeaBank.png" className="img-fluid py-1"/>
                                     <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.ideas1"/></p>
                                     <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.ideas2"/></p>
@@ -368,27 +368,30 @@ class Index extends Component {
                                 <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.aplus2"/></p>
                             </div>
                             <div className="col-6 col-lg p-0 py-2 hvr-primary">
-                                <img src="awards/Innovation.png" className="img-fluid py-1"/>
-                                <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.innovation1"/></p>
-                                <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.innovation2"/></p>
-                            </div>
-                            <div className="col-6 col-lg p-0 py-2 hvr-primary">
                                 <img src="awards/Picasso.png" className="img-fluid py-1"/>
                                 <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.picasso1"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.picasso2"/></p>
                             </div>
+                            {/*
+                            <div className="col-6 col-lg p-0 py-2 hvr-primary">
+                                <img src="awards/Innovation.png" className="img-fluid py-1"/>
+                                <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.innovation1"/></p>
+                                <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.innovation2"/></p>
+                            </div>
+
+
 
                             <div className="col-6 col-lg p-0 py-2 hvr-primary">
                                 <img src="awards/Web.png" className="img-fluid py-1"/>
                                 <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.impact1"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.impact2"/></p>
                             </div>
-
+                            */}
                         </div>
                         <div className={"spacer-4"} />
                     </div>
                 </div>
-                */}
+
                 <div className="row vh-70 justify-content-center align-items-center m-0 primary f-white" id="location">
                     <div className="col-11 col-lg-6 text-justify text-lg-left p-0">
                         <div className="spacer-4"></div>

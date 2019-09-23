@@ -83,7 +83,7 @@ class Sidebar extends Component {
                                                     </div>
                                                 </div>
                                             </NavLink>
-                                            <NavLink exact activeClassName="sidebar-active" to="/ideas">
+                                            <NavLink exact activeClassName="sidebar-active" to="/ideias">
                                                 <div
                                                     className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
                                                     <div className="col-3 text-center">
@@ -230,7 +230,7 @@ class Sidebar extends Component {
 
                     <Route exact path="/besponsor" component={BeSponsor} />
                     <Route exact path="/faqs" component={Faqs} />
-                    <Route exact path="/ideas" component={Ideas} />
+                    <Route exact path="/ideias" component={Ideas} />
 
                     <RestrictedRoute path="/login" component={Authentication} isLogin={true}/>
                     <RestrictedRoute path="/register" component={Authentication} isLogin={false}/>
