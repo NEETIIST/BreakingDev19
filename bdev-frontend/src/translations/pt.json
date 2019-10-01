@@ -8,8 +8,7 @@
   "sidebar.register": "Criar Conta",
   "sidebar.dashboard": "Área Pessoal",
   "sidebar.staffdash": "Dashboard",
-
-
+  "sidebar.staff": "Organização",
 
   "index.knowmore": "SABE MAIS",
   "index.signup": "INSCREVE-TE",
@@ -116,6 +115,10 @@
   "besponsor.desc4": "Se preferir, pode sempre entrar em contacto diretamente pelo nosso e-mail: ",
   "besponsor.desc5": "Esperamos poder contar consigo e com a sua empresa no nosso Hackathon!",
   "besponsor.sentsuccess": "O seu pedido foi enviado com successo. Nós iremos entrar em contacto consigo com a maior brevidade possível.",
+
+  "staff.title": "Equipa Organizadora do BreakingDev",
+  "staff.desc1": "Esta é a equipa responsável pela organização do BreakingDev 2019!",
+
 
   "forms.email": "Email",
   "forms.email.empty": "O email não pode estar vazio",

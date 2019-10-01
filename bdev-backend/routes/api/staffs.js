@@ -256,6 +256,20 @@ router.put("/me/files/:target/remove", verifyToken, (req, res) => {
 
 });
 
+
+// @route GET api/admins/public
+// @desc Returns the admin profiles with public info
+// Public Route
+router.get("/public", (req, res) => {
+
+    AdminProfile.find({}, AdminProfile.publicInfo, function (err, adms) {
+        if (err) return res.status(500).send("There was a problem finding the Staffs.");
+        if (!adms) return res.status(404).send("No Staff Profiles found");
+        return res.status(200).send(adms);
+    });
+
+});
+
 module.exports = router;
 
 

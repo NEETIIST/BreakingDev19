@@ -191,9 +191,7 @@ class Index extends Component {
                                     </div>
                                     <div className="col-8 p-0 p-2 text-left">
                                         <p className="fs-xl fw-7 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.games1"/></p>
-                                        {/*
                                         <p className="fs-lg fw-4 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.gamessponsor"/></p>
-                                        */}
                                         <p className="fs-sm fw-4 mb-0 flh-1"><FormattedMessage id="index.sec3.games2"/></p>
                                     </div>
                                 </div>
@@ -552,6 +550,38 @@ class Index extends Component {
                         </div>
                         <hr className="f-primary primary"/>
                         <div className="row justify-content-center align-items-center m-0">
+                            <div className="col-6 col-lg-3 p-0 text-center">
+                                <p className="fs-xs fw-4 flh-2 mb-3">
+                                    <a href="mailto:breakingdev@neeti.tecnico.ulisboa.pt" target="_blank" className="hvr-primary">
+                                        <i className="far fa-envelope px-2"></i>
+                                        <span>breakingdev@neeti.tecnico.ulisboa.pt</span>
+                                    </a>
+                                </p>
+                            </div>
+                            <div className="col-6 col-lg-3 p-0 text-center">
+                                <p className="fs-xs fw-4 flh-2 mb-3">
+                                    <a href="http://neeti.tecnico.ulisboa.pt/" target="_blank" className="hvr-primary">
+                                        <i className="fas fa-globe-europe px-2"></i>
+                                        <span>neeti.tecnico.ulisboa.pt</span>
+                                    </a>
+                                </p>
+                            </div>
+                            <div className="col-6 col-lg-3 p-0 text-center">
+                                <p className="fs-xs fw-4 flh-2 mb-3">
+                                    <a href="tel:214233547" target="_blank" className="hvr-primary">
+                                        <i className="fas fa-phone px-2"></i>
+                                        <span>+351 214 233 547</span>
+                                    </a>
+                                </p>
+                            </div>
+                            <div className="col-6 col-lg-3 p-0 text-center">
+                                <p className="fs-xs fw-4 flh-2 mb-3">
+                                    <a href="https://goo.gl/maps/AfGfcLPXiXb9FPVq8" target="_blank" className="hvr-primary">
+                                        <i className="fas fa-home px-2"></i>
+                                        <span>IST-Taguspark, Sala 1.9</span>
+                                    </a>
+                                </p>
+                            </div>
                             <div className="col-6 col-lg-3 p-0 text-center">
                                 <p className="fs-xs fw-4 flh-2 mb-3">
                                     <a href="/docs/Privacidade.pdf" target="_blank" className="hvr-primary">
