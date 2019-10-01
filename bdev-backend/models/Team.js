@@ -153,7 +153,7 @@ Team.allowEditAfterVerification = {
     //number: 1,
     //team_name:1,
     //category:1,
-    //proj_name:1,
+    proj_name:1,
     proj_desc:1,
     //captain:1,
     //members:1,
