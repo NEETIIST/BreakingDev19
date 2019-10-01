@@ -14,15 +14,18 @@ class Dev extends Component {
     }
 
     allSkills(data) {
-        return (
-            data.map((tag, index) => {
-                return(
-                    <div className="tag px-2 py-0 mr-2 mb-1">
-                        <p key={index} className="fs-xs fw-4 my-1 px-1">{tag}</p>
-                    </div>
-                )
-            })
-        );
+        if (data[0] === "")
+            return (<span className="fs-xxs fw-4 px-1"><FormattedMessage id="forms.skills.noskills"/></span>)
+        else
+            return (
+                data.map((tag, index) => {
+                    return(
+                        <div className="tag px-2 py-0 mr-2 mb-1">
+                            <p key={index} className="fs-xs fw-4 my-1 px-1">{tag}</p>
+                        </div>
+                    )
+                })
+            );
     };
 
     test(){console.log("");}

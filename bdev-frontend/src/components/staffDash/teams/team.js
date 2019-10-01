@@ -13,15 +13,18 @@ class Team extends Component {
     }
 
     allSkills(data) {
-        return (
-            data.map((tag, index) => {
-                return(
-                    <div className="tag px-2 py-0 mr-2 mb-1">
-                        <p key={index} className="fs-xs fw-4 my-1 px-1">{tag}</p>
-                    </div>
-                )
-            })
-        );
+        if (data[0] === "")
+            return (<span className="fs-xxs fw-4 px-1"><FormattedMessage id="forms.skills.noskills"/></span>)
+        else
+            return (
+                data.map((tag, index) => {
+                    return(
+                        <div className="tag px-2 py-0 mr-2 mb-1">
+                            <p key={index} className="fs-xs fw-4 my-1 px-1">{tag}</p>
+                        </div>
+                    )
+                })
+            );
     };
 
     allMembers(members) {
@@ -69,13 +72,16 @@ class Team extends Component {
                                    title={intl.formatMessage({ id: 'staffdash.teams.validated' })} />
                                 {timeago.format(team.registration)}
                             </span>
-                            <br/>
-                            <span className="fs-sm fw-4">
-                                <i className={"fas fa-sm mx-1 mb-2 fa-user-tie"}
-                                   title={intl.formatMessage({ id: 'dash.team.captain' })} />
-                                {team.captain}
-                            </span>
-                            {this.allMembers(team.members)}
+                            <div className="row justify-content-center align-items-center m-0 mt-1">
+                                <div className="col-12 p-0 text-left no-scrollbar" style={{whiteSpace:"nowrap", overflowX: "scroll"}}>
+                                    <span className="fs-sm fw-4">
+                                        <i className={"fas fa-sm mx-1 mb-2 fa-user-tie"}
+                                           title={intl.formatMessage({ id: 'dash.team.captain' })} />
+                                                {team.captain}
+                                    </span>
+                                    {this.allMembers(team.members)}
+                                </div>
+                            </div>
                             <div className="row justify-content-center align-items-center m-0 mt-1">
                                 <div className="col-12 p-0 text-left no-scrollbar" style={{whiteSpace:"nowrap", overflowX: "scroll"}}>
                                     {this.allSkills(team.skills)}
