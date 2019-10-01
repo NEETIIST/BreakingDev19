@@ -191,9 +191,7 @@ class Index extends Component {
                                     </div>
                                     <div className="col-8 p-0 p-2 text-left">
                                         <p className="fs-xl fw-7 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.games1"/></p>
-                                        {/*
                                         <p className="fs-lg fw-4 mb-1 flh-1 mb-1"><FormattedMessage id="index.sec3.gamessponsor"/></p>
-                                        */}
                                         <p className="fs-sm fw-4 mb-0 flh-1"><FormattedMessage id="index.sec3.games2"/></p>
                                     </div>
                                 </div>
@@ -327,7 +325,7 @@ class Index extends Component {
                         <div className="spacer-6"></div>
                     </div>
                 </div>
-                {/*
+
                 <div className="row justify-content-center align-items-center m-0 white f-black" id="awards">
                     <div className={"col-11 col-lg-10 text-center p-0"}>
                         <div className={"spacer-4"} />
@@ -341,13 +339,13 @@ class Index extends Component {
                                 <p className="fs-xxs fw-4 flh-2 mb-0 "><FormattedMessage id="index.sec9.web3"/></p>
                             </div>
                             <div className="col-12 col-lg-4 p-0 py-2 hvr-primary">
-                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <img src="awards/Event.png" className="img-fluid py-1"/>
                                 <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.event1"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.event2"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-0 "><FormattedMessage id="index.sec9.event3"/></p>
                             </div>
                             <div className="col-12 col-lg-4 p-0 py-2 hvr-primary">
-                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <img src="awards/Games.png" className="img-fluid py-1"/>
                                 <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.games1"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.games2"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-0 "><FormattedMessage id="index.sec9.games3"/></p>
@@ -356,29 +354,29 @@ class Index extends Component {
                         <div className={"spacer-2"} />
                         <div className="row justify-content-end align-items-start m-0 ">
                             <div className="col-6 col-lg p-0 py-2 hvr-primary cp">
-                                <Link to="/ideas">
-                                    <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <Link to="/ideias">
+                                    <img src="awards/IdeaBank.png" className="img-fluid py-1"/>
                                     <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.ideas1"/></p>
                                     <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.ideas2"/></p>
                                 </Link>
                             </div>
                             <div className="col-6 col-lg p-0 py-2 hvr-primary">
-                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <img src="awards/A+.png" className="img-fluid py-1"/>
                                 <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.aplus1"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.aplus2"/></p>
                             </div>
                             <div className="col-6 col-lg p-0 py-2 hvr-primary">
-                                <img src="awards/Web.png" className="img-fluid py-1"/>
-                                <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.innovation1"/></p>
-                                <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.innovation2"/></p>
-                            </div>
-                            <div className="col-6 col-lg p-0 py-2 hvr-primary">
-                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <img src="awards/Picasso.png" className="img-fluid py-1"/>
                                 <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.picasso1"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.picasso2"/></p>
                             </div>
                             <div className="col-6 col-lg p-0 py-2 hvr-primary">
-                                <img src="awards/Web.png" className="img-fluid py-1"/>
+                                <img src="awards/Innovation.png" className="img-fluid py-1"/>
+                                <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.innovation1"/></p>
+                                <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.innovation2"/></p>
+                            </div>
+                            <div className="col-6 col-lg p-0 py-2 hvr-primary">
+                                <img src="awards/Impact.png" className="img-fluid py-1"/>
                                 <p className="fs-sm fw-7 flh-2 mb-1 "><FormattedMessage id="index.sec9.impact1"/></p>
                                 <p className="fs-xxs fw-4 flh-2 mb-1 "><FormattedMessage id="index.sec9.impact2"/></p>
                             </div>
@@ -386,7 +384,7 @@ class Index extends Component {
                         <div className={"spacer-4"} />
                     </div>
                 </div>
-                */}
+
                 <div className="row vh-70 justify-content-center align-items-center m-0 primary f-white" id="location">
                     <div className="col-11 col-lg-6 text-justify text-lg-left p-0">
                         <div className="spacer-4"></div>
@@ -552,6 +550,38 @@ class Index extends Component {
                         </div>
                         <hr className="f-primary primary"/>
                         <div className="row justify-content-center align-items-center m-0">
+                            <div className="col-6 col-lg-3 p-0 text-center">
+                                <p className="fs-xs fw-4 flh-2 mb-3">
+                                    <a href="mailto:breakingdev@neeti.tecnico.ulisboa.pt" target="_blank" className="hvr-primary">
+                                        <i className="far fa-envelope px-2"></i>
+                                        <span>breakingdev@neeti.tecnico.ulisboa.pt</span>
+                                    </a>
+                                </p>
+                            </div>
+                            <div className="col-6 col-lg-3 p-0 text-center">
+                                <p className="fs-xs fw-4 flh-2 mb-3">
+                                    <a href="http://neeti.tecnico.ulisboa.pt/" target="_blank" className="hvr-primary">
+                                        <i className="fas fa-globe-europe px-2"></i>
+                                        <span>neeti.tecnico.ulisboa.pt</span>
+                                    </a>
+                                </p>
+                            </div>
+                            <div className="col-6 col-lg-3 p-0 text-center">
+                                <p className="fs-xs fw-4 flh-2 mb-3">
+                                    <a href="tel:214233547" target="_blank" className="hvr-primary">
+                                        <i className="fas fa-phone px-2"></i>
+                                        <span>+351 214 233 547</span>
+                                    </a>
+                                </p>
+                            </div>
+                            <div className="col-6 col-lg-3 p-0 text-center">
+                                <p className="fs-xs fw-4 flh-2 mb-3">
+                                    <a href="https://goo.gl/maps/AfGfcLPXiXb9FPVq8" target="_blank" className="hvr-primary">
+                                        <i className="fas fa-home px-2"></i>
+                                        <span>IST-Taguspark, Sala 1.9</span>
+                                    </a>
+                                </p>
+                            </div>
                             <div className="col-6 col-lg-3 p-0 text-center">
                                 <p className="fs-xs fw-4 flh-2 mb-3">
                                     <a href="/docs/Privacidade.pdf" target="_blank" className="hvr-primary">

@@ -68,7 +68,8 @@ class Teams extends Component {
         let condition = (team) => { return(team) };
         if ( this.state.content === "pending") condition = (team) => { return( team.pending? team : null) };
         if ( this.state.content === "validated") condition = (team) => { return( team.validated? team : null) };
-        let filteredTeams = this.state.teams.filter(condition).sort((a, b) => a.name.localeCompare(b.name)) ;
+        //let filteredTeams = this.state.teams.filter(condition).sort((a, b) => a.team_name.localeCompare(b.team_name)) ;
+        let filteredTeams = this.state.teams.filter(condition);
         if ( filteredTeams.length === 0 && this.state.ready)
             return <p className="fs-md fw-4 flh-1 my-3 f-dark-grey"><FormattedMessage id="staffdash.teams.empty"/></p>;
         else

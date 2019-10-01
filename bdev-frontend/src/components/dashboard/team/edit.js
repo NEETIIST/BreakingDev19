@@ -148,12 +148,13 @@ class Edit extends Component {
                                     <div className={"form-group"}>
                                         <div className={validation.proj_name.isInvalid && 'has-error'}>
                                             <input type="text"
-                                                   className={"form-control form-alt-input " + this.fieldHasValue("proj_name") + (requested?" cna":"")}
+                                                   //className={"form-control form-alt-input " + this.fieldHasValue("proj_name") + (requested?" cna":"")}
+                                                   className={"form-control form-alt-input " + this.fieldHasValue("proj_name")}
                                                    name="proj_name"
                                                    placeholder={intl.formatMessage({id: 'forms.proj_name.placeholder'})}
                                                    onChange={this.handleInputChange}
                                                    value={this.state.proj_name}
-                                                   disabled={requested}
+                                                   //disabled={requested}
                                             />
                                             <span className="help-block fs-xs">
                                                 <FormattedMessage id={validation.proj_name.message}/>

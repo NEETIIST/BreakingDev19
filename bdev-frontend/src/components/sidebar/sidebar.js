@@ -15,7 +15,7 @@ import staffDash from "../staffDash/staffDash";
 import BeSponsor from "../besponsor/besponsor";
 import Faqs from "../faqs/faqs";
 import Ideas from "../ideas/ideas";
-//import Staff from "../staffTeam/staffTeam";
+import Staff from "../staffTeam/staffTeam";
 
 
 class Sidebar extends Component {
@@ -83,7 +83,7 @@ class Sidebar extends Component {
                                                     </div>
                                                 </div>
                                             </NavLink>
-                                            <NavLink exact activeClassName="sidebar-active" to="/ideas">
+                                            <NavLink exact activeClassName="sidebar-active" to="/ideias">
                                                 <div
                                                     className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
                                                     <div className="col-3 text-center">
@@ -102,6 +102,17 @@ class Sidebar extends Component {
                                                     </div>
                                                     <div className="col-9 text-left">
                                                         <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.faqs"/></span>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
+                                            <NavLink exact activeClassName="sidebar-active" to="/staff">
+                                                <div
+                                                    className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
+                                                    <div className="col-3 text-center">
+                                                        <i className="far fa-id-badge fa-lg py-2"></i>
+                                                    </div>
+                                                    <div className="col-9 text-left">
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.staff"/></span>
                                                     </div>
                                                 </div>
                                             </NavLink>
@@ -167,19 +178,9 @@ class Sidebar extends Component {
                                                 </div>
                                             </NavLink>
                                             */}
-                                            {/*
-                                            <NavLink exact activeClassName="sidebar-active" to="/staff">
-                                                <div
-                                                    className="row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt" onClick={this.toggleSidebar}>
-                                                    <div className="col-3 text-center">
-                                                        <i className="fas fa-beer fa-lg py-2"></i>
-                                                    </div>
-                                                    <div className="col-9 text-left">
-                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.opt6"/></span>
-                                                    </div>
-                                                </div>
-                                            </NavLink>
-                                            */}
+
+
+
                                             {/*
                                             <hr className="f-white white"/>
                                             <NavLink exact activeClassName="sidebar-active" to="/besponsor">
@@ -230,7 +231,8 @@ class Sidebar extends Component {
 
                     <Route exact path="/besponsor" component={BeSponsor} />
                     <Route exact path="/faqs" component={Faqs} />
-                    <Route exact path="/ideas" component={Ideas} />
+                    <Route exact path="/ideias" component={Ideas} />
+                    <Route exact path="/staff" component={Staff} />
 
                     <RestrictedRoute path="/login" component={Authentication} isLogin={true}/>
                     <RestrictedRoute path="/register" component={Authentication} isLogin={false}/>
