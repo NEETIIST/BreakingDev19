@@ -2,15 +2,27 @@ import React, { Component } from "react";
 import {FormattedMessage} from "react-intl";
 import Fade from 'react-reveal/Fade';
 import URL from "../../../utils/requestsURL";
+import axios from "axios";
 
 class Dev extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            email:"",
         };
         this.allSkills = this.allSkills.bind(this);
         //console.log(props);
+    }
+
+    componentDidMount() {
+        axios.get(URL+'/api/devs/_'+this.props.profile.username+'/email', {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                "x-access-token": localStorage.getItem("jwtToken").split(" ")[1]
+            },
+        })
+            .then(response => { this.setState({ email: response.data }); })
+            .catch(function (error){ console.log(error); })
     }
 
     allSkills(data) {
@@ -27,9 +39,6 @@ class Dev extends Component {
                 })
             );
     };
-
-    test(){console.log("");}
-
 
     render() {
         const profile = this.props.profile;
@@ -134,6 +143,12 @@ class Dev extends Component {
                                 <a href={URL+"/files/paymentFile/"+profile.payment.file} target={"_blank"}>
                                     <i className="fas fa-fw fa-file-invoice fa-lg mr-2 mt-1"/>
                                     <span className="fs-md fw-4 flh-1 mb-1"><FormattedMessage id="staffdash.profile.see.payment"/></span>
+                                </a>
+                            </div>
+                            <div className={"col-6 col-lg-4 p-0 hvr-primary cp my-1 "+(this.state.email!=="" ? "d-flex":"d-none")}>
+                                <a href={"mailto:"+this.state.email} target={"_blank"}>
+                                    <i className="fas fa-fw fa-envelope fa-lg mr-2 mt-1"/>
+                                    <span className="fs-md fw-4 flh-1 mb-1">{this.state.email}</span>
                                 </a>
                             </div>
                         </div>

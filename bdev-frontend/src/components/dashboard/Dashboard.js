@@ -19,8 +19,8 @@ class Dashboard extends Component {
     constructor(props) {
         super(props);
         if ( props.content === "default" ?
-            this.state = { content: "feed" } :
-            this.state = { content: props.content }
+            this.state = { content: "feed", subcontent:"" } :
+            this.state = { content: props.content, subcontent:"" }
         );
         this.props.history.push('/dashboard/'+this.state.content);
         this.navigation = this.navigation.bind(this)
@@ -47,9 +47,16 @@ class Dashboard extends Component {
         });
     }
 
-    navigation = (content) => {
-        this.setState(state => ({ content: content }));
-        this.props.history.push('/dashboard/'+content)
+    navigation = (content, subcontent) => {
+        if ( subcontent === undefined ){
+            this.setState(state => ({ content: content, subcontent:"" }));
+            this.props.history.push('/dashboard/'+content)
+        }
+        else {
+            this.setState(state => ({ content: content, subcontent:subcontent }));
+            this.props.history.push('/dashboard/'+content)
+        }
+
     };
 
     onLogoutClick = e => {
@@ -137,8 +144,8 @@ class Dashboard extends Component {
                     <div className="row justify-content-center align-items-start m-0 pt-2 pt-lg-0 very-light-grey dash-content-holder">
                         <div className="col-12 col-lg-11 p-0">
                             {this.state.content == "feed" ? <Feed {...this.props} navigation={this.navigation}/> : ""}
-                            {this.state.content == "profile" ? <Profile {...this.props}/> : ""}
-                            {this.state.content == "team" ? <Team {...this.props} navigation={this.navigation}/> : ""}
+                            {this.state.content == "profile" ? <Profile {...this.props} content={this.state.subcontent}/> : ""}
+                            {this.state.content == "team" ? <Team {...this.props} content={this.state.subcontent} navigation={this.navigation}/> : ""}
                             {this.state.content == "chats" ? <Chats {...this.props}/> : ""}
                         </div>
                     </div>
