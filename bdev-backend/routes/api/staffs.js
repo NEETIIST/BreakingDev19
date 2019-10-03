@@ -10,6 +10,7 @@ const User = require("../../models/User");
 const AdminProfile = require("../../models/AdminProfile");
 const DevProfile = require("../../models/DevProfile");
 const Idea = require("../../models/Idea");
+const Team = require("../../models/Team");
 
 // Load input validation
 const validateAdminProfileInput = require("../../validation/adminProfile");
@@ -171,16 +172,22 @@ router.get("/overview", verifyToken, (req, res) => {
 
 
     let response = {
-        "devCount":undefined,
-        "staffCount":undefined,
-        "teamCount": 0,
+        "devsTotal": undefined,
+        "devsPending": undefined,
+        "teamsTotal": undefined,
+        "teamsPending": undefined,
+        "teamsValidated": undefined,
         "ideasApproved": undefined,
         "ideasPending": undefined,
     };
     var tasks = [
         // idea.approved===false && idea.hidden===false
-        function(callback) { DevProfile.find( function (err, devs) { response.devCount = devs.length; callback(); }); },
-        function(callback) { AdminProfile.find( function (err, adms) { response.staffCount = adms.length; callback(); }); },
+        function(callback) { DevProfile.find( function (err, devs) { response.devsTotal = devs.length; callback(); }); },
+        function(callback) { DevProfile.find( {pending:true}, function (err, devs) { response.devsPending = devs.length; callback(); }); },
+        //function(callback) { AdminProfile.find( function (err, adms) { response.staffCount = adms.length; callback(); }); },
+        function(callback) { Team.find( {disbanded:false}, function (err, teams) { response.teamsTotal = teams.length; callback(); }); },
+        function(callback) { Team.find( {disbanded:false, pending:true}, function (err, teams) { response.teamsPending = teams.length; callback(); }); },
+        function(callback) { Team.find( {disbanded:false, validated:true}, function (err, teams) { response.teamsValidated = teams.length; callback(); }); },
         function(callback) { Idea.find({approved:true}, function (err, ideas) { response.ideasApproved = ideas.length; callback(); }); },
         function(callback) { Idea.find({$and:[{approved:false},{hidden:false}]}, function (err, ideas) { console.log(":"+ideas);response.ideasPending = ideas.length; callback(); }); },
     ];
