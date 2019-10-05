@@ -216,7 +216,7 @@ class Edit extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <div className="row justify-content-start align-items-start mx-0 my-1">
+                            <div className={"row justify-content-start align-items-start mx-0 my-1 "+(requested?"d-none":"")}>
                                 <div className="col-12 col-lg-12 p-0">
                                     <div className="form-group">
                                         <div className={validation.motivation.isInvalid && 'has-error'}>
@@ -320,7 +320,7 @@ class Edit extends Component {
                     <div className={"col-12 text-center p-0 "+(status=="success"?"d-block":"d-none")}>
                         <Fade>
                             <i className="fas fa-check fa-3x my-3 f-primary"></i>
-                            <p className="fs-sm fw-4 flh-2 mb-0"><FormattedMessage id="dash.profile.edit.done"/></p>
+                            <p className="fs-sm fw-4 flh-2 mb-0"><FormattedMessage id="volunteerdash.profile.edit.done"/></p>
                         </Fade>
                     </div>
                 </div>

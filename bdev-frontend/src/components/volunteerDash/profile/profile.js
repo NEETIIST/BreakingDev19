@@ -8,8 +8,8 @@ import URL from "../../../utils/requestsURL";
 import See from "./see";
 import Edit from "./edit";
 import Add from './add';
-//import Files from './files';
-//import Validate from './validate';
+import Files from './files';
+import Validate from './validate';
 
 class Profile extends Component {
     constructor(props) {
@@ -69,7 +69,7 @@ class Profile extends Component {
                 <div className="row justify-content-center align-content-center m-0 dash-title">
                     <div className="col-12 p-0 text-right f-dark-grey">
                         <div className="spacer-2 mb-2 d-none d-lg-block" />
-                        <span className="fs-lg fw-7 flh-1"><FormattedMessage id="dash.profile.title"/></span>
+                        <span className="fs-lg fw-7 flh-1"><FormattedMessage id="volunteerdash.profile.title"/></span>
                         <i className="far fa-fw fa-user fa-lg flh-1 ml-2" />
                         <hr className="m-0 mt-3"/>
                     </div>
@@ -78,12 +78,12 @@ class Profile extends Component {
                     <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="see" ? "-active" :"")}
                          onClick={() => this.navigation("see")}>
                         <i className="fas fa-fw fa-search fa-lg flh-1 mr-2"/>
-                        <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="dash.profile.see"/></span>
+                        <span className="fs-md fw-4 flh-1 mb-0"><FormattedMessage id="volunteerdash.profile.see"/></span>
                     </div>
                     <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="edit" ? "-active" :"")}
                          onClick={() => this.navigation("edit")}>
                         <i className="fas fa-fw fa-user-edit fa-lg flh-1 mr-2"/>
-                        <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.profile.edit"/></span>
+                        <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="volunteerdash.profile.edit"/></span>
                     </div>
                     <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="files" ? "-active" :"")}
                          onClick={() => this.navigation("files")}>
@@ -93,7 +93,7 @@ class Profile extends Component {
                     <div className={"col-auto col-lg-3 p-2 py-2 px-3 px-lg-2 mx-2 mx-lg-0 text-center cp dash-subopt"+ (content==="validate" ? "-active" :"")+(hasProfile && profile.validated ? " d-none" :"") }
                          onClick={() => this.navigation("validate")}>
                         <i className="fas fa-fw fa-user-check fa-lg flh-1 mr-2"/>
-                        <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="dash.profile.validate"/></span>
+                        <span className="fs-md fw-4 flh-1 mb-0  "><FormattedMessage id="volunteerdash.profile.validate"/></span>
                     </div>
                 </div>
                 <div className={"row justify-content-center align-content-start m-0 dash-content"}>
@@ -109,10 +109,8 @@ class Profile extends Component {
                         {profile === null && loaded ? <Add {...this.props} onSuccess={this.createdProfile}/> : ""}
                         {content === "see" && profile && loaded ? <See {...this.props} profile={profile} /> : ""}
                         {content === "edit" && profile && loaded ? <Edit {...this.props} profile={profile} onSuccess={this.editedProfile}/> : ""}
-                        {/*
                         {content === "files" && profile && loaded ? <Files {...this.props} profile={profile} onSuccess={this.changedFiles}/> : ""}
                         {content === "validate" && profile && loaded ? <Validate {...this.props} profile={profile} onSuccess={this.changedValidation}/> : ""}
-                        */}
                     </div>
                 </div>
             </Fade>

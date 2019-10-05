@@ -248,8 +248,7 @@ router.put("/_:username/validate", verifyToken, (req, res) => {
         {projection: VolunteerProfile.adminInfo, new: true},
         function (err, vol) {
             if (err) return res.status(500).send("There was a problem finding the Volunteer Profile.");
-            if (!validateVolunteerProfileInput()) return res.status(404).send("No Volunteer Profile found for this username");
-
+            if (!vol) return res.status(404).send("No Volunteer Profile found for this username");
             return res.status(200).send(vol);
     });
 
@@ -267,10 +266,9 @@ router.put("/_:username/invalidate", verifyToken, (req, res) => {
         {validated:false, pending:false},
         {projection: VolunteerProfile.adminInfo, new: true},
         function (err, vol) {
-        if (err) return res.status(500).send("There was a problem finding the Volunteer Profile.");
-        if (!vol) return res.status(404).send("No Volunteer Profile found for this username");
-
-        return res.status(200).send(vol);
+            if (err) return res.status(500).send("There was a problem finding the Volunteer Profile.");
+            if (!vol) return res.status(404).send("No Volunteer Profile found for this username");
+            return res.status(200).send(vol);
     });
 
 });

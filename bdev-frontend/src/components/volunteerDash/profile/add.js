@@ -302,7 +302,7 @@ class Add extends Component {
                     <div className={"col-12 text-center p-0 "+(status=="success"?"d-block":"d-none")}>
                         <Fade>
                             <i className="fas fa-check fa-3x my-3 f-primary"></i>
-                            <p className="fs-sm fw-4 flh-2 mb-0"><FormattedMessage id="dash.profile.add.done"/></p>
+                            <p className="fs-sm fw-4 flh-2 mb-0"><FormattedMessage id="volunteerdash.profile.add.done"/></p>
                         </Fade>
                     </div>
                 </div>

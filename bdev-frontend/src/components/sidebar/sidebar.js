@@ -154,6 +154,18 @@ class Sidebar extends Component {
                                                     </div>
                                                 </div>
                                             </NavLink>
+                                            <NavLink activeClassName="sidebar-active" to="/volunteerdash">
+                                                <div
+                                                    className={"row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt "+(user.role==="volunteer"?"d-flex":"d-none")}
+                                                    onClick={this.toggleSidebar}>
+                                                    <div className="col-3 text-center">
+                                                        <i className="fas fa-user-cog fa-lg py-2"></i>
+                                                    </div>
+                                                    <div className="col-9 text-left">
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.dashboard"/></span>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
                                             <NavLink activeClassName="sidebar-active" to="/staffdash">
                                                 <div
                                                     className={"row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt "+(user.role==="staff"?"d-flex":"d-none")}
@@ -255,10 +267,7 @@ class Sidebar extends Component {
                     <PrivateRoute exact path="/staffdash/teams" component={staffDash} content={"teams"}/>
                     <PrivateRoute exact path="/staffdash/ideas" component={staffDash} content={"ideas"}/>
                     <PrivateRoute exact path="/staffdash/promocodes" component={staffDash} content={"promocodes"}/>
-
-                    {/*
-                    <Route exact path="/staff" component={Staff} />
-                    */}
+                    <PrivateRoute exact path="/staffdash/volunteers" component={staffDash} content={"volunteers"}/>
 
                 </Switch>
             </Router>

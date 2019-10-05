@@ -43,11 +43,11 @@ class See extends Component {
                         <div className="row justify-content-start align-items-center m-0">
                             <div className={"col-auto px-2 py-1 alert alert-warning mr-2 my-1 my-lg-0 "+(profile.pending?"d-inline":"d-none")}>
                                 <i className="fas fa-fw fa-exclamation-triangle fa-md flh-1 mx-1"/>
-                                <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="dash.profile.see.pending"/></span>
+                                <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="volunteerdash.profile.see.pending"/></span>
                             </div>
                             <div className={"col-auto px-2 py-1 alert alert-success mr-2 my-1 my-lg-0 "+(profile.validated?"d-inline":"d-none")}>
                                 <i className="fas fa-fw fa-user-check fa-md flh-1 mx-1"/>
-                                <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="dash.profile.see.validated"/></span>
+                                <span className="fs-sm fw-4 flh-1 f-grey mx-1"><FormattedMessage id="volunteerdash.profile.see.validated"/></span>
                             </div>
                         </div>
                         <p className="fs-xl fw-7 flh-1 mb-2 mt-3">
@@ -79,7 +79,7 @@ class See extends Component {
                             <div className={"col-6 col-lg-3 p-0 hvr-primary cp my-1 "+(profile.cv ? "d-flex":"d-none")}>
                                 <a href={URL+"/files/cv/"+profile.cv} target={"_blank"}>
                                     <i className="fas fa-fw fa-file-alt fa-lg mr-2 mt-1"/>
-                                    <span className="fs-md fw-4 flh-1 mb-1"><FormattedMessage id="dash.profile.see.cv"/></span>
+                                    <span className="fs-md fw-4 flh-1 mb-1"><FormattedMessage id="volunteerdash.profile.see.cv"/></span>
 
                                 </a>
                             </div>
@@ -90,7 +90,7 @@ class See extends Component {
                 <div className="row justify-content-center align-items-center m-0 mt-3">
                     <div className="col-12 p-0 f-dark-grey">
                         <p className="fs-sm fw-4 flh-1 mb-1 f-primary">
-                            <FormattedMessage id="dash.profile.see.aboutme"/>
+                            <FormattedMessage id="volunteerdash.profile.see.aboutme"/>
                         </p>
                         <p className="fs-md fw-4 flh-1 mb-0">
                             {profile.bio}
@@ -100,7 +100,7 @@ class See extends Component {
                 <div className={"row justify-content-center align-items-center m-0 mt-3 "+(profile.skills ? "d-flex":"d-none")}>
                     <div className="col-12 p-0 f-dark-grey">
                         <p className="fs-sm fw-4 flh-1 mb-2 f-primary">
-                            <FormattedMessage id="dash.profile.see.skills"/>
+                            <FormattedMessage id="volunteerdash.profile.see.skills"/>
                         </p>
                         {this.allSkills(profile.skills)}
                     </div>
@@ -109,7 +109,7 @@ class See extends Component {
                 <div className="row justify-content-start align-items-center m-0 mt-2">
                     <div className="col-12 p-0">
                         <p className="fs-xs fw-4 flh-1 mb-3 f-primary">
-                            <FormattedMessage id="dash.profile.see.privateinfo"/>
+                            <FormattedMessage id="volunteerdash.profile.see.privateinfo"/>
                         </p>
                     </div>
                     <div className="col-6 col-lg-3 px-0 py-1 f-dark-grey">
