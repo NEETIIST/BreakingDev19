@@ -13,7 +13,7 @@ const VolunteerProfile = require("../../models/VolunteerProfile");
 const validateVolunteerProfileInput = require("../../validation/volunteerProfile");
 
 // Load Email Templates and Function
-const emails = require('../../emails');
+//const emails = require('../../emails');
 
 // @route POST api/volunteers/create
 // @desc Create Volunteer Profile, logged user must not have a profile already

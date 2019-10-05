@@ -12,6 +12,7 @@ import PrivateRoute from "../../utils/PrivateRoute";
 import RestrictedRoute from "../../utils/RestrictedRoute";
 import Dashboard from "../dashboard/Dashboard";
 import staffDash from "../staffDash/staffDash";
+import volunteerDash from "../volunteerDash/volunteerDash";
 import BeSponsor from "../besponsor/besponsor";
 import Faqs from "../faqs/faqs";
 import Ideas from "../ideas/ideas";
@@ -242,6 +243,10 @@ class Sidebar extends Component {
                     <PrivateRoute exact path="/dashboard/profile" component={Dashboard} content={"profile"}/>
                     <PrivateRoute path="/dashboard/team" component={Dashboard} content={"team"}/>
                     <PrivateRoute path="/dashboard/chats" component={Dashboard} content={"chats"}/>
+
+                    <PrivateRoute exact path="/volunteerdash" component={volunteerDash} content={"default"}/>
+                    <PrivateRoute exact path="/volunteerdash/feed" component={volunteerDash} content={"feed"}/>
+                    <PrivateRoute exact path="/volunteerdash/profile" component={volunteerDash} content={"profile"}/>
 
                     <PrivateRoute exact path="/staffdash" component={staffDash} content={"default"}/>
                     <PrivateRoute exact path="/staffdash/feed" component={staffDash} content={"feed"}/>
