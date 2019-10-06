@@ -167,19 +167,17 @@ class Register extends Component {
                                 <div className="col-1 px-0">
                                     <i className="fas fa-question-circle fa-lg f-primary" title={intl.formatMessage({id: 'role.help'})} />
                                 </div>
-                                <div className="col p-0 m-1 cp" onClick={(role) => this.assignRole("dev")}>
+                                <div className="col-10 p-1 cp" onClick={(role) => this.assignRole("dev")}>
                                     <div className={"btn btn-block btn-dev-alt"+(this.state.role==="dev"?"-active":"")}>
                                         <span className="fs-sm fw-4 flh-2"><FormattedMessage id="role.dev"/></span>
                                     </div>
                                 </div>
-                                {/*
-                                <div className="col p-0 m-1 cp" onClick={(role) => this.assignRole("volunteer")}>
+                                <div className="col-5 offset-1 p-1 cp" onClick={(role) => this.assignRole("volunteer")}>
                                     <div className={"btn btn-block btn-dev-alt"+(this.state.role==="volunteer"?"-active":"")}>
                                         <span className="fs-sm fw-4 flh-2"><FormattedMessage id="role.volunteer"/></span>
                                     </div>
                                 </div>
-                                */}
-                                <div className="col p-0 m-1 cp" onClick={(role) => this.assignRole("staff")}>
+                                <div className="col-5 p-1 cp" onClick={(role) => this.assignRole("staff")}>
                                     <div className={"btn btn-block btn-dev-alt"+(this.state.role==="staff"?"-active":"")}>
                                         <span className="fs-sm fw-4 flh-2"><FormattedMessage id="role.staff"/></span>
                                     </div>

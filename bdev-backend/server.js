@@ -13,7 +13,9 @@ const emails = require("./routes/api/emails");
 const ideas = require("./routes/api/ideas");
 const teams = require("./routes/api/teams");
 const chat = require("./routes/api/chat");
+const volunteers = require("./routes/api/volunteers");
 const promocodes = require("./routes/api/promocodes");
+
 
 app.use(cors());
 app.use(bodyParser.urlencoded({
@@ -77,6 +79,7 @@ app.use("/api/emails", emails);
 app.use("/api/teams", teams);
 app.use("/api/chat", chat);
 app.use("/api/promocodes", promocodes);
+app.use("/api/volunteers", volunteers);
 
 
 
