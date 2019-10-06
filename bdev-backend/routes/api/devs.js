@@ -103,7 +103,7 @@ router.get("/me", verifyToken, (req, res) => {
 });
 
 
-// @route GET api/devs/me
+// @route GET api/devs/me/overview
 // @desc Returns the logged user dev Profile
 // No permission check necessary, because only authorized users have their dev profile
 router.get("/me/overview", verifyToken, (req, res) => {

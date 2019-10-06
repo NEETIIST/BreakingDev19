@@ -268,6 +268,7 @@ class Sidebar extends Component {
                     <PrivateRoute exact path="/staffdash/ideas" component={staffDash} content={"ideas"}/>
                     <PrivateRoute exact path="/staffdash/promocodes" component={staffDash} content={"promocodes"}/>
                     <PrivateRoute exact path="/staffdash/volunteers" component={staffDash} content={"volunteers"}/>
+                    <PrivateRoute exact path="/staffdash/companies" component={staffDash} content={"companies"}/>
 
                 </Switch>
             </Router>
