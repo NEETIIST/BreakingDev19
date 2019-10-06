@@ -655,6 +655,14 @@
   "volunteerdash.profile.validate.info5": "Se quiseres, podes cancelar a tua candidatura e voltar a fazê-lo mais tarde.",
   "volunteerdash.profile.validate.request": "Fazer Candidatura",
   "volunteerdash.profile.validate.cancel": "Cancelar Candidatura",
+  "volunteerdash.feed.noprofile1": "Ainda não tens dados de perfil",
+  "volunteerdash.feed.noprofile2": "Faz aqui a tua candidatura a voluntário",
+  "volunteerdash.feed.apply1": "Finaliza a tua candidatura",
+  "volunteerdash.feed.apply2": "Confirma a tua candidatura a voluntário",
+  "volunteerdash.feed.pending1": "Candidatura pendente",
+  "volunteerdash.feed.pending2": "Mantêm-te atento ao teu email",
+  "volunteerdash.feed.validated1": "Candidatura confirmada!",
+  "volunteerdash.feed.validated2": "Estás confirmado como voluntário",
 
   " ": " "
 }

@@ -7,10 +7,10 @@ import { NavLink } from "react-router-dom";
 
 import { logoutUser } from "../../actions/authActions";
 
-//import './Dashboard.css';
+import '../dashboard/Dashboard.css';
 
 import Profile from './profile/profile';
-//import Feed from "./feed/feed";
+import Feed from "./feed/feed";
 //import Team from "./team/team";
 //import Chats from "./chats/chats";
 
@@ -128,9 +128,7 @@ class VolunteerDash extends Component {
                 <div className="col-11 col-lg-10 p-0 order-1 order-lg-2">
                     <div className="row justify-content-center align-items-start m-0 pt-2 pt-lg-0 very-light-grey dash-content-holder">
                         <div className="col-12 col-lg-11 p-0">
-                            {/*
                             {this.state.content == "feed" ? <Feed {...this.props} navigation={this.navigation}/> : ""}
-                            */}
                             {this.state.content == "profile" ? <Profile {...this.props} content={this.state.subcontent}/> : ""}
                             {/*
                             {this.state.content == "team" ? <Team {...this.props} content={this.state.subcontent} navigation={this.navigation}/> : ""}

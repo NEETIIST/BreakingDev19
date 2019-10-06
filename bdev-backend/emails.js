@@ -100,8 +100,8 @@ const testEmail1 = (args)=>{
 const sendEmail = async (email,username) => {
     var mailgun = new Mailgun({apiKey: api_key, domain: domain});
     User.findOne({"username":username}, function (err, user) {
-        if (err) return res.status(500).send("There was a problem finding the user.");
-        if (!user) return res.status(404).send("No user could be found for that username");
+        if (err) return ;
+        if (!user) return ;
 
         email.to = user.email;
 
@@ -122,8 +122,8 @@ const sendEmail = async (email,username) => {
 const sendStaffEmail = async (email) => {
     var mailgun = new Mailgun({apiKey: api_key, domain: domain});
     User.findOne({"username":username}, function (err, user) {
-        if (err) return res.status(500).send("There was a problem finding the user.");
-        if (!user) return res.status(404).send("No user could be found for that username");
+        if (err) return ;
+        if (!user) return;
 
         email.to = "neeti.isttagus@gmail.com";
         mailgun.messages().send(email, function (err, body) {
