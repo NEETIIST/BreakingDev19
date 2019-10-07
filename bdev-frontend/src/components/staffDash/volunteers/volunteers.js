@@ -6,6 +6,7 @@ import axios from "axios";
 import URL from "../../../utils/requestsURL";
 
 import Volunteer from './volunteer';
+import querystring from "query-string";
 
 class Volunteers extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class Volunteers extends Component {
         this.seeList = this.seeList.bind(this);
         this.validateProfile = this.validateProfile.bind(this);
         this.invalidateProfile = this.invalidateProfile.bind(this);
+        //this.updateShifts = this.updateShifts.bind(this);
     }
 
     navigation = (content) => { this.setState(state => ({ content: content })); };
@@ -53,7 +55,6 @@ class Volunteers extends Component {
             })
             .catch(function (error){ console.log(error); })
     };
-
     getVolunteers(){
         axios.get(URL+'/api/volunteers/all', {
             headers: {
@@ -157,6 +158,7 @@ class Volunteers extends Component {
                                      seeList: () => this.seeList(),
                                      validateProfile: (profile) => this.validateProfile(profile),
                                      invalidateProfile: (profile) => this.invalidateProfile(profile),
+                                     //updateShifts: (profile,shifts) => this.updateShifts(profile,shifts),
                                  }}/>
                         </div>
                         : this.showVolunteers() }

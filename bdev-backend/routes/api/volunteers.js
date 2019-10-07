@@ -51,6 +51,7 @@ router.post("/create", verifyToken, (req, res) => {
                 phone: req.body.phone,
                 bio: req.body.bio,
                 motivation:req.body.motivation,
+                availability:req.body.availability,
                 skills: req.body.skills,
                 github: req.body.github,
                 twitter: req.body.twitter,
@@ -111,9 +112,12 @@ router.put("/me/edit", verifyToken, (req, res) => {
 
         // Fields that the user can't update on his own
 
-        // Fields that can't be changed after
-        delete req.body.validated; delete req.body.pending; delete req.body.username;
-        if ( vol.validated || vol.pending ){ req.body.name=vol.name; req.body.age=vol.age; req.body.phone=vol.phone; req.body.college=vol.college; req.body.course=vol.course; req.body.motivation=vol.motivation; }
+        // Delete all fields in the request, except the ones that can be edited (prevents adding unverified fields)
+        if ( vol.pending || vol.validated )
+            for ( field in req.body ){ if(VolunteerProfile.allowEditAfterVerification[field] === undefined ) delete req.body[field]; }
+        else
+            for ( field in req.body ){ if(VolunteerProfile.allowEdit[field] === undefined ) delete req.body[field]; }
+
 
         Object.assign(vol, req.body);
         vol .save()
@@ -338,5 +342,28 @@ router.put("/me/files/:target/remove", verifyToken, (req, res) => {
 
 });
 
+
+
+
+/*
+// @route PUT api/volunteers/_:username/shifts
+// @desc Updates Volunteer Shifts
+// @permissions Staffs Only
+router.put("/_:username/shifts", verifyToken, (req, res) => {
+
+    // Only Staffs can approve other Volunteer
+    if ( req.role !== 'staff' ){ return res.status(403).send("You don't have permission for this action"); }
+
+    VolunteerProfile.findOneAndUpdate({"username":req.params['username']},
+        {shifts:req.body.shifts},
+        {projection: VolunteerProfile.adminInfo, new: true},
+        function (err, vol) {
+            if (err) return res.status(500).send("There was a problem finding the Volunteer Profile.");
+            if (!vol) return res.status(404).send("No Volunteer Profile found for this username");
+            return res.status(200).send(vol);
+        });
+
+});
+*/
 
 module.exports = router;

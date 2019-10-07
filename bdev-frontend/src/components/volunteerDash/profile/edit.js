@@ -22,6 +22,7 @@ class Edit extends Component {
             phone: profile.phone,
             bio: profile.bio,
             motivation: profile.motivation,
+            availability: profile.availability,
             food: profile.food,
             skills: profile.skills,
             github: profile.github,
@@ -63,6 +64,7 @@ class Edit extends Component {
                 phone: this.state.phone,
                 bio: this.state.bio,
                 motivation: this.state.motivation,
+                availability: this.state.availability,
                 food: this.state.food,
                 skills: this.state.skills,
                 github: this.state.github,
@@ -229,6 +231,23 @@ class Edit extends Component {
                                                       rows={"2"}
                                             />
                                             <span className="help-block fs-xs"><FormattedMessage id={validation.motivation.message}/></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={"row justify-content-start align-items-start mx-0 my-1 "+(requested?"d-none":"")}>
+                                <div className="col-12 col-lg-12 p-0">
+                                    <div className="form-group">
+                                        <div className={validation.availability.isInvalid && 'has-error'}>
+                                            <textarea type="text"
+                                                      className={"form-control form-alt-input " + this.fieldHasValue("availability")}
+                                                      name="availability"
+                                                      placeholder={intl.formatMessage({id: 'forms.availability.placeholder'})}
+                                                      onChange={this.handleInputChange}
+                                                      value={this.state.availability}
+                                                      rows={"2"}
+                                            />
+                                            <span className="help-block fs-xs"><FormattedMessage id={validation.availability.message}/></span>
                                         </div>
                                     </div>
                                 </div>

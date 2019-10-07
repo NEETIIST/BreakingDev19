@@ -58,6 +58,13 @@ module.exports = function validateVolunteerProfileInput(data) {
     if ( (!Validator.isEmpty(data.motivation)) && (!Validator.isLength(data.motivation,{max: 512}))) {
         errors.bio = "Please use less than 1024 characters";
     }
+    // College Checks - Must be filled
+    if (Validator.isEmpty(data.availability)) {
+        errors.college = "College is required";
+    }
+    else if (!Validator.isLength(data.availability,{max: 1024})) {
+        errors.name = "Name must have less than 1024 characters";
+    }
     // Food Checks - Must be filled
     if ( (!Validator.isEmpty(data.food)) && (!Validator.isLength(data.food,{max: 512}))) {
         errors.food = "Please use less than 512 characters";

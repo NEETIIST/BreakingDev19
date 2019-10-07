@@ -75,10 +75,23 @@ export const volunteerProfileInput = new FormValidator([
     },
     {
         field: "motivation",
+        method: "isEmpty",
+        validWhen: false,
+        message: "forms.motivation.empty"
+    },
+    {
+        field: "motivation",
+        method: "isLength",
+        args: [{max: 1024}],
+        validWhen: true,
+        message: "forms.motivation.toolong"
+    },
+    {
+        field: "availability",
         method: "isLength",
         args: [{max: 512}],
         validWhen: true,
-        message: "forms.motivation.toolong"
+        message: "forms.availability.toolong"
     },
     {
         field: "food",

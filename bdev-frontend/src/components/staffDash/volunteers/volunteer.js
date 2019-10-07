@@ -3,6 +3,8 @@ import {FormattedMessage} from "react-intl";
 import Fade from 'react-reveal/Fade';
 import URL from "../../../utils/requestsURL";
 import axios from "axios";
+import TagsInput from "../../../utils/TagsInput";
+import querystring from "query-string";
 
 class Volunteer extends Component {
     constructor(props) {
@@ -12,7 +14,14 @@ class Volunteer extends Component {
         };
         this.allSkills = this.allSkills.bind(this);
         //console.log(props);
+        //this.editedTags = this.editedTags.bind(this);
     }
+
+    /*
+    editedTags(newTags){
+        this.props.methods.updateShifts(this.props.profile, newTags);
+    };
+    */
 
     componentDidMount() {
         axios.get(URL+'/api/volunteers/_'+this.props.profile.username+'/email', {
@@ -147,14 +156,26 @@ class Volunteer extends Component {
                         </p>
                     </div>
                 </div>
-                <div className={"row justify-content-center align-items-center m-0 mt-3 "+(profile.skills ? "d-flex":"d-none")}>
+                <div className="row justify-content-center align-items-center m-0 mt-3">
                     <div className="col-12 p-0 f-dark-grey">
-                        <p className="fs-sm fw-4 flh-1 mb-2 f-primary">
-                            <FormattedMessage id="staffdash.volunteers.see.skills"/>
+                        <p className="fs-sm fw-4 flh-1 mb-1 f-primary">
+                            <FormattedMessage id="staffdash.volunteers.see.availability"/>
                         </p>
-                        {this.allSkills(profile.skills)}
+                        <p className="fs-md fw-4 flh-1 mb-0">
+                            {profile.availability}
+                        </p>
                     </div>
                 </div>
+                {/*
+                <div className="row justify-content-center align-items-center m-0 mt-3">
+                    <div className="col-12 col-lg-12 p-0">
+                        <p className="fs-sm fw-4 flh-1 mb-1 f-primary">
+                            <FormattedMessage id="staffdash.volunteers.see.shifts"/>
+                        </p>
+                        <TagsInput {...this.props} data={profile.shifts} update={this.editedTags}/>
+                    </div>
+                </div>
+                */}
                 <div className={"spacer-2"} />
                 <div className="row justify-content-start align-items-center m-0 mt-2">
                     <div className="col-12 p-0">

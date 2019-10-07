@@ -97,6 +97,26 @@ class See extends Component {
                         </p>
                     </div>
                 </div>
+                <div className="row justify-content-center align-items-center m-0 mt-3">
+                    <div className="col-12 p-0 f-dark-grey">
+                        <p className="fs-sm fw-4 flh-1 mb-1 f-primary">
+                            <FormattedMessage id="volunteerdash.profile.see.motivation"/>
+                        </p>
+                        <p className="fs-md fw-4 flh-1 mb-0">
+                            {profile.motivation}
+                        </p>
+                    </div>
+                </div>
+                <div className="row justify-content-center align-items-center m-0 mt-3">
+                    <div className="col-12 p-0 f-dark-grey">
+                        <p className="fs-sm fw-4 flh-1 mb-1 f-primary">
+                            <FormattedMessage id="volunteerdash.profile.see.availability"/>
+                        </p>
+                        <p className="fs-md fw-4 flh-1 mb-0">
+                            {profile.availability}
+                        </p>
+                    </div>
+                </div>
                 <div className={"row justify-content-center align-items-center m-0 mt-3 "+(profile.skills ? "d-flex":"d-none")}>
                     <div className="col-12 p-0 f-dark-grey">
                         <p className="fs-sm fw-4 flh-1 mb-2 f-primary">

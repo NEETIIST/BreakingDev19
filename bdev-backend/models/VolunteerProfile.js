@@ -65,7 +65,12 @@ const VolunteerProfileSchema = new Schema({
         required: true,
         default: false,
     },
-
+    availability: {
+        type: String,
+    },
+    shifts: {
+        type: [String],
+    }
 
 
 });
@@ -90,6 +95,37 @@ VolunteerProfile.publicInfo = {
     //cv:0,
     //pending: 0,
     //validated:0,
+    //availability:0,
+    //shifts:0,
+};
+
+VolunteerProfile.allowEdit = {
+    name:1,
+    age:1,
+    phone: 1,
+    college:1,
+    course:1,
+    bio:1,
+    motivation:1,
+    skills:1,
+    food:1,
+    github:1,
+    twitter:1,
+    linkedin:1,
+    picture:1,
+    cv:1,
+    availability:1,
+};
+
+VolunteerProfile.allowEditAfterVerification = {
+    bio:1,
+    skills:1,
+    food:1,
+    github:1,
+    twitter:1,
+    linkedin:1,
+    picture:1,
+    cv:1,
 };
 
 VolunteerProfile.ownerInfo = {
@@ -110,6 +146,8 @@ VolunteerProfile.ownerInfo = {
     cv:1,
     pending: 1,
     validated:1,
+    availability:1,
+    shifts:1,
 };
 
 VolunteerProfile.adminInfo = {
@@ -130,6 +168,8 @@ VolunteerProfile.adminInfo = {
     cv:1,
     pending: 1,
     validated:1,
+    availability:1,
+    shifts:1,
 };
 
 module.exports = VolunteerProfile;
