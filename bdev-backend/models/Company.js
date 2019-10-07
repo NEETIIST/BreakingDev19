@@ -22,6 +22,9 @@ const CompanySchema = new Schema({
     website: {
         type: String,
     },
+    email: {
+        type: String,
+    },
     members:{
         type: [String],
     },
@@ -43,6 +46,7 @@ Company.publicInfo = {
     job:1,
     search:1,
     website:1,
+    email:1,
     members:1,
     //codes:1,
 };
@@ -53,6 +57,7 @@ Company.editableFields = {
     job:1,
     search:1,
     website:1,
+    email:1,
     //members:1,
     //codes:1,
 };
@@ -63,6 +68,7 @@ Company.memberInfo = {
     job:1,
     search:1,
     website:1,
+    email:1,
     members:1,
     //codes:1,
 };
@@ -74,6 +80,7 @@ Company.adminInfo = {
     job:1,
     search:1,
     website:1,
+    email:1,
     members:1,
     codes:1,
 };

@@ -1,37 +1,5 @@
 import FormValidator from "../../../utils/FormValidator";
 
-export const companyAddInput = new FormValidator([
-    {
-        field: "name",
-        method: "isEmpty",
-        validWhen: false,
-        message: "forms.name.empty"
-    },
-    {
-        field: "name",
-        method: "isLength",
-        args: [{min:0, max: 256}],
-        validWhen: true,
-        message: "forms.name.toolong"
-    },
-    {
-        field: "short",
-        method: "isEmpty",
-        validWhen: false,
-        message: "forms.course.empty"
-    },
-    {
-        field: "short",
-        method: "isLength",
-        args: [{min:0, max: 256}],
-        validWhen: true,
-        message: "forms.course.toolong"
-    },
-
-
-]);
-
-
 export const companyEditInput = new FormValidator([
     {
         field: "name",
@@ -63,7 +31,7 @@ export const companyEditInput = new FormValidator([
         field: "job",
         method: "isEmpty",
         validWhen: false,
-        message: "forms.job.empty"
+        message: "forms.work.empty"
     },
     {
         field: "job",
@@ -115,5 +83,3 @@ export const companyEditInput = new FormValidator([
 
 
 ]);
-
-

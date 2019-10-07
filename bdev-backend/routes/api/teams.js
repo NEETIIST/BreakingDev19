@@ -37,6 +37,7 @@ router.get("/active", verifyToken, (req, res) => {
 
     let info = Team.publicInfo;
     if ( req.role === "staff" ) info = Team.adminInfo;
+    else if ( req.role === 'sponsor' ) fields = Team.sponsorInfo;
 
     Team.find({"disbanded":false}, info, function (err, teams) {
         if (err) return res.status(500).send("There was a problem finding the Teams");
