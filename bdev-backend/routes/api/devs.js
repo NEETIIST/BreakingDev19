@@ -14,7 +14,7 @@ const Team = require("../../models/Team");
 const validateDevProfileInput = require("../../validation/devProfile");
 
 // Load Email Templates and Function
-const emails = require('../../emails');
+//const emails = require('../../emails');
 
 // @route POST api/devs/create
 // @desc Create Dev Profile, logged user must not have a profile already
@@ -262,7 +262,7 @@ router.put("/me/validate", verifyToken, (req, res) => {
         dev .save(updatedDev)
             .then(dev => {
                 // Send Email informing the Staff
-                emails.sendStaffEmail(emails.userRequestedValidation({name:dev.name, username:dev.username}));
+                //emails.sendStaffEmail(emails.userRequestedValidation({name:dev.name, username:dev.username}));
                 return res.status(200).send(dev);
             })
             .catch(err => console.log(err));
@@ -304,7 +304,7 @@ router.put("/_:username/validate", verifyToken, (req, res) => {
         if (!dev) return res.status(404).send("No Dev Profile found for this username");
 
         // Send Email informing the User
-        emails.sendEmail(emails.profileValidated({name:dev.name}), dev.username);
+        //emails.sendEmail(emails.profileValidated({name:dev.name}), dev.username);
 
         return res.status(200).send(dev);
     });

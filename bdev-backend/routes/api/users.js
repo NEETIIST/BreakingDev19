@@ -14,7 +14,7 @@ const validateChangePassInput = require("../../validation/changePass");
 const User = require("../../models/User");
 
 // Load Email Templates and Function
-const emails = require('../../emails');
+//const emails = require('../../emails');
 
 // @route POST api/users/register
 // @desc Register user
@@ -77,7 +77,7 @@ router.post("/register", (req, res) => {
                                     }
                                 );
                                 // Send Confirmation Email
-                                emails.sendEmail(emails.createdAccount({username:user.username}), req.username);
+                                //emails.sendEmail(emails.createdAccount({username:user.username}), req.username);
                             }
                         )
                         .catch(err => console.log(err));
