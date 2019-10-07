@@ -12,7 +12,7 @@ const DevProfile = require("../../models/DevProfile");
 //const validateIdeaSubmission = require("../../validation/ideas");
 
 // Load Email Templates and Function
-const emails = require('../../emails');
+//const emails = require('../../emails');
 
 // @route POST api/chat/create/
 // @desc Creates a Chat Channel
@@ -54,7 +54,7 @@ router.post("/create", verifyToken, (req, res) => {
                     .save()
                     .then(chat => {
                         // Send Email Informing the target User
-                        emails.sendEmail(emails.channelStarted({originUser:origin_dev.username, targetUser:target_dev.username}), target_dev.username);
+                        //emails.sendEmail(emails.channelStarted({originUser:origin_dev.username, targetUser:target_dev.username}), target_dev.username);
                         return res.status(200).send(chat);
 
                     })

@@ -17,6 +17,7 @@ import BeSponsor from "../besponsor/besponsor";
 import Faqs from "../faqs/faqs";
 import Ideas from "../ideas/ideas";
 import Staff from "../staffTeam/staffTeam";
+import sponsorDash from '../sponsorDash/sponsorDash';
 
 
 class Sidebar extends Component {
@@ -178,6 +179,18 @@ class Sidebar extends Component {
                                                     </div>
                                                 </div>
                                             </NavLink>
+                                            <NavLink activeClassName="sidebar-active" to="/sponsordash">
+                                                <div
+                                                    className={"row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt "+(user.role==="sponsor"?"d-flex":"d-none")}
+                                                    onClick={this.toggleSidebar}>
+                                                    <div className="col-3 text-center">
+                                                        <i className="fas fa-user-cog fa-lg py-2"></i>
+                                                    </div>
+                                                    <div className="col-9 text-left">
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.sponsordash"/></span>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
                                             {/*
                                             <NavLink exact activeClassName="sidebar-active" to="/ideas">
                                                 <div
@@ -269,6 +282,12 @@ class Sidebar extends Component {
                     <PrivateRoute exact path="/staffdash/promocodes" component={staffDash} content={"promocodes"}/>
                     <PrivateRoute exact path="/staffdash/volunteers" component={staffDash} content={"volunteers"}/>
                     <PrivateRoute exact path="/staffdash/companies" component={staffDash} content={"companies"}/>
+
+                    <PrivateRoute exact path="/sponsordash" component={sponsorDash} content={"default"}/>
+                    <PrivateRoute exact path="/sponsordash/feed" component={sponsorDash} content={"feed"}/>
+                    <PrivateRoute exact path="/sponsordash/company" component={sponsorDash} content={"company"}/>
+                    <PrivateRoute exact path="/sponsordash/devs" component={sponsorDash} content={"devs"}/>
+                    <PrivateRoute exact path="/sponsordash/teams" component={sponsorDash} content={"teams"}/>
 
                 </Switch>
             </Router>

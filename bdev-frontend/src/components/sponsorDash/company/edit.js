@@ -93,28 +93,12 @@ class Edit extends Component {
             <Fade right cascade>
                 <div className={"row justify-content-center align-items-start m-0"}>
                     <div className={"col-12 p-0 text-left f-dark-grey "+(status=="waiting"?"d-block":"d-none")}>
-                        <p className="fs-sm fw-4 flh-1 mb-0"><FormattedMessage id="staffdash.companies.edit.desc"/></p>
+                        <p className="fs-sm fw-4 flh-1 mb-1"><FormattedMessage id="sponsordash.company.edit.desc1"/></p>
+                        <p className="fs-xs fw-4 flh-1 mb-2"><FormattedMessage id="sponsordash.company.edit.desc2"/></p>
                         <div className="spacer-2"/>
                         <form onSubmit={this.onSubmit} autoComplete="off">
                             <div className="row justify-content-start align-items-start mx-0 my-1">
-                                <div className="col-12 col-lg-3 p-0">
-                                    <div className="form-group">
-                                        <div className={validation.short.isInvalid && 'has-error'}>
-                                            <input type="tel"
-                                                   className={"form-control form-alt-input " + this.fieldHasValue("short")}
-                                                   name="short"
-                                                   placeholder={intl.formatMessage({id: 'forms.short.placeholder'})}
-                                                   onChange={this.handleInputChange}
-                                                   value={this.state.short}
-                                                   disabled
-                                            />
-                                            <span className="help-block fs-xs">
-                                                <FormattedMessage id={validation.short.message}/>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-12 col-lg-8 offset-lg-1 p-0">
+                                <div className="col-12 col-lg-12 p-0">
                                     <div className="form-group">
                                         <div className={validation.name.isInvalid && 'has-error'}>
                                             <input type="text"
@@ -138,7 +122,7 @@ class Edit extends Component {
                                     <textarea type="text"
                                               className={"form-control form-alt-input " + this.fieldHasValue("job")}
                                               name="job"
-                                              placeholder={intl.formatMessage({id: 'forms.job.placeholder'})}
+                                              placeholder={intl.formatMessage({id: 'forms.work.placeholder'})}
                                               onChange={this.handleInputChange}
                                               value={this.state.job}
                                               rows={"2"}
@@ -171,7 +155,7 @@ class Edit extends Component {
                                             <input type="text"
                                                    className={"form-control form-alt-input " + this.fieldHasValue("website")}
                                                    name="website"
-                                                   placeholder={intl.formatMessage({id: 'forms.website.placeholder'})}
+                                                   placeholder={intl.formatMessage({id: 'forms.website_alt.placeholder'})}
                                                    onChange={this.handleInputChange}
                                                    value={this.state.website}
                                             />

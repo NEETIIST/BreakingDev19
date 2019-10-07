@@ -37,10 +37,10 @@ class staffDash extends Component {
             case "staff":
                 break;
             case "sponsor":
-                this.props.history.push('/');
+                this.props.history.push('/sponsordash/');
                 break;
             case "volunteer":
-                this.props.history.push('/');
+                this.props.history.push('/volunteerdash/');
                 break;
         }
     }

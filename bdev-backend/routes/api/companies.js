@@ -164,7 +164,21 @@ router.put("/_:short/generate", verifyToken, (req, res) => {
 });
 
 
+// @route GET api/companies/own
+// @desc Returns the company by short name
+// No permission check necessary, because only authorized users have their dev profile
+router.get("/own", verifyToken, (req, res) => {
 
+    // Sponsors retrieve their information with this request
+    if ( req.role !== 'sponsor' ){ return res.status(403).send("You don't have permission for this action"); }
+
+    Company.findOne({"short":{ $regex: new RegExp("^" + req.username, "i") } }, Company.memberInfo, function (err, comp) {
+        if (err) return res.status(500).send("There was a problem finding the Company");
+        if (!comp) return res.status(404).send("No company found for this user");
+
+        return res.status(200).send(comp);
+    });
+});
 
 
 

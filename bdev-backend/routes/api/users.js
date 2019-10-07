@@ -12,9 +12,10 @@ const validateChangePassInput = require("../../validation/changePass");
 
 // Load User model
 const User = require("../../models/User");
+const Company = require("../../models/Company");
 
 // Load Email Templates and Function
-const emails = require('../../emails');
+//const emails = require('../../emails');
 
 // @route POST api/users/register
 // @desc Register user
@@ -36,53 +37,92 @@ router.post("/register", (req, res) => {
                 //console.log(user);
                 return res.status(403).json({ email_inuse: "Email already in use" });
             }
-            if ( req.body.role === "staff" )
-                if ( req.body.access_code !== keys.adminPass )
-                    return res.status(401).json({ code_wrong: "Wrong Access Code" });
-            const newUser = new User({
-                username: req.body.username.toLowerCase(),
-                email: req.body.email,
-                password: req.body.password,
-                role: req.body.role,
-            });
-            // Hash password before saving in database
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    if (err) throw err;
-                    newUser.password = hash;
-                    newUser
-                        .save()
-                        .then(
-                            //user => res.json(user)
-                            function (user) {
-                                // User created
-                                // Create JWT Payload
-                                const payload = {
-                                    id: user.id,
-                                    username: user.username,
-                                    role: user.role,
-                                };
-                                // Sign token
-                                jwt.sign(
-                                    payload,
-                                    keys.secretOrKey,
-                                    {
-                                        expiresIn: 31556926 // 1 year in seconds
-                                    },
-                                    (err, token) => {
-                                        res.json({
-                                            success: true,
-                                            token: "Bearer " + token
-                                        });
+            if ( req.body.role === "sponsor" )
+            {
+                Company.findOne({codes: req.body.access_code}, function (err, comp) {
+                    if (err) return res.status(500).json({ something_wrong: "Something went wrong" });
+                    if (!comp) return res.status(403).json({ code_wrong: "No Company found for this code" });
+
+                    const newUser = new User({
+                        username: req.body.username.toLowerCase(),
+                        email: req.body.email,
+                        password: req.body.password,
+                        role: req.body.role,
+                    });
+                    bcrypt.genSalt(10, (err, salt) => {
+                        bcrypt.hash(newUser.password, salt, (err, hash) => {
+                            if (err) throw err;
+                            newUser.password = hash;
+                            newUser
+                                .save()
+                                .then(
+                                    function (user) {
+                                        const payload = {
+                                            id: user.id,
+                                            username: user.username,
+                                            role: user.role,
+                                        };
+                                        jwt.sign( payload, keys.secretOrKey, { expiresIn: 31556926 },
+                                            (err, token) => { res.json({ success: true, token: "Bearer " + token }); }
+                                        );
                                     }
-                                );
-                                // Send Confirmation Email
-                                emails.sendEmail(emails.createdAccount({username:user.username}), req.username);
-                            }
-                        )
-                        .catch(err => console.log(err));
+                                )
+                                .catch(err => console.log(err));
+                        });
+                    });
+
                 });
-            });
+            }
+            else
+            {
+                if ( req.body.role === "staff" )
+                    if ( req.body.access_code !== keys.adminPass )
+                        return res.status(401).json({ code_wrong: "Wrong Access Code" });
+                const newUser = new User({
+                    username: req.body.username.toLowerCase(),
+                    email: req.body.email,
+                    password: req.body.password,
+                    role: req.body.role,
+                });
+                // Hash password before saving in database
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(newUser.password, salt, (err, hash) => {
+                        if (err) throw err;
+                        newUser.password = hash;
+                        newUser
+                            .save()
+                            .then(
+                                //user => res.json(user)
+                                function (user) {
+                                    // User created
+                                    // Create JWT Payload
+                                    const payload = {
+                                        id: user.id,
+                                        username: user.username,
+                                        role: user.role,
+                                    };
+                                    // Sign token
+                                    jwt.sign(
+                                        payload,
+                                        keys.secretOrKey,
+                                        {
+                                            expiresIn: 31556926 // 1 year in seconds
+                                        },
+                                        (err, token) => {
+                                            res.json({
+                                                success: true,
+                                                token: "Bearer " + token
+                                            });
+                                        }
+                                    );
+                                    // Send Confirmation Email
+                                    //emails.sendEmail(emails.createdAccount({username:user.username}), req.username);
+                                }
+                            )
+                            .catch(err => console.log(err));
+                    });
+                });
+            }
         })
     })
 

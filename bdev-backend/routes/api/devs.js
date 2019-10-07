@@ -14,7 +14,7 @@ const Team = require("../../models/Team");
 const validateDevProfileInput = require("../../validation/devProfile");
 
 // Load Email Templates and Function
-const emails = require('../../emails');
+//const emails = require('../../emails');
 
 // @route POST api/devs/create
 // @desc Create Dev Profile, logged user must not have a profile already
@@ -229,12 +229,20 @@ router.get("/_:username/email", verifyToken, (req, res) => {
 // @permissions For Staff Only
 router.get("/all", verifyToken, (req, res) => {
 
-    // Only 'staff' role can request all devs
-    if ( req.role !== 'staff' ){
+    // Only 'staff' and 'sponsor' role can request all devs
+    if ( !(req.role === 'staff' || req.role==="sponsor")){
         return res.status(403).send("You don't have permission for this action");
     }
 
-    DevProfile.find({}, DevProfile.adminInfo, function (err, devs) {
+    // Regular users retrieve only the public information
+    let fields = DevProfile.publicInfo;
+
+    // Admins retrieve all the information with this request
+    if ( req.role === 'staff' ) fields = DevProfile.adminInfo;
+    // Admins retrieve all the information with this request
+    else if ( req.role === 'sponsor' ) fields = DevProfile.sponsorInfo;
+
+    DevProfile.find({}, fields, function (err, devs) {
         if (err) return res.status(500).send("There was a problem finding the Dev Profiles.");
         if (!devs) return res.status(404).send("No Dev Profiles were found");
 
@@ -262,7 +270,7 @@ router.put("/me/validate", verifyToken, (req, res) => {
         dev .save(updatedDev)
             .then(dev => {
                 // Send Email informing the Staff
-                emails.sendStaffEmail(emails.userRequestedValidation({name:dev.name, username:dev.username}));
+                //emails.sendStaffEmail(emails.userRequestedValidation({name:dev.name, username:dev.username}));
                 return res.status(200).send(dev);
             })
             .catch(err => console.log(err));
@@ -304,7 +312,7 @@ router.put("/_:username/validate", verifyToken, (req, res) => {
         if (!dev) return res.status(404).send("No Dev Profile found for this username");
 
         // Send Email informing the User
-        emails.sendEmail(emails.profileValidated({name:dev.name}), dev.username);
+        //emails.sendEmail(emails.profileValidated({name:dev.name}), dev.username);
 
         return res.status(200).send(dev);
     });
