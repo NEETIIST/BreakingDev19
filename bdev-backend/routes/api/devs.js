@@ -211,7 +211,7 @@ router.get("/_:username", verifyToken, (req, res) => {
 router.get("/_:username/email", verifyToken, (req, res) => {
 
     // Only 'staff' role can request all devs
-    if ( req.role !== 'staff' ){
+    if ( !(req.role === 'staff' || req.role === 'sponsor') ){
         return res.status(403).send("You don't have permission for this action");
     }
 

@@ -208,4 +208,25 @@ router.put("/me/files/:target/remove", verifyToken, (req, res) => {
 
 });
 
+
+
+// @route GET api/guests/_:username/email
+// @desc Returns the dev matching the username email
+// For now, only admins can use this route
+router.get("/_:username/email", verifyToken, (req, res) => {
+
+    // Only 'staff' role can request all devs
+    if ( !(req.role === 'staff' || req.role === 'sponsor') ){
+        return res.status(403).send("You don't have permission for this action");
+    }
+
+    User.findOne({"username":req.params['username']}, function (err, user) {
+        if (err) return res.status(500).send("There was a problem finding the user.");
+        if (!user) return res.status(404).send("No user found for this username");
+
+        return res.status(200).send(user.email);
+    });
+});
+
+
 module.exports = router;
