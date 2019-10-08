@@ -18,6 +18,7 @@ import Faqs from "../faqs/faqs";
 import Ideas from "../ideas/ideas";
 import Staff from "../staffTeam/staffTeam";
 import sponsorDash from '../sponsorDash/sponsorDash';
+import guestDash from "../guestDash/guestDash";
 
 
 class Sidebar extends Component {
@@ -282,12 +283,17 @@ class Sidebar extends Component {
                     <PrivateRoute exact path="/staffdash/promocodes" component={staffDash} content={"promocodes"}/>
                     <PrivateRoute exact path="/staffdash/volunteers" component={staffDash} content={"volunteers"}/>
                     <PrivateRoute exact path="/staffdash/companies" component={staffDash} content={"companies"}/>
+                    <PrivateRoute exact path="/staffdash/guests" component={staffDash} content={"guests"}/>
 
                     <PrivateRoute exact path="/sponsordash" component={sponsorDash} content={"default"}/>
                     <PrivateRoute exact path="/sponsordash/feed" component={sponsorDash} content={"feed"}/>
                     <PrivateRoute exact path="/sponsordash/company" component={sponsorDash} content={"company"}/>
                     <PrivateRoute exact path="/sponsordash/devs" component={sponsorDash} content={"devs"}/>
                     <PrivateRoute exact path="/sponsordash/teams" component={sponsorDash} content={"teams"}/>
+
+                    <PrivateRoute exact path="/guestdash" component={guestDash} content={"default"}/>
+                    <PrivateRoute exact path="/guestdash/feed" component={guestDash} content={"feed"}/>
+                    <PrivateRoute exact path="/guestdash/profile" component={guestDash} content={"profile"}/>
 
                 </Switch>
             </Router>

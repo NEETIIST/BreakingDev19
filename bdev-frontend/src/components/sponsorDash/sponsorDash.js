@@ -39,6 +39,9 @@ class SponsorDash extends Component {
             case "volunteer":
                 this.props.history.push('/volunteerdash/');
                 break;
+            case "guest":
+                this.props.history.push('/guestdash/');
+                break;
         }
     }
 

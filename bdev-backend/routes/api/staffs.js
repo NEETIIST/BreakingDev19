@@ -9,6 +9,8 @@ var async = require('async');
 const User = require("../../models/User");
 const AdminProfile = require("../../models/AdminProfile");
 const DevProfile = require("../../models/DevProfile");
+const GuestProfile = require("../../models/GuestProfile");
+const VolunteerProfile = require("../../models/VolunteerProfile");
 const Idea = require("../../models/Idea");
 const Team = require("../../models/Team");
 
@@ -179,6 +181,9 @@ router.get("/overview", verifyToken, (req, res) => {
         "teamsValidated": undefined,
         "ideasApproved": undefined,
         "ideasPending": undefined,
+        "volunteersTotal": undefined,
+        "volunteersValidated": undefined,
+        "guestsTotal": undefined,
     };
     var tasks = [
         // idea.approved===false && idea.hidden===false
@@ -190,6 +195,9 @@ router.get("/overview", verifyToken, (req, res) => {
         function(callback) { Team.find( {disbanded:false, validated:true}, function (err, teams) { response.teamsValidated = teams.length; callback(); }); },
         function(callback) { Idea.find({approved:true}, function (err, ideas) { response.ideasApproved = ideas.length; callback(); }); },
         function(callback) { Idea.find({$and:[{approved:false},{hidden:false}]}, function (err, ideas) { console.log(":"+ideas);response.ideasPending = ideas.length; callback(); }); },
+        function(callback) { VolunteerProfile.find( function (err, vols) { response.volunteersTotal = vols.length; callback(); }); },
+        function(callback) { VolunteerProfile.find( {validated:true}, function (err, vols) { response.volunteersValidated = vols.length; callback(); }); },
+        function(callback) { GuestProfile.find( function (err, guests) { response.guestsTotal = guests.length; callback(); }); },
     ];
 
     async.parallel(tasks, function(err) {

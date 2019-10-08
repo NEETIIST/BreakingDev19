@@ -35,9 +35,12 @@ class VolunteerDash extends Component {
                 this.props.history.push('/staffdash/');
                 break;
             case "sponsor":
-                this.props.history.push('/');
+                this.props.history.push('/sponsordash/');
                 break;
             case "volunteer":
+                break;
+            case "guest":
+                this.props.history.push('/guestdash/');
                 break;
         }
 

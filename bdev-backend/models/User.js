@@ -24,7 +24,7 @@ const UserSchema = new Schema({
     role: {
         type: String,
         required: true,
-        allowedValues: ["dev","volunteer","staff","sponsor"],
+        allowedValues: ["dev","volunteer","staff","sponsor","guest"],
     },
 
 });

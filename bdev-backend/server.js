@@ -16,6 +16,7 @@ const chat = require("./routes/api/chat");
 const volunteers = require("./routes/api/volunteers");
 const promocodes = require("./routes/api/promocodes");
 const companies = require("./routes/api/companies");
+const guests = require("./routes/api/guests");
 
 
 app.use(cors());
@@ -82,5 +83,6 @@ app.use("/api/chat", chat);
 app.use("/api/promocodes", promocodes);
 app.use("/api/volunteers", volunteers);
 app.use("/api/companies", companies);
+app.use("/api/guests", guests);
 
 
