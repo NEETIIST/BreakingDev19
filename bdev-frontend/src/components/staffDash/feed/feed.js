@@ -82,7 +82,7 @@ class Feed extends Component {
                             <div className="col-12 col-lg-5 dash-button-box cp mx-0 mx-lg-2 my-1" style={{backgroundImage:
                                     "linear-gradient( rgba(37, 113, 131, 0.6), rgba(37, 113, 131, 1)), url('/img/sponsors3.png')"}}>
                                 <div className="row justify-content-center align-content-center m-0 vh-15"
-                                     onClick={()=>this.props.navigation("devs")}>
+                                     onClick={()=>this.props.navigation("volunteers")}>
                                     <div className="col-3 p-0 text-center align-self-center fs-2xl">
                                         <span className="fs-3xl fw-7 flh-1">{overview.volunteersValidated}</span>
                                     </div>
@@ -95,7 +95,7 @@ class Feed extends Component {
                             <div className="col-12 col-lg-5 dash-button-box cp mx-0 mx-lg-2 my-1" style={{backgroundImage:
                                     "linear-gradient( rgba(37, 113, 131, 0.6), rgba(37, 113, 131, 1)), url('/img/sponsors4.png')"}}>
                                 <div className="row justify-content-center align-content-center m-0 vh-15"
-                                     onClick={()=>this.props.navigation("devs")}>
+                                     onClick={()=>this.props.navigation("guests")}>
                                     <div className="col-3 p-0 text-center align-self-center fs-2xl">
                                         <span className="fs-3xl fw-7 flh-1">{overview.guestsTotal}</span>
                                     </div>

@@ -664,6 +664,7 @@
   "staffdash.companies.add": "Adicionar",
   "staffdash.companies.edit": "Editar",
   "staffdash.companies.generatecode": "Gerar código de Acesso",
+  "staffdash.companies.empty": "Ainda não há Empresas",
   "staffdash.companies.add.title": "Adicionar Empresa",
   "staffdash.companies.add.desc": "Escrever Nome e Short da empresa",
   "staffdash.companies.add.done": "Empresa Adicionada",

@@ -526,9 +526,9 @@ class Index extends Component {
                             </div>
                             <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
                                 <p className="fs-sm fw-4 flh-2 mb-3 f-white">.</p>
-                                <a href="https://aeist.pt/" target="_blank">
-                                    <img src="sponsors/AEIST.png" className="img-fluid cp"
-                                         title="Associação dos Estudantes do Instituto Superior Técnico"/>
+                                <a href="http://360imprimir.com" target="_blank">
+                                    <img src="sponsors/360Imprimir.png" className="img-fluid cp"
+                                         title="360 Imprimir"/>
                                 </a>
                             </div>
                             <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
