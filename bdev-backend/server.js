@@ -13,7 +13,13 @@ const emails = require("./routes/api/emails");
 const ideas = require("./routes/api/ideas");
 const teams = require("./routes/api/teams");
 const chat = require("./routes/api/chat");
+const volunteers = require("./routes/api/volunteers");
 const promocodes = require("./routes/api/promocodes");
+const companies = require("./routes/api/companies");
+const guests = require("./routes/api/guests");
+const tickets = require("./routes/api/tickets");
+const sponsors = require("./routes/api/sponsors");
+
 
 app.use(cors());
 app.use(bodyParser.urlencoded({
@@ -77,6 +83,10 @@ app.use("/api/emails", emails);
 app.use("/api/teams", teams);
 app.use("/api/chat", chat);
 app.use("/api/promocodes", promocodes);
-
+app.use("/api/volunteers", volunteers);
+app.use("/api/companies", companies);
+app.use("/api/guests", guests);
+app.use("/api/tickets", tickets);
+app.use("/api/sponsors", sponsors);
 
 

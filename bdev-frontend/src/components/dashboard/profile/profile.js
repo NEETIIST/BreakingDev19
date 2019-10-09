@@ -14,12 +14,22 @@ import Validate from './validate';
 class Profile extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            hasProfile: false,
-            profile: null,
-            content: "see",
-            loaded: false,
-        };
+        //console.log(props);
+        if ( props.content === "" ?
+            this.state = {
+                content: "see",
+                hasProfile: false,
+                profile: null,
+                loaded: false,
+            }
+            :
+            this.state = {
+                content: props.content,
+                hasProfile: false,
+                profile: null,
+                loaded: false,
+            }
+        );
 
         this.createdProfile = this.createdProfile.bind(this);
         this.editedProfile = this.editedProfile.bind(this);

@@ -23,6 +23,9 @@ class StaffTeam extends Component {
     allStaffs(){
         const { intl } = this.props;
         let staffs = this.state.staffs;
+        staffs.sort(function(a,b){
+            return a.name.localeCompare(b.name);
+        });
         if ( staffs.length === 0 && this.state.ready)
             return <p className="fs-md fw-4 flh-1 my-3 f-dark-grey"><FormattedMessage id="staff.empty"/></p>;
         else
@@ -35,10 +38,10 @@ class StaffTeam extends Component {
                             <img src={URL+"/files/profile/profile_default.png"} className={"profile-pic pic-img mb-3 mb-lg-0 "+(hasPicture?"d-none":"")}/>
                             <p className="fs-md fw-7 flh-2 mb-1 mt-3">{staff.name}</p>
                             <p className="fs-sm fw-4 flh-2 mb-2 ">{staff.job}</p>
-                            <a href={"https://github.com/"+staff.github} target={"_blank"}>
+                            <a href={"https://github.com/"+staff.github} target={"_blank"} className={staff.github?"":"d-none"}>
                                 <i className="fab fa-fw fa-github fa-lg mr-2 mt-1"/>
                             </a>
-                            <a href={"https://linkedin.com/"+staff.linkedin} target={"_blank"}>
+                            <a href={"https://linkedin.com/in/"+staff.linkedin} target={"_blank"} className={staff.linkedin?"":"d-none"}>
                                 <i className="fab fa-fw fa-linkedin fa-lg mr-2 mt-1"/>
                             </a>
                         </div>
@@ -59,6 +62,8 @@ class StaffTeam extends Component {
                     <div className={"row justify-content-center align-items-center p-0 m-0"}>
                         {this.allStaffs()}
                     </div>
+                    <div className={"spacer-8"}/>
+                    <div className={"spacer-4"}/>
                 </div>
             </div>
         );

@@ -3,16 +3,18 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const verifyToken = require('../../auth/tokenVerification');
+var async = require('async');
 
 // Load User model
 const User = require("../../models/User");
 const DevProfile = require("../../models/DevProfile");
+const Team = require("../../models/Team");
 
 // Load input validation
 const validateDevProfileInput = require("../../validation/devProfile");
 
 // Load Email Templates and Function
-const emails = require('../../emails');
+//const emails = require('../../emails');
 
 // @route POST api/devs/create
 // @desc Create Dev Profile, logged user must not have a profile already
@@ -100,6 +102,54 @@ router.get("/me", verifyToken, (req, res) => {
 
 });
 
+
+// @route GET api/devs/me/overview
+// @desc Returns the logged user dev Profile
+// No permission check necessary, because only authorized users have their dev profile
+router.get("/me/overview", verifyToken, (req, res) => {
+
+    //console.log(req.role);
+    if ( req.role !== 'dev' ){
+        return res.status(403).send("You don't have permission for this action");
+    }
+
+    let response = {
+        "isValidated":undefined,
+        "hasTeam":undefined,
+        "teamValidated": undefined,
+        "paymentConfirmed": undefined,
+        "isCaptain":undefined,
+    };
+
+    DevProfile.findOne({"username":req.username}, DevProfile.ownerInfo, function (err, dev) {
+        if (err) return res.status(500).send("There was a problem finding the Dev Profile.");
+        if (!dev) return res.status(404).send("No Dev Profile found for this user");
+        response.isValidated = dev.validated;
+        response.paymentConfirmed = dev.payment.confirmed;
+        if (dev.team === 0)
+        {
+            response.hasTeam = false;
+            response.teamValidated = false;
+            return res.status(200).send(response);
+        }
+        else
+        {
+            Team.findOne({"number":dev.team}, Team.ownerInfo, function (err, team) {
+                if (err) return res.status(500).send("There was a problem finding the team.");
+                if (!team) return res.status(404).send("No team found");
+
+                response.hasTeam = true;
+                response.teamValidated = team.validated;
+                response.isCaptain = (team.captain === dev.username);
+                return res.status(200).send(response);
+            });
+
+        }
+    });
+
+});
+
+
 // @route PUT api/devs/me/edit
 // @desc Expects an updated Dev Profile form
 // No permission check necessary, because only authorized users have their dev profile
@@ -155,17 +205,44 @@ router.get("/_:username", verifyToken, (req, res) => {
 });
 
 
+// @route GET api/devs/_:username/email
+// @desc Returns the dev matching the username email
+// For now, only admins can use this route
+router.get("/_:username/email", verifyToken, (req, res) => {
+
+    // Only 'staff' role can request all devs
+    if ( !(req.role === 'staff' || req.role === 'sponsor') ){
+        return res.status(403).send("You don't have permission for this action");
+    }
+
+    User.findOne({"username":req.params['username']}, function (err, user) {
+        if (err) return res.status(500).send("There was a problem finding the user.");
+        if (!user) return res.status(404).send("No user found for this username");
+
+        return res.status(200).send(user.email);
+    });
+});
+
+
 // @route GET api/devs/all
 // @desc Returns all dev profiles
 // @permissions For Staff Only
 router.get("/all", verifyToken, (req, res) => {
 
-    // Only 'staff' role can request all devs
-    if ( req.role !== 'staff' ){
+    // Only 'staff' and 'sponsor' role can request all devs
+    if ( !(req.role === 'staff' || req.role==="sponsor")){
         return res.status(403).send("You don't have permission for this action");
     }
 
-    DevProfile.find({}, DevProfile.adminInfo, function (err, devs) {
+    // Regular users retrieve only the public information
+    let fields = DevProfile.publicInfo;
+
+    // Admins retrieve all the information with this request
+    if ( req.role === 'staff' ) fields = DevProfile.adminInfo;
+    // Admins retrieve all the information with this request
+    else if ( req.role === 'sponsor' ) fields = DevProfile.sponsorInfo;
+
+    DevProfile.find({}, fields, function (err, devs) {
         if (err) return res.status(500).send("There was a problem finding the Dev Profiles.");
         if (!devs) return res.status(404).send("No Dev Profiles were found");
 
@@ -193,7 +270,7 @@ router.put("/me/validate", verifyToken, (req, res) => {
         dev .save(updatedDev)
             .then(dev => {
                 // Send Email informing the Staff
-                emails.sendStaffEmail(emails.userRequestedValidation({name:dev.name, username:dev.username}));
+                //emails.sendStaffEmail(emails.userRequestedValidation({name:dev.name, username:dev.username}));
                 return res.status(200).send(dev);
             })
             .catch(err => console.log(err));
@@ -235,7 +312,7 @@ router.put("/_:username/validate", verifyToken, (req, res) => {
         if (!dev) return res.status(404).send("No Dev Profile found for this username");
 
         // Send Email informing the User
-        emails.sendEmail(emails.profileValidated({name:dev.name}), dev.username);
+        //emails.sendEmail(emails.profileValidated({name:dev.name}), dev.username);
 
         return res.status(200).send(dev);
     });

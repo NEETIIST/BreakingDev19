@@ -140,6 +140,29 @@ DevProfile.ownerInfo = {
     //paymentFile:1,
 };
 
+DevProfile.sponsorInfo = {
+    username:1,
+    name:1,
+    age:1,
+    phone: 1,
+    college:1,
+    course:1,
+    bio:1,
+    skills:1,
+    //food:1,
+    github:1,
+    twitter:1,
+    linkedin:1,
+    team:1,
+    //needsTeam:1,
+    picture:1,
+    cv:1,
+    //pending: 1,
+    validated:1,
+    //payment:1,
+    //paymentFile:1,
+};
+
 DevProfile.adminInfo = {
     username:1,
     name:1,

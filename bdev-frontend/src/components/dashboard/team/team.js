@@ -19,14 +19,25 @@ class Profile extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            dev: null,
-            team: "",
-            content: "see",
-            loaded: false,
-            query: null,
-            isCaptain: false,
-        };
+        if ( props.content === "" ?
+            this.state = {
+                dev: null,
+                team: "",
+                content: "see",
+                loaded: false,
+                query: null,
+                isCaptain: false,
+            }
+            :
+            this.state = {
+                dev: null,
+                team: "",
+                content: props.content,
+                loaded: false,
+                query: null,
+                isCaptain: false,
+            }
+        );
 
         this.createdTeam = this.createdTeam.bind(this);
         this.editedTeam = this.editedTeam.bind(this);
@@ -216,13 +227,13 @@ class Profile extends Component {
                                 </div>
                             </div>
                             : ""}
-                        {content === "add" && loaded ? <Add {...this.props} onSuccess={this.createdTeam}/> : ""}
-                        {content === "find" && loaded ? <Find {...this.props} /> : ""}
-                        {content === "join" && loaded ? <Join {...this.props} query={this.state.query} onSuccess={this.joinedTeam}/>: ""}
+                        {content === "add" && loaded && isValidated ? <Add {...this.props} onSuccess={this.createdTeam}/> : ""}
+                        {content === "find" && loaded && isValidated ? <Find {...this.props} /> : ""}
+                        {content === "join" && loaded && isValidated? <Join {...this.props} query={this.state.query} onSuccess={this.joinedTeam}/>: ""}
                         {content === "see" && hasTeam && loaded ? <See {...this.props} team={this.state.team} /> : ""}
-                        {content === "edit" && hasTeam && loaded ? <Edit {...this.props} team={this.state.team} onSuccess={this.editedTeam} /> : ""}
+                        {content === "edit" && hasTeam && loaded && isCaptain ? <Edit {...this.props} team={this.state.team} onSuccess={this.editedTeam} /> : ""}
                         {content === "members" && hasTeam && loaded ? <Members {...this.props} team={this.state.team} onRemove={this.removedMember} onDisband={this.disbandedTeam} onLeave={this.leftTeam} onResetCode={this.resetCode} navigation={this.navigation}/> : ""}
-                        {content === "validate" && hasTeam && loaded ? <Validate {...this.props} team={this.state.team} onSuccess={this.changedValidation}/> : ""}
+                        {content === "validate" && hasTeam && loaded && isCaptain ? <Validate {...this.props} team={this.state.team} onSuccess={this.changedValidation}/> : ""}
                         {content === "payment" && hasTeam && isValidated && loaded ? <Payment {...this.props} team={this.state.team}/> : ""}
                         {content === "search" && hasTeam && loaded ? <Search {...this.props} /> : ""}
                     </div>

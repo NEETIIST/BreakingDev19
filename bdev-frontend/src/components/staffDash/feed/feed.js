@@ -40,20 +40,33 @@ class Feed extends Component {
                     <div className="col-12 p-0">
                         <div className={"spacer-4"} />
                         <div className="row justify-content-center align-content-start m-0">
-                            <div className="col-12 col-lg dash-button-box cp mx-0 mx-lg-2 my-1" style={{backgroundImage:
+                            <div className="col-12 col-lg-5 dash-button-box cp mx-0 mx-lg-2 my-1" style={{backgroundImage:
                                     "linear-gradient( rgba(37, 113, 131, 0.6), rgba(37, 113, 131, 1)), url('/img/img1.jpg')"}}>
                                 <div className="row justify-content-center align-content-center m-0 vh-15"
                                      onClick={()=>this.props.navigation("devs")}>
                                     <div className="col-3 p-0 text-center align-self-center fs-2xl">
-                                        <span className="fs-3xl fw-7 flh-1">{overview.devCount}</span>
+                                        <span className="fs-3xl fw-7 flh-1">{overview.devsTotal}</span>
                                     </div>
                                     <div className="col-9 px-1 text-left">
                                         <p className="fs-lg fw-7 flh-1 my-1"><FormattedMessage id="staffdash.feed.devinfo1"/></p>
-                                        <p className="fs-sm fw-4 flh-1 mb-0">{overview.staffCount} <FormattedMessage id="staffdash.feed.devinfo2"/></p>
+                                        <p className="fs-sm fw-4 flh-1 mb-0">{overview.devsPending} <FormattedMessage id="staffdash.feed.devinfo2"/></p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-12 col-lg dash-button-box cp mx-0 mx-lg-2 my-1" style={{backgroundImage:
+                            <div className="col-12 col-lg-5 dash-button-box cp mx-0 mx-lg-2 my-1" style={{backgroundImage:
+                                    "linear-gradient( rgba(37, 113, 131, 0.6), rgba(37, 113, 131, 1)), url('/img/sponsors5.png')"}}>
+                                <div className="row justify-content-center align-content-center m-0 vh-15"
+                                     onClick={()=>this.props.navigation("teams")}>
+                                    <div className="col-3 p-0 text-center align-self-center fs-2xl">
+                                        <span className="fs-3xl fw-7 flh-1">{overview.teamsValidated}</span>
+                                    </div>
+                                    <div className="col-9 px-1 text-left">
+                                        <p className="fs-lg fw-7 flh-1 my-1"><FormattedMessage id="staffdash.feed.teaminfo1"/></p>
+                                        <p className="fs-sm fw-4 flh-1 mb-0">{overview.teamsTotal} <FormattedMessage id="staffdash.feed.teaminfo2"/></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-12 col-lg-5 dash-button-box cp mx-0 mx-lg-2 my-1" style={{backgroundImage:
                                     "linear-gradient( rgba(37, 113, 131, 0.6), rgba(37, 113, 131, 1)), url('/img/sponsors2.png')"}}>
                                 <div className="row justify-content-center align-content-center m-0 vh-15"
                                      onClick={()=>this.props.navigation("ideas")}>
@@ -63,6 +76,32 @@ class Feed extends Component {
                                     <div className="col-9 px-1 text-left">
                                         <p className="fs-lg fw-7 flh-1 my-1"><FormattedMessage id="staffdash.feed.ideainfo1"/></p>
                                         <p className="fs-sm fw-4 flh-1 mb-0">{overview.ideasPending} <FormattedMessage id="staffdash.feed.ideainfo2"/></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-12 col-lg-5 dash-button-box cp mx-0 mx-lg-2 my-1" style={{backgroundImage:
+                                    "linear-gradient( rgba(37, 113, 131, 0.6), rgba(37, 113, 131, 1)), url('/img/sponsors3.png')"}}>
+                                <div className="row justify-content-center align-content-center m-0 vh-15"
+                                     onClick={()=>this.props.navigation("devs")}>
+                                    <div className="col-3 p-0 text-center align-self-center fs-2xl">
+                                        <span className="fs-3xl fw-7 flh-1">{overview.volunteersValidated}</span>
+                                    </div>
+                                    <div className="col-9 px-1 text-left">
+                                        <p className="fs-lg fw-7 flh-1 my-1"><FormattedMessage id="staffdash.feed.volunteerinfo1"/></p>
+                                        <p className="fs-sm fw-4 flh-1 mb-0">{overview.volunteersTotal} <FormattedMessage id="staffdash.feed.volunteerinfo2"/></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-12 col-lg-5 dash-button-box cp mx-0 mx-lg-2 my-1" style={{backgroundImage:
+                                    "linear-gradient( rgba(37, 113, 131, 0.6), rgba(37, 113, 131, 1)), url('/img/sponsors4.png')"}}>
+                                <div className="row justify-content-center align-content-center m-0 vh-15"
+                                     onClick={()=>this.props.navigation("devs")}>
+                                    <div className="col-3 p-0 text-center align-self-center fs-2xl">
+                                        <span className="fs-3xl fw-7 flh-1">{overview.guestsTotal}</span>
+                                    </div>
+                                    <div className="col-9 px-1 text-left">
+                                        <p className="fs-lg fw-7 flh-1 my-1"><FormattedMessage id="staffdash.feed.guestsinfo1"/></p>
+                                        <p className="fs-sm fw-4 flh-1 mb-0">{overview.ticketsTotal} <FormattedMessage id="staffdash.feed.guestsinfo2"/></p>
                                     </div>
                                 </div>
                             </div>
