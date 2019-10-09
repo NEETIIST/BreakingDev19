@@ -13,6 +13,7 @@ const GuestProfile = require("../../models/GuestProfile");
 const VolunteerProfile = require("../../models/VolunteerProfile");
 const Idea = require("../../models/Idea");
 const Team = require("../../models/Team");
+const Ticket = require("../../models/Ticket");
 
 // Load input validation
 const validateAdminProfileInput = require("../../validation/adminProfile");
@@ -184,6 +185,7 @@ router.get("/overview", verifyToken, (req, res) => {
         "volunteersTotal": undefined,
         "volunteersValidated": undefined,
         "guestsTotal": undefined,
+        "ticketsTotal": undefined,
     };
     var tasks = [
         // idea.approved===false && idea.hidden===false
@@ -198,6 +200,7 @@ router.get("/overview", verifyToken, (req, res) => {
         function(callback) { VolunteerProfile.find( function (err, vols) { response.volunteersTotal = vols.length; callback(); }); },
         function(callback) { VolunteerProfile.find( {validated:true}, function (err, vols) { response.volunteersValidated = vols.length; callback(); }); },
         function(callback) { GuestProfile.find( function (err, guests) { response.guestsTotal = guests.length; callback(); }); },
+        function(callback) { Ticket.find( function (err, tickets) { response.ticketsTotal = tickets.length; callback(); }); },
     ];
 
     async.parallel(tasks, function(err) {

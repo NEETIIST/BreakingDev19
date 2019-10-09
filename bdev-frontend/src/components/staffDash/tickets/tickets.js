@@ -85,6 +85,7 @@ class Tickets extends Component {
         if ( this.state.raffle === "") condition = (ticket) => { return(ticket) };
         else if ( this.state.raffle === "job_fair") condition = (ticket) => { return( ticket.raffle==="job_fair"? ticket : null) };
         else if ( this.state.raffle === "event_award") condition = (ticket) => { return( ticket.raffle==="event_award"? ticket : null) };
+        else if ( this.state.raffle === "volunteer_raffle") condition = (ticket) => { return( ticket.raffle==="volunteer_raffle"? ticket : null) };
         let filteredTickets = this.state.tickets.filter(condition);
         if ( filteredTickets.length === 0)
             return <div className="card text-center dash-team white">
@@ -104,6 +105,9 @@ class Tickets extends Component {
                                 </span>
                                 <span className={"fs-sm fw-7 flh-1 mb-0 ml-0 "+(ticket.raffle==="job_fair"?"":"d-none")}>
                                     <FormattedMessage id="staffdash.tickets.job_fair"/>
+                                </span>
+                                <span className={"fs-sm fw-7 flh-1 mb-0 ml-0 "+(ticket.raffle==="volunteer_raffle"?"":"d-none")}>
+                                    <FormattedMessage id="staffdash.tickets.volunteer_raffle"/>
                                 </span>
                                 <span className="fs-xxs fw-4 flh-1 mb-0 ml-2 f-light-grey">({ticket.identifier})</span>
                             </div>
@@ -170,6 +174,9 @@ class Tickets extends Component {
                                                     </option>
                                                     <option value="job_fair">
                                                         {intl.formatMessage({id: 'staffdash.tickets.job_fair'})}
+                                                    </option>
+                                                    <option value="volunteer_raffle">
+                                                        {intl.formatMessage({id: 'staffdash.tickets.volunteer_raffle'})}
                                                     </option>
                                                 </select>
                                                 <span className="help-block fs-xs">

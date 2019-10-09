@@ -129,7 +129,7 @@ class staffDash extends Component {
                                 </div>
                             </NavLink>
                         </div>
-                        <div className="col col-lg-12 p-0 mb-0 mb-lg-1" onClick={() => this.navigation("ideas")}>
+                        <div className="col col-lg-12 p-0 mb-0 mb-lg-1 d-none d-lg-block" onClick={() => this.navigation("ideas")}>
                             <NavLink activeClassName="dash-opt-active" exact to="/staffDash/ideas">
                                 <div
                                     className="row justify-content-center align-items-center vh-6 p-0 px-lg-1 m-0 cp dash-opt">
@@ -142,7 +142,7 @@ class staffDash extends Component {
                                 </div>
                             </NavLink>
                         </div>
-                        <div className="col col-lg-12 p-0 mb-0 mb-lg-1" onClick={() => this.navigation("promocodes")}>
+                        <div className="col col-lg-12 p-0 mb-0 mb-lg-1 d-none d-lg-block" onClick={() => this.navigation("promocodes")}>
                             <NavLink activeClassName="dash-opt-active" exact to="/staffDash/promocodes">
                                 <div
                                     className="row justify-content-center align-items-center vh-6 p-0 px-lg-1 m-0 cp dash-opt">

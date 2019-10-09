@@ -17,7 +17,7 @@ export const ticketInput = new FormValidator([
     {
         field: "raffle",
         method: "isIn",
-        args:[["job_fair","event_award"]],
+        args:[["job_fair","event_award","volunteer_raffle"]],
         validWhen: true,
         message: "forms.raffle.invalid"
     },

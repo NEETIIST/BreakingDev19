@@ -101,9 +101,7 @@ class Feed extends Component {
                                     </div>
                                     <div className="col-9 px-1 text-left">
                                         <p className="fs-lg fw-7 flh-1 my-1"><FormattedMessage id="staffdash.feed.guestsinfo1"/></p>
-                                        {/*
-                                        <p className="fs-sm fw-4 flh-1 mb-0">{overview.volunteersTotal} <FormattedMessage id="staffdash.feed.guestsinfo2"/></p>
-                                        */}
+                                        <p className="fs-sm fw-4 flh-1 mb-0">{overview.ticketsTotal} <FormattedMessage id="staffdash.feed.guestsinfo2"/></p>
                                     </div>
                                 </div>
                             </div>

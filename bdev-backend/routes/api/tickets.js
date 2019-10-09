@@ -21,8 +21,23 @@ router.get("/all", verifyToken, (req, res) => {
 
         return res.status(200).send(tickets);
     });
+});
+
+
+// @route GET api/tickets/own
+// @desc Returns all tickets for the user
+// @permissions Logged only
+router.get("/own", verifyToken, (req, res) => {
+
+    Ticket.find({"username":req.username}, function (err, tickets) {
+        if (err) return res.status(500).send("There was a problem finding the Tickets.");
+        if (!tickets) return res.status(404).send("No Tickets found");
+
+        return res.status(200).send(tickets);
+    });
 
 });
+
 
 // @route GET api/tickets/:raffle
 // @desc Returns tickets for a single raffle
@@ -46,7 +61,9 @@ router.get("/:raffle", verifyToken, (req, res) => {
 // @permissions Staff Only
 router.post("/add", verifyToken, (req, res) => {
 
-    if ( req.role !== 'staff' ){ return res.status(403).send("You don't have permission for this action"); }
+    console.log(req.body.username);
+
+    if ( !(req.role === 'staff' || req.role === "sponsor")){ return res.status(403).send("You don't have permission for this action"); }
 
     // Validation
     if (!Ticket.schema.obj.raffle.allowedValues.includes(req.body.raffle))
@@ -69,7 +86,7 @@ router.post("/add", verifyToken, (req, res) => {
             .catch(err => console.log(err));
 
     });
-
 });
+
 
 module.exports = router;

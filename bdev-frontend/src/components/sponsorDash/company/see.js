@@ -41,13 +41,13 @@ class See extends Component {
                             {company.name}
                         </p>
                         <div className="row justify-content-start align-items-center m-0 mt-3">
-                            <div className={"col-6 col-lg-3 p-0 hvr-primary cp my-1 "+(company.website ? "d-flex":"d-none")}>
+                            <div className={"col-12 col-lg-6 p-0 hvr-primary cp my-1 "+(company.website ? "d-flex":"d-none")}>
                                 <a href={company.website} target={"_blank"}>
                                     <i className="fas fa-fw fa-home fa-lg mr-2 mt-1"/>
                                     <span className="fs-md fw-4 flh-1 mb-1">{company.website}</span>
                                 </a>
                             </div>
-                            <div className={"col-6 col-lg-3 p-0 hvr-primary cp my-1 "+(company.email ? "d-flex":"d-none")}>
+                            <div className={"col-12 col-lg-6 p-0 hvr-primary cp my-1 "+(company.email ? "d-flex":"d-none")}>
                                 <a href={"mailto:"+company.email} target={"_blank"}>
                                     <i className="fas fa-fw fa-envelope fa-lg mr-2 mt-1"/>
                                     <span className="fs-md fw-4 flh-1 mb-1">{company.email}</span>

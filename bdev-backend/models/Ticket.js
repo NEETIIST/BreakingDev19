@@ -14,7 +14,7 @@ const TicketSchema = new Schema({
         type: String,
         required: true,
         immutable:true,
-        allowedValues: ["job_fair","event_award"],
+        allowedValues: ["job_fair","event_award","volunteer_raffle"],
     },
     username: {
         type: String,

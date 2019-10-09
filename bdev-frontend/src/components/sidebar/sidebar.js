@@ -192,6 +192,18 @@ class Sidebar extends Component {
                                                     </div>
                                                 </div>
                                             </NavLink>
+                                            <NavLink activeClassName="sidebar-active" to="/guestdash">
+                                                <div
+                                                    className={"row justify-content-center align-items-center vh-7 p-0 m-0 cp sidebar-opt "+(user.role==="guest"?"d-flex":"d-none")}
+                                                    onClick={this.toggleSidebar}>
+                                                    <div className="col-3 text-center">
+                                                        <i className="fas fa-user-cog fa-lg py-2"></i>
+                                                    </div>
+                                                    <div className="col-9 text-left">
+                                                        <span className="fs-md fw-4 flh-2"><FormattedMessage id="sidebar.sponsordash"/></span>
+                                                    </div>
+                                                </div>
+                                            </NavLink>
                                             {/*
                                             <NavLink exact activeClassName="sidebar-active" to="/ideas">
                                                 <div
@@ -269,10 +281,17 @@ class Sidebar extends Component {
                     <PrivateRoute exact path="/dashboard/profile" component={Dashboard} content={"profile"}/>
                     <PrivateRoute path="/dashboard/team" component={Dashboard} content={"team"}/>
                     <PrivateRoute path="/dashboard/chats" component={Dashboard} content={"chats"}/>
+                    <PrivateRoute exact path="/dashboard/companies" component={Dashboard} content={"companies"}/>
+                    <PrivateRoute exact path="/dashboard/tickets" component={Dashboard} content={"tickets"}/>
+                    <PrivateRoute exact path="/dashboard/qrcode" component={Dashboard} content={"qrcode"}/>
 
                     <PrivateRoute exact path="/volunteerdash" component={volunteerDash} content={"default"}/>
                     <PrivateRoute exact path="/volunteerdash/feed" component={volunteerDash} content={"feed"}/>
                     <PrivateRoute exact path="/volunteerdash/profile" component={volunteerDash} content={"profile"}/>
+                    <PrivateRoute exact path="/volunteerdash/companies" component={volunteerDash} content={"companies"}/>
+                    <PrivateRoute exact path="/volunteerdash/companies" component={volunteerDash} content={"companies"}/>
+                    <PrivateRoute exact path="/volunteerdash/tickets" component={volunteerDash} content={"tickets"}/>
+                    <PrivateRoute exact path="/volunteerdash/qrcode" component={volunteerDash} content={"qrcode"}/>
 
                     <PrivateRoute exact path="/staffdash" component={staffDash} content={"default"}/>
                     <PrivateRoute exact path="/staffdash/feed" component={staffDash} content={"feed"}/>
@@ -291,10 +310,15 @@ class Sidebar extends Component {
                     <PrivateRoute exact path="/sponsordash/company" component={sponsorDash} content={"company"}/>
                     <PrivateRoute exact path="/sponsordash/devs" component={sponsorDash} content={"devs"}/>
                     <PrivateRoute exact path="/sponsordash/teams" component={sponsorDash} content={"teams"}/>
+                    <PrivateRoute exact path="/sponsordash/guests" component={sponsorDash} content={"guests"}/>
+                    <PrivateRoute exact path="/sponsordash/visitor" component={sponsorDash} content={"visitor"}/>
 
                     <PrivateRoute exact path="/guestdash" component={guestDash} content={"default"}/>
                     <PrivateRoute exact path="/guestdash/feed" component={guestDash} content={"feed"}/>
                     <PrivateRoute exact path="/guestdash/profile" component={guestDash} content={"profile"}/>
+                    <PrivateRoute exact path="/guestdash/companies" component={guestDash} content={"companies"}/>
+                    <PrivateRoute exact path="/guestdash/tickets" component={guestDash} content={"tickets"}/>
+                    <PrivateRoute exact path="/guestdash/qrcode" component={guestDash} content={"qrcode"}/>
 
                 </Switch>
             </Router>
