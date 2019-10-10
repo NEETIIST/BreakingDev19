@@ -23,9 +23,10 @@ class Feed extends Component {
         })
             .then(response => {
                 this.setState({ overview: response.data, loaded:true });
-                console.log(response);
+                //console.log(response);
             })
             .catch(function (error){ console.log(error); })
+            .then(response => { this.setState({ loaded:true }); })
     }
 
     render() {

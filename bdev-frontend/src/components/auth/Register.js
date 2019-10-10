@@ -73,7 +73,7 @@ class Register extends Component {
             email: "",
             password: "",
             password_confirmation: "",
-            role: "dev",
+            role: "guest",
             access_code: "",
             validation: this.validator.valid(),
             status: "waiting",
@@ -168,19 +168,19 @@ class Register extends Component {
                                 <div className="col-1 px-0">
                                     <i className="fas fa-question-circle fa-lg f-primary" title={intl.formatMessage({id: 'role.help'})} />
                                 </div>
-                                <div className="col-10 p-1 cp" onClick={(role) => this.assignRole("dev")}>
-                                    <div className={"btn btn-block btn-dev-alt"+(this.state.role==="dev"?"-active":"")}>
-                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="role.dev"/></span>
+                                <div className="col-10 p-1 cp" onClick={(role) => this.assignRole("guest")}>
+                                    <div className={"btn btn-block btn-dev-alt"+(this.state.role==="guest"?"-active":"")}>
+                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="role.guest"/></span>
                                     </div>
                                 </div>
-                                <div className="col-5 offset-lg-1 p-1 cp" onClick={(role) => this.assignRole("volunteer")}>
+                                <div className="col-5 offset-1 p-1 cp" onClick={(role) => this.assignRole("volunteer")}>
                                     <div className={"btn btn-block btn-dev-alt"+(this.state.role==="volunteer"?"-active":"")}>
                                         <span className="fs-sm fw-4 flh-2"><FormattedMessage id="role.volunteer"/></span>
                                     </div>
                                 </div>
-                                <div className="col-5 p-1 cp" onClick={(role) => this.assignRole("guest")}>
-                                    <div className={"btn btn-block btn-dev-alt"+(this.state.role==="guest"?"-active":"")}>
-                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="role.guest"/></span>
+                                <div className="col-5 p-1 cp" onClick={(role) => this.assignRole("dev")}>
+                                    <div className={"btn btn-block btn-dev-alt"+(this.state.role==="dev"?"-active":"")}>
+                                        <span className="fs-sm fw-4 flh-2"><FormattedMessage id="role.dev"/></span>
                                     </div>
                                 </div>
                                 <div className="col-5 offset-1 p-1 cp" onClick={(role) => this.assignRole("staff")}>
@@ -281,7 +281,7 @@ class Register extends Component {
                 </form>
                 <div className={(status=="pending"?"d-block":"d-none")}>
                     <Fade>
-                        <i className="fas fa-circle-notch fa-spin fa-3x my-3 f-primary"></i>
+                        <i className="fas fa-circle-notch fa-spin fa-3x my-3 f-primary" />
                         <p className="fs-md fw-4 flh-2 mb-0"><FormattedMessage id="forms.sending"/></p>
                     </Fade>
                 </div>

@@ -107,7 +107,7 @@ class Guests extends Component {
         if ( this.state.content === "validated") condition = (dev) => { return( dev.validated? dev : null) };
         let filteredDevs = this.state.devs.filter(condition).sort((a, b) => a.name.localeCompare(b.name)) ;
         if ( filteredDevs.length === 0 && this.state.ready)
-            return <p className="fs-md fw-4 flh-1 my-3"><FormattedMessage id="staffdash.devs.empty"/></p>;
+            return <p className="fs-md fw-4 flh-1 my-3"><FormattedMessage id="staffdash.guests.empty"/></p>;
         else
             return (
                 filteredDevs.map((dev, index) => {

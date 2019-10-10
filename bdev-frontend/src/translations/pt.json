@@ -670,6 +670,7 @@
   "staffdash.companies.add.done": "Empresa Adicionada",
   "staffdash.companies.edit.desc": "Editar dados da Empresa (alterar todos)",
   "staffdash.guests.title": "Visitantes",
+  "staffdash.guests.empty": "Ainda não há Visitantes",
   "staffdash.tickets.title": "Sorteios",
   "staffdash.tickets.job_fair": "Feira de Empresas",
   "staffdash.tickets.event_award": "Prémio do Evento",

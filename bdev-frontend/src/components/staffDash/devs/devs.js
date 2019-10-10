@@ -69,7 +69,7 @@ class Devs extends Component {
                 updatedDevs.push( response.data );
                 this.setState({ devs: updatedDevs, profile: response.data });
             })
-            .catch(function (error){ console.log(error); })
+            .catch(function (error){ console.log(error.response); })
     };
     cancelPayment(profile){
         axios.put(URL+'/api/devs/_'+profile.username+'/cancelPayment', {}, {

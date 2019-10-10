@@ -33,8 +33,10 @@ class Authentication extends Component {
 
         return (
             <div>
-                <div className="row justify-content-center align-items-center p-0 m-0 vh-100 primary">
+                <div className="row justify-content-center align-items-center p-0 m-0 vh-100 primary"
+                    style={{"minHeight":"500px"}}>
                     <div className="col-10 col-lg-4 p-0 text-center">
+                        <div className={"spacer-8"} />
                         <div className="row m-0 vh-70 white" id={"auth-form"}>
                             <div className="col-12 p-0">
                                 <div className="row align-items-center m-0">
@@ -47,16 +49,17 @@ class Authentication extends Component {
                                 </div>
                                 <div className="row vh-50 m-0 justify-content-center align-items-start" id={"auth-area"}>
                                     <div className="col-10 p-0">
-                                        <div className="spacer-4"></div>
+                                        <div className="spacer-4" />
                                         {this.state.isLogin ?
                                             <Login {...this.props}/> :
                                             <Register {...this.props}/>
                                         }
-                                        <div className="spacer-4"></div>
+                                        <div className="spacer-4" />
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div className={"spacer-8"} />
                     </div>
                 </div>
             </div>
