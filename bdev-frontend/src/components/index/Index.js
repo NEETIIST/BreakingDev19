@@ -452,13 +452,6 @@ class Index extends Component {
                         <div className="spacer-4" />
                         <div className="row justify-content-start align-items-start m-0">
                             <div className="col-12 col-lg-3 text-left p-0 px-lg-3">
-                                <p className="fs-sm fw-4 flh-1 mb-1"><FormattedMessage id="index.sec8.organization"/></p>
-                                <a href="http://neeti.tecnico.ulisboa.pt/" target="_blank">
-                                    <img src="sponsors/NEETI.png" className="img-fluid cp px-3 p-lg-0"
-                                         title="Núcleo de Estudantes de Engenharia de Telecomunicações e Informática do Instituto Superior Técnico"/>
-                                </a>
-                            </div>
-                            <div className="col-12 col-lg-3 text-left p-0 px-lg-3">
                                 <p className="fs-xs fw-4 flh-1 mb-1"><FormattedMessage id="index.sec8.sponsor"/></p>
                                 <a href="https://www.farfetch.com/pt/" target="_blank">
                                     <img src="sponsors/Farfetch.png" className="img-fluid cp"
@@ -507,31 +500,45 @@ class Index extends Component {
                                          title="Theros"/>
                                 </a>
                             </div>
+                            <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
+                                <p className="fs-sm fw-4 flh-1 mb-1 f-white">.</p>
+                                <a href="https://www.incm.pt/portal/index.jsp" target="_blank">
+                                    <img src="sponsors/INCMoeda.png" className="img-fluid cp"
+                                         title="Imprensa Nacional Casa da Moeda"/>
+                                </a>
+                            </div>
                         </div>
                         <div className={"spacer-2"} />
                         <div className="row justify-content-start align-items-start m-0">
-                            <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
+                            <div className="col-12 col-lg text-left p-0 px-lg-3">
+                                <p className="fs-sm fw-4 flh-1 mb-1"><FormattedMessage id="index.sec8.organization"/></p>
+                                <a href="http://neeti.tecnico.ulisboa.pt/" target="_blank">
+                                    <img src="sponsors/NEETI.png" className="img-fluid cp px-3 p-lg-0"
+                                         title="Núcleo de Estudantes de Engenharia de Telecomunicações e Informática do Instituto Superior Técnico"/>
+                                </a>
+                            </div>
+                            <div className="col-6 col-lg text-left p-0 px-lg-3">
                                 <p className="fs-xs fw-4 flh-1 mb-1"><FormattedMessage id="index.sec8.support"/></p>
                                 <a href="https://tecnico.ulisboa.pt/pt/" target="_blank">
                                     <img src="sponsors/IST.png" className="img-fluid cp"
                                          title="Instituto Superior Técnico"/>
                                 </a>
                             </div>
-                            <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
+                            <div className="col-6 col-lg text-left p-0 px-lg-3">
                                 <p className="fs-sm fw-4 flh-1 mb-1 f-white">.</p>
                                 <a href="https://www.santandertotta.pt/pt_PT/Particulares/Universitarios.html" target="_blank">
                                     <img src="sponsors/Santander.png" className="img-fluid cp"
                                          title="Banco Santander Totta"/>
                                 </a>
                             </div>
-                            <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
+                            <div className="col-6 col-lg text-left p-0 px-lg-3">
                                 <p className="fs-sm fw-4 flh-2 mb-3 f-white">.</p>
                                 <a href="http://360imprimir.com" target="_blank">
                                     <img src="sponsors/360Imprimir.png" className="img-fluid cp"
                                          title="360 Imprimir"/>
                                 </a>
                             </div>
-                            <div className="col-6 col-lg-3 text-left p-0 px-lg-3">
+                            <div className="col-6 col-lg text-left p-0 px-lg-3">
                                 <p className="fs-sm fw-4 flh-2 mb-3 f-white">.</p>
                                 <a href="http://www.cm-oeiras.pt/pt/Paginas/default.aspx" target="_blank">
                                     <img src="sponsors/Oeiras.png" className="img-fluid cp"
